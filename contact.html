@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GENEX | تواصل</title>
+  <link rel="stylesheet" href="./assets/styles.css">
+</head>
+<body>
+  <div class="grid"></div>
+
+  <nav class="nav">
+    <div class="container nav-inner">
+      <a class="brand" href="./index.html"><span class="logo"></span><span>GENEX</span></a>
+
+      <div class="nav-links">
+        <a href="./index.html">الرئيسية</a>
+        <a href="./services.html">الخدمات</a>
+        <a href="./projects.html">الأعمال</a>
+        <a href="./request.html">طلب جديد</a>
+        <a href="./join.html">انضم</a>
+        <a href="./contact.html">تواصل</a>
+      </div>
+
+      <div class="nav-cta">
+        <div class="lang">
+          <button id="btnAR" class="active">AR</button>
+          <button id="btnEN">EN</button>
+        </div>
+        <a class="btn btn-primary" href="./request.html">اطلب الأتمتة</a>
+      </div>
+    </div>
+  </nav>
+
+  <section>
+    <div class="container">
+      <div class="card reveal">
+        <div class="pulse"></div>
+        <div style="padding:28px">
+          <div class="section-title">
+            <div>
+              <h1>تواصل مع GENEX</h1>
+              <p>اختر أسرع قناة مناسبة لك، أو ابدأ بطلب جديد.</p>
+            </div>
+            <a class="btn" href="./request.html">طلب جديد</a>
+          </div>
+
+          <div class="cards">
+            <div class="mini reveal">
+              <div class="icon">📩</div>
+              <h3>البريد</h3>
+              <p>ضع بريدك الرسمي هنا لاحقًا (Sales / Support / Careers).</p>
+            </div>
+            <div class="mini reveal">
+              <div class="icon">📍</div>
+              <h3>الموقع</h3>
+              <p>Riyadh, Saudi Arabia (Placeholder)</p>
+            </div>
+            <div class="mini reveal">
+              <div class="icon">🕒</div>
+              <h3>وقت الاستجابة</h3>
+              <p>عادة خلال 24 ساعة للطلبات الجديدة.</p>
+            </div>
+          </div>
+
+          <div style="display:flex; gap:10px; margin-top:16px; flex-wrap:wrap">
+            <a class="btn btn-primary" href="./request.html">اطلب الأتمتة</a>
+            <a class="btn" href="./join.html">انضم لنا</a>
+          </div>
+
+          <div class="footer">
+            <div class="container row">
+              <div>
+                <b style="letter-spacing:.22em">GENEX</b>
+                <div style="margin-top:6px; font-size:13px;">© <span id="year"></span> GENEX. All rights reserved.</div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script src="./assets/app.js"></script>
+  <script>document.getElementById("year").textContent = new Date().getFullYear();</script>
+</body>
+</html>
