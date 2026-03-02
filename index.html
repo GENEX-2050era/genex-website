@@ -676,7 +676,10 @@
       </div>
 
       <div class="form-grid">
-        <form class="form" id="requestForm">
+        <form class="form" action="https://formsubmit.co/genex.2050era@gmail.com" method="POST">
+  <input type="hidden" name="_subject" value="GENEX | New Automation Request">
+  <input type="hidden" name="_next" value="https://genex-2050era.github.io/genex-website/thankyou.html">
+  <input type="hidden" name="_captcha" value="false">
           <label>Company / Entity Name</label>
           <input required name="company" placeholder="e.g., Smart Store Co." />
 
@@ -735,7 +738,10 @@
       </div>
 
       <div class="form-grid">
-        <form class="form" id="joinForm">
+        <form class="form" action="https://formsubmit.co/genex.2050era@gmail.com" method="POST">
+  <input type="hidden" name="_subject" value="GENEX | New Join Request">
+  <input type="hidden" name="_next" value="https://genex-2050era.github.io/genex-website/thankyou.html">
+  <input type="hidden" name="_captcha" value="false">
           <label>Full Name</label>
           <input required name="name" placeholder="Your name" />
 
@@ -872,29 +878,9 @@
       });
     });
 
-    // Request form (demo)
-    const reqForm = document.getElementById("requestForm");
-    const reqMsg = document.getElementById("reqMsg");
-    reqForm.addEventListener("submit", (e)=>{
-      e.preventDefault();
-      const data = Object.fromEntries(new FormData(reqForm).entries());
-      reqMsg.style.display = "block";
-      reqMsg.innerHTML = "✅ Request received. GENEX will contact you within 24 hours. (Demo mode)";
-      reqForm.reset();
-      console.log("Request:", data);
-    });
+    
 
-    // Join form (demo)
-    const joinForm = document.getElementById("joinForm");
-    const joinMsg = document.getElementById("joinMsg");
-    joinForm.addEventListener("submit", (e)=>{
-      e.preventDefault();
-      const data = Object.fromEntries(new FormData(joinForm).entries());
-      joinMsg.style.display = "block";
-      joinMsg.innerHTML = "✅ Submitted. We’ll reach out if there’s a match. (Demo mode)";
-      joinForm.reset();
-      console.log("Join:", data);
-    });
+    
 
     // Chat widget (demo intelligence without API)
     const chatFab = document.getElementById("chatFab");
