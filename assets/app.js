@@ -47,3 +47,11 @@ setLang(saved);
 
 document.getElementById("btnAR")?.addEventListener("click", ()=>setLang("ar"));
 document.getElementById("btnEN")?.addEventListener("click", ()=>setLang("en"));
+const toggle = document.getElementById("menuToggle");
+const navLinks = document.querySelector(".nav-links");
+
+if(toggle){
+toggle.onclick = () => {
+navLinks.classList.toggle("active");
+};
+}
