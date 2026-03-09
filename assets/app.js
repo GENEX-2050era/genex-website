@@ -71,6 +71,62 @@ document.addEventListener("DOMContentLoaded", function () {
       final_desc: "إذا كنت تبحث عن تحويل خدماتك أو منشأتك إلى بيئة تعتمد على الذكاء الاصطناعي والأتمتة، فابدأ من هنا.",
       final_btn: "ابدأ مشروعك مع GENEX",
 
+      services_page_title: "الخدمات",
+      services_page_desc: "حلول GENEX مصممة لتحويل الخدمات التقليدية إلى أنظمة تشغيل ذكية وآلية.",
+      services_1_title: "مساعدات ذكاء اصطناعي",
+      services_1_desc: "مساعدات رقمية ذكية لخدمة العملاء، الردود، والمتابعة التشغيلية.",
+      services_2_title: "أتمتة العمليات",
+      services_2_desc: "تحويل المسارات والإجراءات اليدوية إلى تدفقات عمل آلية أكثر كفاءة.",
+      services_3_title: "تحليل وتشغيل ذكي",
+      services_3_desc: "لوحات متابعة ومؤشرات تشغيل تساعد الإدارة على اتخاذ قرارات أفضل.",
+      services_4_title: "تكامل الأنظمة",
+      services_4_desc: "ربط الأنظمة القائمة والأدوات الرقمية في بيئة عمل واحدة ومتناسقة.",
+      services_5_title: "حلول مخصصة",
+      services_5_desc: "بناء بنية أتمتة مصممة خصيصًا وفق طبيعة نشاط العميل واحتياجه.",
+      services_6_title: "تطوير مستمر",
+      services_6_desc: "نظام لا يتوقف عند التنفيذ بل يستمر في التحسين والتطوير مع الوقت.",
+
+      request_page_title: "طلب جديد",
+      request_page_desc: "أرسل احتياجك وسيتواصل معك فريق GENEX لدراسة المشروع.",
+      request_company: "اسم الشركة / المنشأة",
+      request_name: "الاسم",
+      request_email: "البريد الإلكتروني",
+      request_type: "نوع النشاط",
+      request_details: "وصف الاحتياج",
+      request_submit: "إرسال الطلب",
+      request_side_title: "لماذا تبدأ الآن؟",
+      request_side_desc: "هذه المرحلة مناسبة للشركات التي تريد أن تكون من أوائل الجهات التي تطبق أتمتة وذكاء اصطناعي فعلي مع GENEX، مع فرصة لتصميم حل مخصص منذ البداية.",
+      placeholder_company: "اكتب اسم الشركة",
+      placeholder_name: "اسمك",
+      placeholder_email: "email@example.com",
+      placeholder_type: "مثال: متجر / منشأة / جهة حكومية",
+      placeholder_details: "اشرح ما الذي تريد أتمتته",
+
+      join_page_title: "انضم إلى GENEX",
+      join_page_desc: "نبحث عن أشخاص يملكون عقلية بناء، وتوجه قوي نحو الأتمتة والذكاء الاصطناعي.",
+      join_name: "الاسم",
+      join_email: "البريد الإلكتروني",
+      join_speciality: "التخصص",
+      join_about: "نبذة مختصرة",
+      join_submit: "إرسال الطلب",
+      join_side_title: "من نبحث عنه؟",
+      join_side_desc: "نبحث عن أشخاص لديهم فضول تقني، سرعة تعلم، ورغبة في المساهمة في بناء أنظمة حقيقية تعيد تشكيل طريقة عمل المنشآت والخدمات.",
+      placeholder_speciality: "مثال: AI / تطوير / تصميم",
+      placeholder_about: "عرفنا عنك بشكل مختصر",
+
+      contact_page_title: "تواصل معنا",
+      contact_page_desc: "إذا لديك استفسار أو رغبة في الحديث عن مشروعك، يسعدنا التواصل معك.",
+      contact_box_1_title: "البريد",
+      contact_box_1_desc: "ضع هنا بريدك الرسمي لاحقًا مثل: contact@genex.com",
+      contact_box_2_title: "الموقع",
+      contact_box_2_desc: "السعودية — عن بعد / حضور حسب طبيعة المشروع.",
+      contact_box_3_title: "الاستجابة",
+      contact_box_3_desc: "نراجع الطلبات الجديدة ونتواصل عادة خلال 24 ساعة.",
+
+      thank_title: "تم استلام طلبك",
+      thank_desc: "وصلتنا رسالتك بنجاح. سيتواصل فريق GENEX معك قريبًا.",
+      thank_btn: "العودة للرئيسية",
+
       footer_text: "Autonomous AI Systems"
     },
 
@@ -124,6 +180,62 @@ document.addEventListener("DOMContentLoaded", function () {
       final_desc: "If you're ready to transform your services into an AI-driven automated environment, start here.",
       final_btn: "Start Your Project with GENEX",
 
+      services_page_title: "Services",
+      services_page_desc: "GENEX solutions are designed to transform traditional services into intelligent automated operating systems.",
+      services_1_title: "AI Assistants",
+      services_1_desc: "Intelligent assistants for customer support, replies, and operational follow-up.",
+      services_2_title: "Process Automation",
+      services_2_desc: "Transforming manual procedures into more efficient automated workflows.",
+      services_3_title: "Operational Analytics",
+      services_3_desc: "Dashboards and metrics that support better decisions.",
+      services_4_title: "Systems Integration",
+      services_4_desc: "Connecting existing systems and digital tools into one coordinated environment.",
+      services_5_title: "Custom Solutions",
+      services_5_desc: "Building automation architecture tailored to your business needs.",
+      services_6_title: "Continuous Development",
+      services_6_desc: "A system that continues improving after launch.",
+
+      request_page_title: "New Request",
+      request_page_desc: "Send your need and GENEX will review your project.",
+      request_company: "Company / Organization Name",
+      request_name: "Name",
+      request_email: "Email",
+      request_type: "Business Type",
+      request_details: "Project Details",
+      request_submit: "Submit Request",
+      request_side_title: "Why start now?",
+      request_side_desc: "This phase is ideal for organizations that want to be among the first to adopt real automation and AI with GENEX, with a custom-built solution from the start.",
+      placeholder_company: "Enter company name",
+      placeholder_name: "Your name",
+      placeholder_email: "email@example.com",
+      placeholder_type: "Example: retail / facility / government",
+      placeholder_details: "Explain what you want to automate",
+
+      join_page_title: "Join GENEX",
+      join_page_desc: "We are looking for builders with a strong interest in automation and AI.",
+      join_name: "Name",
+      join_email: "Email",
+      join_speciality: "Speciality",
+      join_about: "Short Introduction",
+      join_submit: "Submit",
+      join_side_title: "Who are we looking for?",
+      join_side_desc: "People with technical curiosity, learning speed, and a desire to help build real systems that reshape how services operate.",
+      placeholder_speciality: "Example: AI / Development / Design",
+      placeholder_about: "Tell us about yourself briefly",
+
+      contact_page_title: "Contact Us",
+      contact_page_desc: "If you have an inquiry or want to discuss your project, we'd be glad to hear from you.",
+      contact_box_1_title: "Email",
+      contact_box_1_desc: "Put your official email here later, e.g. contact@genex.com",
+      contact_box_2_title: "Location",
+      contact_box_2_desc: "Saudi Arabia — remote / onsite depending on project.",
+      contact_box_3_title: "Response Time",
+      contact_box_3_desc: "We typically review new requests and respond within 24 hours.",
+
+      thank_title: "Your request was received",
+      thank_desc: "We received your message successfully. The GENEX team will contact you soon.",
+      thank_btn: "Back to Home",
+
       footer_text: "Autonomous AI Systems"
     }
   };
@@ -137,6 +249,13 @@ document.addEventListener("DOMContentLoaded", function () {
       const key = el.getAttribute("data-i18n");
       if (translations[lang] && translations[lang][key]) {
         el.textContent = translations[lang][key];
+      }
+    });
+
+    document.querySelectorAll("[data-i18n-placeholder]").forEach(function (el) {
+      const key = el.getAttribute("data-i18n-placeholder");
+      if (translations[lang] && translations[lang][key]) {
+        el.placeholder = translations[lang][key];
       }
     });
   }
@@ -218,7 +337,6 @@ document.addEventListener("DOMContentLoaded", function () {
         for (let i = 0; i < strands.length; i++) {
           const s = strands[i];
           const d = distance(candidate.x, candidate.y, s.x, s.y);
-
           const requiredGap = minGap + Math.max(candidate.len, s.len) * 0.25;
           if (d < requiredGap) {
             overlaps = true;
@@ -258,7 +376,6 @@ document.addEventListener("DOMContentLoaded", function () {
       const pA = points.pA;
       const pB = points.pB;
 
-      // spine A
       ctx.beginPath();
       for (let i = 0; i < pA.length; i++) {
         if (i === 0) ctx.moveTo(pA[i].x, pA[i].y);
@@ -268,7 +385,6 @@ document.addEventListener("DOMContentLoaded", function () {
       ctx.lineWidth = 1.15;
       ctx.stroke();
 
-      // spine B
       ctx.beginPath();
       for (let i = 0; i < pB.length; i++) {
         if (i === 0) ctx.moveTo(pB[i].x, pB[i].y);
@@ -278,7 +394,6 @@ document.addEventListener("DOMContentLoaded", function () {
       ctx.lineWidth = 1.15;
       ctx.stroke();
 
-      // bridges داخل نفس المجموعة فقط
       for (let i = 0; i < pA.length; i++) {
         const a = pA[i];
         const b = pB[i];
@@ -294,7 +409,6 @@ document.addEventListener("DOMContentLoaded", function () {
         ctx.stroke();
       }
 
-      // nodes
       for (let i = 0; i < pA.length; i++) {
         ctx.beginPath();
         ctx.arc(pA[i].x, pA[i].y, 2.05, 0, Math.PI * 2);
