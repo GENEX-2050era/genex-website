@@ -1,3 +1,4 @@
+
 :root{
   --bg:#05070f;
   --bg2:#0b0710;
@@ -955,41 +956,43 @@ body::before{
   to{ transform:translateY(6px); }
 }
 
-/* ========================= */
-/* SHINE WORD */
-/* ========================= */
+/* GENEX text shine */
 
 .genex-shine-word{
   position:relative;
+  display:inline;
   color:#fff;
-  text-shadow:
-    0 0 12px rgba(255,255,255,.22),
-    0 0 22px rgba(255,255,255,.08);
-  overflow:hidden;
-}
+  font-weight:900;
+  letter-spacing:.32em;
+  line-height:1;
 
-.genex-shine-word::after{
-  content:"";
-  position:absolute;
-  top:-15%;
-  left:-35%;
-  width:28%;
-  height:140%;
-  transform:skewX(-22deg);
   background:linear-gradient(
-    90deg,
-    transparent,
-    rgba(255,255,255,.12),
-    rgba(255,255,255,.7),
-    rgba(255,255,255,.12),
-    transparent
+    120deg,
+    rgba(255,255,255,.9) 0%,
+    rgba(255,255,255,.9) 40%,
+    rgba(255,255,255,.2) 50%,
+    rgba(255,255,255,.9) 60%,
+    rgba(255,255,255,.9) 100%
   );
-  animation:genexShineMove 3.2s linear infinite;
+
+  background-size:220% auto;
+
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+
+  animation:genexTextShine 4s linear infinite;
 }
 
-@keyframes genexShineMove{
-  0%{ left:-35%; }
-  100%{ left:135%; }
+@keyframes genexTextShine{
+
+  0%{
+    background-position:-200% center;
+  }
+
+  100%{
+    background-position:200% center;
+  }
+
 }
 
 /* ========================= */
