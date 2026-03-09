@@ -881,3 +881,324 @@ body::before{
   background:#e8e8e8;
 
 }
+/* ========================= */
+/* INTRO */
+/* ========================= */
+
+.genex-intro{
+  position:fixed;
+  inset:0;
+  background:
+    radial-gradient(circle at center, rgba(177,18,38,.12), transparent 35%),
+    rgba(3,5,10,.97);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  z-index:6000;
+  opacity:1;
+  visibility:visible;
+  transition:opacity .9s ease, visibility .9s ease;
+}
+
+.genex-intro.hide{
+  opacity:0;
+  visibility:hidden;
+}
+
+.genex-intro-core{
+  text-align:center;
+  transform:translateY(0);
+  animation:genexIntroFloat 2s ease-in-out infinite alternate;
+}
+
+.genex-intro-logo{
+  width:130px;
+  height:130px;
+  object-fit:contain;
+  display:block;
+  margin:0 auto 18px;
+  filter:
+    brightness(0) invert(1)
+    drop-shadow(0 0 18px rgba(255,255,255,.95))
+    drop-shadow(0 0 34px rgba(255,255,255,.28));
+}
+
+.genex-intro-brand{
+  color:#fff;
+  font-size:34px;
+  font-weight:900;
+  letter-spacing:.4em;
+  text-indent:.4em;
+  text-shadow:0 0 20px rgba(255,255,255,.25);
+}
+
+.genex-intro-sub{
+  margin-top:12px;
+  color:rgba(255,255,255,.72);
+  font-size:14px;
+  letter-spacing:.16em;
+}
+
+@keyframes genexIntroFloat{
+  from{ transform:translateY(-4px); }
+  to{ transform:translateY(6px); }
+}
+
+/* ========================= */
+/* SHINE WORD */
+/* ========================= */
+
+.genex-shine-word{
+  position:relative;
+  color:#fff;
+  text-shadow:
+    0 0 12px rgba(255,255,255,.22),
+    0 0 22px rgba(255,255,255,.08);
+  overflow:hidden;
+}
+
+.genex-shine-word::after{
+  content:"";
+  position:absolute;
+  top:-15%;
+  left:-35%;
+  width:28%;
+  height:140%;
+  transform:skewX(-22deg);
+  background:linear-gradient(
+    90deg,
+    transparent,
+    rgba(255,255,255,.12),
+    rgba(255,255,255,.7),
+    rgba(255,255,255,.12),
+    transparent
+  );
+  animation:genexShineMove 3.2s linear infinite;
+}
+
+@keyframes genexShineMove{
+  0%{ left:-35%; }
+  100%{ left:135%; }
+}
+
+/* ========================= */
+/* NEW SYSTEMS SECTION */
+/* ========================= */
+
+.genex-systems-section{
+  overflow:hidden;
+  position:relative;
+}
+
+.genex-systems-section::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:
+    radial-gradient(500px 180px at 10% 0%, rgba(177,18,38,.14), transparent 60%),
+    radial-gradient(500px 180px at 90% 100%, rgba(255,255,255,.06), transparent 60%);
+  pointer-events:none;
+}
+
+.systems-grid{
+  display:grid;
+  grid-template-columns:repeat(3, 1fr);
+  gap:14px;
+  position:relative;
+  z-index:2;
+}
+
+.systems-node{
+  padding:20px;
+  border-radius:18px;
+  background:rgba(255,255,255,.05);
+  border:1px solid rgba(255,255,255,.12);
+  box-shadow:0 10px 30px rgba(0,0,0,.25);
+  transition:.22s ease;
+}
+
+.systems-node:hover{
+  transform:translateY(-4px);
+  background:rgba(255,255,255,.07);
+}
+
+.systems-node-icon{
+  width:48px;
+  height:48px;
+  border-radius:14px;
+  display:grid;
+  place-items:center;
+  margin-bottom:14px;
+  background:linear-gradient(135deg, rgba(177,18,38,.28), rgba(255,255,255,.12));
+  border:1px solid rgba(255,255,255,.12);
+  font-size:20px;
+}
+
+/* ========================= */
+/* CHAT */
+/* ========================= */
+
+.genex-chat-fab{
+  position:fixed;
+  left:22px;
+  bottom:22px;
+  width:68px;
+  height:68px;
+  border-radius:50%;
+  display:grid;
+  place-items:center;
+  background:
+    radial-gradient(circle at 35% 30%, rgba(255,255,255,.95), rgba(255,255,255,.75)),
+    linear-gradient(135deg,#ffffff,#d9d9d9);
+  color:#000;
+  cursor:pointer;
+  z-index:4000;
+  box-shadow:
+    0 16px 40px rgba(0,0,0,.42),
+    0 0 24px rgba(255,255,255,.28);
+  transition:.25s ease;
+  border:1px solid rgba(255,255,255,.85);
+}
+
+.genex-chat-fab span{
+  font-size:24px;
+  transform:translateY(-1px);
+}
+
+.genex-chat-fab:hover{
+  transform:scale(1.08);
+  box-shadow:
+    0 18px 50px rgba(0,0,0,.5),
+    0 0 34px rgba(255,255,255,.4);
+}
+
+.genex-chat-panel{
+  position:fixed;
+  left:22px;
+  bottom:102px;
+  width:360px;
+  max-width:calc(100vw - 40px);
+  height:460px;
+  background:rgba(8,8,14,.97);
+  border:1px solid rgba(255,255,255,.14);
+  border-radius:24px;
+  display:none;
+  flex-direction:column;
+  overflow:hidden;
+  z-index:4001;
+  box-shadow:
+    0 24px 70px rgba(0,0,0,.6),
+    0 0 28px rgba(255,255,255,.08);
+  backdrop-filter:blur(20px);
+}
+
+.genex-chat-panel.show{
+  display:flex;
+}
+
+.genex-chat-header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:16px 18px;
+  border-bottom:1px solid rgba(255,255,255,.08);
+  background:linear-gradient(180deg, rgba(255,255,255,.05), transparent);
+}
+
+.genex-chat-title-wrap{
+  display:flex;
+  flex-direction:column;
+  gap:4px;
+}
+
+.genex-chat-title-wrap strong{
+  font-size:15px;
+  color:#fff;
+}
+
+.genex-chat-title-wrap small{
+  color:rgba(255,255,255,.62);
+  font-size:12px;
+}
+
+.genex-chat-header button{
+  background:none;
+  border:none;
+  color:#fff;
+  cursor:pointer;
+  font-size:16px;
+}
+
+.genex-chat-body{
+  flex:1;
+  padding:16px;
+  overflow:auto;
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+}
+
+.genex-chat-msg{
+  max-width:84%;
+  padding:12px 14px;
+  border-radius:16px;
+  font-size:14px;
+  line-height:1.7;
+}
+
+.genex-chat-msg.bot{
+  background:rgba(255,255,255,.08);
+  color:#fff;
+  align-self:flex-start;
+  border:1px solid rgba(255,255,255,.08);
+}
+
+.genex-chat-msg.user{
+  background:#fff;
+  color:#000;
+  align-self:flex-end;
+}
+
+.genex-chat-input-wrap{
+  display:flex;
+  gap:8px;
+  padding:12px;
+  border-top:1px solid rgba(255,255,255,.08);
+}
+
+.genex-chat-input-wrap input{
+  flex:1;
+  margin:0;
+}
+
+.genex-chat-input-wrap button{
+  border:none;
+  border-radius:12px;
+  background:#fff;
+  color:#000;
+  padding:0 16px;
+  font-weight:700;
+  cursor:pointer;
+  transition:.2s ease;
+}
+
+.genex-chat-input-wrap button:hover{
+  background:#ececec;
+}
+
+@media (max-width:1024px){
+  .systems-grid{
+    grid-template-columns:1fr;
+  }
+
+  .genex-chat-panel{
+    width:min(360px, calc(100vw - 24px));
+    left:12px;
+    bottom:90px;
+  }
+
+  .genex-chat-fab{
+    left:12px;
+    bottom:12px;
+  }
+}
