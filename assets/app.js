@@ -542,40 +542,111 @@ document.addEventListener("DOMContentLoaded", function () {
       ? "I can help explain GENEX services, how we work, and how to start your project."
       : "أستطيع مساعدتك في فهم خدمات GENEX، آلية العمل، وكيف تبدأ مشروعك معنا.";
   }
+// =========================
+  // Chat
+  // =========================
+  const chatFab = document.getElementById("genexChatFab");
+  const chatPanel = document.getElementById("genexChatPanel");
+  const chatClose = document.getElementById("genexChatClose");
+  const chatSend = document.getElementById("genexChatSend");
+  const chatInput = document.getElementById("genexChatInput");
+  const chatBody = document.getElementById("genexChatBody");
 
-  if (chatFab && chatPanel) {
+  function currentLang() {
+    return localStorage.getItem("genex_lang") || "ar";
+  }
+
+  function addChatMessage(text, role) {
+    if (!chatBody) return;
+
+    const msg = document.createElement("div");
+    msg.className = "genex-chat-msg " + role;
+    msg.textContent = text;
+    chatBody.appendChild(msg);
+    chatBody.scrollTop = chatBody.scrollHeight;
+  }
+
+  function botReply(userText) {
+    const text = userText.toLowerCase();
+    const lang = currentLang();
+
+    if (text.includes("خدمة") || text.includes("الخدمات") || text.includes("services")) {
+      return lang === "en"
+        ? "GENEX provides AI agents, process automation, systems integration, and intelligent operational solutions."
+        : "GENEX تقدم وكلاء ذكاء اصطناعي، أتمتة عمليات، تكامل أنظمة، وحلول تشغيل ذكية.";
+    }
+
+    if (text.includes("ابدأ") || text.includes("طلب") || text.includes("project") || text.includes("start")) {
+      return lang === "en"
+        ? "To start your project, go to the New Request page and share your business details and automation needs."
+        : "لبداية مشروعك، انتقل إلى صفحة طلب جديد وشاركنا تفاصيل النشاط والاحتياج.";
+    }
+
+    if (text.includes("سعر") || text.includes("تكلفة") || text.includes("price") || text.includes("cost")) {
+      return lang === "en"
+        ? "Pricing depends on the scope of automation, system size, and required integrations."
+        : "التكلفة تعتمد على نطاق الأتمتة، حجم النظام، والتكاملات المطلوبة.";
+    }
+
+    if (text.includes("مخصص") || text.includes("custom")) {
+      return lang === "en"
+        ? "GENEX can build a custom autonomous system tailored to your workflows, business logic, and integrations."
+        : "تستطيع GENEX بناء نظام آلي مخصص وفق إجراءاتك التشغيلية ومنطق عملك والتكاملات التي تحتاجها.";
+    }
+
+    return lang === "en"
+      ? "I can help explain GENEX services, how we work, and how to start your project."
+      : "أستطيع مساعدتك في فهم خدمات GENEX، آلية العمل، وكيف تبدأ مشروعك معنا.";
+  }
+
+  function sendGenexChat() {
+    if (!chatInput || !chatBody) return;
+
+    const value = chatInput.value.trim();
+    if (!value) return;
+
+    addChatMessage(value, "user");
+    chatInput.value = "";
+
+    window.setTimeout(function () {
+      addChatMessage(botReply(value), "bot");
+    }, 350);
+  }
+
+  window.toggleGenexChat = function (open) {
+    if (!chatPanel) return;
+    if (open) chatPanel.classList.add("show");
+    else chatPanel.classList.remove("show");
+  };
+
+  window.quickGenexChat = function (text) {
+    if (!chatInput) return;
+    window.toggleGenexChat(true);
+    chatInput.value = text;
+    sendGenexChat();
+  };
+
+  if (chatFab) {
     chatFab.addEventListener("click", function () {
-      chatPanel.classList.add("show");
+      window.toggleGenexChat(true);
     });
   }
 
-  if (chatClose && chatPanel) {
+  if (chatClose) {
     chatClose.addEventListener("click", function () {
-      chatPanel.classList.remove("show");
+      window.toggleGenexChat(false);
     });
   }
 
-  if (chatSend && chatInput) {
-    chatSend.addEventListener("click", function () {
-      const value = chatInput.value.trim();
-      if (!value) return;
-
-      addChatMessage(value, "user");
-      chatInput.value = "";
-
-      setTimeout(function () {
-        addChatMessage(botReply(value), "bot");
-      }, 400);
-    });
+  if (chatSend) {
+    chatSend.addEventListener("click", sendGenexChat);
   }
 
   if (chatInput) {
     chatInput.addEventListener("keydown", function (e) {
       if (e.key === "Enter") {
         e.preventDefault();
-        if (chatSend) {
-          chatSend.click();
-        }
+        sendGenexChat();
       }
     });
   }
