@@ -27,7 +27,8 @@ document.addEventListener("DOMContentLoaded", function () {
       ask: "ابدأ مشروعك مع GENEX",
       heroBtn: "اكتشف خدمات GENEX",
       earlyTitle: "برنامج الشركاء الأوائل",
-      earlyDesc: "نفتح الآن المجال لأول العملاء الذين يرغبون في بناء أنظمة أتمتة وذكاء اصطناعي مع GENEX. هذه المرحلة مخصصة للشركات والمنشآت التي ترغب في أن تكون من أوائل الجهات التي تتبنى البنية التشغيلية الذكية.",
+      earlyDesc:
+        "نفتح الآن المجال لأول العملاء الذين يرغبون في بناء أنظمة أتمتة وذكاء اصطناعي مع GENEX. هذه المرحلة مخصصة للشركات والمنشآت التي ترغب في أن تكون من أوائل الجهات التي تتبنى البنية التشغيلية الذكية.",
       early1: "أولوية في دراسة الاحتياج والتصميم",
       early2: "حلول مخصصة بحسب طبيعة نشاطك",
       early3: "فرصة لبناء أول حالة نجاح مشتركة مع GENEX",
@@ -42,7 +43,8 @@ document.addEventListener("DOMContentLoaded", function () {
       ask: "Start Your Project with GENEX",
       heroBtn: "Explore GENEX Services",
       earlyTitle: "Early Partners Program",
-      earlyDesc: "We are now opening access to our first partners who want to build AI and automation systems with GENEX.",
+      earlyDesc:
+        "We are now opening access to our first partners who want to build AI and automation systems with GENEX.",
       early1: "Priority in requirement study and system design",
       early2: "Tailored solutions based on your business model",
       early3: "Opportunity to build the first joint success case with GENEX",
@@ -66,7 +68,9 @@ document.addEventListener("DOMContentLoaded", function () {
       btn.classList.remove("active");
     });
 
-    const activeBtn = document.querySelector(`.lang-switch button[data-lang="${lang}"]`);
+    const activeBtn = document.querySelector(
+      `.lang-switch button[data-lang="${lang}"]`
+    );
     if (activeBtn) activeBtn.classList.add("active");
   }
 
@@ -87,11 +91,7 @@ document.addEventListener("DOMContentLoaded", function () {
     let w = 0;
     let h = 0;
     let scrollYPos = 0;
-
-    let cols = 0;
-    let rows = 0;
-    let spacing = 110;
-    let nodes = [];
+    let groups = [];
 
     function rand(min, max) {
       return Math.random() * (max - min) + min;
@@ -111,86 +111,130 @@ document.addEventListener("DOMContentLoaded", function () {
       );
 
       canvas.style.height = h + "px";
-      buildMesh();
+      createGroups();
     }
 
-    function buildMesh() {
-      cols = Math.ceil(w / spacing) + 2;
-      rows = Math.ceil(h / spacing) + 2;
-      nodes = [];
+    function createClusterPoints(cx, cy, size, count) {
+      const pts = [];
+      for (let i = 0; i < count; i++) {
+        const angle = (Math.PI * 2 * i) / count + rand(-0.35, 0.35);
+        const radius = rand(size * 0.25, size);
+        pts.push({
+          x: cx + Math.cos(angle) * radius,
+          y: cy + Math.sin(angle) * radius
+        });
+      }
+      pts.push({ x: cx, y: cy });
+      return pts;
+    }
 
-      const seedShiftX = rand(-18, 18);
-      const seedShiftY = rand(-18, 18);
+    function buildEdges(points) {
+      const edges = [];
+      const centerIndex = points.length - 1;
 
-      for (let y = 0; y < rows; y++) {
-        let row = [];
-        for (let x = 0; x < cols; x++) {
-          row.push({
-            baseX: x * spacing + (y % 2 ? spacing / 2 : 0) + seedShiftX,
-            baseY: y * spacing + seedShiftY,
-            offsetX: rand(-16, 16),
-            offsetY: rand(-16, 16),
-            phase: rand(0, Math.PI * 2),
-            speed: rand(0.003, 0.008)
-          });
+      for (let i = 0; i < points.length - 1; i++) {
+        edges.push([centerIndex, i]);
+      }
+
+      for (let i = 0; i < points.length - 2; i++) {
+        edges.push([i, i + 1]);
+      }
+
+      if (points.length > 3) {
+        edges.push([0, points.length - 2]);
+      }
+
+      for (let i = 0; i < points.length - 3; i++) {
+        if (Math.random() > 0.45) {
+          edges.push([i, i + 2]);
         }
-        nodes.push(row);
+      }
+
+      return edges;
+    }
+
+    function createGroups() {
+      groups = [];
+
+      const area = w * h;
+      const groupCount = Math.max(10, Math.floor(area / 180000));
+
+      for (let i = 0; i < groupCount; i++) {
+        const cx = rand(40, w - 40);
+        const cy = rand(100, h - 100);
+        const size = rand(55, 130);
+        const pointCount = Math.floor(rand(4, 7));
+        const basePoints = createClusterPoints(cx, cy, size, pointCount);
+
+        groups.push({
+          x: 0,
+          y: 0,
+          baseX: cx,
+          baseY: cy,
+          driftX: rand(-18, 18),
+          driftY: rand(-24, 24),
+          phase: rand(0, Math.PI * 2),
+          speed: rand(0.0007, 0.0018),
+          points: basePoints.map(function (p) {
+            return {
+              x: p.x - cx,
+              y: p.y - cy
+            };
+          }),
+          edges: buildEdges(basePoints)
+        });
       }
     }
 
-    function drawTriangle(a, b, c, offset) {
-      ctx.beginPath();
-      ctx.moveTo(a.baseX + a.offsetX, a.baseY + a.offsetY + offset);
-      ctx.lineTo(b.baseX + b.offsetX, b.baseY + b.offsetY + offset);
-      ctx.lineTo(c.baseX + c.offsetX, c.baseY + c.offsetY + offset);
-      ctx.closePath();
-      ctx.strokeStyle = "rgba(255,255,255,.22)";
-      ctx.lineWidth = 1;
-      ctx.stroke();
+    function drawGroup(group, time, offset) {
+      const floatX = Math.sin(time * group.speed + group.phase) * group.driftX;
+      const floatY = Math.cos(time * group.speed + group.phase) * group.driftY;
+
+      const points = group.points.map(function (p) {
+        return {
+          x: group.baseX + p.x + floatX,
+          y: group.baseY + p.y + floatY + offset
+        };
+      });
+
+      for (let i = 0; i < group.edges.length; i++) {
+        const edge = group.edges[i];
+        const a = points[edge[0]];
+        const b = points[edge[1]];
+
+        ctx.beginPath();
+        ctx.moveTo(a.x, a.y);
+        ctx.lineTo(b.x, b.y);
+        ctx.strokeStyle =
+          i % 3 === 0
+            ? "rgba(177,18,38,0.34)"
+            : "rgba(255,255,255,0.20)";
+        ctx.lineWidth = 1.1;
+        ctx.stroke();
+      }
+
+      for (let i = 0; i < points.length; i++) {
+        const p = points[i];
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, i === points.length - 1 ? 2.8 : 2.2, 0, Math.PI * 2);
+        ctx.fillStyle =
+          i % 3 === 0
+            ? "rgba(255,255,255,0.92)"
+            : "rgba(177,18,38,0.85)";
+        ctx.fill();
+      }
     }
 
-    function draw() {
+    function animate(time) {
       ctx.clearRect(0, 0, w, h);
 
-      const t = performance.now();
       const offset = -scrollYPos * 0.28;
 
-      for (let y = 0; y < rows; y++) {
-        for (let x = 0; x < cols; x++) {
-          const n = nodes[y][x];
-          n.offsetX += Math.sin(t * n.speed + n.phase) * 0.03;
-          n.offsetY += Math.cos(t * n.speed + n.phase) * 0.03;
-        }
+      for (let i = 0; i < groups.length; i++) {
+        drawGroup(groups[i], time, offset);
       }
 
-      for (let y = 0; y < rows - 1; y++) {
-        for (let x = 0; x < cols - 1; x++) {
-          const a = nodes[y][x];
-          const b = nodes[y][x + 1];
-          const c = nodes[y + 1][x];
-          const d = nodes[y + 1][x + 1];
-
-          drawTriangle(a, b, c, offset);
-          drawTriangle(b, d, c, offset);
-        }
-      }
-
-      for (let y = 0; y < rows; y++) {
-        for (let x = 0; x < cols; x++) {
-          const n = nodes[y][x];
-          const drawX = n.baseX + n.offsetX;
-          const drawY = n.baseY + n.offsetY + offset;
-
-          ctx.beginPath();
-          ctx.arc(drawX, drawY, 2.2, 0, Math.PI * 2);
-          ctx.fillStyle = (x + y) % 3 === 0
-            ? "rgba(255,255,255,.92)"
-            : "rgba(177,18,38,.85)";
-          ctx.fill();
-        }
-      }
-
-      requestAnimationFrame(draw);
+      requestAnimationFrame(animate);
     }
 
     window.addEventListener("scroll", function () {
@@ -201,7 +245,7 @@ document.addEventListener("DOMContentLoaded", function () {
     window.addEventListener("load", resize);
 
     resize();
-    draw();
+    requestAnimationFrame(animate);
     setTimeout(resize, 500);
   }
 });
