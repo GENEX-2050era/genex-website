@@ -11,85 +11,90 @@
   <canvas id="bgCanvas"></canvas>
   <div class="grid"></div>
 
-<nav class="nav">
-  <div class="container nav-inner">
+  <nav class="nav">
+    <div class="container nav-inner">
 
-    <a class="brand" href="./index.html">
-      <span class="logo"></span>
-      <span>GENEX</span>
-    </a>
-
-    <button class="menu-toggle" id="menuToggle">☰</button>
-
-    <div class="nav-links">
-      <a href="./index.html" data-i18n="nav_home">الرئيسية</a>
-      <a href="./services.html" data-i18n="nav_services">الخدمات</a>
-      <a href="./request.html" data-i18n="nav_request">طلب جديد</a>
-      <a href="./join.html" data-i18n="nav_join">انضم</a>
-      <a href="./contact.html" data-i18n="nav_contact">تواصل</a>
-    </div>
-
-    <div class="lang-switch">
-      <button data-lang="ar" class="active">AR</button>
-      <button data-lang="en">EN</button>
-    </div>
-
-    <div class="nav-cta">
-      <a class="btn btn-primary" href="./request.html" data-i18n="nav_cta">
-        ابدأ مشروعك مع GENEX
+      <a class="brand" href="./index.html">
+        <span class="logo"></span>
+        <span>GENEX</span>
       </a>
-    </div>
 
-  </div>
-</nav>
+      <button class="menu-toggle" id="menuToggle">☰</button>
+
+      <div class="nav-links">
+        <a href="./index.html" data-i18n="nav_home">الرئيسية</a>
+        <a href="./services.html" data-i18n="nav_services">الخدمات</a>
+        <a href="./request.html" data-i18n="nav_request">طلب جديد</a>
+        <a href="./join.html" data-i18n="nav_join">انضم</a>
+        <a href="./contact.html" data-i18n="nav_contact">تواصل</a>
+      </div>
+
+      <div class="lang-switch">
+        <button data-lang="ar" class="active">AR</button>
+        <button data-lang="en">EN</button>
+      </div>
+
+      <div class="nav-cta">
+        <a class="btn btn-primary" href="./request.html" data-i18n="nav_cta">ابدأ مشروعك مع GENEX</a>
+      </div>
+
+    </div>
+  </nav>
 
   <main class="container" style="padding-top:110px; padding-bottom:40px;">
+
     <div class="section-title">
       <div>
-        <h1>طلب جديد</h1>
-        <p>أرسل احتياجك وسيتواصل معك فريق GENEX لدراسة المشروع.</p>
+        <h1 data-i18n="request_page_title">طلب جديد</h1>
+        <p data-i18n="request_page_desc">أرسل احتياجك وسيتواصل معك فريق GENEX لدراسة المشروع.</p>
       </div>
     </div>
 
     <div class="form-grid">
+
       <div class="form-box">
         <form action="https://formsubmit.co/PUT_SALES_TOKEN_HERE" method="POST">
           <input type="hidden" name="_subject" value="GENEX | New Automation Request">
           <input type="hidden" name="_next" value="https://genex-2050era.github.io/genex-website/thankyou.html">
           <input type="hidden" name="_captcha" value="false">
 
-          <label>اسم الشركة / المنشأة</label>
-          <input type="text" name="company" placeholder="اكتب اسم الشركة" required>
+          <label data-i18n="request_company">اسم الشركة / المنشأة</label>
+          <input type="text" name="company" data-i18n-placeholder="placeholder_company" placeholder="اكتب اسم الشركة" required>
 
-          <label>الاسم</label>
-          <input type="text" name="name" placeholder="اسمك" required>
+          <label data-i18n="request_name">الاسم</label>
+          <input type="text" name="name" data-i18n-placeholder="placeholder_name" placeholder="اسمك" required>
 
-          <label>البريد الإلكتروني</label>
-          <input type="email" name="email" placeholder="email@example.com" required>
+          <label data-i18n="request_email">البريد الإلكتروني</label>
+          <input type="email" name="email" data-i18n-placeholder="placeholder_email" placeholder="email@example.com" required>
 
-          <label>نوع النشاط</label>
-          <input type="text" name="type" placeholder="مثال: متجر / منشأة / جهة حكومية">
+          <label data-i18n="request_type">نوع النشاط</label>
+          <input type="text" name="type" data-i18n-placeholder="placeholder_type" placeholder="مثال: متجر / منشأة / جهة حكومية">
 
-          <label>وصف الاحتياج</label>
-          <textarea name="details" placeholder="اشرح ما الذي تريد أتمتته"></textarea>
+          <label data-i18n="request_details">وصف الاحتياج</label>
+          <textarea name="details" data-i18n-placeholder="placeholder_details" placeholder="اشرح ما الذي تريد أتمتته"></textarea>
 
-          <button class="btn btn-primary" type="submit">إرسال الطلب</button>
+          <button class="btn btn-primary" type="submit" data-i18n="request_submit">إرسال الطلب</button>
         </form>
       </div>
 
       <div class="form-box">
-        <h3>لماذا تبدأ الآن؟</h3>
-        <p style="color:var(--muted); line-height:1.9;">
+        <h3 data-i18n="request_side_title">لماذا تبدأ الآن؟</h3>
+        <p style="color:var(--muted); line-height:1.9;" data-i18n="request_side_desc">
           هذه المرحلة مناسبة للشركات التي تريد أن تكون من أوائل الجهات التي تطبق أتمتة وذكاء اصطناعي فعلي مع GENEX، مع فرصة لتصميم حل مخصص منذ البداية.
         </p>
       </div>
+
     </div>
+
   </main>
 
   <footer class="footer">
     <div class="container row">
-      <div><b>GENEX</b><div id="year"></div></div>
-      <div style="opacity:.8;" data-i18n="footerText">Autonomous AI Systems</div>
+      <div>
+        <b>GENEX</b>
+        <div id="year"></div>
+      </div>
+      <div style="opacity:.8;" data-i18n="footer_text">Autonomous AI Systems</div>
     </div>
   </footer>
 
