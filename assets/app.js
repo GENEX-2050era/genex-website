@@ -68,9 +68,7 @@ document.addEventListener("DOMContentLoaded", function () {
       btn.classList.remove("active");
     });
 
-    const activeBtn = document.querySelector(
-      `.lang-switch button[data-lang="${lang}"]`
-    );
+    const activeBtn = document.querySelector(`.lang-switch button[data-lang="${lang}"]`);
     if (activeBtn) activeBtn.classList.add("active");
   }
 
@@ -114,114 +112,145 @@ document.addEventListener("DOMContentLoaded", function () {
       createGroups();
     }
 
-    function createClusterPoints(cx, cy, size, count) {
+    function makeGroup(cx, cy, size, count) {
       const pts = [];
       for (let i = 0; i < count; i++) {
-        const angle = (Math.PI * 2 * i) / count + rand(-0.35, 0.35);
-        const radius = rand(size * 0.25, size);
+        const angle = (Math.PI * 2 * i) / count + rand(-0.5, 0.5);
+        const radius = rand(size * 0.22, size);
         pts.push({
-          x: cx + Math.cos(angle) * radius,
-          y: cy + Math.sin(angle) * radius
+          x: Math.cos(angle) * radius,
+          y: Math.sin(angle) * radius
         });
       }
-      pts.push({ x: cx, y: cy });
-      return pts;
-    }
 
-    function buildEdges(points) {
-      const edges = [];
-      const centerIndex = points.length - 1;
+      pts.push({ x: 0, y: 0 });
 
-      for (let i = 0; i < points.length - 1; i++) {
-        edges.push([centerIndex, i]);
-      }
-
-      for (let i = 0; i < points.length - 2; i++) {
-        edges.push([i, i + 1]);
-      }
-
-      if (points.length > 3) {
-        edges.push([0, points.length - 2]);
-      }
-
-      for (let i = 0; i < points.length - 3; i++) {
-        if (Math.random() > 0.45) {
-          edges.push([i, i + 2]);
-        }
-      }
-
-      return edges;
+      return {
+        baseX: cx,
+        baseY: cy,
+        driftX: rand(-24, 24),
+        driftY: rand(-26, 26),
+        phase: rand(0, Math.PI * 2),
+        speed: rand(0.0008, 0.0018),
+        points: pts,
+        pulse: rand(0.2, 0.8)
+      };
     }
 
     function createGroups() {
       groups = [];
 
       const area = w * h;
-      const groupCount = Math.max(10, Math.floor(area / 180000));
+      const groupCount = Math.max(18, Math.floor(area / 120000));
 
       for (let i = 0; i < groupCount; i++) {
-        const cx = rand(40, w - 40);
-        const cy = rand(100, h - 100);
-        const size = rand(55, 130);
-        const pointCount = Math.floor(rand(4, 7));
-        const basePoints = createClusterPoints(cx, cy, size, pointCount);
-
-        groups.push({
-          x: 0,
-          y: 0,
-          baseX: cx,
-          baseY: cy,
-          driftX: rand(-18, 18),
-          driftY: rand(-24, 24),
-          phase: rand(0, Math.PI * 2),
-          speed: rand(0.0007, 0.0018),
-          points: basePoints.map(function (p) {
-            return {
-              x: p.x - cx,
-              y: p.y - cy
-            };
-          }),
-          edges: buildEdges(basePoints)
-        });
+        groups.push(
+          makeGroup(
+            rand(40, w - 40),
+            rand(120, h - 80),
+            rand(45, 110),
+            Math.floor(rand(4, 7))
+          )
+        );
       }
     }
 
-    function drawGroup(group, time, offset) {
+    function getWorldPoints(group, time, offset) {
       const floatX = Math.sin(time * group.speed + group.phase) * group.driftX;
       const floatY = Math.cos(time * group.speed + group.phase) * group.driftY;
 
-      const points = group.points.map(function (p) {
+      return group.points.map(function (p, idx) {
+        const wobble = idx === group.points.length - 1 ? 0 : Math.sin(time * 0.0015 + idx + group.phase) * group.pulse * 6;
         return {
-          x: group.baseX + p.x + floatX,
-          y: group.baseY + p.y + floatY + offset
+          x: group.baseX + p.x + floatX + wobble,
+          y: group.baseY + p.y + floatY + wobble + offset
         };
       });
+    }
 
-      for (let i = 0; i < group.edges.length; i++) {
-        const edge = group.edges[i];
-        const a = points[edge[0]];
-        const b = points[edge[1]];
+    function drawGroup(worldPoints) {
+      const centerIndex = worldPoints.length - 1;
+
+      for (let i = 0; i < worldPoints.length - 1; i++) {
+        const a = worldPoints[centerIndex];
+        const b = worldPoints[i];
 
         ctx.beginPath();
         ctx.moveTo(a.x, a.y);
         ctx.lineTo(b.x, b.y);
-        ctx.strokeStyle =
-          i % 3 === 0
-            ? "rgba(177,18,38,0.34)"
-            : "rgba(255,255,255,0.20)";
+        ctx.strokeStyle = "rgba(255,255,255,0.18)";
+        ctx.lineWidth = 1;
+        ctx.stroke();
+      }
+
+      for (let i = 0; i < worldPoints.length - 2; i++) {
+        const a = worldPoints[i];
+        const b = worldPoints[i + 1];
+
+        ctx.beginPath();
+        ctx.moveTo(a.x, a.y);
+        ctx.lineTo(b.x, b.y);
+        ctx.strokeStyle = "rgba(177,18,38,0.30)";
         ctx.lineWidth = 1.1;
         ctx.stroke();
       }
 
-      for (let i = 0; i < points.length; i++) {
-        const p = points[i];
+      if (worldPoints.length > 3) {
+        const a = worldPoints[0];
+        const b = worldPoints[worldPoints.length - 2];
         ctx.beginPath();
-        ctx.arc(p.x, p.y, i === points.length - 1 ? 2.8 : 2.2, 0, Math.PI * 2);
-        ctx.fillStyle =
-          i % 3 === 0
-            ? "rgba(255,255,255,0.92)"
-            : "rgba(177,18,38,0.85)";
+        ctx.moveTo(a.x, a.y);
+        ctx.lineTo(b.x, b.y);
+        ctx.strokeStyle = "rgba(255,255,255,0.16)";
+        ctx.lineWidth = 1;
+        ctx.stroke();
+      }
+
+      for (let i = 0; i < worldPoints.length; i++) {
+        const p = worldPoints[i];
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, i === centerIndex ? 2.9 : 2.2, 0, Math.PI * 2);
+        ctx.fillStyle = i % 3 === 0
+          ? "rgba(255,255,255,0.95)"
+          : "rgba(177,18,38,0.88)";
         ctx.fill();
+      }
+    }
+
+    function connectGroups(groupPointsList) {
+      for (let i = 0; i < groupPointsList.length; i++) {
+        const aCenter = groupPointsList[i][groupPointsList[i].length - 1];
+
+        let nearestIndex = -1;
+        let nearestDist = Infinity;
+
+        for (let j = 0; j < groupPointsList.length; j++) {
+          if (i === j) continue;
+
+          const bCenter = groupPointsList[j][groupPointsList[j].length - 1];
+          const dx = aCenter.x - bCenter.x;
+          const dy = aCenter.y - bCenter.y;
+          const d = Math.sqrt(dx * dx + dy * dy);
+
+          if (d < nearestDist && d < 220) {
+            nearestDist = d;
+            nearestIndex = j;
+          }
+        }
+
+        if (nearestIndex !== -1) {
+          const bCenter = groupPointsList[nearestIndex][groupPointsList[nearestIndex].length - 1];
+
+          const pulse = (Math.sin(performance.now() * 0.001 + i) + 1) / 2;
+          const alpha = 0.08 + pulse * 0.18;
+
+          ctx.beginPath();
+          ctx.moveTo(aCenter.x, aCenter.y);
+          ctx.lineTo(bCenter.x, bCenter.y);
+          ctx.strokeStyle = `rgba(255,255,255,${alpha})`;
+          ctx.lineWidth = 1;
+          ctx.stroke();
+        }
       }
     }
 
@@ -229,10 +258,15 @@ document.addEventListener("DOMContentLoaded", function () {
       ctx.clearRect(0, 0, w, h);
 
       const offset = -scrollYPos * 0.28;
+      const worldGroups = groups.map(function (group) {
+        return getWorldPoints(group, time, offset);
+      });
 
-      for (let i = 0; i < groups.length; i++) {
-        drawGroup(groups[i], time, offset);
+      for (let i = 0; i < worldGroups.length; i++) {
+        drawGroup(worldGroups[i]);
       }
+
+      connectGroups(worldGroups);
 
       requestAnimationFrame(animate);
     }
