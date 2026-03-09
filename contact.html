@@ -1,127 +1,79 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
-
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>GENEX | تواصل</title>
-
-<link rel="stylesheet" href="./assets/styles.css">
-
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GENEX | تواصل</title>
+  <link rel="stylesheet" href="./assets/styles.css" />
 </head>
-
 <body>
-<canvas id="bgCanvas"></canvas>
-<div class="grid"></div>
 
-<nav class="nav">
+  <canvas id="bgCanvas"></canvas>
+  <div class="grid"></div>
 
-<div class="container nav-inner">
+  <nav class="nav">
+    <div class="container nav-inner">
+      <a class="brand" href="./index.html">
+        <span class="logo"></span>
+        <span>GENEX</span>
+      </a>
 
-<!-- LOGO -->
+      <button class="menu-toggle" id="menuToggle">☰</button>
 
-<a class="brand" href="./index.html">
-<span class="logo"></span>
-<span>GENEX</span>
-</a>
+      <div class="nav-links">
+        <a href="./index.html" data-i18n="home">الرئيسية</a>
+        <a href="./services.html" data-i18n="services">الخدمات</a>
+        <a href="./request.html" data-i18n="request">طلب جديد</a>
+        <a href="./join.html" data-i18n="join">انضم</a>
+        <a href="./contact.html" data-i18n="contact">تواصل</a>
+      </div>
 
-<!-- HAMBURGER -->
+      <div class="nav-cta">
+        <div class="lang-switch">
+          <button data-lang="ar" class="active">AR</button>
+          <button data-lang="en">EN</button>
+        </div>
+        <a class="btn btn-primary" href="./request.html" data-i18n="ask">ابدأ مشروعك مع GENEX</a>
+      </div>
+    </div>
+  </nav>
 
-<button class="menu-toggle" id="menuToggle">
-☰
-</button>
+  <main class="container" style="padding-top:110px; padding-bottom:40px;">
+    <div class="section-title">
+      <div>
+        <h1>تواصل معنا</h1>
+        <p>إذا لديك استفسار أو رغبة في الحديث عن مشروعك، يسعدنا التواصل معك.</p>
+      </div>
+    </div>
 
-<!-- NAV LINKS -->
+    <div class="cards">
+      <div class="card-box">
+        <div class="icon">✉️</div>
+        <h3>البريد</h3>
+        <p>ضع هنا بريدك الرسمي لاحقًا مثل: contact@genex.com</p>
+      </div>
 
-<div class="nav-links">
+      <div class="card-box">
+        <div class="icon">📍</div>
+        <h3>الموقع</h3>
+        <p>السعودية — عن بعد / حضور حسب طبيعة المشروع.</p>
+      </div>
 
-<a href="./index.html" data-i18n="home">
-الرئيسية
-</a>
+      <div class="card-box">
+        <div class="icon">⏱️</div>
+        <h3>الاستجابة</h3>
+        <p>نراجع الطلبات الجديدة ونتواصل عادة خلال 24 ساعة.</p>
+      </div>
+    </div>
+  </main>
 
-<a href="./services.html" data-i18n="services">
-الخدمات
-</a>
+  <footer class="footer">
+    <div class="container row">
+      <div><b>GENEX</b><div id="year"></div></div>
+      <div style="opacity:.8;" data-i18n="footerText">Autonomous AI Systems</div>
+    </div>
+  </footer>
 
-<a href="./request.html" data-i18n="request">
-طلب جديد
-</a>
-
-<a href="./join.html" data-i18n="join">
-انضم
-</a>
-
-<a href="./contact.html" data-i18n="contact">
-تواصل
-</a>
-
-</div>
-
-<!-- RIGHT SIDE -->
-
-<div class="nav-cta">
-
-<!-- LANGUAGE SWITCH -->
-
-<div class="lang-switch">
-
-<button data-lang="ar" class="active">
-AR
-</button>
-
-<button data-lang="en">
-EN
-</button>
-
-</div>
-
-<!-- MAIN CTA -->
-
-<a class="btn btn-primary" href="./request.html" data-i18n="ask">
-ابدأ مشروعك مع GENEX
-</a>
-
-</div>
-
-</div>
-
-</nav>
-
-
-<main class="container" style="padding-top:110px; padding-bottom:40px;">
-
-<h1>تواصل معنا</h1>
-
-<p style="opacity:.85">
-لأي استفسار يمكنك التواصل مع فريق GENEX.
-</p>
-
-</main>
-
-
-<script>
-document.addEventListener("DOMContentLoaded", function () {
-
-const toggle = document.getElementById("menuToggle");
-const navLinks = document.querySelector(".nav-links");
-
-if (toggle && navLinks) {
-
-toggle.addEventListener("click", function () {
-navLinks.classList.toggle("active");
-});
-
-navLinks.querySelectorAll("a").forEach(function (link) {
-link.addEventListener("click", function () {
-navLinks.classList.remove("active");
-});
-});
-
-}
-
-});
-</script>
-
+  <script src="./assets/app.js"></script>
 </body>
 </html>
