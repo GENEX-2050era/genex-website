@@ -1,127 +1,90 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
-
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>GENEX | انضم</title>
-
-<link rel="stylesheet" href="./assets/styles.css">
-
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GENEX | انضم</title>
+  <link rel="stylesheet" href="./assets/styles.css" />
 </head>
-<canvas id="bgCanvas"></canvas>
 <body>
 
-<div class="grid"></div>
+  <canvas id="bgCanvas"></canvas>
+  <div class="grid"></div>
 
-<nav class="nav">
+  <nav class="nav">
+    <div class="container nav-inner">
+      <a class="brand" href="./index.html">
+        <span class="logo"></span>
+        <span>GENEX</span>
+      </a>
 
-<div class="container nav-inner">
+      <button class="menu-toggle" id="menuToggle">☰</button>
 
-<!-- LOGO -->
+      <div class="nav-links">
+        <a href="./index.html" data-i18n="home">الرئيسية</a>
+        <a href="./services.html" data-i18n="services">الخدمات</a>
+        <a href="./request.html" data-i18n="request">طلب جديد</a>
+        <a href="./join.html" data-i18n="join">انضم</a>
+        <a href="./contact.html" data-i18n="contact">تواصل</a>
+      </div>
 
-<a class="brand" href="./index.html">
-<span class="logo"></span>
-<span>GENEX</span>
-</a>
+      <div class="nav-cta">
+        <div class="lang-switch">
+          <button data-lang="ar" class="active">AR</button>
+          <button data-lang="en">EN</button>
+        </div>
+        <a class="btn btn-primary" href="./request.html" data-i18n="ask">ابدأ مشروعك مع GENEX</a>
+      </div>
+    </div>
+  </nav>
 
-<!-- HAMBURGER -->
+  <main class="container" style="padding-top:110px; padding-bottom:40px;">
+    <div class="section-title">
+      <div>
+        <h1>انضم إلى GENEX</h1>
+        <p>نبحث عن أشخاص يملكون عقلية بناء، وتوجه قوي نحو الأتمتة والذكاء الاصطناعي.</p>
+      </div>
+    </div>
 
-<button class="menu-toggle" id="menuToggle">
-☰
-</button>
+    <div class="form-grid">
+      <div class="form-box">
+        <form action="https://formsubmit.co/PUT_CAREERS_TOKEN_HERE" method="POST">
+          <input type="hidden" name="_subject" value="GENEX | New Join Request">
+          <input type="hidden" name="_next" value="https://genex-2050era.github.io/genex-website/thankyou.html">
+          <input type="hidden" name="_captcha" value="false">
 
-<!-- NAV LINKS -->
+          <label>الاسم</label>
+          <input type="text" name="name" placeholder="اسمك" required>
 
-<div class="nav-links">
+          <label>البريد الإلكتروني</label>
+          <input type="email" name="email" placeholder="email@example.com" required>
 
-<a href="./index.html" data-i18n="home">
-الرئيسية
-</a>
+          <label>التخصص</label>
+          <input type="text" name="speciality" placeholder="مثال: AI / تطوير / تصميم">
 
-<a href="./services.html" data-i18n="services">
-الخدمات
-</a>
+          <label>نبذة مختصرة</label>
+          <textarea name="about" placeholder="عرفنا عنك بشكل مختصر"></textarea>
 
-<a href="./request.html" data-i18n="request">
-طلب جديد
-</a>
+          <button class="btn btn-primary" type="submit">إرسال الطلب</button>
+        </form>
+      </div>
 
-<a href="./join.html" data-i18n="join">
-انضم
-</a>
+      <div class="form-box">
+        <h3>من نبحث عنه؟</h3>
+        <p style="color:var(--muted); line-height:1.9;">
+          نبحث عن أشخاص لديهم فضول تقني، سرعة تعلم، ورغبة في المساهمة في بناء أنظمة حقيقية تعيد تشكيل طريقة عمل المنشآت والخدمات.
+        </p>
+      </div>
+    </div>
+  </main>
 
-<a href="./contact.html" data-i18n="contact">
-تواصل
-</a>
+  <footer class="footer">
+    <div class="container row">
+      <div><b>GENEX</b><div id="year"></div></div>
+      <div style="opacity:.8;" data-i18n="footerText">Autonomous AI Systems</div>
+    </div>
+  </footer>
 
-</div>
-
-<!-- RIGHT SIDE -->
-
-<div class="nav-cta">
-
-<!-- LANGUAGE SWITCH -->
-
-<div class="lang-switch">
-
-<button data-lang="ar" class="active">
-AR
-</button>
-
-<button data-lang="en">
-EN
-</button>
-
-</div>
-
-<!-- MAIN CTA -->
-
-<a class="btn btn-primary" href="./request.html" data-i18n="ask">
-ابدأ مشروعك مع GENEX
-</a>
-
-</div>
-
-</div>
-
-</nav>
-
-
-<main class="container" style="padding-top:110px; padding-bottom:40px;">
-
-<h1>انضم إلى GENEX</h1>
-
-<p style="opacity:.85">
-نبحث عن مطورين ومهندسين ذكاء اصطناعي لبناء مستقبل الأتمتة.
-</p>
-
-</main>
-
-
-<script>
-document.addEventListener("DOMContentLoaded", function () {
-
-const toggle = document.getElementById("menuToggle");
-const navLinks = document.querySelector(".nav-links");
-
-if (toggle && navLinks) {
-
-toggle.addEventListener("click", function () {
-navLinks.classList.toggle("active");
-});
-
-navLinks.querySelectorAll("a").forEach(function (link) {
-link.addEventListener("click", function () {
-navLinks.classList.remove("active");
-});
-});
-
-}
-
-});
-</script>
-
+  <script src="./assets/app.js"></script>
 </body>
 </html>
