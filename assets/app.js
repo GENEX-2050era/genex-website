@@ -1,5 +1,4 @@
 document.addEventListener("DOMContentLoaded", function () {
-  // ===== Mobile menu =====
   const toggle = document.getElementById("menuToggle");
   const navLinks = document.querySelector(".nav-links");
 
@@ -15,13 +14,9 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  // ===== Footer year =====
   const year = document.getElementById("year");
-  if (year) {
-    year.textContent = new Date().getFullYear();
-  }
+  if (year) year.textContent = new Date().getFullYear();
 
-  // ===== Language switch =====
   const dict = {
     ar: {
       home: "الرئيسية",
@@ -32,8 +27,7 @@ document.addEventListener("DOMContentLoaded", function () {
       ask: "ابدأ مشروعك مع GENEX",
       heroBtn: "اكتشف خدمات GENEX",
       earlyTitle: "برنامج الشركاء الأوائل",
-      earlyDesc:
-        "نفتح الآن المجال لأول العملاء الذين يرغبون في بناء أنظمة أتمتة وذكاء اصطناعي مع GENEX. هذه المرحلة مخصصة للشركات والمنشآت التي ترغب في أن تكون من أوائل الجهات التي تتبنى البنية التشغيلية الذكية.",
+      earlyDesc: "نفتح الآن المجال لأول العملاء الذين يرغبون في بناء أنظمة أتمتة وذكاء اصطناعي مع GENEX. هذه المرحلة مخصصة للشركات والمنشآت التي ترغب في أن تكون من أوائل الجهات التي تتبنى البنية التشغيلية الذكية.",
       early1: "أولوية في دراسة الاحتياج والتصميم",
       early2: "حلول مخصصة بحسب طبيعة نشاطك",
       early3: "فرصة لبناء أول حالة نجاح مشتركة مع GENEX",
@@ -48,8 +42,7 @@ document.addEventListener("DOMContentLoaded", function () {
       ask: "Start Your Project with GENEX",
       heroBtn: "Explore GENEX Services",
       earlyTitle: "Early Partners Program",
-      earlyDesc:
-        "We are now opening access to our first partners who want to build AI and automation systems with GENEX.",
+      earlyDesc: "We are now opening access to our first partners who want to build AI and automation systems with GENEX.",
       early1: "Priority in requirement study and system design",
       early2: "Tailored solutions based on your business model",
       early3: "Opportunity to build the first joint success case with GENEX",
@@ -73,12 +66,8 @@ document.addEventListener("DOMContentLoaded", function () {
       btn.classList.remove("active");
     });
 
-    const activeBtn = document.querySelector(
-      `.lang-switch button[data-lang="${lang}"]`
-    );
-    if (activeBtn) {
-      activeBtn.classList.add("active");
-    }
+    const activeBtn = document.querySelector(`.lang-switch button[data-lang="${lang}"]`);
+    if (activeBtn) activeBtn.classList.add("active");
   }
 
   const savedLang = localStorage.getItem("genex_lang") || "ar";
@@ -91,15 +80,18 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 
-  // ===== Geometric animated background =====
   const canvas = document.getElementById("bgCanvas");
 
   if (canvas) {
     const ctx = canvas.getContext("2d");
     let w = 0;
     let h = 0;
-    let points = [];
     let scrollYPos = 0;
+
+    let cols = 0;
+    let rows = 0;
+    let spacing = 110;
+    let nodes = [];
 
     function rand(min, max) {
       return Math.random() * (max - min) + min;
@@ -110,7 +102,6 @@ document.addEventListener("DOMContentLoaded", function () {
       const body = document.body;
 
       w = canvas.width = window.innerWidth;
-
       h = canvas.height = Math.max(
         body.scrollHeight,
         body.offsetHeight,
@@ -120,68 +111,86 @@ document.addEventListener("DOMContentLoaded", function () {
       );
 
       canvas.style.height = h + "px";
-      createPoints();
+      buildMesh();
     }
 
-    function createPoints() {
-      const count = Math.floor(w / 90) + 20;
-      points = [];
+    function buildMesh() {
+      cols = Math.ceil(w / spacing) + 2;
+      rows = Math.ceil(h / spacing) + 2;
+      nodes = [];
 
-      for (let i = 0; i < count; i++) {
-        points.push({
-          x: rand(0, w),
-          y: rand(90, h - 90),
-          vx: rand(-0.22, 0.22),
-          vy: rand(-0.22, 0.22)
-        });
+      const seedShiftX = rand(-18, 18);
+      const seedShiftY = rand(-18, 18);
+
+      for (let y = 0; y < rows; y++) {
+        let row = [];
+        for (let x = 0; x < cols; x++) {
+          row.push({
+            baseX: x * spacing + (y % 2 ? spacing / 2 : 0) + seedShiftX,
+            baseY: y * spacing + seedShiftY,
+            offsetX: rand(-16, 16),
+            offsetY: rand(-16, 16),
+            phase: rand(0, Math.PI * 2),
+            speed: rand(0.003, 0.008)
+          });
+        }
+        nodes.push(row);
       }
     }
 
-    function animate() {
+    function drawTriangle(a, b, c, offset) {
+      ctx.beginPath();
+      ctx.moveTo(a.baseX + a.offsetX, a.baseY + a.offsetY + offset);
+      ctx.lineTo(b.baseX + b.offsetX, b.baseY + b.offsetY + offset);
+      ctx.lineTo(c.baseX + c.offsetX, c.baseY + c.offsetY + offset);
+      ctx.closePath();
+      ctx.strokeStyle = "rgba(255,255,255,.22)";
+      ctx.lineWidth = 1;
+      ctx.stroke();
+    }
+
+    function draw() {
       ctx.clearRect(0, 0, w, h);
 
-      const offset = -scrollYPos * 0.35;
+      const t = performance.now();
+      const offset = -scrollYPos * 0.28;
 
-      for (let i = 0; i < points.length; i++) {
-        const p = points[i];
-
-        p.x += p.vx;
-        p.y += p.vy;
-
-        if (p.x < 0 || p.x > w) p.vx *= -1;
-        if (p.y < 80 || p.y > h - 80) p.vy *= -1;
-
-        const drawY = p.y + offset;
-
-        ctx.beginPath();
-        ctx.arc(p.x, drawY, 2.5, 0, Math.PI * 2);
-        ctx.fillStyle =
-          i % 3 === 0 ? "rgba(255,255,255,.88)" : "rgba(177,18,38,.82)";
-        ctx.fill();
-      }
-
-      for (let i = 0; i < points.length; i++) {
-        for (let j = i + 1; j < points.length; j++) {
-          const a = points[i];
-          const b = points[j];
-
-          const dx = a.x - b.x;
-          const dy = a.y - b.y;
-          const d = Math.sqrt(dx * dx + dy * dy);
-
-          if (d < 170) {
-            ctx.beginPath();
-            ctx.moveTo(a.x, a.y + offset);
-            ctx.lineTo(b.x, b.y + offset);
-            ctx.strokeStyle =
-              d < 100 ? "rgba(177,18,38,.35)" : "rgba(255,255,255,.18)";
-            ctx.lineWidth = 1;
-            ctx.stroke();
-          }
+      for (let y = 0; y < rows; y++) {
+        for (let x = 0; x < cols; x++) {
+          const n = nodes[y][x];
+          n.offsetX += Math.sin(t * n.speed + n.phase) * 0.03;
+          n.offsetY += Math.cos(t * n.speed + n.phase) * 0.03;
         }
       }
 
-      requestAnimationFrame(animate);
+      for (let y = 0; y < rows - 1; y++) {
+        for (let x = 0; x < cols - 1; x++) {
+          const a = nodes[y][x];
+          const b = nodes[y][x + 1];
+          const c = nodes[y + 1][x];
+          const d = nodes[y + 1][x + 1];
+
+          drawTriangle(a, b, c, offset);
+          drawTriangle(b, d, c, offset);
+        }
+      }
+
+      for (let y = 0; y < rows; y++) {
+        for (let x = 0; x < cols; x++) {
+          const n = nodes[y][x];
+          const drawX = n.baseX + n.offsetX;
+          const drawY = n.baseY + n.offsetY + offset;
+
+          ctx.beginPath();
+          ctx.arc(drawX, drawY, 2.2, 0, Math.PI * 2);
+          ctx.fillStyle = (x + y) % 3 === 0
+            ? "rgba(255,255,255,.92)"
+            : "rgba(177,18,38,.85)";
+          ctx.fill();
+        }
+      }
+
+      requestAnimationFrame(draw);
     }
 
     window.addEventListener("scroll", function () {
@@ -192,8 +201,7 @@ document.addEventListener("DOMContentLoaded", function () {
     window.addEventListener("load", resize);
 
     resize();
-    animate();
-
+    draw();
     setTimeout(resize, 500);
   }
 });
