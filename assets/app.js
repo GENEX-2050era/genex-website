@@ -1,3 +1,4 @@
+
 document.addEventListener("DOMContentLoaded", function () {
   const toggle = document.getElementById("menuToggle");
   const navLinks = document.querySelector(".nav-links");
@@ -93,10 +94,21 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     function resize() {
-      w = canvas.width = window.innerWidth;
-      h = canvas.height = window.innerHeight;
-      createPoints();
-    }
+  const doc = document.documentElement;
+  const body = document.body;
+
+  w = canvas.width = window.innerWidth;
+  h = canvas.height = Math.max(
+    body.scrollHeight,
+    body.offsetHeight,
+    doc.clientHeight,
+    doc.scrollHeight,
+    doc.offsetHeight
+  );
+
+  canvas.style.height = h + "px";
+  createPoints();
+}
 
     function createPoints() {
       const count = Math.floor(w / 90) + 20;
