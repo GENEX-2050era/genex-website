@@ -154,7 +154,6 @@ document.addEventListener("DOMContentLoaded", function () {
       hero_title_1: "Welcome To GENEX",
       hero_title_2: "Where we don't just imagine the future",
       hero_title_3: "We build it.",
-      hero_title_4: "Autonomous AI Systems",
 
       hero_desc: "GENEX builds advanced AI systems to transform traditional services across retail, private facilities, and government entities into fully automated operations that are faster, smarter, and more scalable.",
       hero_btn: "Explore GENEX Services",
