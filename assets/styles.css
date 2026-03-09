@@ -1385,3 +1385,99 @@ p{
     filter:blur(0);
   }
 }
+/* ========================= */
+/* GENEX word build effect */
+/* ========================= */
+
+.genex-build-word{
+  position:relative;
+}
+
+.genex-word-base{
+  position:relative;
+  z-index:2;
+}
+
+.genex-word-particles{
+  position:absolute;
+  inset:-10px -6px -6px -6px;
+  pointer-events:none;
+  z-index:1;
+}
+
+.genex-word-particles::before,
+.genex-word-particles::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:
+    radial-gradient(circle, rgba(255,255,255,.95) 0 1.2px, transparent 1.8px) 0 0 / 18px 18px,
+    radial-gradient(circle, rgba(255,255,255,.65) 0 1px, transparent 1.7px) 9px 9px / 18px 18px,
+    radial-gradient(circle, rgba(177,18,38,.55) 0 1.1px, transparent 1.9px) 4px 12px / 24px 24px;
+  opacity:0;
+  filter:blur(.15px);
+}
+
+.genex-word-particles::before{
+  animation:genexParticleBuild 1.4s ease-out forwards;
+}
+
+.genex-word-particles::after{
+  animation:genexParticleFade 1.8s ease-out forwards;
+}
+
+.genex-build-word .genex-word-base{
+  display:inline-block;
+  animation:genexWordReveal 1.25s ease-out forwards;
+  transform-origin:center;
+}
+
+@keyframes genexParticleBuild{
+  0%{
+    opacity:0;
+    transform:scale(.75) translateY(8px);
+  }
+  25%{
+    opacity:.95;
+  }
+  70%{
+    opacity:.55;
+    transform:scale(1.04) translateY(0);
+  }
+  100%{
+    opacity:0;
+    transform:scale(1.12) translateY(-2px);
+  }
+}
+
+@keyframes genexParticleFade{
+  0%{
+    opacity:0;
+    transform:scale(.9);
+  }
+  35%{
+    opacity:.45;
+  }
+  100%{
+    opacity:0;
+    transform:scale(1.15);
+  }
+}
+
+@keyframes genexWordReveal{
+  0%{
+    opacity:.15;
+    transform:scale(.96);
+    filter:blur(2px);
+  }
+  45%{
+    opacity:.65;
+    transform:scale(1.015);
+    filter:blur(.8px);
+  }
+  100%{
+    opacity:1;
+    transform:scale(1);
+    filter:blur(0);
+  }
+}
