@@ -139,6 +139,7 @@ main{
   border-radius:14px;
   border:1px solid rgba(255,255,255,.12);
   background:rgba(255,255,255,.06);
+  z-index:10002;
 }
 
 .lang-switch button{
@@ -155,10 +156,15 @@ main{
   background:rgba(255,255,255,.22);
 }
 
-.nav-cta{
-  display:flex;
-  align-items:center;
-  gap:10px;
+@media (max-width:1024px){
+  .lang-switch{
+    display:flex !important;
+    margin-inline-start:auto;
+  }
+
+  .nav-cta{
+    display:none !important;
+  }
 }
 
 .btn{
