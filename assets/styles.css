@@ -640,23 +640,36 @@ body::before{
 }
 
 .brand-logo{
-  width:48px;
-  height:48px;
+  width:64px;
+  height:64px;
   object-fit:contain;
   display:block;
+
   filter:
     brightness(0) invert(1)
-    drop-shadow(0 0 10px rgba(255,255,255,.78))
-    drop-shadow(0 0 22px rgba(255,255,255,.28));
-  transform:translateZ(0);
+    drop-shadow(0 0 14px rgba(255,255,255,.95))
+    drop-shadow(0 0 30px rgba(255,255,255,.45));
+
+  transform:translateZ(0) scale(1.05);
+  transition:transform .25s ease, filter .25s ease;
+}
+
+.brand-logo:hover{
+  transform:scale(1.12);
+  filter:
+    brightness(0) invert(1)
+    drop-shadow(0 0 18px rgba(255,255,255,1))
+    drop-shadow(0 0 40px rgba(255,255,255,.55));
 }
 
 @media (max-width:1024px){
+
   .brand-logo{
-    width:42px;
-    height:42px;
+    width:52px;
+    height:52px;
   }
 
+}
   body::before{
     width:min(95vw, 560px);
     height:min(95vw, 560px);
