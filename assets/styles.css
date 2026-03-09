@@ -602,3 +602,65 @@ textarea::placeholder{
   cursor:pointer;
   font-weight:700;
 }
+/* ===== GENEX logo background ===== */
+
+body::before{
+  content:"";
+  position:absolute;
+  top:120px;
+  left:50%;
+  transform:translateX(-50%);
+  width:min(72vw, 860px);
+  height:min(72vw, 860px);
+  background-image:url("./logo.png");
+  background-repeat:no-repeat;
+  background-position:center;
+  background-size:contain;
+  opacity:.05;
+  z-index:1;
+  pointer-events:none;
+  filter:
+    brightness(0) invert(1)
+    drop-shadow(0 0 28px rgba(255,255,255,.18));
+}
+
+/* ===== navbar logo ===== */
+
+.logo{
+  display:none;
+}
+
+.brand{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  font-weight:900;
+  letter-spacing:.18em;
+  color:#fff;
+}
+
+.brand-logo{
+  width:48px;
+  height:48px;
+  object-fit:contain;
+  display:block;
+  filter:
+    brightness(0) invert(1)
+    drop-shadow(0 0 10px rgba(255,255,255,.78))
+    drop-shadow(0 0 22px rgba(255,255,255,.28));
+  transform:translateZ(0);
+}
+
+@media (max-width:1024px){
+  .brand-logo{
+    width:42px;
+    height:42px;
+  }
+
+  body::before{
+    width:min(95vw, 560px);
+    height:min(95vw, 560px);
+    top:160px;
+    opacity:.04;
+  }
+}
