@@ -224,41 +224,39 @@
       <div style="opacity:.8;" data-i18n="footer_text">Autonomous AI Systems</div>
     </div>
   </footer>
-<div class="genex-chat-fab" id="genexChatFab">💬</div>
-
-<div class="genex-chat-panel" id="genexChatPanel">
-  <div class="genex-chat-header">
-    <strong>GENEX AI</strong>
-    <button id="genexChatClose">✕</button>
-  </div>
-
-  <div class="genex-chat-body" id="genexChatBody">
-    <div class="genex-chat-msg bot">
-      أهلاً بك، أنا مساعد GENEX. اسألني عن الأتمتة، الخدمات، أو كيف نبدأ مشروعك.
-    </div>
-  </div>
-
-  <div class="genex-chat-input-wrap">
-    <input type="text" id="genexChatInput" placeholder="اكتب سؤالك هنا..." />
-    <button id="genexChatSend">إرسال</button>
-  </div>
+  
+<div class="genex-chat-fab" id="genexChatFab" onclick="window.toggleGenexChat && window.toggleGenexChat(true)">
+  <span>✦</span>
 </div>
- <div class="genex-chat-fab" id="genexChatFab">💬</div>
 
 <div class="genex-chat-panel" id="genexChatPanel">
   <div class="genex-chat-header">
-    <strong>GENEX AI</strong>
-    <button type="button" id="genexChatClose">✕</button>
+    <div class="genex-chat-title-wrap">
+      <strong>GENEX AI</strong>
+      <small data-i18n="chat_subtitle">مساعد مبيعات وتشغيل</small>
+    </div>
+    <button type="button" id="genexChatClose" onclick="window.toggleGenexChat && window.toggleGenexChat(false)">✕</button>
   </div>
 
   <div class="genex-chat-body" id="genexChatBody">
-    <div class="genex-chat-msg bot">
+    <div class="genex-chat-msg bot" data-i18n="chat_welcome">
       أهلاً بك، أنا مساعد GENEX. اسألني عن الأتمتة، الخدمات، أو كيف نبدأ مشروعك.
+    </div>
+
+    <div class="genex-chat-quick-actions">
+      <button type="button" onclick="window.quickGenexChat && window.quickGenexChat('أريد أتمتة خدمة العملاء')">أتمتة خدمة العملاء</button>
+      <button type="button" onclick="window.quickGenexChat && window.quickGenexChat('أريد عرض سعر')">عرض سعر</button>
+      <button type="button" onclick="window.quickGenexChat && window.quickGenexChat('أريد بناء نظام مخصص')">نظام مخصص</button>
     </div>
   </div>
 
   <div class="genex-chat-input-wrap">
-    <input type="text" id="genexChatInput" placeholder="اكتب سؤالك هنا..." />
+    <input
+      type="text"
+      id="genexChatInput"
+      data-i18n-placeholder="chat_placeholder"
+      placeholder="اكتب سؤالك هنا..."
+    />
     <button type="button" id="genexChatSend">إرسال</button>
   </div>
 </div> 
