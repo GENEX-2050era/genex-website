@@ -677,3 +677,207 @@ body::before{
     opacity:.04;
   }
 }
+/* ============================= */
+/* GENEX AI CHAT */
+/* ============================= */
+
+.genex-chat-fab{
+
+  position:fixed;
+  left:22px;
+  bottom:22px;
+
+  width:64px;
+  height:64px;
+
+  border-radius:50%;
+
+  display:grid;
+  place-items:center;
+
+  font-size:26px;
+
+  background:linear-gradient(135deg,#ffffff,#e5e5e5);
+  color:#000;
+
+  cursor:pointer;
+
+  z-index:4000;
+
+  box-shadow:
+  0 10px 40px rgba(0,0,0,.45),
+  0 0 18px rgba(255,255,255,.35);
+
+  transition:all .25s ease;
+}
+
+.genex-chat-fab:hover{
+
+  transform:scale(1.08);
+  box-shadow:
+  0 14px 60px rgba(0,0,0,.55),
+  0 0 28px rgba(255,255,255,.5);
+
+}
+
+/* ================= */
+
+.genex-chat-panel{
+
+  position:fixed;
+
+  left:22px;
+  bottom:100px;
+
+  width:340px;
+  height:440px;
+
+  max-width:calc(100vw - 40px);
+
+  background:rgba(8,8,14,.97);
+
+  border:1px solid rgba(255,255,255,.12);
+
+  border-radius:22px;
+
+  display:none;
+  flex-direction:column;
+
+  overflow:hidden;
+
+  z-index:4001;
+
+  backdrop-filter:blur(18px);
+
+  box-shadow:
+  0 20px 60px rgba(0,0,0,.6),
+  0 0 30px rgba(255,255,255,.08);
+}
+
+.genex-chat-panel.show{
+  display:flex;
+}
+
+/* ================= */
+
+.genex-chat-header{
+
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+
+  padding:16px;
+
+  font-weight:700;
+
+  border-bottom:1px solid rgba(255,255,255,.08);
+
+  background:linear-gradient(180deg,rgba(255,255,255,.05),transparent);
+}
+
+.genex-chat-header button{
+
+  background:none;
+  border:none;
+  color:#fff;
+  font-size:16px;
+  cursor:pointer;
+}
+
+/* ================= */
+
+.genex-chat-body{
+
+  flex:1;
+
+  padding:16px;
+
+  overflow:auto;
+
+  display:flex;
+  flex-direction:column;
+
+  gap:12px;
+}
+
+/* ================= */
+
+.genex-chat-msg{
+
+  max-width:82%;
+
+  padding:12px 14px;
+
+  border-radius:14px;
+
+  font-size:14px;
+
+  line-height:1.7;
+}
+
+.genex-chat-msg.bot{
+
+  background:rgba(255,255,255,.08);
+  color:#fff;
+
+  align-self:flex-start;
+}
+
+.genex-chat-msg.user{
+
+  background:#ffffff;
+  color:#000;
+
+  align-self:flex-end;
+}
+
+/* ================= */
+
+.genex-chat-input-wrap{
+
+  display:flex;
+
+  gap:8px;
+
+  padding:12px;
+
+  border-top:1px solid rgba(255,255,255,.08);
+}
+
+.genex-chat-input-wrap input{
+
+  flex:1;
+
+  border-radius:12px;
+
+  border:none;
+
+  padding:10px 12px;
+
+  outline:none;
+}
+
+.genex-chat-input-wrap button{
+
+  border:none;
+
+  border-radius:12px;
+
+  background:#ffffff;
+
+  color:#000;
+
+  padding:0 16px;
+
+  font-weight:700;
+
+  cursor:pointer;
+
+  transition:.2s;
+}
+
+.genex-chat-input-wrap button:hover{
+
+  background:#e8e8e8;
+
+}
