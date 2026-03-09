@@ -1,4 +1,4 @@
-pdocument.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", function () {
   // ===== Mobile menu =====
   const toggle = document.getElementById("menuToggle");
   const navLinks = document.querySelector(".nav-links");
@@ -17,7 +17,9 @@ pdocument.addEventListener("DOMContentLoaded", function () {
 
   // ===== Footer year =====
   const year = document.getElementById("year");
-  if (year) year.textContent = new Date().getFullYear();
+  if (year) {
+    year.textContent = new Date().getFullYear();
+  }
 
   // ===== Translations =====
   const translations = {
@@ -29,16 +31,18 @@ pdocument.addEventListener("DOMContentLoaded", function () {
       nav_contact: "تواصل",
       nav_cta: "ابدأ مشروعك مع GENEX",
 
-      hero_title_1: "مرحبا بك فيGENEX",
-      hero_title_2: "حيث لا نتخيّل المستقبل فقط",
+      hero_title_1: "مرحبًا بك فيGENEX",
+      hero_title_2: "حيث لا نتخيل المستقبل فقط",
       hero_title_3: "بل نبنيه.",
+      hero_title_4: "أنظمة ذكاء اصطناعي مستقلة",
+
       hero_desc: "GENEX تبني أنظمة ذكاء اصطناعي متقدمة لتحويل الخدمات التقليدية في المتاجر، والمنشآت الخاصة، والجهات الحكومية إلى عمليات آلية بالكامل، أكثر سرعة، وأكثر دقة، وأكثر قابلية للتوسع.",
       hero_btn: "اكتشف خدمات GENEX",
 
       kpi_1_title: "تحول سريع",
       kpi_1_desc: "من الفكرة إلى نموذج تشغيلي واضح خلال وقت قصير.",
       kpi_2_title: "ذكاء قابل للتوسع",
-      kpi_2_desc: "أنظمة تنمو مع المنشأة وتpتكامل مع أدواتها الحالية.",
+      kpi_2_desc: "أنظمة تنمو مع المنشأة وتتكامل مع أدواتها الحالية.",
       kpi_3_title: "جاهزية مؤسسية",
       kpi_3_desc: "حلول موثوقة مع وضوح في البنية والمراقبة.",
 
@@ -139,8 +143,10 @@ pdocument.addEventListener("DOMContentLoaded", function () {
       nav_cta: "Start Your Project with GENEX",
 
       hero_title_1: "Welcome To GENEX",
-      hero_title_2: "Whare we're not just imagining the future",
-      hero_title_3: "we're building it.",
+      hero_title_2: "Where we don't just imagine the future",
+      hero_title_3: "We build it.",
+      hero_title_4: "Autonomous AI Systems",
+
       hero_desc: "GENEX builds advanced AI systems to transform traditional services across retail, private facilities, and government entities into fully automated operations that are faster, smarter, and more scalable.",
       hero_btn: "Explore GENEX Services",
 
@@ -220,6 +226,7 @@ pdocument.addEventListener("DOMContentLoaded", function () {
       join_submit: "Submit",
       join_side_title: "Who are we looking for?",
       join_side_desc: "People with technical curiosity, learning speed, and a desire to help build real systems that reshape how services operate.",
+
       placeholder_speciality: "Example: AI / Development / Design",
       placeholder_about: "Tell us about yourself briefly",
 
@@ -445,73 +452,5 @@ pdocument.addEventListener("DOMContentLoaded", function () {
     requestAnimationFrame(animate);
     setTimeout(resize, 500);
   }
-  // ===== GENEX AI demo chat =====
-  const chatFab = document.getElementById("genexChatFab");
-  const chatPanel = document.getElementById("genexChatPanel");
-  const chatClose = document.getElementById("genexChatClose");
-  const chatSend = document.getElementById("genexChatSend");
-  const chatInput = document.getElementById("genexChatInput");
-  const chatBody = document.getElementById("genexChatBody");
-
-  function addChatMessage(text, role) {
-    if (!chatBody) return;
-    const msg = document.createElement("div");
-    msg.className = `genex-chat-msg ${role}`;
-    msg.textContent = text;
-    chatBody.appendChild(msg);
-    chatBody.scrollTop = chatBody.scrollHeight;
-  }
-
-  function botReply(userText) {
-    const text = userText.toLowerCase();
-
-    if (text.includes("خدمة") || text.includes("services")) {
-      return "GENEX تقدم مساعدات ذكاء اصطناعي، أتمتة عمليات، تكامل أنظمة، وتحليل وتشغيل ذكي.";
-    }
-
-    if (text.includes("ابدأ") || text.includes("project") || text.includes("طلب")) {
-      return "لبداية مشروعك، انتقل إلى صفحة طلب جديد وشاركنا تفاصيل النشاط والاحتياج، وسيتواصل معك فريق GENEX.";
-    }
-
-    if (text.includes("سعر") || text.includes("تكلفة") || text.includes("price")) {
-      return "التكلفة تعتمد على نوع الأتمتة، حجم النظام، والتكاملات المطلوبة. أرسل طلبك لنقترح عليك التصور المناسب.";
-    }
-
-    return "أستطيع مساعدتك في فهم خدمات GENEX، آلية العمل، أو كيف تبدأ مشروعك معنا.";
-  }
-
-  if (chatFab && chatPanel) {
-    chatFab.addEventListener("click", function () {
-      chatPanel.classList.add("show");
-    });
-  }
-
-  if (chatClose && chatPanel) {
-    chatClose.addEventListener("click", function () {
-      chatPanel.classList.remove("show");
-    });
-  }
-
-  if (chatSend && chatInput) {
-    chatSend.addEventListener("click", function () {
-      const value = chatInput.value.trim();
-      if (!value) return;
-
-      addChatMessage(value, "user");
-      chatInput.value = "";
-
-      setTimeout(function () {
-        addChatMessage(botReply(value), "bot");
-      }, 400);
-    });
-  }
-
-  if (chatInput) {
-    chatInput.addEventListener("keydown", function (e) {
-      if (e.key === "Enter") {
-        e.preventDefault();
-        if (chatSend) chatSend.click();
-      }
-    });
-  }
 });
+هذا app.js كامل حالياً أكمل منه الحل الكامل لمشكلة زر الهامبرجر والترجمه وايضا اعطني الطريقه الصحيحه لجعل زر الشات يعمل ثم انطلق للخطوه التاليه مباشرة بدون التوقف عند تأكيد مني مرة أخر
