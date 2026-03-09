@@ -37,7 +37,7 @@ document.addEventListener("DOMContentLoaded", function () {
       nav_contact: "تواصل",
       nav_cta: "ابدأ مشروعك مع GENEX",
 
-      hero_title_1: "مرحبًا بك فيGENEX",
+      hero_title_1: "مرحبًا بك في",
       hero_title_2: "حيث لا نتخيل المستقبل فقط",
       hero_title_3: "بل نبنيه.",
 
@@ -151,7 +151,7 @@ document.addEventListener("DOMContentLoaded", function () {
       nav_contact: "Contact",
       nav_cta: "Start Your Project with GENEX",
 
-      hero_title_1: "Welcome ToGENEX",
+      hero_title_1: "Welcome To",
       hero_title_2: "Where we don't just imagine the future",
       hero_title_3: "We build it.",
 
