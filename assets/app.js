@@ -55,3 +55,15 @@ toggle.onclick = () => {
 navLinks.classList.toggle("active");
 };
 }
+document.addEventListener("DOMContentLoaded", () => {
+
+const toggle = document.getElementById("menuToggle");
+const navLinks = document.querySelector(".nav-links");
+
+if(toggle && navLinks){
+toggle.addEventListener("click", () => {
+navLinks.classList.toggle("active");
+});
+}
+
+});
