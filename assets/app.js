@@ -40,7 +40,16 @@ document.addEventListener("DOMContentLoaded", function () {
 
       hero_title_1: "مرحبًا بك في",
       hero_title_2: "حيث لا نتخيل المستقبل فقط ... بل نبنيه",
-
+      hero_title_brand: "GENEX",
+      systems_title: "GENEX Autonomous Systems",
+      systems_desc: "بنية تشغيلية ذكية تربط الوحدات الآلية، وكلاء الذكاء الاصطناعي، والتكاملات التشغيلية في طبقة واحدة قابلة للتوسع.",
+      systems_card_1_title: "AI Agent Layer",
+      systems_card_1_desc: "وكلاء ذكاء اصطناعي مستقلة تتخذ الإجراءات وتنفذ المهام التشغيلية.",
+      systems_card_2_title: "Automation Core",
+      systems_card_2_desc: "محرك أتمتة يربط الإجراءات، القرارات، ونقاط التنفيذ في مسار واحد.",
+      systems_card_3_title: "Integration Mesh",
+      systems_card_3_desc: "ربط الأنظمة الحالية، البيانات، والقنوات التشغيلية ضمن بنية متماسكة.",
+      chat_subtitle: "مساعد مبيعات وتشغيل",
       hero_desc: "GENEX تبني أنظمة ذكاء اصطناعي متقدمة لتحويل الخدمات التقليدية في المتاجر، والمنشآت الخاصة، والجهات الحكومية إلى عمليات آلية بالكامل، أكثر سرعة، وأكثر دقة، وأكثر قابلية للتوسع.",
       hero_btn: "اكتشف خدمات GENEX",
 
@@ -153,7 +162,16 @@ document.addEventListener("DOMContentLoaded", function () {
 
       hero_title_1: "Welcome To",
       hero_title_2: "Whare we're not just imagine the future ... We're building it",
-
+      hero_title_brand: "GENEX",
+      systems_title: "GENEX Autonomous Systems",
+      systems_desc: "An intelligent operational layer that connects autonomous units, AI agents, and system integrations in one scalable structure.",
+      systems_card_1_title: "AI Agent Layer",
+      systems_card_1_desc: "Independent AI agents that take actions and execute operational tasks.",
+      systems_card_2_title: "Automation Core",
+      systems_card_2_desc: "An automation engine that connects actions, decisions, and execution points in one flow.",
+      systems_card_3_title: "Integration Mesh",
+      systems_card_3_desc: "Connecting existing systems, data, and operational channels in one cohesive architecture.",
+      chat_subtitle: "Sales & Operations Assistant",
       hero_desc: "GENEX builds advanced AI systems to transform traditional services across retail, private facilities, and government entities into fully automated operations that are faster, smarter, and more scalable.",
       hero_btn: "Explore GENEX Services",
 
