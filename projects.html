@@ -1,89 +1,20 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>GENEX | الأعمال</title>
-  <link rel="stylesheet" href="./assets/styles.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>GENEX | الأعمال</title>
+
+<link rel="stylesheet" href="./assets/styles.css">
+
 </head>
+
 <body>
-  <div class="grid"></div>
 
-  <nav class="nav">
-    <div class="container nav-inner">
-      <a class="brand" href="./index.html"><span class="logo"></span><span>GENEX</span></a>
+<div class="grid"></div>
 
-      <div class="nav-links">
-        <a href="./index.html">الرئيسية</a>
-        <a href="./services.html">الخدمات</a>
-        <a href="./projects.html">الأعمال</a>
-        <a href="./request.html">طلب جديد</a>
-        <a href="./join.html">انضم</a>
-        <a href="./contact.html">تواصل</a>
-      </div>
-
-      <div class="nav-cta">
-        <div class="lang">
-          <button id="btnAR" class="active">AR</button>
-          <button id="btnEN">EN</button>
-        </div>
-        <a class="btn btn-primary" href="./request.html">اطلب الأتمتة</a>
-      </div>
-    </div>
-  </nav>
-
-  <section>
-    <div class="container">
-      <div class="card reveal">
-        <div class="pulse"></div>
-        <div style="padding:28px">
-          <div class="section-title">
-            <div>
-              <h1>أعمال GENEX</h1>
-              <p>أمثلة لنتائج التحول: من خدمة تقليدية إلى منظومة ذاتية بالكامل.</p>
-            </div>
-            <a class="btn" href="./services.html">عرض الخدمات</a>
-          </div>
-
-          <div class="cards">
-            <div class="mini reveal">
-              <div class="icon">🛒</div>
-              <h3>أتمتة متجر ذكي</h3>
-              <p>تصنيف طلبات + متابعة + إشعارات + تقارير أداء.</p>
-            </div>
-            <div class="mini reveal">
-              <div class="icon">🏛️</div>
-              <h3>بوابة خدمات</h3>
-              <p>تحويل الإجراءات إلى تدفقات اعتماد مؤتمتة قابلة للتدقيق.</p>
-            </div>
-            <div class="mini reveal">
-              <div class="icon">🤖</div>
-              <h3>مساعد دعم</h3>
-              <p>شات ذكي يرد، يجمع بيانات، ويصعد الحالات المعقدة.</p>
-            </div>
-          </div>
-
-          <div class="footer">
-            <div class="container row">
-              <div>
-                <b style="letter-spacing:.22em">GENEX</b>
-                <div style="margin-top:6px; font-size:13px;">© <span id="year"></span> GENEX. All rights reserved.</div>
-              </div>
-              <div style="display:flex; gap:10px; flex-wrap:wrap;">
-                <a class="btn" href="./contact.html">تواصل</a>
-                <a class="btn btn-primary" href="./request.html">اطلب الأتمتة</a>
-              </div>
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <script src="./assets/app.js"></script>
-  <script>document.getElementById("year").textContent = new Date().getFullYear();</script>
-</body>
 <nav class="nav">
 <div class="container nav-inner">
 
@@ -97,19 +28,65 @@
 <div class="nav-links">
 
 <a href="./index.html">الرئيسية</a>
-
 <a href="./services.html">الخدمات</a>
-
 <a href="./projects.html">الأعمال</a>
-
 <a href="./request.html">طلب جديد</a>
-
 <a href="./join.html">انضم</a>
-
 <a href="./contact.html">تواصل</a>
 
 </div>
 
 </div>
-</nav>  
+</nav>
+
+
+<main class="container" style="padding-top:110px; padding-bottom:40px;">
+
+<h1>الأعمال</h1>
+
+<p style="opacity:.85">
+هنا سيتم عرض المشاريع التي قامت GENEX بتنفيذها.
+</p>
+
+<div class="cards">
+
+<div class="card-box">
+<h3>نظام أتمتة متجر</h3>
+<p>تحويل عمليات الطلبات والمخزون إلى نظام آلي بالكامل.</p>
+</div>
+
+<div class="card-box">
+<h3>شات ذكاء اصطناعي</h3>
+<p>مساعد رقمي للتواصل مع العملاء والرد الآلي.</p>
+</div>
+
+</div>
+
+</main>
+
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+const toggle = document.getElementById("menuToggle");
+const navLinks = document.querySelector(".nav-links");
+
+if (toggle && navLinks) {
+
+toggle.addEventListener("click", function () {
+navLinks.classList.toggle("active");
+});
+
+navLinks.querySelectorAll("a").forEach(function (link) {
+link.addEventListener("click", function () {
+navLinks.classList.remove("active");
+});
+});
+
+}
+
+});
+</script>
+
+</body>
 </html>
