@@ -66,3 +66,134 @@ document.addEventListener("DOMContentLoaded", function () {
       const key = el.getAttribute("data-i18n");
       if (dict[lang] && dict[lang][key]) {
         el.textContent = dict[lang][key];
+      }
+    });
+
+    document.querySelectorAll(".lang-switch button").forEach(function (btn) {
+      btn.classList.remove("active");
+    });
+
+    const activeBtn = document.querySelector(
+      `.lang-switch button[data-lang="${lang}"]`
+    );
+    if (activeBtn) {
+      activeBtn.classList.add("active");
+    }
+  }
+
+  const savedLang = localStorage.getItem("genex_lang") || "ar";
+  setLang(savedLang);
+
+  document.querySelectorAll(".lang-switch button").forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      const lang = btn.getAttribute("data-lang");
+      setLang(lang);
+    });
+  });
+
+  // ===== Geometric animated background =====
+  const canvas = document.getElementById("bgCanvas");
+
+  if (canvas) {
+    const ctx = canvas.getContext("2d");
+    let w = 0;
+    let h = 0;
+    let points = [];
+    let scrollYPos = 0;
+
+    function rand(min, max) {
+      return Math.random() * (max - min) + min;
+    }
+
+    function resize() {
+      const doc = document.documentElement;
+      const body = document.body;
+
+      w = canvas.width = window.innerWidth;
+
+      h = canvas.height = Math.max(
+        body.scrollHeight,
+        body.offsetHeight,
+        doc.clientHeight,
+        doc.scrollHeight,
+        doc.offsetHeight
+      );
+
+      canvas.style.height = h + "px";
+      createPoints();
+    }
+
+    function createPoints() {
+      const count = Math.floor(w / 90) + 20;
+      points = [];
+
+      for (let i = 0; i < count; i++) {
+        points.push({
+          x: rand(0, w),
+          y: rand(90, h - 90),
+          vx: rand(-0.22, 0.22),
+          vy: rand(-0.22, 0.22)
+        });
+      }
+    }
+
+    function animate() {
+      ctx.clearRect(0, 0, w, h);
+
+      const offset = -scrollYPos * 0.35;
+
+      for (let i = 0; i < points.length; i++) {
+        const p = points[i];
+
+        p.x += p.vx;
+        p.y += p.vy;
+
+        if (p.x < 0 || p.x > w) p.vx *= -1;
+        if (p.y < 80 || p.y > h - 80) p.vy *= -1;
+
+        const drawY = p.y + offset;
+
+        ctx.beginPath();
+        ctx.arc(p.x, drawY, 2.5, 0, Math.PI * 2);
+        ctx.fillStyle =
+          i % 3 === 0 ? "rgba(255,255,255,.88)" : "rgba(177,18,38,.82)";
+        ctx.fill();
+      }
+
+      for (let i = 0; i < points.length; i++) {
+        for (let j = i + 1; j < points.length; j++) {
+          const a = points[i];
+          const b = points[j];
+
+          const dx = a.x - b.x;
+          const dy = a.y - b.y;
+          const d = Math.sqrt(dx * dx + dy * dy);
+
+          if (d < 170) {
+            ctx.beginPath();
+            ctx.moveTo(a.x, a.y + offset);
+            ctx.lineTo(b.x, b.y + offset);
+            ctx.strokeStyle =
+              d < 100 ? "rgba(177,18,38,.35)" : "rgba(255,255,255,.18)";
+            ctx.lineWidth = 1;
+            ctx.stroke();
+          }
+        }
+      }
+
+      requestAnimationFrame(animate);
+    }
+
+    window.addEventListener("scroll", function () {
+      scrollYPos = window.scrollY;
+    });
+
+    window.addEventListener("resize", resize);
+    window.addEventListener("load", resize);
+
+    resize();
+    animate();
+
+    setTimeout(resize, 500);
+  }
+});
