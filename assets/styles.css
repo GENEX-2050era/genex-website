@@ -1,4 +1,4 @@
-
+l
 :root{
   --bg:#05070f; --bg2:#070a18;
   --card:rgba(255,255,255,.06);
@@ -173,7 +173,7 @@ color:var(--text);
 cursor:pointer;
 }
 
-@media (max-width:768px){
+@media (max-width:1024px){
 
 .menu-toggle{
 display:block;
