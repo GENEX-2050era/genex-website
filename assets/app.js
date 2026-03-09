@@ -664,4 +664,18 @@ document.addEventListener("DOMContentLoaded", function () {
       intro.style.display = "none";
     }, 2800);
   }
+  // =========================
+  // Intro hide fallback
+  // =========================
+  const intro = document.getElementById("genexIntro");
+
+  if (intro) {
+    window.setTimeout(function () {
+      intro.classList.add("hide");
+    }, 1800);
+
+    window.setTimeout(function () {
+      intro.style.display = "none";
+    }, 3000);
+  }
 });
