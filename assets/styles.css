@@ -1481,3 +1481,20 @@ p{
     filter:blur(0);
   }
 }
+/* =============================== */
+/* Hero spacing under navbar */
+/* =============================== */
+
+.hero-section{
+  padding-top:120px;
+}
+
+/* mobile */
+
+@media (max-width:768px){
+
+  .hero-section{
+    padding-top:100px;
+  }
+
+}
