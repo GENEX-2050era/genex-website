@@ -29,7 +29,7 @@ pdocument.addEventListener("DOMContentLoaded", function () {
       nav_contact: "تواصل",
       nav_cta: "ابدأ مشروعك مع GENEX",
 
-      hero_title_1: "مرحبا بك في GENEX",
+      hero_title_1: "مرحبا بك فيGENEX",
       hero_title_2: "حيث لا نتخيّل المستقبل فقط",
       hero_title_3: "بل نبنيه.",
       hero_desc: "GENEX تبني أنظمة ذكاء اصطناعي متقدمة لتحويل الخدمات التقليدية في المتاجر، والمنشآت الخاصة، والجهات الحكومية إلى عمليات آلية بالكامل، أكثر سرعة، وأكثر دقة، وأكثر قابلية للتوسع.",
