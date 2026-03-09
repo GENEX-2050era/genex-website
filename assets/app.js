@@ -55,7 +55,7 @@ document.addEventListener("DOMContentLoaded", function () {
       what_desc: "نبني حلول أتمتة وذكاء اصطناعي مصممة لتقليل الاعتماد على العمل اليدوي وتحويل العمليات إلى أنظمة ذكية مستقلة.",
 
       service_card_1_title: "وحدات آلية",
-      service_card_1_desc: "وحدات آلية معززة بوكيل Ai متقدم تتفاعل مع العملاء وتنفذ مهام حقيقية.",
+      service_card_1_desc: "وحدات آلية معززة بوكيل Ai مستقل تتفاعل مع العملاء وتنفذ مهام حقيقية.",
       service_card_2_title: "أتمتة المنشآت",
       service_card_2_desc: "تحويل الإجراءات اليومية إلى تدفقات عمل مؤتمتة وواضحة.",
       service_card_3_title: "رؤية تشغيلية ذكية",
@@ -167,8 +167,8 @@ document.addEventListener("DOMContentLoaded", function () {
       what_title: "What does GENEX offer?",
       what_desc: "We build AI and automation solutions that reduce manual dependency and transform operations into intelligent autonomous systems.",
 
-      service_card_1_title: "AI Assistants",
-      service_card_1_desc: "Digital assistants that interact with customers and execute real tasks.",
+      service_card_1_title: "Autonomous Units",
+      service_card_1_desc: "Autonomous units enhanced with an independent AI agent that interact with customers and execute real tasks.",
       service_card_2_title: "Facility Automation",
       service_card_2_desc: "Transforming daily procedures into clear automated workflows.",
       service_card_3_title: "Operational Intelligence",
