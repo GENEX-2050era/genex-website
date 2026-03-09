@@ -168,6 +168,12 @@ document.addEventListener("DOMContentLoaded", function () {
       return Math.random() * (max - min) + min;
     }
 
+    function distance(x1, y1, x2, y2) {
+      const dx = x1 - x2;
+      const dy = y1 - y2;
+      return Math.sqrt(dx * dx + dy * dy);
+    }
+
     function resize() {
       const doc = document.documentElement;
       const body = document.body;
@@ -187,27 +193,50 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function createStrands() {
       strands = [];
-      const strandCount = Math.max(12, Math.floor((w * h) / 240000));
 
-      for (let i = 0; i < strandCount; i++) {
-        strands.push({
-          x: rand(60, w - 60),
-          y: rand(120, h - 120),
-          len: rand(180, 320),
-          amp: rand(12, 26),
+      const strandCount = Math.max(12, Math.floor((w * h) / 320000));
+      const minGap = 170;
+
+      let attempts = 0;
+      while (strands.length < strandCount && attempts < strandCount * 50) {
+        attempts++;
+
+        const candidate = {
+          x: rand(80, w - 80),
+          y: rand(140, h - 140),
+          len: rand(170, 280),
+          amp: rand(12, 24),
           phase: rand(0, Math.PI * 2),
-          speed: rand(0.0008, 0.0018),
-          driftX: rand(-22, 22),
-          driftY: rand(-28, 28),
+          speed: rand(0.0008, 0.0016),
+          driftX: rand(-16, 16),
+          driftY: rand(-18, 18),
           links: Math.floor(rand(6, 10)),
-          twist: rand(0.018, 0.03)
-        });
+          twist: rand(0.018, 0.028)
+        };
+
+        let overlaps = false;
+        for (let i = 0; i < strands.length; i++) {
+          const s = strands[i];
+          const d = distance(candidate.x, candidate.y, s.x, s.y);
+
+          const requiredGap = minGap + Math.max(candidate.len, s.len) * 0.25;
+          if (d < requiredGap) {
+            overlaps = true;
+            break;
+          }
+        }
+
+        if (!overlaps) {
+          strands.push(candidate);
+        }
       }
     }
 
     function getStrandPoints(strand, time, offset) {
-      const cx = strand.x + Math.sin(time * strand.speed + strand.phase) * strand.driftX;
-      const cy = strand.y + Math.cos(time * strand.speed + strand.phase) * strand.driftY + offset;
+      const cx =
+        strand.x + Math.sin(time * strand.speed + strand.phase) * strand.driftX;
+      const cy =
+        strand.y + Math.cos(time * strand.speed + strand.phase) * strand.driftY + offset;
 
       const pA = [];
       const pB = [];
@@ -215,7 +244,8 @@ document.addEventListener("DOMContentLoaded", function () {
       for (let i = 0; i <= strand.links; i++) {
         const t = i / strand.links;
         const yy = cy + (t - 0.5) * strand.len;
-        const xx = Math.sin(time * 0.0012 + strand.phase + i * strand.twist * 40) * strand.amp;
+        const xx =
+          Math.sin(time * 0.0011 + strand.phase + i * strand.twist * 42) * strand.amp;
 
         pA.push({ x: cx + xx, y: yy });
         pB.push({ x: cx - xx, y: yy });
@@ -224,52 +254,55 @@ document.addEventListener("DOMContentLoaded", function () {
       return { pA, pB };
     }
 
-    function drawStrand(points, time, strand) {
+    function drawStrand(points) {
       const pA = points.pA;
       const pB = points.pB;
 
+      // spine A
       ctx.beginPath();
       for (let i = 0; i < pA.length; i++) {
         if (i === 0) ctx.moveTo(pA[i].x, pA[i].y);
         else ctx.lineTo(pA[i].x, pA[i].y);
       }
       ctx.strokeStyle = "rgba(255,255,255,0.26)";
-      ctx.lineWidth = 1.2;
+      ctx.lineWidth = 1.15;
       ctx.stroke();
 
+      // spine B
       ctx.beginPath();
       for (let i = 0; i < pB.length; i++) {
         if (i === 0) ctx.moveTo(pB[i].x, pB[i].y);
         else ctx.lineTo(pB[i].x, pB[i].y);
       }
       ctx.strokeStyle = "rgba(177,18,38,0.34)";
-      ctx.lineWidth = 1.2;
+      ctx.lineWidth = 1.15;
       ctx.stroke();
 
+      // bridges داخل نفس المجموعة فقط
       for (let i = 0; i < pA.length; i++) {
-        const pulse = (Math.sin(time * 0.002 + strand.phase + i) + 1) / 2;
-        const shift = pulse > 0.66 ? 1 : 0;
         const a = pA[i];
-        const b = pB[Math.min(i + shift, pB.length - 1)];
+        const b = pB[i];
 
         ctx.beginPath();
         ctx.moveTo(a.x, a.y);
         ctx.lineTo(b.x, b.y);
-        ctx.strokeStyle = pulse > 0.66
-          ? "rgba(255,255,255,0.32)"
-          : "rgba(177,18,38,0.24)";
+        ctx.strokeStyle =
+          i % 2 === 0
+            ? "rgba(255,255,255,0.24)"
+            : "rgba(177,18,38,0.24)";
         ctx.lineWidth = 1;
         ctx.stroke();
       }
 
+      // nodes
       for (let i = 0; i < pA.length; i++) {
         ctx.beginPath();
-        ctx.arc(pA[i].x, pA[i].y, 2.1, 0, Math.PI * 2);
-        ctx.fillStyle = "rgba(255,255,255,0.92)";
+        ctx.arc(pA[i].x, pA[i].y, 2.05, 0, Math.PI * 2);
+        ctx.fillStyle = "rgba(255,255,255,0.94)";
         ctx.fill();
 
         ctx.beginPath();
-        ctx.arc(pB[i].x, pB[i].y, 2.1, 0, Math.PI * 2);
+        ctx.arc(pB[i].x, pB[i].y, 2.05, 0, Math.PI * 2);
         ctx.fillStyle = "rgba(177,18,38,0.88)";
         ctx.fill();
       }
@@ -277,11 +310,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function animate(time) {
       ctx.clearRect(0, 0, w, h);
-      const offset = -scrollYPos * 0.28;
+      const offset = -scrollYPos * 0.26;
 
       for (let i = 0; i < strands.length; i++) {
         const points = getStrandPoints(strands[i], time, offset);
-        drawStrand(points, time, strands[i]);
+        drawStrand(points);
       }
 
       requestAnimationFrame(animate);
