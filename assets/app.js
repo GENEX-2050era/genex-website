@@ -502,7 +502,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
       setTimeout(function () {
         addChatMessage(botReply(value), "bot");
-      }, 500);
+      }, 400);
     });
   }
 
