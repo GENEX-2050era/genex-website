@@ -29,10 +29,9 @@ document.addEventListener("DOMContentLoaded", function () {
       nav_contact: "تواصل",
       nav_cta: "ابدأ مشروعك مع GENEX",
 
-      hero_title_1: "مرحبا بك في جينيكس",
-      hero_title_2: "في G E N E X",
-      hero_title_3: "نحن لا نتخيّل المستقبل فقط،",
-      hero_title_4: "بل نبنيه.",
+      hero_title_1: "مرحبا بك في G  E  N  E  X ...",
+      hero_title_2: "حيث لا نتخيّل المستقبل فقط",
+      hero_title_3: "بل نبنيه.",
       hero_desc: "GENEX تبني أنظمة ذكاء اصطناعي متقدمة لتحويل الخدمات التقليدية في المتاجر، والمنشآت الخاصة، والجهات الحكومية إلى عمليات آلية بالكامل، أكثر سرعة، وأكثر دقة، وأكثر قابلية للتوسع.",
       hero_btn: "اكتشف خدمات GENEX",
 
@@ -139,10 +138,9 @@ document.addEventListener("DOMContentLoaded", function () {
       nav_contact: "Contact",
       nav_cta: "Start Your Project with GENEX",
 
-      hero_title_1: "Welcome To GENEX",
-      hero_title_2: "At G E N E X",
-      hero_title_3: "we're not just imagining the future,",
-      hero_title_4: "we're building it.",
+      hero_title_1: "Welcome To G  E  N  E  X",
+      hero_title_2: "Whare we're not just imagining the future",
+      hero_title_3: "we're building it.",
       hero_desc: "GENEX builds advanced AI systems to transform traditional services across retail, private facilities, and government entities into fully automated operations that are faster, smarter, and more scalable.",
       hero_btn: "Explore GENEX Services",
 
