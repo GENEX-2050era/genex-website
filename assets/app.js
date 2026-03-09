@@ -54,8 +54,8 @@ document.addEventListener("DOMContentLoaded", function () {
       what_title: "ماذا تقدم GENEX؟",
       what_desc: "نبني حلول أتمتة وذكاء اصطناعي مصممة لتقليل الاعتماد على العمل اليدوي وتحويل العمليات إلى أنظمة ذكية مستقلة.",
 
-      service_card_1_title: "مساعدات ذكاء اصطناعي",
-      service_card_1_desc: "مساعدات رقمية تتفاعل مع العملاء وتنفذ مهام حقيقية.",
+      service_card_1_title: "وحدات آلية",
+      service_card_1_desc: "وحدات آلية معززة بوكيل Ai متقدم تتفاعل مع العملاء وتنفذ مهام حقيقية.",
       service_card_2_title: "أتمتة المنشآت",
       service_card_2_desc: "تحويل الإجراءات اليومية إلى تدفقات عمل مؤتمتة وواضحة.",
       service_card_3_title: "رؤية تشغيلية ذكية",
