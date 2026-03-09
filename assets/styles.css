@@ -886,75 +886,7 @@ body::before{
 /* INTRO */
 /* ========================= */
 
-.genex-intro{
-  position:fixed;
-  inset:0;
-  background:
-    radial-gradient(circle at center, rgba(177,18,38,.10), transparent 35%),
-    rgba(3,5,10,.97);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  z-index:6000;
-  opacity:1;
-  visibility:visible;
-  transition:opacity .9s ease, visibility .9s ease;
-}
-
-.genex-intro.hide{
-  opacity:0;
-  visibility:hidden;
-  pointer-events:none;
-}
-
-.genex-intro-core{
-  width:min(86vw, 420px);
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
-  text-align:center;
-  animation:genexIntroFloat 2s ease-in-out infinite alternate;
-}
-
-.genex-intro-logo{
-  width:130px;
-  height:130px;
-  object-fit:contain;
-  display:block;
-  margin:0 auto 16px;
-  filter:
-    brightness(0) invert(1)
-    drop-shadow(0 0 18px rgba(255,255,255,.95))
-    drop-shadow(0 0 34px rgba(255,255,255,.28));
-}
-
-.genex-intro-brand{
-  width:100%;
-  text-align:center;
-  color:#fff;
-  font-size:34px;
-  font-weight:900;
-  letter-spacing:.38em;
-  text-indent:.38em;
-  line-height:1;
-  margin:0 auto;
-  text-shadow:0 0 20px rgba(255,255,255,.25);
-}
-
-.genex-intro-sub{
-  margin-top:12px;
-  width:100%;
-  text-align:center;
-  color:rgba(255,255,255,.72);
-  font-size:14px;
-  letter-spacing:.16em;
-}
-
-@keyframes genexIntroFloat{
-  from{ transform:translateY(-4px); }
-  to{ transform:translateY(6px); }
-}
+https://genex-2050era.github.io/genex-website/?v=28000
 
 /* GENEX text shine */
 
