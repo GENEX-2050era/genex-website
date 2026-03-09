@@ -445,4 +445,73 @@ document.addEventListener("DOMContentLoaded", function () {
     requestAnimationFrame(animate);
     setTimeout(resize, 500);
   }
+  // ===== GENEX AI demo chat =====
+  const chatFab = document.getElementById("genexChatFab");
+  const chatPanel = document.getElementById("genexChatPanel");
+  const chatClose = document.getElementById("genexChatClose");
+  const chatSend = document.getElementById("genexChatSend");
+  const chatInput = document.getElementById("genexChatInput");
+  const chatBody = document.getElementById("genexChatBody");
+
+  function addChatMessage(text, role) {
+    if (!chatBody) return;
+    const msg = document.createElement("div");
+    msg.className = `genex-chat-msg ${role}`;
+    msg.textContent = text;
+    chatBody.appendChild(msg);
+    chatBody.scrollTop = chatBody.scrollHeight;
+  }
+
+  function botReply(userText) {
+    const text = userText.toLowerCase();
+
+    if (text.includes("خدمة") || text.includes("services")) {
+      return "GENEX تقدم مساعدات ذكاء اصطناعي، أتمتة عمليات، تكامل أنظمة، وتحليل وتشغيل ذكي.";
+    }
+
+    if (text.includes("ابدأ") || text.includes("project") || text.includes("طلب")) {
+      return "لبداية مشروعك، انتقل إلى صفحة طلب جديد وشاركنا تفاصيل النشاط والاحتياج، وسيتواصل معك فريق GENEX.";
+    }
+
+    if (text.includes("سعر") || text.includes("تكلفة") || text.includes("price")) {
+      return "التكلفة تعتمد على نوع الأتمتة، حجم النظام، والتكاملات المطلوبة. أرسل طلبك لنقترح عليك التصور المناسب.";
+    }
+
+    return "أستطيع مساعدتك في فهم خدمات GENEX، آلية العمل، أو كيف تبدأ مشروعك معنا.";
+  }
+
+  if (chatFab && chatPanel) {
+    chatFab.addEventListener("click", function () {
+      chatPanel.classList.add("show");
+    });
+  }
+
+  if (chatClose && chatPanel) {
+    chatClose.addEventListener("click", function () {
+      chatPanel.classList.remove("show");
+    });
+  }
+
+  if (chatSend && chatInput) {
+    chatSend.addEventListener("click", function () {
+      const value = chatInput.value.trim();
+      if (!value) return;
+
+      addChatMessage(value, "user");
+      chatInput.value = "";
+
+      setTimeout(function () {
+        addChatMessage(botReply(value), "bot");
+      }, 500);
+    });
+  }
+
+  if (chatInput) {
+    chatInput.addEventListener("keydown", function (e) {
+      if (e.key === "Enter") {
+        e.preventDefault();
+        if (chatSend) chatSend.click();
+      }
+    });
+  }
 });
