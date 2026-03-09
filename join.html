@@ -1,52 +1,20 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>GENEX | انضم</title>
-  <link rel="stylesheet" href="./assets/styles.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>GENEX | انضم</title>
+
+<link rel="stylesheet" href="./assets/styles.css">
+
 </head>
+
 <body>
-  <div class="grid"></div>
 
-  <nav class="nav">
-    <div class="container nav-inner">
-      <a class="brand" href="./index.html">GENEX</a>
-      <div class="nav-links">
-        <a href="./index.html">الرئيسية</a>
-        <a href="./projects.html">الأعمال</a>
-        <a href="./request.html">اطلب الأتمتة</a>
-        <a href="./services.html">الخدمات</a>
-        <a href="./contact.html">تواصل</a>
-        <a href="./join.html" aria-current="page">انضم</a>
-      </div>
-    </div>
-  </nav>
+<div class="grid"></div>
 
-  <main class="container" style="padding-top:110px; padding-bottom:40px;">
-    <h1 style="margin:0 0 10px;">انضم إلى GENEX</h1>
-    <p style="opacity:.85; margin:0 0 20px;">
-      نبحث عن عقول تبني المستقبل: AI، أتمتة، واجهات، تكاملات، وأمن.
-    </p>
-
-    <section class="cards" style="display:grid; gap:14px;">
-      <div class="card">
-        <h3>المجالات المطلوبة</h3>
-        <p>AI Engineering، Backend، Frontend، Automation، Product، UI/UX.</p>
-      </div>
-      <div class="card">
-        <h3>طريقة التقديم</h3>
-        <p>أرسل سيرتك + نبذة مختصرة + روابط أعمالك.</p>
-      </div>
-    </section>
-
-    <div style="margin-top:22px;">
-      <a class="btn btn-primary" href="mailto:hr@genex.ai">التقديم عبر البريد</a>
-    </div>
-  </main>
-
-  <script src="./assets/app.js"></script>
-</body>
 <nav class="nav">
 <div class="container nav-inner">
 
@@ -60,19 +28,51 @@
 <div class="nav-links">
 
 <a href="./index.html">الرئيسية</a>
-
 <a href="./services.html">الخدمات</a>
-
 <a href="./projects.html">الأعمال</a>
-
 <a href="./request.html">طلب جديد</a>
-
 <a href="./join.html">انضم</a>
-
 <a href="./contact.html">تواصل</a>
 
 </div>
 
 </div>
-</nav>  
+</nav>
+
+
+<main class="container" style="padding-top:110px; padding-bottom:40px;">
+
+<h1>انضم إلى GENEX</h1>
+
+<p style="opacity:.85">
+نبحث عن مطورين ومهندسين ذكاء اصطناعي لبناء مستقبل الأتمتة.
+</p>
+
+</main>
+
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+const toggle = document.getElementById("menuToggle");
+const navLinks = document.querySelector(".nav-links");
+
+if (toggle && navLinks) {
+
+toggle.addEventListener("click", function () {
+navLinks.classList.toggle("active");
+});
+
+navLinks.querySelectorAll("a").forEach(function (link) {
+link.addEventListener("click", function () {
+navLinks.classList.remove("active");
+});
+});
+
+}
+
+});
+</script>
+
+</body>
 </html>
