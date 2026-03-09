@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", function () {
+pdocument.addEventListener("DOMContentLoaded", function () {
   // ===== Mobile menu =====
   const toggle = document.getElementById("menuToggle");
   const navLinks = document.querySelector(".nav-links");
@@ -29,7 +29,7 @@ document.addEventListener("DOMContentLoaded", function () {
       nav_contact: "تواصل",
       nav_cta: "ابدأ مشروعك مع GENEX",
 
-      hero_title_1: "مرحبا بك في G  E  N  E  X ...",
+      hero_title_1: "مرحبا بك في G E N E X",
       hero_title_2: "حيث لا نتخيّل المستقبل فقط",
       hero_title_3: "بل نبنيه.",
       hero_desc: "GENEX تبني أنظمة ذكاء اصطناعي متقدمة لتحويل الخدمات التقليدية في المتاجر، والمنشآت الخاصة، والجهات الحكومية إلى عمليات آلية بالكامل، أكثر سرعة، وأكثر دقة، وأكثر قابلية للتوسع.",
@@ -38,7 +38,7 @@ document.addEventListener("DOMContentLoaded", function () {
       kpi_1_title: "تحول سريع",
       kpi_1_desc: "من الفكرة إلى نموذج تشغيلي واضح خلال وقت قصير.",
       kpi_2_title: "ذكاء قابل للتوسع",
-      kpi_2_desc: "أنظمة تنمو مع المنشأة وتتكامل مع أدواتها الحالية.",
+      kpi_2_desc: "أنظمة تنمو مع المنشأة وتpتكامل مع أدواتها الحالية.",
       kpi_3_title: "جاهزية مؤسسية",
       kpi_3_desc: "حلول موثوقة مع وضوح في البنية والمراقبة.",
 
@@ -138,7 +138,7 @@ document.addEventListener("DOMContentLoaded", function () {
       nav_contact: "Contact",
       nav_cta: "Start Your Project with GENEX",
 
-      hero_title_1: "Welcome To G  E  N  E  X",
+      hero_title_1: "Welcome To G E N E X",
       hero_title_2: "Whare we're not just imagining the future",
       hero_title_3: "we're building it.",
       hero_desc: "GENEX builds advanced AI systems to transform traditional services across retail, private facilities, and government entities into fully automated operations that are faster, smarter, and more scalable.",
