@@ -138,76 +138,124 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 
-  // animated background
-  const canvas = document.getElementById("bgCanvas");
-  if (canvas) {
-    const ctx = canvas.getContext("2d");
-    let w, h, points;
+// ===== GENEX Geometric Background =====
 
-    function resize() {
-      w = canvas.width = window.innerWidth;
-      h = canvas.height = window.innerHeight;
-      createPoints();
-    }
+const canvas = document.getElementById("bgCanvas");
 
-    function rand(min, max) {
-      return Math.random() * (max - min) + min;
-    }
+if(canvas){
 
-    function createPoints() {
-      const count = Math.max(18, Math.floor(w / 90));
-      points = Array.from({ length: count }, () => ({
-        x: rand(0, w),
-        y: rand(0, h),
-        vx: rand(-0.25, 0.25),
-        vy: rand(-0.25, 0.25),
-        r: rand(2, 4)
-      }));
-    }
+const ctx = canvas.getContext("2d");
 
-    function draw() {
-      ctx.clearRect(0, 0, w, h);
+let w,h;
+let points=[];
+let scrollY=0;
 
-      for (let i = 0; i < points.length; i++) {
-        const p = points[i];
-        p.x += p.vx;
-        p.y += p.vy;
+function resize(){
 
-        if (p.x < 0 || p.x > w) p.vx *= -1;
-        if (p.y < 0 || p.y > h) p.vy *= -1;
+w = canvas.width = window.innerWidth;
+h = canvas.height = window.innerHeight;
 
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-        ctx.fillStyle = i % 3 === 0 ? "rgba(255,255,255,0.88)" : "rgba(177,18,38,0.82)";
-        ctx.fill();
-      }
+createPoints();
 
-      for (let i = 0; i < points.length; i++) {
-        for (let j = i + 1; j < points.length; j++) {
-          const a = points[i];
-          const b = points[j];
-          const dx = a.x - b.x;
-          const dy = a.y - b.y;
-          const d = Math.sqrt(dx * dx + dy * dy);
+}
 
-          if (d < 180) {
-            ctx.beginPath();
-            ctx.moveTo(a.x, a.y);
-            ctx.lineTo(b.x, b.y);
-            ctx.strokeStyle = d < 100
-              ? "rgba(177,18,38,0.34)"
-              : "rgba(255,255,255,0.17)";
-            ctx.lineWidth = 1;
-            ctx.stroke();
-          }
-        }
-      }
+function rand(min,max){
+return Math.random()*(max-min)+min;
+}
 
-      requestAnimationFrame(draw);
-    }
+function createPoints(){
 
-    resize();
-    draw();
-    window.addEventListener("resize", resize);
-  }
+const count = Math.floor(w/90)+20;
+
+points=[];
+
+for(let i=0;i<count;i++){
+
+points.push({
+
+x:rand(0,w),
+y:rand(80,h-80),
+vx:rand(-0.2,0.2),
+vy:rand(-0.2,0.2)
+
 });
+
+}
+
+}
+
+function animate(){
+
+ctx.clearRect(0,0,w,h);
+
+const offset = -scrollY*0.35;
+
+for(let i=0;i<points.length;i++){
+
+const p=points[i];
+
+p.x+=p.vx;
+p.y+=p.vy;
+
+if(p.x<0||p.x>w) p.vx*=-1;
+if(p.y<80||p.y>h-80) p.vy*=-1;
+
+const drawY=p.y+offset;
+
+ctx.beginPath();
+ctx.arc(p.x,drawY,2.5,0,Math.PI*2);
+ctx.fillStyle=i%3===0
+? "rgba(255,255,255,.85)"
+: "rgba(177,18,38,.8)";
+ctx.fill();
+
+}
+
+for(let i=0;i<points.length;i++){
+
+for(let j=i+1;j<points.length;j++){
+
+const a=points[i];
+const b=points[j];
+
+const dx=a.x-b.x;
+const dy=a.y-b.y;
+
+const d=Math.sqrt(dx*dx+dy*dy);
+
+if(d<170){
+
+ctx.beginPath();
+
+ctx.moveTo(a.x,a.y+offset);
+ctx.lineTo(b.x,b.y+offset);
+
+ctx.strokeStyle=d<100
+? "rgba(177,18,38,.35)"
+: "rgba(255,255,255,.18)";
+
+ctx.lineWidth=1;
+ctx.stroke();
+
+}
+
+}
+
+}
+
+requestAnimationFrame(animate);
+
+}
+
+window.addEventListener("scroll",()=>{
+
+scrollY=window.scrollY;
+
+});
+
+resize();
+animate();
+
+window.addEventListener("resize",resize);
+
+}
