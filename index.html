@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
-
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -8,11 +7,11 @@
   <meta name="description" content="GENEX تطور أنظمة ذكاء اصطناعي تحول الخدمات التقليدية إلى خدمات آلية بالكامل للمتاجر والمنشآت الخاصة والحكومية." />
   <link rel="stylesheet" href="./assets/styles.css" />
 </head>
-
 <body>
 
-  <div class="grid"></div>
   <canvas id="bgCanvas"></canvas>
+  <div class="grid"></div>
+
   <nav class="nav">
     <div class="container nav-inner">
 
@@ -24,19 +23,19 @@
       <button class="menu-toggle" id="menuToggle">☰</button>
 
       <div class="nav-links">
-        <a href="./index.html">الرئيسية</a>
-        <a href="./services.html">الخدمات</a>
-        <a href="./request.html">ابدأ مشروعك مع GENEX</a>
-        <a href="./request.html">طلب جديد</a>
-        <a href="./join.html">انضم</a>
-        <a href="./contact.html">تواصل</a>
+        <a href="./index.html" data-i18n="home">الرئيسية</a>
+        <a href="./services.html" data-i18n="services">الخدمات</a>
+        <a href="./request.html" data-i18n="request">طلب جديد</a>
+        <a href="./join.html" data-i18n="join">انضم</a>
+        <a href="./contact.html" data-i18n="contact">تواصل</a>
       </div>
 
       <div class="nav-cta">
-        <a class="btn btn-ghost" href="./request.html">
-ابدأ مشروعك مع GENEX
-</a>
-        <a class="btn btn-primary" href="./request.html">اطلب الأتمتة</a>
+        <div class="lang-switch">
+          <button data-lang="ar" class="active">AR</button>
+          <button data-lang="en">EN</button>
+        </div>
+        <a class="btn btn-primary" href="./request.html" data-i18n="ask">ابدأ مشروعك مع GENEX</a>
       </div>
 
     </div>
@@ -46,49 +45,41 @@
 
     <section>
       <div class="container">
-        <div class="card" style="padding:32px; overflow:hidden;">
+        <div class="card" style="padding:32px;">
           <div class="pulse"></div>
 
           <div class="section-title" style="position:relative; z-index:2;">
             <div>
               <h1 style="font-size:38px; line-height:1.3; margin-bottom:14px;">
-                في GENEX...  
-                <br>
-                نحن لا نتخيّل المستقبل فقط،
-                <br>
-                <span style="color:var(--cyan);">بل نبنيه.</span>
+                <span data-i18n="heroTitle1">في GENEX...</span><br>
+                <span data-i18n="heroTitle2">نحن لا نتخيّل المستقبل فقط،</span><br>
+                <span style="color:var(--crimson-soft);" data-i18n="heroTitle3">بل نبنيه.</span>
               </h1>
 
-              <p style="font-size:16px; max-width:760px; opacity:.9; line-height:1.9;">
-                GENEX تبني أنظمة ذكاء اصطناعي متقدمة لتحويل الخدمات التقليدية في المتاجر،
-                والمنشآت الخاصة، والجهات الحكومية إلى عمليات آلية بالكامل،
-                أكثر سرعة، وأكثر دقة، وأكثر قابلية للتوسع.
+              <p style="font-size:16px; max-width:760px; opacity:.9; line-height:1.9;" data-i18n="heroDesc">
+                GENEX تبني أنظمة ذكاء اصطناعي متقدمة لتحويل الخدمات التقليدية في المتاجر، والمنشآت الخاصة، والجهات الحكومية إلى عمليات آلية بالكامل، أكثر سرعة، وأكثر دقة، وأكثر قابلية للتوسع.
               </p>
 
               <div style="margin-top:22px; display:flex; gap:12px; flex-wrap:wrap;">
-                <a class="btn btn-primary" href="./request.html">ابدأ طلبك الآن</a>
-                <a class="btn" href="./services.html">اكتشف خدمات GENEX</a>
+                <a class="btn" href="./services.html" data-i18n="heroBtn">اكتشف خدمات GENEX</a>
               </div>
             </div>
           </div>
 
-          <div class="cards" style="margin-top:28px; position:relative; z-index:2;">
-            <div class="card-box">
-              <div class="icon">⚡</div>
-              <h3>تحول سريع</h3>
-              <p>نحوّل الفكرة إلى نموذج تشغيلي واضح خلال وقت قصير وبشكل احترافي.</p>
+          <div class="hero-kpis" style="position:relative; z-index:2;">
+            <div class="kpi">
+              <strong data-i18n="kpi1Title">تحول سريع</strong>
+              <span data-i18n="kpi1Desc">من الفكرة إلى نموذج تشغيلي واضح خلال وقت قصير.</span>
             </div>
 
-            <div class="card-box">
-              <div class="icon">🧠</div>
-              <h3>ذكاء قابل للتوسع</h3>
-              <p>أنظمة مصممة لتنمو مع المنشأة وتتكامل مع أدواتها الحالية والمستقبلية.</p>
+            <div class="kpi">
+              <strong data-i18n="kpi2Title">ذكاء قابل للتوسع</strong>
+              <span data-i18n="kpi2Desc">أنظمة تنمو مع المنشأة وتتكامل مع أدواتها الحالية.</span>
             </div>
 
-            <div class="card-box">
-              <div class="icon">🛡️</div>
-              <h3>جاهزية مؤسسية</h3>
-              <p>حلول قابلة للاعتماد مع وضوح في البنية، المراقبة، والموثوقية.</p>
+            <div class="kpi">
+              <strong data-i18n="kpi3Title">جاهزية مؤسسية</strong>
+              <span data-i18n="kpi3Desc">حلول موثوقة مع وضوح في البنية والمراقبة.</span>
             </div>
           </div>
 
@@ -100,10 +91,9 @@
       <div class="container">
         <div class="section-title">
           <div>
-            <h2>ماذا تقدم GENEX؟</h2>
-            <p>
-              نبني حلول أتمتة وذكاء اصطناعي مصممة لتقليل الاعتماد على العمل اليدوي
-              وتحويل العمليات إلى أنظمة ذكية مستقلة.
+            <h2 data-i18n="whatTitle">ماذا تقدم GENEX؟</h2>
+            <p data-i18n="whatDesc">
+              نبني حلول أتمتة وذكاء اصطناعي مصممة لتقليل الاعتماد على العمل اليدوي وتحويل العمليات إلى أنظمة ذكية مستقلة.
             </p>
           </div>
         </div>
@@ -111,20 +101,52 @@
         <div class="cards">
           <div class="card-box">
             <div class="icon">🤖</div>
-            <h3>وحدات آليه</h3>
-            <p>وحدات آليه تتفاعل مع العملاء وتنفذ مهام حقيقية داخل المنشأة.</p>
+            <h3 data-i18n="service1">مساعدات ذكاء اصطناعي</h3>
+            <p data-i18n="service1d">مساعدات رقمية تتفاعل مع العملاء وتنفذ مهام حقيقية.</p>
           </div>
 
           <div class="card-box">
             <div class="icon">🏢</div>
-            <h3>أتمتة المنشآت</h3>
-            <p>تحويل الإجراءات اليومية إلى تدفقات عمل مؤتمتة وواضحة.</p>
+            <h3 data-i18n="service2">أتمتة المنشآت</h3>
+            <p data-i18n="service2d">تحويل الإجراءات اليومية إلى تدفقات عمل مؤتمتة وواضحة.</p>
           </div>
 
           <div class="card-box">
             <div class="icon">📊</div>
-            <h3>رؤية تشغيلية ذكية</h3>
-            <p>لوحات متابعة وتحليل تساعد على اتخاذ قرارات أسرع وأذكى.</p>
+            <h3 data-i18n="service3">رؤية تشغيلية ذكية</h3>
+            <p data-i18n="service3d">لوحات متابعة وتحليل تساعد على اتخاذ قرارات أسرع.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <div class="card early-program" style="padding:28px;">
+          <div class="section-title">
+            <div>
+              <h2 data-i18n="earlyTitle">برنامج الشركاء الأوائل</h2>
+              <p data-i18n="earlyDesc">
+                نفتح الآن المجال لأول العملاء الذين يرغبون في بناء أنظمة أتمتة وذكاء اصطناعي مع GENEX. هذه المرحلة مخصصة للشركات والمنشآت التي ترغب في أن تكون من أوائل الجهات التي تتبنى البنية التشغيلية الذكية.
+              </p>
+            </div>
+          </div>
+
+          <div class="cards">
+            <div class="card-box">
+              <div class="icon">01</div>
+              <h3 data-i18n="earlyPoint1">أولوية في دراسة الاحتياج والتصميم</h3>
+            </div>
+
+            <div class="card-box">
+              <div class="icon">02</div>
+              <h3 data-i18n="earlyPoint2">حلول مخصصة بحسب طبيعة نشاطك</h3>
+            </div>
+
+            <div class="card-box">
+              <div class="icon">03</div>
+              <h3 data-i18n="earlyPoint3">فرصة لبناء أول حالة نجاح مشتركة مع GENEX</h3>
+            </div>
           </div>
         </div>
       </div>
@@ -134,8 +156,8 @@
       <div class="container">
         <div class="section-title">
           <div>
-            <h2>كيف نعمل؟</h2>
-            <p>
+            <h2 data-i18n="workTitle">كيف نعمل؟</h2>
+            <p data-i18n="workDesc">
               منهجية GENEX تركز على فهم الخدمة، تصميم الحل، ثم تحويله إلى نظام يعمل على أرض الواقع.
             </p>
           </div>
@@ -144,20 +166,20 @@
         <div class="cards">
           <div class="card-box">
             <div class="icon">1</div>
-            <h3>فهم التحدي</h3>
-            <p>نحلل العملية الحالية ونحدد نقاط التأخير والتكرار والفرص.</p>
+            <h3 data-i18n="work1">فهم التحدي</h3>
+            <p data-i18n="work1d">تحليل العملية الحالية وتحديد نقاط التأخير والتكرار.</p>
           </div>
 
           <div class="card-box">
             <div class="icon">2</div>
-            <h3>تصميم النظام</h3>
-            <p>نضع تصورًا واضحًا للحل المناسب من ناحية الأتمتة والذكاء الاصطناعي.</p>
+            <h3 data-i18n="work2">تصميم النظام</h3>
+            <p data-i18n="work2d">بناء تصور واضح للحل المناسب من ناحية الأتمتة والذكاء الاصطناعي.</p>
           </div>
 
           <div class="card-box">
             <div class="icon">3</div>
-            <h3>التنفيذ والتطوير</h3>
-            <p>نحول التصور إلى تجربة فعلية قابلة للتشغيل والتحسين المستمر.</p>
+            <h3 data-i18n="work3">التنفيذ والتطوير</h3>
+            <p data-i18n="work3d">تحويل التصور إلى تجربة فعلية قابلة للتشغيل والتحسين المستمر.</p>
           </div>
         </div>
       </div>
@@ -168,17 +190,15 @@
         <div class="card" style="padding:28px;">
           <div class="section-title">
             <div>
-              <h2>ابدأ مع GENEX</h2>
-              <p>
-                إذا كنت تبحث عن تحويل خدماتك أو منشأتك إلى بيئة تعتمد على الذكاء الاصطناعي والأتمتة،
-                فابدأ من هنا.
+              <h2 data-i18n="finalTitle">ابدأ مع GENEX</h2>
+              <p data-i18n="finalDesc">
+                إذا كنت تبحث عن تحويل خدماتك أو منشأتك إلى بيئة تعتمد على الذكاء الاصطناعي والأتمتة، فابدأ من هنا.
               </p>
             </div>
           </div>
 
           <div style="display:flex; gap:12px; flex-wrap:wrap;">
-            <a class="btn btn-primary" href="./request.html">اطلب الأتمتة الآن</a>
-            <a class="btn" href="./contact.html">تواصل معنا</a>
+            <a class="btn btn-primary" href="./request.html" data-i18n="finalBtn">ابدأ مشروعك مع GENEX</a>
           </div>
         </div>
       </div>
@@ -193,35 +213,13 @@
         <div id="year"></div>
       </div>
 
-      <div style="opacity:.8;">
+      <div style="opacity:.8;" data-i18n="footerText">
         Autonomous AI Systems
       </div>
     </div>
   </footer>
 
-  <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      const toggle = document.getElementById("menuToggle");
-      const navLinks = document.querySelector(".nav-links");
-
-      if (toggle && navLinks) {
-        toggle.addEventListener("click", function () {
-          navLinks.classList.toggle("active");
-        });
-
-        navLinks.querySelectorAll("a").forEach(function (link) {
-          link.addEventListener("click", function () {
-            navLinks.classList.remove("active");
-          });
-        });
-      }
-
-      const year = document.getElementById("year");
-      if (year) {
-        year.textContent = new Date().getFullYear();
-      }
-    });
-  </script>
+  <script src="./assets/app.js" defer></script>
 
 </body>
 </html>
