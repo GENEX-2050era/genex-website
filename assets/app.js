@@ -34,7 +34,6 @@ document.addEventListener("DOMContentLoaded", function () {
       hero_title_brand: "GENEX",
       hero_title_2: "حيث لا نتخيل المستقبل فقط",
       hero_title_3: "بل نبنيه.",
-      hero_title_4: "أنظمة ذكاء اصطناعي مستقلة",
 
       hero_desc: "GENEX تبني أنظمة ذكاء اصطناعي متقدمة لتحويل الخدمات التقليدية في المتاجر، والمنشآت الخاصة، والجهات الحكومية إلى عمليات آلية بالكامل، أكثر سرعة، وأكثر دقة، وأكثر قابلية للتوسع.",
       hero_btn: "اكتشف خدمات GENEX",
@@ -145,9 +144,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
       hero_title_1: "Welcome to",
       hero_title_brand: "GENEX",
-      hero_title_2: "Where we don't just imagine the future",
-      hero_title_3: "We build it.",
-      hero_title_4: "Autonomous AI Systems",
+      hero_title_2: "Whare we're not just imagining the future",
+      hero_title_3: "We're building it.",
 
       hero_desc: "GENEX builds advanced AI systems to transform traditional services across retail, private facilities, and government entities into fully automated operations that are faster, smarter, and more scalable.",
       hero_btn: "Explore GENEX Services",
