@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
@@ -6,25 +5,26 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>GENEX | مستقبل الأتمتة بالذكاء الاصطناعي</title>
   <meta name="description" content="GENEX تطور أنظمة ذكاء اصطناعي تحول الخدمات التقليدية إلى خدمات آلية بالكامل." />
-  <link rel="stylesheet" href="./assets/styles.css?v=16">
+  <link rel="stylesheet" href="./assets/styles.css?v=16" />
 </head>
 <body>
-<div class="genex-intro" id="genexIntro">
-  <div class="genex-intro-core">
-    <img src="./assets/logo.png" alt="GENEX Logo" class="genex-intro-logo">
-    <div class="genex-intro-brand">GENEX</div>
-    <div class="genex-intro-sub">Autonomous AI Systems</div>
+  <div class="genex-intro" id="genexIntro">
+    <div class="genex-intro-core">
+      <img src="./assets/logo.png" alt="GENEX Logo" class="genex-intro-logo" />
+      <div class="genex-intro-brand">GENEX</div>
+      <div class="genex-intro-sub">Autonomous AI Systems</div>
+    </div>
   </div>
-</div>
+
   <canvas id="bgCanvas"></canvas>
   <div class="grid"></div>
 
   <nav class="nav">
     <div class="container nav-inner">
       <a class="brand" href="./index.html">
-  <img class="brand-logo" src="./assets/logo.png" alt="GENEX Logo">
-  <span>GENEX</span>
-</a>
+        <img class="brand-logo" src="./assets/logo.png" alt="GENEX Logo" />
+        <span>GENEX</span>
+      </a>
 
       <button class="menu-toggle" id="menuToggle">☰</button>
 
@@ -48,27 +48,37 @@
   </nav>
 
   <main>
-      
-    </section>
-              <h1 style="font-size:30px; line-height:1.28; margin-bottom:14px;">
+    <section>
+      <div class="container hero-section">
+        <div class="card" style="padding:32px;">
+          <div class="pulse"></div>
 
-<section>
-  <div class="container hero-section">
-    <div class="card" style="padding:32px;">
-      <div class="pulse"></div>
+          <div class="section-title" style="position:relative; z-index:2;">
+            <div>
+              <h1 style="font-size:34px; line-height:1.32; margin-bottom:14px;">
+                <span data-i18n="hero_title_1">مرحبًا بك في</span>
 
-      <div class="section-title" style="position:relative; z-index:2;">
-        <div>
-          <h1 style="font-size:34px; line-height:1.32; margin-bottom:14px;">
-            <span data-i18n="hero_title_1">مرحبًا بك في</span>
+                <span
+                  class="genex-shine-word genex-build-word"
+                  data-i18n="hero_title_brand"
+                  style="
+                    display:inline;
+                    font-size:1.28em;
+                    letter-spacing:.32em;
+                    margin-inline-start:8px;
+                    font-weight:900;
+                    vertical-align:baseline;
+                  "
+                >
+                  <span class="genex-word-base">GENEX</span>
+                  <span class="genex-word-particles" aria-hidden="true"></span>
+                </span>
+                <br>
 
-            <span class="genex-shine-word genex-build-word" data-i18n="hero_title_brand">
-  <span class="genex-word-base">GENEX</span>
-  <span class="genex-word-particles" aria-hidden="true"></span>
-            </span>
-  <br>
-
-  <span data-i18n="hero_title_2">حيث لا نتخيل المستقبل فقط ... بل نبنيه</span><br>
+                <span data-i18n="hero_title_2">حيث لا نتخيل المستقبل فقط</span><br>
+                <span data-i18n="hero_title_3">بل نبنيه.</span><br>
+                <span style="color:#fff;" data-i18n="hero_title_4">أنظمة ذكاء اصطناعي مستقلة</span>
+              </h1>
 
               <p style="font-size:16px; max-width:760px; opacity:.9; line-height:1.9;" data-i18n="hero_desc">
                 GENEX تبني أنظمة ذكاء اصطناعي متقدمة لتحويل الخدمات التقليدية في المتاجر، والمنشآت الخاصة، والجهات الحكومية إلى عمليات آلية بالكامل، أكثر سرعة، وأكثر دقة، وأكثر قابلية للتوسع.
@@ -98,7 +108,7 @@
       </div>
     </section>
 
-    <section class="hero-section">
+    <section>
       <div class="container">
         <div class="section-title">
           <div>
@@ -111,7 +121,7 @@
           <div class="card-box">
             <div class="icon">🦾</div>
             <h3 data-i18n="service_card_1_title">وحدات آلية</h3>
-            <p data-i18n="service_card_1_desc">وحدات آلية معززة بوكيل Ai متقدم تتفاعل مع العملاء وتنفذ مهام حقيقية.</p>
+            <p data-i18n="service_card_1_desc">وحدات آلية معززة بوكيل AI مستقل تتفاعل مع العملاء وتنفذ مهام حقيقية.</p>
           </div>
 
           <div class="card-box">
@@ -127,128 +137,129 @@
           </div>
         </div>
       </div>
+    </section>
 
     <section>
-  <div class="container">
-    <div class="card early-program" style="padding:28px;">
-      <div class="section-title">
-        <div>
-          <h2 data-i18n="early_title">برنامج الشركاء الأوائل</h2>
-          <p data-i18n="early_desc">نفتح الآن المجال لأول العملاء الذين يرغبون في بناء أنظمة أتمتة وذكاء اصطناعي مع GENEX.</p>
+      <div class="container">
+        <div class="card early-program" style="padding:28px;">
+          <div class="section-title">
+            <div>
+              <h2 data-i18n="early_title">برنامج الشركاء الأوائل</h2>
+              <p data-i18n="early_desc">نفتح الآن المجال لأول العملاء الذين يرغبون في بناء أنظمة أتمتة وذكاء اصطناعي مع GENEX.</p>
+            </div>
+          </div>
+
+          <div class="cards">
+            <div class="card-box">
+              <div class="icon">01</div>
+              <h3 data-i18n="early_1">أولوية في دراسة الاحتياج والتصميم</h3>
+            </div>
+            <div class="card-box">
+              <div class="icon">02</div>
+              <h3 data-i18n="early_2">حلول مخصصة بحسب طبيعة نشاطك</h3>
+            </div>
+            <div class="card-box">
+              <div class="icon">03</div>
+              <h3 data-i18n="early_3">فرصة لبناء أول حالة نجاح مشتركة مع GENEX</h3>
+            </div>
+          </div>
         </div>
       </div>
+    </section>
 
-      <div class="cards">
-        <div class="card-box">
-          <div class="icon">01</div>
-          <h3 data-i18n="early_1">أولوية في دراسة الاحتياج والتصميم</h3>
+    <section>
+      <div class="container">
+        <div class="section-title">
+          <div>
+            <h2 data-i18n="how_title">كيف نعمل؟</h2>
+            <p data-i18n="how_desc">منهجية GENEX تركز على فهم الخدمة، تصميم الحل، ثم تحويله إلى نظام يعمل على أرض الواقع.</p>
+          </div>
         </div>
-        <div class="card-box">
-          <div class="icon">02</div>
-          <h3 data-i18n="early_2">حلول مخصصة بحسب طبيعة نشاطك</h3>
-        </div>
-        <div class="card-box">
-          <div class="icon">03</div>
-          <h3 data-i18n="early_3">فرصة لبناء أول حالة نجاح مشتركة مع GENEX</h3>
+
+        <div class="cards">
+          <div class="card-box">
+            <div class="icon">1</div>
+            <h3 data-i18n="how_1_title">فهم التحدي</h3>
+            <p data-i18n="how_1_desc">تحليل العملية الحالية وتحديد نقاط التأخير والتكرار.</p>
+          </div>
+          <div class="card-box">
+            <div class="icon">2</div>
+            <h3 data-i18n="how_2_title">تصميم النظام</h3>
+            <p data-i18n="how_2_desc">بناء تصور واضح للحل المناسب من ناحية الأتمتة والذكاء الاصطناعي.</p>
+          </div>
+          <div class="card-box">
+            <div class="icon">3</div>
+            <h3 data-i18n="how_3_title">التنفيذ والتطوير</h3>
+            <p data-i18n="how_3_desc">تحويل التصور إلى تجربة فعلية قابلة للتشغيل والتحسين المستمر.</p>
+          </div>
         </div>
       </div>
-    </div>
-  </div>
-</section>
+    </section>
 
-<section>
-  <div class="container">
-    <div class="section-title">
+    <section>
+      <div class="container">
+        <div class="card" style="padding:28px;">
+          <div class="section-title">
+            <div>
+              <h2 data-i18n="final_title">ابدأ مع GENEX</h2>
+              <p data-i18n="final_desc">إذا كنت تبحث عن تحويل خدماتك أو منشأتك إلى بيئة تعتمد على الذكاء الاصطناعي والأتمتة، فابدأ من هنا.</p>
+            </div>
+          </div>
+
+          <div style="display:flex; gap:12px; flex-wrap:wrap;">
+            <a class="btn btn-primary" href="./request.html" data-i18n="final_btn">ابدأ مشروعك مع GENEX</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container row">
       <div>
-        <h2 data-i18n="how_title">كيف نعمل؟</h2>
-        <p data-i18n="how_desc">منهجية GENEX تركز على فهم الخدمة، تصميم الحل، ثم تحويله إلى نظام يعمل على أرض الواقع.</p>
+        <b>GENEX</b>
+        <div id="year"></div>
+      </div>
+      <div style="opacity:.8;" data-i18n="footer_text">Autonomous AI Systems</div>
+    </div>
+  </footer>
+
+  <div class="genex-chat-fab" id="genexChatFab">
+    <span>✦</span>
+  </div>
+
+  <div class="genex-chat-panel" id="genexChatPanel">
+    <div class="genex-chat-header">
+      <div class="genex-chat-title-wrap">
+        <strong>GENEX AI</strong>
+        <small data-i18n="chat_subtitle">مساعد مبيعات وتشغيل</small>
+      </div>
+      <button type="button" id="genexChatClose">✕</button>
+    </div>
+
+    <div class="genex-chat-body" id="genexChatBody">
+      <div class="genex-chat-msg bot" data-i18n="chat_welcome">
+        أهلاً بك، أنا مساعد GENEX. اسألني عن الأتمتة، الخدمات، أو كيف نبدأ مشروعك.
+      </div>
+
+      <div class="genex-chat-quick-actions">
+        <button type="button" onclick="window.quickGenexChat && window.quickGenexChat('أريد أتمتة خدمة العملاء')">أتمتة خدمة العملاء</button>
+        <button type="button" onclick="window.quickGenexChat && window.quickGenexChat('أريد عرض سعر')">عرض سعر</button>
+        <button type="button" onclick="window.quickGenexChat && window.quickGenexChat('أريد بناء نظام مخصص')">نظام مخصص</button>
       </div>
     </div>
 
-    <div class="cards">
-      <div class="card-box">
-        <div class="icon">1</div>
-        <h3 data-i18n="how_1_title">فهم التحدي</h3>
-        <p data-i18n="how_1_desc">تحليل العملية الحالية وتحديد نقاط التأخير والتكرار.</p>
-      </div>
-      <div class="card-box">
-        <div class="icon">2</div>
-        <h3 data-i18n="how_2_title">تصميم النظام</h3>
-        <p data-i18n="how_2_desc">بناء تصور واضح للحل المناسب من ناحية الأتمتة والذكاء الاصطناعي.</p>
-      </div>
-      <div class="card-box">
-        <div class="icon">3</div>
-        <h3 data-i18n="how_3_title">التنفيذ والتطوير</h3>
-        <p data-i18n="how_3_desc">تحويل التصور إلى تجربة فعلية قابلة للتشغيل والتحسين المستمر.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section>
-  <div class="container">
-    <div class="card" style="padding:28px;">
-      <div class="section-title">
-        <div>
-          <h2 data-i18n="final_title">ابدأ مع GENEX</h2>
-          <p data-i18n="final_desc">إذا كنت تبحث عن تحويل خدماتك أو منشأتك إلى بيئة تعتمد على الذكاء الاصطناعي والأتمتة، فابدأ من هنا.</p>
-        </div>
-      </div>
-
-      <div style="display:flex; gap:12px; flex-wrap:wrap;">
-        <a class="btn btn-primary" href="./request.html" data-i18n="final_btn">ابدأ مشروعك مع GENEX</a>
-      </div>
-    </div>
-  </div>
-</section>
-</main>
-
-<footer class="footer">
-  <div class="container row">
-    <div>
-      <b>GENEX</b>
-      <div id="year"></div>
-    </div>
-    <div style="opacity:.8;" data-i18n="footer_text">Autonomous AI Systems</div>
-  </div>
-</footer>
-
-<div class="genex-chat-fab" id="genexChatFab" onclick="window.toggleGenexChat && window.toggleGenexChat(true)">
-  <span>✦</span>
-</div>
-
-<div class="genex-chat-panel" id="genexChatPanel">
-  <div class="genex-chat-header">
-    <div class="genex-chat-title-wrap">
-      <strong>GENEX AI</strong>
-      <small data-i18n="chat_subtitle">مساعد مبيعات وتشغيل</small>
-    </div>
-    <button type="button" id="genexChatClose" onclick="window.toggleGenexChat && window.toggleGenexChat(false)">✕</button>
-  </div>
-
-  <div class="genex-chat-body" id="genexChatBody">
-    <div class="genex-chat-msg bot" data-i18n="chat_welcome">
-      أهلاً بك، أنا مساعد GENEX. اسألني عن الأتمتة، الخدمات، أو كيف نبدأ مشروعك.
-    </div>
-
-    <div class="genex-chat-quick-actions">
-      <button type="button" onclick="window.quickGenexChat && window.quickGenexChat('أريد أتمتة خدمة العملاء')">أتمتة خدمة العملاء</button>
-      <button type="button" onclick="window.quickGenexChat && window.quickGenexChat('أريد عرض سعر')">عرض سعر</button>
-      <button type="button" onclick="window.quickGenexChat && window.quickGenexChat('أريد بناء نظام مخصص')">نظام مخصص</button>
+    <div class="genex-chat-input-wrap">
+      <input
+        type="text"
+        id="genexChatInput"
+        data-i18n-placeholder="chat_placeholder"
+        placeholder="اكتب سؤالك هنا..."
+      />
+      <button type="button" id="genexChatSend" data-i18n="chat_send">إرسال</button>
     </div>
   </div>
 
-  <div class="genex-chat-input-wrap">
-    <input
-      type="text"
-      id="genexChatInput"
-      data-i18n-placeholder="chat_placeholder"
-      placeholder="اكتب سؤالك هنا..."
-    />
-    <button type="button" id="genexChatSend">إرسال</button>
-  </div>
-</div>
-
-<script src="./assets/app.js?v=16"></script>
+  <script src="./assets/app.js?v=16"></script>
 </body>
-    </html>
+</html>
