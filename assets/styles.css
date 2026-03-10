@@ -838,6 +838,9 @@ textarea::placeholder{
   font-size:12px;
   font-weight:700;
 }
+
+/* typing cursor */
+
 .genex-chat-msg[data-typing="true"]{
   position:relative;
 }
