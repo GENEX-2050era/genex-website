@@ -431,15 +431,17 @@ textarea::placeholder{
 }
 
 .genex-intro-brand{
-  width:100%;
+  display:block;
+  width:max-content;
+  margin:0 auto;
   text-align:center;
+  direction:ltr;
   color:#fff;
   font-size:34px;
   font-weight:900;
   letter-spacing:.38em;
-  text-indent:.38em;
+  padding-left:.38em;
   line-height:1;
-  margin:0 auto;
   text-shadow:0 0 20px rgba(255,255,255,.25);
 }
 
