@@ -532,16 +532,7 @@ document.addEventListener("DOMContentLoaded", function () {
       text.includes("تكلفة") ||
       text.includes("price") ||
       text.includes("cost")
-    ) {
-      return savedLang === "en"
-        ? "Pricing depends on the automation scope, system size, and required integrations."
-        : "التكلفة تعتمد على نوع الأتمتة، حجم النظام، والتكاملات المطلوبة.";
-    }
 
-    return savedLang === "en"
-      ? "I can help explain GENEX services, how we work, and how to start your project."
-      : "أستطيع مساعدتك في فهم خدمات GENEX، آلية العمل، وكيف تبدأ مشروعك معنا.";
-  }
 // =========================
   // Chat
   // =========================
@@ -650,20 +641,4 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     });
   }
-  // =========================
-// Intro hide
-// =========================
-const intro = document.getElementById("genexIntro");
-
-if (intro) {
-
-  setTimeout(function () {
-    intro.classList.add("hide");
-  }, 1800);
-
-  setTimeout(function () {
-    intro.remove();
-  }, 2800);
-
-}
 });
