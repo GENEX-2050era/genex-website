@@ -1,7 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
-  // =========================
   // Mobile menu
-  // =========================
   const toggle = document.getElementById("menuToggle");
   const navLinks = document.querySelector(".nav-links");
 
@@ -17,17 +15,12 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  // =========================
   // Footer year
-  // =========================
   const year = document.getElementById("year");
   if (year) {
     year.textContent = new Date().getFullYear();
   }
 
-  // =========================
-  // Translations
-  // =========================
   const translations = {
     ar: {
       nav_home: "الرئيسية",
@@ -280,6 +273,12 @@ document.addEventListener("DOMContentLoaded", function () {
   applyTranslations(savedLang);
 
   document.querySelectorAll(".lang-switch button").forEach(function (btn) {
+    if ((btn.getAttribute("data-lang") || "") === savedLang) {
+      btn.classList.add("active");
+    } else {
+      btn.classList.remove("active");
+    }
+
     btn.addEventListener("click", function () {
       document.querySelectorAll(".lang-switch button").forEach(function (b) {
         b.classList.remove("active");
@@ -289,9 +288,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 
-  // =========================
   // DNA Background
-  // =========================
   const canvas = document.getElementById("bgCanvas");
 
   if (canvas) {
@@ -376,7 +373,6 @@ document.addEventListener("DOMContentLoaded", function () {
         const t = i / strand.links;
         const yy = cy + (t - 0.5) * strand.len;
         const xx = Math.sin(time * 0.0011 + strand.phase + i * strand.twist * 42) * strand.amp;
-
         pA.push({ x: cx + xx, y: yy });
         pB.push({ x: cx - xx, y: yy });
       }
@@ -451,9 +447,7 @@ document.addEventListener("DOMContentLoaded", function () {
     requestAnimationFrame(animate);
   }
 
-  // =========================
   // Chat
-  // =========================
   const chatFab = document.getElementById("genexChatFab");
   const chatPanel = document.getElementById("genexChatPanel");
   const chatClose = document.getElementById("genexChatClose");
@@ -493,4 +487,70 @@ document.addEventListener("DOMContentLoaded", function () {
 
     if (text.includes("سعر") || text.includes("تكلفة") || text.includes("price") || text.includes("cost")) {
       return lang === "en"
-        ? "Pricing depends on the scope of automati
+        ? "Pricing depends on the scope of automation, system size, and required integrations."
+        : "التكلفة تعتمد على نطاق الأتمتة، حجم النظام، والتكاملات المطلوبة.";
+    }
+
+    if (text.includes("مخصص") || text.includes("custom")) {
+      return lang === "en"
+        ? "GENEX can build a custom autonomous system tailored to your workflows, business logic, and integrations."
+        : "تستطيع GENEX بناء نظام آلي مخصص وفق إجراءاتك التشغيلية ومنطق عملك والتكاملات التي تحتاجها.";
+    }
+
+    return lang === "en"
+      ? "I can help explain GENEX services, how we work, and how to start your project."
+      : "أستطيع مساعدتك في فهم خدمات GENEX، آلية العمل، وكيف تبدأ مشروعك معنا.";
+  }
+
+  function sendGenexChat() {
+    if (!chatInput || !chatBody) return;
+
+    const value = chatInput.value.trim();
+    if (!value) return;
+
+    addChatMessage(value, "user");
+    chatInput.value = "";
+
+    window.setTimeout(function () {
+      addChatMessage(botReply(value), "bot");
+    }, 350);
+  }
+
+  window.toggleGenexChat = function (open) {
+    if (!chatPanel) return;
+    if (open) chatPanel.classList.add("show");
+    else chatPanel.classList.remove("show");
+  };
+
+  window.quickGenexChat = function (text) {
+    if (!chatInput) return;
+    window.toggleGenexChat(true);
+    chatInput.value = text;
+    sendGenexChat();
+  };
+
+  if (chatFab) {
+    chatFab.addEventListener("click", function () {
+      window.toggleGenexChat(true);
+    });
+  }
+
+  if (chatClose) {
+    chatClose.addEventListener("click", function () {
+      window.toggleGenexChat(false);
+    });
+  }
+
+  if (chatSend) {
+    chatSend.addEventListener("click", sendGenexChat);
+  }
+
+  if (chatInput) {
+    chatInput.addEventListener("keydown", function (e) {
+      if (e.key === "Enter") {
+        e.preventDefault();
+        sendGenexChat();
+      }
+    });
+  }
+});
