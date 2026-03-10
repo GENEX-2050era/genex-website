@@ -482,6 +482,39 @@ document.addEventListener("DOMContentLoaded", function () {
     chatBody.scrollTop = chatBody.scrollHeight;
   }
 
+  function createTypingMessage() {
+    if (!chatBody) return null;
+
+    const msg = document.createElement("div");
+    msg.className = "genex-chat-msg bot";
+    msg.setAttribute("data-typing", "true");
+    msg.textContent = "";
+    chatBody.appendChild(msg);
+    chatBody.scrollTop = chatBody.scrollHeight;
+    return msg;
+  }
+
+  function typeMessage(element, text, speed, done) {
+    if (!element) return;
+
+    let i = 0;
+
+    function step() {
+      element.textContent = text.slice(0, i);
+      chatBody.scrollTop = chatBody.scrollHeight;
+
+      if (i < text.length) {
+        i++;
+        setTimeout(step, speed);
+      } else {
+        element.removeAttribute("data-typing");
+        if (typeof done === "function") done();
+      }
+    }
+
+    step();
+  }
+
   function addChatLinks(type) {
     if (!chatBody) return;
 
@@ -613,9 +646,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
     window.setTimeout(function () {
       const reply = botReply(value);
-      addChatMessage(reply.text, "bot");
-      if (reply.links) addChatLinks(reply.links);
-    }, 350);
+      const typingBubble = createTypingMessage();
+
+      typeMessage(typingBubble, reply.text, 18, function () {
+        if (reply.links) addChatLinks(reply.links);
+      });
+    }, 250);
   }
 
   window.toggleGenexChat = function (open) {
@@ -660,10 +696,38 @@ document.addEventListener("DOMContentLoaded", function () {
     quickActions.querySelectorAll("button").forEach(function (btn) {
       btn.addEventListener("click", function () {
         const intent = btn.getAttribute("data-intent");
-        if (intent === "customer") window.quickGenexChat(currentLang() === "en" ? "Customer service automation" : "أريد أتمتة خدمة العملاء");
-        if (intent === "pricing") window.quickGenexChat(currentLang() === "en" ? "I want pricing" : "أريد عرض سعر");
-        if (intent === "custom") window.quickGenexChat(currentLang() === "en" ? "I want a custom system" : "أريد بناء نظام مخصص");
-        if (intent === "start") window.quickGenexChat(currentLang() === "en" ? "How do I start?" : "كيف أبدأ؟");
+
+        if (intent === "customer") {
+          window.quickGenexChat(
+            currentLang() === "en"
+              ? "Customer service automation"
+              : "أريد أتمتة خدمة العملاء"
+          );
+        }
+
+        if (intent === "pricing") {
+          window.quickGenexChat(
+            currentLang() === "en"
+              ? "I want pricing"
+              : "أريد عرض سعر"
+          );
+        }
+
+        if (intent === "custom") {
+          window.quickGenexChat(
+            currentLang() === "en"
+              ? "I want a custom system"
+              : "أريد بناء نظام مخصص"
+          );
+        }
+
+        if (intent === "start") {
+          window.quickGenexChat(
+            currentLang() === "en"
+              ? "How do I start?"
+              : "كيف أبدأ؟"
+          );
+        }
       });
     });
   }
