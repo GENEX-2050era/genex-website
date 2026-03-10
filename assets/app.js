@@ -466,6 +466,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const chatSend = document.getElementById("genexChatSend");
   const chatInput = document.getElementById("genexChatInput");
   const chatBody = document.getElementById("genexChatBody");
+  const quickActions = document.getElementById("genexQuickActions");
 
   function currentLang() {
     return localStorage.getItem("genex_lang") || "ar";
@@ -481,37 +482,124 @@ document.addEventListener("DOMContentLoaded", function () {
     chatBody.scrollTop = chatBody.scrollHeight;
   }
 
+  function addChatLinks(type) {
+    if (!chatBody) return;
+
+    const lang = currentLang();
+    const wrap = document.createElement("div");
+    wrap.className = "genex-chat-links";
+
+    if (type === "request") {
+      const requestLink = document.createElement("a");
+      requestLink.href = "./request.html";
+      requestLink.className = "genex-chat-link-btn";
+      requestLink.textContent =
+        lang === "en"
+          ? translations.en.chat_cta_request
+          : translations.ar.chat_cta_request;
+      wrap.appendChild(requestLink);
+    }
+
+    if (type === "services") {
+      const servicesLink = document.createElement("a");
+      servicesLink.href = "./services.html";
+      servicesLink.className = "genex-chat-link-btn";
+      servicesLink.textContent =
+        lang === "en"
+          ? translations.en.chat_cta_services
+          : translations.ar.chat_cta_services;
+      wrap.appendChild(servicesLink);
+    }
+
+    if (wrap.children.length > 0) {
+      chatBody.appendChild(wrap);
+      chatBody.scrollTop = chatBody.scrollHeight;
+    }
+  }
+
   function botReply(userText) {
     const text = userText.toLowerCase();
     const lang = currentLang();
 
-    if (text.includes("خدمة") || text.includes("الخدمات") || text.includes("services")) {
-      return lang === "en"
-        ? "GENEX provides AI agents, process automation, systems integration, and intelligent operational solutions."
-        : "GENEX تقدم وكلاء ذكاء اصطناعي، أتمتة عمليات، تكامل أنظمة، وحلول تشغيل ذكية.";
+    if (
+      text.includes("خدمة العملاء") ||
+      text.includes("customer service") ||
+      text.includes("support")
+    ) {
+      return {
+        text:
+          lang === "en"
+            ? "GENEX can automate customer service through autonomous AI units that handle conversations, follow-up, and operational actions with faster response quality."
+            : "تستطيع GENEX أتمتة خدمة العملاء عبر وحدات آلية مدعومة بالذكاء الاصطناعي تتعامل مع المحادثات، المتابعة، وتنفيذ الإجراءات بسرعة وجودة أعلى.",
+        links: "services"
+      };
     }
 
-    if (text.includes("ابدأ") || text.includes("طلب") || text.includes("project") || text.includes("start")) {
-      return lang === "en"
-        ? "To start your project, go to the New Request page and share your business details and automation needs."
-        : "لبداية مشروعك، انتقل إلى صفحة طلب جديد وشاركنا تفاصيل النشاط والاحتياج.";
+    if (
+      text.includes("سعر") ||
+      text.includes("تكلفة") ||
+      text.includes("pricing") ||
+      text.includes("price")
+    ) {
+      return {
+        text:
+          lang === "en"
+            ? "Pricing depends on the workflow scope, the number of automated tasks, required integrations, and the level of AI decision-making. The fastest way is to submit your project details."
+            : "التسعير يعتمد على نطاق العمليات، وعدد المهام المؤتمتة، والتكاملات المطلوبة، ومستوى الذكاء المطلوب. أسرع طريقة هي إرسال تفاصيل مشروعك عبر نموذج الطلب.",
+        links: "request"
+      };
     }
 
-    if (text.includes("سعر") || text.includes("تكلفة") || text.includes("price") || text.includes("cost")) {
-      return lang === "en"
-        ? "Pricing depends on the scope of automation, system size, and required integrations."
-        : "التكلفة تعتمد على نطاق الأتمتة، حجم النظام، والتكاملات المطلوبة.";
+    if (
+      text.includes("مخصص") ||
+      text.includes("custom") ||
+      text.includes("system")
+    ) {
+      return {
+        text:
+          lang === "en"
+            ? "GENEX can build a custom autonomous system tailored to your workflows, internal logic, and operational integrations."
+            : "يمكن لـ GENEX بناء نظام آلي مخصص بالكامل وفق إجراءاتك التشغيلية، منطق العمل الداخلي، والتكاملات التي تحتاجها.",
+        links: "request"
+      };
     }
 
-    if (text.includes("مخصص") || text.includes("custom")) {
-      return lang === "en"
-        ? "GENEX can build a custom autonomous system tailored to your workflows, business logic, and integrations."
-        : "تستطيع GENEX بناء نظام آلي مخصص وفق إجراءاتك التشغيلية ومنطق عملك والتكاملات التي تحتاجها.";
+    if (
+      text.includes("ابدأ") ||
+      text.includes("كيف أبدأ") ||
+      text.includes("start") ||
+      text.includes("begin")
+    ) {
+      return {
+        text:
+          lang === "en"
+            ? "To start, define the service or process you want to automate, then submit a New Request. GENEX will review the use case and propose the suitable system architecture."
+            : "للبداية، حدد الخدمة أو العملية التي تريد أتمتتها، ثم أرسل طلبًا جديدًا. بعدها تقوم GENEX بدراسة الحالة واقتراح البنية المناسبة للنظام.",
+        links: "request"
+      };
     }
 
-    return lang === "en"
-      ? "I can help explain GENEX services, how we work, and how to start your project."
-      : "أستطيع مساعدتك في فهم خدمات GENEX، آلية العمل، وكيف تبدأ مشروعك معنا.";
+    if (
+      text.includes("خدمة") ||
+      text.includes("الخدمات") ||
+      text.includes("services")
+    ) {
+      return {
+        text:
+          lang === "en"
+            ? "GENEX provides autonomous units, process automation, intelligent operational visibility, and tailored AI systems for real-world execution."
+            : "تقدم GENEX وحدات آلية، أتمتة عمليات، رؤية تشغيلية ذكية، وأنظمة ذكاء اصطناعي مخصصة للتنفيذ الفعلي.",
+        links: "services"
+      };
+    }
+
+    return {
+      text:
+        lang === "en"
+          ? "I can help you identify the right GENEX solution, estimate the direction of your project, and guide you to the correct next step."
+          : "أستطيع مساعدتك في تحديد الحل الأنسب من GENEX، وتقدير اتجاه مشروعك، وتوجيهك إلى الخطوة الصحيحة التالية.",
+      links: "services"
+    };
   }
 
   function sendGenexChat() {
@@ -524,7 +612,9 @@ document.addEventListener("DOMContentLoaded", function () {
     chatInput.value = "";
 
     window.setTimeout(function () {
-      addChatMessage(botReply(value), "bot");
+      const reply = botReply(value);
+      addChatMessage(reply.text, "bot");
+      if (reply.links) addChatLinks(reply.links);
     }, 350);
   }
 
@@ -563,6 +653,18 @@ document.addEventListener("DOMContentLoaded", function () {
         e.preventDefault();
         sendGenexChat();
       }
+    });
+  }
+
+  if (quickActions) {
+    quickActions.querySelectorAll("button").forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        const intent = btn.getAttribute("data-intent");
+        if (intent === "customer") window.quickGenexChat(currentLang() === "en" ? "Customer service automation" : "أريد أتمتة خدمة العملاء");
+        if (intent === "pricing") window.quickGenexChat(currentLang() === "en" ? "I want pricing" : "أريد عرض سعر");
+        if (intent === "custom") window.quickGenexChat(currentLang() === "en" ? "I want a custom system" : "أريد بناء نظام مخصص");
+        if (intent === "start") window.quickGenexChat(currentLang() === "en" ? "How do I start?" : "كيف أبدأ؟");
+      });
     });
   }
 });
