@@ -131,7 +131,14 @@ document.addEventListener("DOMContentLoaded", function () {
       chat_subtitle: "مساعد مبيعات وتشغيل",
       chat_welcome: "أهلاً بك، أنا مساعد GENEX. اسألني عن الأتمتة، الخدمات، أو كيف نبدأ مشروعك.",
       chat_placeholder: "اكتب سؤالك هنا...",
-      chat_send: "إرسال"
+      chat_send: "إرسال",
+      
+     chat_quick_1: "أتمتة خدمة العملاء",
+     chat_quick_2: "أريد عرض سعر",
+     chat_quick_3: "نظام مخصص",
+     chat_quick_4: "كيف أبدأ؟",
+     chat_cta_request: "انتقل إلى طلب جديد",
+     chat_cta_services: "استعرض الخدمات", 
     },
 
     en: {
@@ -243,7 +250,14 @@ document.addEventListener("DOMContentLoaded", function () {
       chat_subtitle: "Sales & Operations Assistant",
       chat_welcome: "Welcome, I'm the GENEX assistant. Ask me about automation, services, or how to start your project.",
       chat_placeholder: "Type your question here...",
-      chat_send: "Send"
+      chat_send: "Send",
+      
+      chat_quick_1: "Customer Service Automation",
+      chat_quick_2: "I want pricing",
+      chat_quick_3: "Custom System",
+      chat_quick_4: "How do I start?",
+      chat_cta_request: "Go to New Request",
+      chat_cta_services: "Explore Services", 
     }
   };
 
