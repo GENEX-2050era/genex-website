@@ -863,3 +863,22 @@ textarea::placeholder{
   0%,49%{opacity:1;}
   50%,100%{opacity:0;}
 }
+/* Services page cards spacing fix */
+main .cards{
+  gap:18px !important;
+  row-gap:18px !important;
+  column-gap:18px !important;
+}
+
+main .cards .card-box{
+  margin:0 !important;
+}
+
+@media (max-width:1024px){
+  main .cards{
+    display:grid !important;
+    grid-template-columns:1fr !important;
+    gap:18px !important;
+    row-gap:18px !important;
+  }
+}
