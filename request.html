@@ -4,20 +4,18 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>GENEX | طلب جديد</title>
-  <link rel="stylesheet" href="./assets/styles.css" />
+  <link rel="stylesheet" href="./assets/styles.css?v=16" />
 </head>
 <body>
-
   <canvas id="bgCanvas"></canvas>
   <div class="grid"></div>
 
   <nav class="nav">
     <div class="container nav-inner">
-
       <a class="brand" href="./index.html">
-  <img class="brand-logo" src="./assets/logo.png" alt="GENEX Logo">
-  <span>GENEX</span>
-</a>
+        <img class="brand-logo" src="./assets/logo.png" alt="GENEX Logo" />
+        <span>GENEX</span>
+      </a>
 
       <button class="menu-toggle" id="menuToggle">☰</button>
 
@@ -37,12 +35,10 @@
       <div class="nav-cta">
         <a class="btn btn-primary" href="./request.html" data-i18n="nav_cta">ابدأ مشروعك مع GENEX</a>
       </div>
-
     </div>
   </nav>
 
-  <main class="container" style="padding-top:110px; padding-bottom:40px;">
-
+  <main class="container" style="padding-top:110px;">
     <div class="section-title">
       <div>
         <h1 data-i18n="request_page_title">طلب جديد</h1>
@@ -51,11 +47,9 @@
     </div>
 
     <div class="form-grid">
-
       <div class="form-box">
         <form action="https://formsubmit.co/PUT_SALES_TOKEN_HERE" method="POST">
           <input type="hidden" name="_subject" value="GENEX | New Automation Request">
-          <input type="hidden" name="_next" value="https://genex-2050era.github.io/genex-website/thankyou.html">
           <input type="hidden" name="_captcha" value="false">
 
           <label data-i18n="request_company">اسم الشركة / المنشأة</label>
@@ -73,19 +67,19 @@
           <label data-i18n="request_details">وصف الاحتياج</label>
           <textarea name="details" data-i18n-placeholder="placeholder_details" placeholder="اشرح ما الذي تريد أتمتته"></textarea>
 
-          <button class="btn btn-primary" type="submit" data-i18n="request_submit">إرسال الطلب</button>
+          <div style="margin-top:16px;">
+            <button class="btn btn-primary" type="submit" data-i18n="request_submit">إرسال الطلب</button>
+          </div>
         </form>
       </div>
 
       <div class="form-box">
         <h3 data-i18n="request_side_title">لماذا تبدأ الآن؟</h3>
-        <p style="color:var(--muted); line-height:1.9;" data-i18n="request_side_desc">
+        <p data-i18n="request_side_desc" style="color:var(--muted); line-height:1.9;">
           هذه المرحلة مناسبة للشركات التي تريد أن تكون من أوائل الجهات التي تطبق أتمتة وذكاء اصطناعي فعلي مع GENEX، مع فرصة لتصميم حل مخصص منذ البداية.
         </p>
       </div>
-
     </div>
-
   </main>
 
   <footer class="footer">
@@ -98,6 +92,6 @@
     </div>
   </footer>
 
-  <script src="./assets/app.js"></script>
+  <script src="./assets/app.js?v=16"></script>
 </body>
 </html>
