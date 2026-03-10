@@ -240,12 +240,12 @@
         أهلاً بك، أنا مساعد GENEX. اسألني عن الأتمتة، الخدمات، أو كيف نبدأ مشروعك.
       </div>
 
-      <div class="genex-chat-quick-actions">
-        <button type="button" onclick="window.quickGenexChat && window.quickGenexChat('أريد أتمتة خدمة العملاء')">أتمتة خدمة العملاء</button>
-        <button type="button" onclick="window.quickGenexChat && window.quickGenexChat('أريد عرض سعر')">عرض سعر</button>
-        <button type="button" onclick="window.quickGenexChat && window.quickGenexChat('أريد بناء نظام مخصص')">نظام مخصص</button>
-      </div>
-    </div>
+      <div class="genex-chat-quick-actions" id="genexQuickActions">
+  <button type="button" data-intent="customer" data-i18n="chat_quick_1">أتمتة خدمة العملاء</button>
+  <button type="button" data-intent="pricing" data-i18n="chat_quick_2">أريد عرض سعر</button>
+  <button type="button" data-intent="custom" data-i18n="chat_quick_3">نظام مخصص</button>
+  <button type="button" data-intent="start" data-i18n="chat_quick_4">كيف أبدأ؟</button>
+</div>
 
     <div class="genex-chat-input-wrap">
       <input
