@@ -41,16 +41,12 @@
       --stroke:rgba(255,255,255,.10);
       --text:#f5f7ff;
       --muted:rgba(245,247,255,.74);
-      --accent:rgba(180,20,40,.20);
-      --accent-2:rgba(255,255,255,.08);
       --shadow:0 18px 50px rgba(0,0,0,.30);
       --radius:24px;
       --max:1180px;
     }
 
-    *{
-      box-sizing:border-box;
-    }
+    *{ box-sizing:border-box; }
 
     html,body{
       margin:0;
@@ -64,38 +60,133 @@
       font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
     }
 
+    body{
+      position:relative;
+      overflow-x:hidden;
+    }
+
     a{
       text-decoration:none;
       color:inherit;
     }
 
-    .about-shell{
-      position:relative;
-      overflow:hidden;
-    }
-
-    .about-shell::before{
-      content:"";
+    #bgCanvas{
       position:fixed;
       inset:0;
+      width:100%;
+      height:100%;
+      z-index:0;
+      pointer-events:none;
+      opacity:.9;
+    }
+
+    .grid{
+      position:fixed;
+      inset:0;
+      z-index:0;
       pointer-events:none;
       background:
-        linear-gradient(rgba(255,255,255,.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,.03) 1px, transparent 1px);
+        linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px);
       background-size:48px 48px;
       opacity:.18;
-      z-index:0;
+    }
+
+    .about-shell{
+      position:relative;
+      z-index:1;
     }
 
     .container{
       width:min(var(--max), 92vw);
       margin:auto;
-      position:relative;
-      z-index:1;
+    }
+
+    .topbar{
+      position:sticky;
+      top:0;
+      z-index:30;
+      backdrop-filter:blur(16px);
+      background:rgba(7,9,16,.70);
+      border-bottom:1px solid rgba(255,255,255,.08);
+    }
+
+    .topbar-inner{
+      min-height:82px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:14px;
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      font-weight:900;
+      letter-spacing:.18em;
+      white-space:nowrap;
+    }
+
+    .brand-logo{
+      width:44px;
+      height:44px;
+      object-fit:contain;
+      filter:drop-shadow(0 0 14px rgba(255,255,255,.22));
+    }
+
+    .topbar-actions{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      flex-wrap:wrap;
+    }
+
+    .lang-switch{
+      display:flex;
+      gap:6px;
+      padding:4px;
+      border-radius:16px;
+      border:1px solid rgba(255,255,255,.12);
+      background:rgba(255,255,255,.05);
+    }
+
+    .lang-switch button{
+      border:none;
+      background:transparent;
+      color:#fff;
+      padding:8px 12px;
+      border-radius:12px;
+      font-size:12px;
+      font-weight:800;
+      cursor:pointer;
+    }
+
+    .lang-switch button.active{
+      background:rgba(255,255,255,.14);
+    }
+
+    .back-btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-width:150px;
+      padding:12px 16px;
+      border-radius:16px;
+      border:1px solid rgba(255,255,255,.12);
+      background:rgba(255,255,255,.06);
+      color:#fff;
+      font-weight:800;
+      transition:transform .2s ease, background .2s ease;
+    }
+
+    .back-btn:hover{
+      transform:translateY(-2px);
+      background:rgba(255,255,255,.1);
     }
 
     .about-page{
-      padding:110px 0 80px;
+      padding:42px 0 80px;
     }
 
     .hero{
@@ -510,39 +601,44 @@
       .section-title h2{
         margin-bottom:10px;
       }
+
+      .topbar-inner{
+        min-height:74px;
+      }
+
+      .brand span{
+        letter-spacing:.12em;
+      }
+
+      .back-btn{
+        min-width:auto;
+      }
     }
   </style>
 </head>
 
 <body>
   <canvas id="bgCanvas"></canvas>
-<div class="grid"></div>
+  <div class="grid"></div>
+
   <div class="about-shell">
+    <header class="topbar">
+      <div class="container topbar-inner">
+        <a class="brand" href="./index.html">
+          <img class="brand-logo" src="./assets/logo.png" alt="GENEX Logo">
+          <span>GENEX</span>
+        </a>
 
-    <nav class="nav">
-  <div class="container nav-inner">
-    <a class="brand" href="./index.html">
-      <img class="brand-logo" src="./assets/logo.png" alt="GENEX Logo">
-      <span>GENEX</span>
-    </a>
+        <div class="topbar-actions">
+          <div class="lang-switch">
+            <button type="button" data-lang="ar" class="active">AR</button>
+            <button type="button" data-lang="en">EN</button>
+          </div>
 
-    <button class="menu-toggle" id="menuToggle">☰</button>
-
-    <div class="nav-links" id="navLinks">
-      <a href="./index.html" data-i18n="nav_home">الرئيسية</a>
-      <a href="./services.html" data-i18n="nav_services">الخدمات</a>
-      <a href="./about.html" data-i18n="nav_about">عن GENEX</a>
-      <a href="./request.html" data-i18n="nav_request">طلب جديد</a>
-      <a href="./join.html" data-i18n="nav_join">انضم</a>
-      <a href="./contact.html" data-i18n="nav_contact">تواصل</a>
-    </div>
-
-    <div class="lang-switch">
-      <button type="button" data-lang="ar" class="active">AR</button>
-      <button type="button" data-lang="en">EN</button>
-    </div>
-  </div>
-</nav>
+          <a class="back-btn" href="./index.html" data-i18n="back_home">العودة للرئيسية</a>
+        </div>
+      </div>
+    </header>
 
     <main class="about-page">
       <div class="container">
@@ -550,9 +646,9 @@
         <section class="hero">
           <div class="hero-grid">
             <div>
-              <div class="eyebrow">ABOUT GENEX • المستقبل يبدأ من هنا</div>
-              <h1>نبني البنية الذكية للعالم القادم</h1>
-              <p>
+              <div class="eyebrow" data-i18n="eyebrow">ABOUT GENEX • المستقبل يبدأ من هنا</div>
+              <h1 data-i18n="hero_title">نبني البنية الذكية للعالم القادم</h1>
+              <p data-i18n="hero_desc">
                 GENEX شركة تقنية متخصصة في تطوير أنظمة الذكاء الاصطناعي المستقلة، ومنصات الأتمتة الذكية،
                 والبنية التشغيلية الرقمية التي تمكّن الشركات والمنشآت والأنظمة من العمل بسرعة أعلى، ودقة أكبر،
                 واستقلالية أكثر في اتخاذ القرار والتنفيذ.
@@ -563,7 +659,7 @@
               <div class="hero-badge">
                 <img src="./assets/logo.png" alt="GENEX Logo">
                 <strong>GENEX</strong>
-                <span>
+                <span data-i18n="hero_badge">
                   Autonomous AI Systems<br>
                   Digital Infrastructure • Intelligent Operations
                 </span>
@@ -574,18 +670,18 @@
 
         <section class="section">
           <div class="section-title">
-            <h2>من هي GENEX</h2>
-            <p>هوية واضحة لشركة تقنية تركز على الذكاء الاصطناعي التطبيقي، الأتمتة المتقدمة، والأنظمة المستقبلية.</p>
+            <h2 data-i18n="who_title">من هي GENEX</h2>
+            <p data-i18n="who_sub">هوية واضحة لشركة تقنية تركز على الذكاء الاصطناعي التطبيقي، الأتمتة المتقدمة، والأنظمة المستقبلية.</p>
           </div>
 
           <div class="text-block">
-            <p>
+            <p data-i18n="who_p1">
               تأسست GENEX برؤية واضحة: بناء أنظمة تقنية لا تكتفي بدعم العمليات، بل تصبح جزءًا من محركها الأساسي.
               نحن نعمل على تطوير حلول ذكاء اصطناعي متقدمة تساعد المؤسسات على الانتقال من الإجراءات التقليدية إلى
               بيئات تشغيل ذكية تعتمد على التحليل، الأتمتة، والتنفيذ المستقل.
             </p>
 
-            <p>
+            <p data-i18n="who_p2">
               لا تركز GENEX على تقديم أدوات رقمية عامة فقط، بل على بناء بنية تشغيلية ذكية قادرة على خدمة الأعمال
               الحقيقية، وتحويل الخدمات إلى منظومات عملية قابلة للتوسع، وأكثر قابلية للقياس والتحكم.
             </p>
@@ -594,101 +690,77 @@
 
         <section class="section">
           <div class="section-title">
-            <h2>ماذا تطور GENEX</h2>
-            <p>مجموعة من التقنيات المصممة لتكون أساسًا لمنظومات التشغيل الذكية في المستقبل.</p>
+            <h2 data-i18n="builds_title">ماذا تطور GENEX</h2>
+            <p data-i18n="builds_sub">مجموعة من التقنيات المصممة لتكون أساسًا لمنظومات التشغيل الذكية في المستقبل.</p>
           </div>
 
           <div class="grid-2">
             <div class="card">
               <div class="icon">🧠</div>
-              <h3>أنظمة ذكاء اصطناعي مستقلة</h3>
-              <p>
-                حلول ذكاء اصطناعي قادرة على فهم البيانات، تحليل السياق، واتخاذ قرارات تشغيلية مدروسة في بيئات عمل متنوعة.
-              </p>
+              <h3 data-i18n="build_1_title">أنظمة ذكاء اصطناعي مستقلة</h3>
+              <p data-i18n="build_1_desc">حلول ذكاء اصطناعي قادرة على فهم البيانات، تحليل السياق، واتخاذ قرارات تشغيلية مدروسة في بيئات عمل متنوعة.</p>
             </div>
 
             <div class="card">
               <div class="icon">⚙️</div>
-              <h3>منصات أتمتة ذكية</h3>
-              <p>
-                تحويل العمليات اليومية والإجراءات المتكررة إلى تدفقات عمل ذكية أكثر سرعة وثباتًا وقدرة على التوسع.
-              </p>
+              <h3 data-i18n="build_2_title">منصات أتمتة ذكية</h3>
+              <p data-i18n="build_2_desc">تحويل العمليات اليومية والإجراءات المتكررة إلى تدفقات عمل ذكية أكثر سرعة وثباتًا وقدرة على التوسع.</p>
             </div>
 
             <div class="card">
               <div class="icon">🏗️</div>
-              <h3>بنية تشغيلية رقمية</h3>
-              <p>
-                تصميم هيكل رقمي متكامل يربط بين البيانات والقرارات والتنفيذ في طبقة تشغيلية واحدة.
-              </p>
+              <h3 data-i18n="build_3_title">بنية تشغيلية رقمية</h3>
+              <p data-i18n="build_3_desc">تصميم هيكل رقمي متكامل يربط بين البيانات والقرارات والتنفيذ في طبقة تشغيلية واحدة.</p>
             </div>
 
             <div class="card">
               <div class="icon">📊</div>
-              <h3>ذكاء بيانات متقدم</h3>
-              <p>
-                توظيف التحليلات المتقدمة لاستخراج مؤشرات تشغيلية دقيقة تساعد في التنبؤ والتحسين المستمر.
-              </p>
+              <h3 data-i18n="build_4_title">ذكاء بيانات متقدم</h3>
+              <p data-i18n="build_4_desc">توظيف التحليلات المتقدمة لاستخراج مؤشرات تشغيلية دقيقة تساعد في التنبؤ والتحسين المستمر.</p>
             </div>
           </div>
         </section>
 
         <section class="section">
           <div class="section-title">
-            <h2>الخط الزمني</h2>
-            <p>رؤية GENEX ليست لحظة واحدة، بل مسار نمو طويل نحو أنظمة أكثر استقلالًا وتأثيرًا.</p>
+            <h2 data-i18n="timeline_title">الخط الزمني</h2>
+            <p data-i18n="timeline_sub">رؤية GENEX ليست لحظة واحدة، بل مسار نمو طويل نحو أنظمة أكثر استقلالًا وتأثيرًا.</p>
           </div>
 
           <div class="timeline">
             <div class="timeline-item">
               <div class="timeline-year">2026</div>
-              <p>
-                إطلاق GENEX كبداية لبناء شركة تقنية متخصصة في أنظمة الذكاء الاصطناعي والأتمتة الذكية
-                مع هوية واضحة تركز على المستقبل التشغيلي.
-              </p>
+              <p data-i18n="timeline_1">إطلاق GENEX كبداية لبناء شركة تقنية متخصصة في أنظمة الذكاء الاصطناعي والأتمتة الذكية مع هوية واضحة تركز على المستقبل التشغيلي.</p>
             </div>
 
             <div class="timeline-item">
               <div class="timeline-year">2027</div>
-              <p>
-                التوسع في تطوير وحدات التشغيل الذكي، وربط الأتمتة بالبيانات والقرارات في نموذج موحد
-                قابل للتطبيق على قطاعات متعددة.
-              </p>
+              <p data-i18n="timeline_2">التوسع في تطوير وحدات التشغيل الذكي، وربط الأتمتة بالبيانات والقرارات في نموذج موحد قابل للتطبيق على قطاعات متعددة.</p>
             </div>
 
             <div class="timeline-item">
-              <div class="timeline-year">ما بعد ذلك</div>
-              <p>
-                بناء منظومات أوسع تشمل البنية الرقمية، الأنظمة المستقلة، والطبقات الذكية التي يمكنها
-                إدارة وتشغيل أجزاء كبيرة من العمليات المؤسسية.
-              </p>
+              <div class="timeline-year" data-i18n="timeline_future">ما بعد ذلك</div>
+              <p data-i18n="timeline_3">بناء منظومات أوسع تشمل البنية الرقمية، الأنظمة المستقلة، والطبقات الذكية التي يمكنها إدارة وتشغيل أجزاء كبيرة من العمليات المؤسسية.</p>
             </div>
           </div>
         </section>
 
         <section class="section">
           <div class="section-title">
-            <h2>رؤية المستقبل</h2>
-            <p>نحن لا ننظر للذكاء الاصطناعي كأداة منفصلة، بل كطبقة تشغيلية مستقبلية كاملة.</p>
+            <h2 data-i18n="vision_title">رؤية المستقبل</h2>
+            <p data-i18n="vision_sub">نحن لا ننظر للذكاء الاصطناعي كأداة منفصلة، بل كطبقة تشغيلية مستقبلية كاملة.</p>
           </div>
 
           <div class="text-block">
-            <p>
-              تسعى GENEX إلى أن تكون من الشركات التي تضع الأساس العملي للعالم القادم، حيث يصبح الذكاء الاصطناعي
-              عنصرًا مركزيًا في تشغيل الخدمات، إدارة الأنظمة، وتحسين الكفاءة المؤسسية على مستوى واسع.
-            </p>
-
-            <p>
-              نؤمن أن المستقبل سيعتمد على منظومات تستطيع التعلم، التحليل، اتخاذ القرار، والتنفيذ بأعلى درجات
-              الدقة، ونعمل على تطوير تلك المنظومات لتكون قابلة للتطبيق في الواقع، وليس فقط على مستوى الفكرة.
-            </p>
+            <p data-i18n="vision_p1">تسعى GENEX إلى أن تكون من الشركات التي تضع الأساس العملي للعالم القادم، حيث يصبح الذكاء الاصطناعي عنصرًا مركزيًا في تشغيل الخدمات، إدارة الأنظمة، وتحسين الكفاءة المؤسسية على مستوى واسع.</p>
+            <p data-i18n="vision_p2">نؤمن أن المستقبل سيعتمد على منظومات تستطيع التعلم، التحليل، اتخاذ القرار، والتنفيذ بأعلى درجات الدقة، ونعمل على تطوير تلك المنظومات لتكون قابلة للتطبيق في الواقع، وليس فقط على مستوى الفكرة.</p>
           </div>
         </section>
 
         <section class="section">
           <div class="section-title">
-            <h2>التقنيات والمحاور</h2>
-            <p>المجالات التي تبني عليها GENEX بنيتها الحالية والمستقبلية.</p>
+            <h2 data-i18n="tech_title">التقنيات والمحاور</h2>
+            <p data-i18n="tech_sub">المجالات التي تبني عليها GENEX بنيتها الحالية والمستقبلية.</p>
           </div>
 
           <div class="chips">
@@ -705,41 +777,35 @@
 
         <section class="section">
           <div class="section-title">
-            <h2>المشاريع والاتجاهات</h2>
-            <p>نماذج لما يمكن أن تبنيه GENEX أو تتوسع نحوه مستقبلًا.</p>
+            <h2 data-i18n="projects_title">المشاريع والاتجاهات</h2>
+            <p data-i18n="projects_sub">نماذج لما يمكن أن تبنيه GENEX أو تتوسع نحوه مستقبلًا.</p>
           </div>
 
           <div class="grid-3">
             <div class="card">
               <div class="icon">🦾</div>
-              <h3>وحدات تشغيل مستقلة</h3>
-              <p>
-                حلول تتفاعل مع العملاء أو مع البيئة التشغيلية مباشرة وتنفذ إجراءات حقيقية بصورة ذكية.
-              </p>
+              <h3 data-i18n="project_1_title">وحدات تشغيل مستقلة</h3>
+              <p data-i18n="project_1_desc">حلول تتفاعل مع العملاء أو مع البيئة التشغيلية مباشرة وتنفذ إجراءات حقيقية بصورة ذكية.</p>
             </div>
 
             <div class="card">
               <div class="icon">🏢</div>
-              <h3>أتمتة المنشآت</h3>
-              <p>
-                أنظمة مخصصة للمؤسسات والمنشآت لربط الإجراءات والتقارير وقرارات التنفيذ في مسار واحد.
-              </p>
+              <h3 data-i18n="project_2_title">أتمتة المنشآت</h3>
+              <p data-i18n="project_2_desc">أنظمة مخصصة للمؤسسات والمنشآت لربط الإجراءات والتقارير وقرارات التنفيذ في مسار واحد.</p>
             </div>
 
             <div class="card">
               <div class="icon">🌐</div>
-              <h3>بنية رقمية مستقبلية</h3>
-              <p>
-                تطوير طبقات تقنية تمهد لبيئات أكثر استقلالية واعتمادًا على الذكاء الاصطناعي في التشغيل.
-              </p>
+              <h3 data-i18n="project_3_title">بنية رقمية مستقبلية</h3>
+              <p data-i18n="project_3_desc">تطوير طبقات تقنية تمهد لبيئات أكثر استقلالية واعتمادًا على الذكاء الاصطناعي في التشغيل.</p>
             </div>
           </div>
         </section>
 
         <section class="section">
           <div class="section-title">
-            <h2>الشركاء والتكامل</h2>
-            <p>GENEX مصممة لتتوسع عبر التعاون، التكامل، وبناء قيمة تشغيلية مشتركة.</p>
+            <h2 data-i18n="partners_title">الشركاء والتكامل</h2>
+            <p data-i18n="partners_sub">GENEX مصممة لتتوسع عبر التعاون، التكامل، وبناء قيمة تشغيلية مشتركة.</p>
           </div>
 
           <div class="partners">
@@ -752,123 +818,292 @@
 
         <section class="section">
           <div class="section-title">
-            <h2>الفريق والقيادة</h2>
-            <p>الهيكل البشري في GENEX يُبنى حول الرؤية، التنفيذ، والقدرة على تطوير أنظمة مؤثرة.</p>
+            <h2 data-i18n="team_title">الفريق والقيادة</h2>
+            <p data-i18n="team_sub">الهيكل البشري في GENEX يُبنى حول الرؤية، التنفيذ، والقدرة على تطوير أنظمة مؤثرة.</p>
           </div>
 
           <div class="grid-3">
             <div class="card team-card">
               <div class="avatar">G</div>
               <h3>GENEX Core</h3>
-              <span>القيادة والرؤية</span>
-              <p>
-                قيادة تركز على بناء شركة تقنية ذات هوية واضحة ومشروعات مستقبلية مرتبطة بالذكاء الاصطناعي.
-              </p>
+              <span data-i18n="team_1_role">القيادة والرؤية</span>
+              <p data-i18n="team_1_desc">قيادة تركز على بناء شركة تقنية ذات هوية واضحة ومشروعات مستقبلية مرتبطة بالذكاء الاصطناعي.</p>
             </div>
 
             <div class="card team-card">
               <div class="avatar">A</div>
               <h3>AI Architecture</h3>
-              <span>هندسة الأنظمة الذكية</span>
-              <p>
-                تطوير البنية التقنية للنماذج، طبقات الأتمتة، والربط بين البيانات والتنفيذ.
-              </p>
+              <span data-i18n="team_2_role">هندسة الأنظمة الذكية</span>
+              <p data-i18n="team_2_desc">تطوير البنية التقنية للنماذج، طبقات الأتمتة، والربط بين البيانات والتنفيذ.</p>
             </div>
 
             <div class="card team-card">
               <div class="avatar">O</div>
               <h3>Operations Design</h3>
-              <span>تصميم التشغيل</span>
-              <p>
-                تحويل الاحتياج التجاري إلى تدفقات عمل قابلة للتنفيذ والتحسين والتوسع.
-              </p>
+              <span data-i18n="team_3_role">تصميم التشغيل</span>
+              <p data-i18n="team_3_desc">تحويل الاحتياج التجاري إلى تدفقات عمل قابلة للتنفيذ والتحسين والتوسع.</p>
             </div>
           </div>
         </section>
 
         <section class="cta">
-          <h2>GENEX ليست مجرد موقع تعريفي</h2>
-          <p>
-            نحن نبني رؤية تقنية قابلة للتحول إلى منتجات، حلول، ومنظومات تشغيل ذكية حقيقية.
-            إذا كنت تبحث عن شريك يفكر بالمستقبل وينفذ على أرض الواقع، فهذه هي بداية الطريق.
-          </p>
+          <h2 data-i18n="cta_title">GENEX ليست مجرد موقع تعريفي</h2>
+          <p data-i18n="cta_desc">نحن نبني رؤية تقنية قابلة للتحول إلى منتجات، حلول، ومنظومات تشغيل ذكية حقيقية. إذا كنت تبحث عن شريك يفكر بالمستقبل وينفذ على أرض الواقع، فهذه هي بداية الطريق.</p>
 
           <div class="cta-actions">
-            <a class="cta-btn" href="./request.html">ابدأ مشروعك</a>
-            <a class="cta-btn" href="./services.html">استكشف الخدمات</a>
-            <a class="cta-btn" href="./contact.html">تواصل مع GENEX</a>
+            <a class="cta-btn" href="./request.html" data-i18n="cta_btn_1">ابدأ مشروعك</a>
+            <a class="cta-btn" href="./services.html" data-i18n="cta_btn_2">استكشف الخدمات</a>
+            <a class="cta-btn" href="./contact.html" data-i18n="cta_btn_3">تواصل مع GENEX</a>
           </div>
         </section>
 
-        <div class="footer-note">
-          GENEX © 2026
-        </div>
-
+        <div class="footer-note">GENEX © 2026</div>
       </div>
     </main>
   </div>
 
   <script>
-  (function () {
-    const menuToggle = document.getElementById("menuToggle");
-    const navLinks = document.getElementById("navLinks");
-    const langButtons = document.querySelectorAll(".lang-switch button");
+    (function () {
+      const translations = {
+        ar: {
+          title: "عن GENEX | أنظمة الذكاء الاصطناعي والأتمتة المتقدمة",
+          back_home: "العودة للرئيسية",
+          eyebrow: "ABOUT GENEX • المستقبل يبدأ من هنا",
+          hero_title: "نبني البنية الذكية للعالم القادم",
+          hero_desc: "GENEX شركة تقنية متخصصة في تطوير أنظمة الذكاء الاصطناعي المستقلة، ومنصات الأتمتة الذكية، والبنية التشغيلية الرقمية التي تمكّن الشركات والمنشآت والأنظمة من العمل بسرعة أعلى، ودقة أكبر، واستقلالية أكثر في اتخاذ القرار والتنفيذ.",
+          hero_badge: "Autonomous AI Systems<br>Digital Infrastructure • Intelligent Operations",
+          who_title: "من هي GENEX",
+          who_sub: "هوية واضحة لشركة تقنية تركز على الذكاء الاصطناعي التطبيقي، الأتمتة المتقدمة، والأنظمة المستقبلية.",
+          who_p1: "تأسست GENEX برؤية واضحة: بناء أنظمة تقنية لا تكتفي بدعم العمليات، بل تصبح جزءًا من محركها الأساسي. نحن نعمل على تطوير حلول ذكاء اصطناعي متقدمة تساعد المؤسسات على الانتقال من الإجراءات التقليدية إلى بيئات تشغيل ذكية تعتمد على التحليل، الأتمتة، والتنفيذ المستقل.",
+          who_p2: "لا تركز GENEX على تقديم أدوات رقمية عامة فقط، بل على بناء بنية تشغيلية ذكية قادرة على خدمة الأعمال الحقيقية، وتحويل الخدمات إلى منظومات عملية قابلة للتوسع، وأكثر قابلية للقياس والتحكم.",
+          builds_title: "ماذا تطور GENEX",
+          builds_sub: "مجموعة من التقنيات المصممة لتكون أساسًا لمنظومات التشغيل الذكية في المستقبل.",
+          build_1_title: "أنظمة ذكاء اصطناعي مستقلة",
+          build_1_desc: "حلول ذكاء اصطناعي قادرة على فهم البيانات، تحليل السياق، واتخاذ قرارات تشغيلية مدروسة في بيئات عمل متنوعة.",
+          build_2_title: "منصات أتمتة ذكية",
+          build_2_desc: "تحويل العمليات اليومية والإجراءات المتكررة إلى تدفقات عمل ذكية أكثر سرعة وثباتًا وقدرة على التوسع.",
+          build_3_title: "بنية تشغيلية رقمية",
+          build_3_desc: "تصميم هيكل رقمي متكامل يربط بين البيانات والقرارات والتنفيذ في طبقة تشغيلية واحدة.",
+          build_4_title: "ذكاء بيانات متقدم",
+          build_4_desc: "توظيف التحليلات المتقدمة لاستخراج مؤشرات تشغيلية دقيقة تساعد في التنبؤ والتحسين المستمر.",
+          timeline_title: "الخط الزمني",
+          timeline_sub: "رؤية GENEX ليست لحظة واحدة، بل مسار نمو طويل نحو أنظمة أكثر استقلالًا وتأثيرًا.",
+          timeline_1: "إطلاق GENEX كبداية لبناء شركة تقنية متخصصة في أنظمة الذكاء الاصطناعي والأتمتة الذكية مع هوية واضحة تركز على المستقبل التشغيلي.",
+          timeline_2: "التوسع في تطوير وحدات التشغيل الذكي، وربط الأتمتة بالبيانات والقرارات في نموذج موحد قابل للتطبيق على قطاعات متعددة.",
+          timeline_future: "ما بعد ذلك",
+          timeline_3: "بناء منظومات أوسع تشمل البنية الرقمية، الأنظمة المستقلة، والطبقات الذكية التي يمكنها إدارة وتشغيل أجزاء كبيرة من العمليات المؤسسية.",
+          vision_title: "رؤية المستقبل",
+          vision_sub: "نحن لا ننظر للذكاء الاصطناعي كأداة منفصلة، بل كطبقة تشغيلية مستقبلية كاملة.",
+          vision_p1: "تسعى GENEX إلى أن تكون من الشركات التي تضع الأساس العملي للعالم القادم، حيث يصبح الذكاء الاصطناعي عنصرًا مركزيًا في تشغيل الخدمات، إدارة الأنظمة، وتحسين الكفاءة المؤسسية على مستوى واسع.",
+          vision_p2: "نؤمن أن المستقبل سيعتمد على منظومات تستطيع التعلم، التحليل، اتخاذ القرار، والتنفيذ بأعلى درجات الدقة، ونعمل على تطوير تلك المنظومات لتكون قابلة للتطبيق في الواقع، وليس فقط على مستوى الفكرة.",
+          tech_title: "التقنيات والمحاور",
+          tech_sub: "المجالات التي تبني عليها GENEX بنيتها الحالية والمستقبلية.",
+          projects_title: "المشاريع والاتجاهات",
+          projects_sub: "نماذج لما يمكن أن تبنيه GENEX أو تتوسع نحوه مستقبلًا.",
+          project_1_title: "وحدات تشغيل مستقلة",
+          project_1_desc: "حلول تتفاعل مع العملاء أو مع البيئة التشغيلية مباشرة وتنفذ إجراءات حقيقية بصورة ذكية.",
+          project_2_title: "أتمتة المنشآت",
+          project_2_desc: "أنظمة مخصصة للمؤسسات والمنشآت لربط الإجراءات والتقارير وقرارات التنفيذ في مسار واحد.",
+          project_3_title: "بنية رقمية مستقبلية",
+          project_3_desc: "تطوير طبقات تقنية تمهد لبيئات أكثر استقلالية واعتمادًا على الذكاء الاصطناعي في التشغيل.",
+          partners_title: "الشركاء والتكامل",
+          partners_sub: "GENEX مصممة لتتوسع عبر التعاون، التكامل، وبناء قيمة تشغيلية مشتركة.",
+          team_title: "الفريق والقيادة",
+          team_sub: "الهيكل البشري في GENEX يُبنى حول الرؤية، التنفيذ، والقدرة على تطوير أنظمة مؤثرة.",
+          team_1_role: "القيادة والرؤية",
+          team_1_desc: "قيادة تركز على بناء شركة تقنية ذات هوية واضحة ومشروعات مستقبلية مرتبطة بالذكاء الاصطناعي.",
+          team_2_role: "هندسة الأنظمة الذكية",
+          team_2_desc: "تطوير البنية التقنية للنماذج، طبقات الأتمتة، والربط بين البيانات والتنفيذ.",
+          team_3_role: "تصميم التشغيل",
+          team_3_desc: "تحويل الاحتياج التجاري إلى تدفقات عمل قابلة للتنفيذ والتحسين والتوسع.",
+          cta_title: "GENEX ليست مجرد موقع تعريفي",
+          cta_desc: "نحن نبني رؤية تقنية قابلة للتحول إلى منتجات، حلول، ومنظومات تشغيل ذكية حقيقية. إذا كنت تبحث عن شريك يفكر بالمستقبل وينفذ على أرض الواقع، فهذه هي بداية الطريق.",
+          cta_btn_1: "ابدأ مشروعك",
+          cta_btn_2: "استكشف الخدمات",
+          cta_btn_3: "تواصل مع GENEX"
+        },
+        en: {
+          title: "About GENEX | Advanced AI Systems & Automation",
+          back_home: "Back to Home",
+          eyebrow: "ABOUT GENEX • The Future Starts Here",
+          hero_title: "We Build the Intelligent Infrastructure of the Next Era",
+          hero_desc: "GENEX is a technology company focused on developing autonomous AI systems, intelligent automation platforms, and digital operational infrastructure that enables businesses, facilities, and systems to work with greater speed, stronger precision, and higher execution autonomy.",
+          hero_badge: "Autonomous AI Systems<br>Digital Infrastructure • Intelligent Operations",
+          who_title: "Who is GENEX",
+          who_sub: "A clear technology identity focused on applied AI, advanced automation, and future systems.",
+          who_p1: "GENEX was founded on a clear vision: building technologies that do not merely support operations, but become part of their core engine. We develop advanced AI solutions that help organizations move from traditional procedures into intelligent operating environments driven by analysis, automation, and autonomous execution.",
+          who_p2: "GENEX is not focused on generic digital tools alone. It is focused on building intelligent operational infrastructure capable of serving real business environments and transforming services into scalable, measurable, and controllable intelligent systems.",
+          builds_title: "What GENEX Builds",
+          builds_sub: "A set of technologies designed to become the foundation of intelligent operational systems in the future.",
+          build_1_title: "Autonomous AI Systems",
+          build_1_desc: "Advanced AI systems capable of understanding data, analyzing context, and making informed operational decisions across different environments.",
+          build_2_title: "Intelligent Automation Platforms",
+          build_2_desc: "Transforming repetitive procedures and daily workflows into intelligent, faster, more stable, and scalable execution flows.",
+          build_3_title: "Digital Operational Infrastructure",
+          build_3_desc: "Designing an integrated digital structure that connects data, decisions, and execution in one operational layer.",
+          build_4_title: "Advanced Data Intelligence",
+          build_4_desc: "Using advanced analytics to extract operational signals that support prediction, optimization, and continuous improvement.",
+          timeline_title: "Timeline",
+          timeline_sub: "GENEX is not a single moment. It is a growth path toward more autonomous and more impactful systems.",
+          timeline_1: "Launch of GENEX as the foundation of a technology company focused on AI systems and intelligent automation with a clear future-oriented operational identity.",
+          timeline_2: "Expansion into intelligent execution modules and building unified frameworks that connect automation, data, and decision-making across multiple sectors.",
+          timeline_future: "Beyond",
+          timeline_3: "Building broader systems that include digital infrastructure, autonomous layers, and intelligent operational technologies capable of managing large parts of institutional workflows.",
+          vision_title: "Future Vision",
+          vision_sub: "We do not view AI as a separate tool, but as a complete future operational layer.",
+          vision_p1: "GENEX aims to become one of the companies shaping the practical foundation of the next world, where artificial intelligence becomes a central element in service operations, system management, and institutional efficiency at scale.",
+          vision_p2: "We believe the future depends on systems that can learn, analyze, decide, and execute with high precision. Our mission is to build those systems for real-world deployment, not just conceptual demonstrations.",
+          tech_title: "Technologies & Focus Areas",
+          tech_sub: "The domains on which GENEX builds its present and future technological foundation.",
+          projects_title: "Projects & Directions",
+          projects_sub: "Examples of what GENEX can build and expand toward in the future.",
+          project_1_title: "Autonomous Execution Units",
+          project_1_desc: "Solutions that interact directly with customers or operational environments and perform real actions intelligently.",
+          project_2_title: "Facility Automation",
+          project_2_desc: "Custom systems for organizations and facilities that unify procedures, reports, and execution decisions into one intelligent flow.",
+          project_3_title: "Future Digital Infrastructure",
+          project_3_desc: "Developing technical layers that prepare for more autonomous environments driven by artificial intelligence in operations.",
+          partners_title: "Partnerships & Integration",
+          partners_sub: "GENEX is built to scale through collaboration, integration, and shared operational value.",
+          team_title: "Team & Leadership",
+          team_sub: "The human structure of GENEX is built around vision, execution, and the ability to create impactful systems.",
+          team_1_role: "Leadership & Vision",
+          team_1_desc: "Leadership focused on building a technology company with a clear identity and future-oriented AI projects.",
+          team_2_role: "Intelligent Systems Architecture",
+          team_2_desc: "Designing model infrastructure, automation layers, and the connection between data and execution.",
+          team_3_role: "Operations Design",
+          team_3_desc: "Turning business needs into executable, optimizable, and scalable operational flows.",
+          cta_title: "GENEX is More Than a Showcase Website",
+          cta_desc: "We are building a technological vision that can evolve into products, solutions, and real intelligent operational systems. If you are looking for a future-focused partner that executes in reality, this is where the journey begins.",
+          cta_btn_1: "Start Your Project",
+          cta_btn_2: "Explore Services",
+          cta_btn_3: "Contact GENEX"
+        }
+      };
 
-    const translations = {
-      ar: {
-        nav_home: "الرئيسية",
-        nav_services: "الخدمات",
-        nav_about: "عن GENEX",
-        nav_request: "طلب جديد",
-        nav_join: "انضم",
-        nav_contact: "تواصل"
-      },
-      en: {
-        nav_home: "Home",
-        nav_services: "Services",
-        nav_about: "About GENEX",
-        nav_request: "New Request",
-        nav_join: "Join",
-        nav_contact: "Contact"
+      function applyLanguage(lang) {
+        document.documentElement.lang = lang;
+        document.documentElement.dir = lang === "ar" ? "rtl" : "ltr";
+        localStorage.setItem("genex_lang", lang);
+
+        const dict = translations[lang];
+        if (!dict) return;
+
+        document.title = dict.title;
+
+        document.querySelectorAll("[data-i18n]").forEach(function (el) {
+          const key = el.getAttribute("data-i18n");
+          if (dict[key]) {
+            if (key === "hero_badge") {
+              el.innerHTML = dict[key];
+            } else {
+              el.textContent = dict[key];
+            }
+          }
+        });
+
+        document.querySelectorAll(".lang-switch button").forEach(function (btn) {
+          btn.classList.toggle("active", btn.getAttribute("data-lang") === lang);
+        });
       }
-    };
 
-    function applyLanguage(lang) {
-      localStorage.setItem("genex_lang", lang);
+      document.querySelectorAll(".lang-switch button").forEach(function (btn) {
+        btn.addEventListener("click", function () {
+          applyLanguage(btn.getAttribute("data-lang"));
+        });
+      });
 
-      document.documentElement.lang = lang;
-      document.documentElement.dir = lang === "ar" ? "rtl" : "ltr";
+      applyLanguage(localStorage.getItem("genex_lang") || "ar");
 
-      document.querySelectorAll("[data-i18n]").forEach(function (el) {
-        const key = el.getAttribute("data-i18n");
-        if (translations[lang] && translations[lang][key]) {
-          el.textContent = translations[lang][key];
+      const canvas = document.getElementById("bgCanvas");
+      const ctx = canvas.getContext("2d");
+      let w = 0;
+      let h = 0;
+      let t = 0;
+      const strands = [];
+
+      function resizeCanvas() {
+        w = canvas.width = window.innerWidth;
+        h = canvas.height = window.innerHeight;
+        strands.length = 0;
+
+        const count = w < 700 ? 3 : 5;
+        for (let i = 0; i < count; i++) {
+          strands.push({
+            x: (w / (count + 1)) * (i + 1),
+            amp: 18 + Math.random() * 10,
+            speed: 0.012 + Math.random() * 0.01,
+            phase: Math.random() * Math.PI * 2,
+            height: 180 + Math.random() * 60
+          });
         }
-      });
+      }
 
-      langButtons.forEach(function (btn) {
-        btn.classList.remove("active");
-        if (btn.getAttribute("data-lang") === lang) {
-          btn.classList.add("active");
-        }
-      });
-    }
+      function drawDNA() {
+        ctx.clearRect(0, 0, w, h);
 
-    const savedLang = localStorage.getItem("genex_lang") || "ar";
-    applyLanguage(savedLang);
+        strands.forEach(function (s, index) {
+          const centerY = (h / (strands.length + 1)) * (index + 1);
+          const startY = centerY - s.height;
+          const endY = centerY + s.height;
+          const steps = 28;
 
-    langButtons.forEach(function (btn) {
-      btn.addEventListener("click", function () {
-        applyLanguage(btn.getAttribute("data-lang"));
-      });
-    });
+          let prevAx = null, prevAy = null, prevBx = null, prevBy = null;
 
-    if (menuToggle && navLinks) {
-      menuToggle.addEventListener("click", function () {
-        navLinks.classList.toggle("show");
-      });
-    }
-  })();
-</script>
+          for (let i = 0; i <= steps; i++) {
+            const p = i / steps;
+            const y = startY + (endY - startY) * p;
+            const wave = Math.sin((p * Math.PI * 4) + t * s.speed * 120 + s.phase) * s.amp;
+
+            const ax = s.x - wave;
+            const bx = s.x + wave;
+
+            if (prevAx !== null) {
+              ctx.beginPath();
+              ctx.moveTo(prevAx, prevAy);
+              ctx.lineTo(ax, y);
+              ctx.strokeStyle = "rgba(255,255,255,0.22)";
+              ctx.lineWidth = 1.5;
+              ctx.stroke();
+
+              ctx.beginPath();
+              ctx.moveTo(prevBx, prevBy);
+              ctx.lineTo(bx, y);
+              ctx.strokeStyle = "rgba(170,20,40,0.30)";
+              ctx.lineWidth = 1.5;
+              ctx.stroke();
+            }
+
+            ctx.beginPath();
+            ctx.moveTo(ax, y);
+            ctx.lineTo(bx, y);
+            ctx.strokeStyle = i % 2 === 0 ? "rgba(255,255,255,0.18)" : "rgba(170,20,40,0.22)";
+            ctx.lineWidth = 1;
+            ctx.stroke();
+
+            ctx.beginPath();
+            ctx.arc(ax, y, 3.2, 0, Math.PI * 2);
+            ctx.fillStyle = "rgba(255,255,255,0.85)";
+            ctx.fill();
+
+            ctx.beginPath();
+            ctx.arc(bx, y, 3.2, 0, Math.PI * 2);
+            ctx.fillStyle = "rgba(180,20,40,0.85)";
+            ctx.fill();
+
+            prevAx = ax; prevAy = y;
+            prevBx = bx; prevBy = y;
+          }
+        });
+
+        t += 1;
+        requestAnimationFrame(drawDNA);
+      }
+
+      window.addEventListener("resize", resizeCanvas);
+      resizeCanvas();
+      drawDNA();
+    })();
+  </script>
 </body>
 </html>
