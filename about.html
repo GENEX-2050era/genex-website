@@ -515,32 +515,34 @@
 </head>
 
 <body>
+  <canvas id="bgCanvas"></canvas>
+<div class="grid"></div>
   <div class="about-shell">
 
     <nav class="nav">
-      <div class="container nav-inner">
-        <a class="brand" href="./index.html">
-          <img class="brand-logo" src="./assets/logo.png" alt="GENEX Logo">
-          <span>GENEX</span>
-        </a>
+  <div class="container nav-inner">
+    <a class="brand" href="./index.html">
+      <img class="brand-logo" src="./assets/logo.png" alt="GENEX Logo">
+      <span>GENEX</span>
+    </a>
 
-        <button class="menu-toggle" id="menuToggle">☰</button>
+    <button class="menu-toggle" id="menuToggle">☰</button>
 
-        <div class="nav-links">
-          <a href="./index.html">الرئيسية</a>
-          <a href="./services.html">الخدمات</a>
-          <a href="./about.html">عن GENEX</a>
-          <a href="./request.html">طلب جديد</a>
-          <a href="./join.html">انضم</a>
-          <a href="./contact.html">تواصل</a>
-        </div>
+    <div class="nav-links" id="navLinks">
+      <a href="./index.html" data-i18n="nav_home">الرئيسية</a>
+      <a href="./services.html" data-i18n="nav_services">الخدمات</a>
+      <a href="./about.html" data-i18n="nav_about">عن GENEX</a>
+      <a href="./request.html" data-i18n="nav_request">طلب جديد</a>
+      <a href="./join.html" data-i18n="nav_join">انضم</a>
+      <a href="./contact.html" data-i18n="nav_contact">تواصل</a>
+    </div>
 
-        <div class="lang-switch">
-          <button class="active">AR</button>
-          <button type="button">EN</button>
-        </div>
-      </div>
-    </nav>
+    <div class="lang-switch">
+      <button type="button" data-lang="ar" class="active">AR</button>
+      <button type="button" data-lang="en">EN</button>
+    </div>
+  </div>
+</nav>
 
     <main class="about-page">
       <div class="container">
@@ -807,16 +809,66 @@
   </div>
 
   <script>
-    (function () {
-      const menuToggle = document.getElementById("menuToggle");
-      const navLinks = document.querySelector(".nav-links");
+  (function () {
+    const menuToggle = document.getElementById("menuToggle");
+    const navLinks = document.getElementById("navLinks");
+    const langButtons = document.querySelectorAll(".lang-switch button");
 
-      if (menuToggle && navLinks) {
-        menuToggle.addEventListener("click", function () {
-          navLinks.classList.toggle("show");
-        });
+    const translations = {
+      ar: {
+        nav_home: "الرئيسية",
+        nav_services: "الخدمات",
+        nav_about: "عن GENEX",
+        nav_request: "طلب جديد",
+        nav_join: "انضم",
+        nav_contact: "تواصل"
+      },
+      en: {
+        nav_home: "Home",
+        nav_services: "Services",
+        nav_about: "About GENEX",
+        nav_request: "New Request",
+        nav_join: "Join",
+        nav_contact: "Contact"
       }
-    })();
-  </script>
+    };
+
+    function applyLanguage(lang) {
+      localStorage.setItem("genex_lang", lang);
+
+      document.documentElement.lang = lang;
+      document.documentElement.dir = lang === "ar" ? "rtl" : "ltr";
+
+      document.querySelectorAll("[data-i18n]").forEach(function (el) {
+        const key = el.getAttribute("data-i18n");
+        if (translations[lang] && translations[lang][key]) {
+          el.textContent = translations[lang][key];
+        }
+      });
+
+      langButtons.forEach(function (btn) {
+        btn.classList.remove("active");
+        if (btn.getAttribute("data-lang") === lang) {
+          btn.classList.add("active");
+        }
+      });
+    }
+
+    const savedLang = localStorage.getItem("genex_lang") || "ar";
+    applyLanguage(savedLang);
+
+    langButtons.forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        applyLanguage(btn.getAttribute("data-lang"));
+      });
+    });
+
+    if (menuToggle && navLinks) {
+      menuToggle.addEventListener("click", function () {
+        navLinks.classList.toggle("show");
+      });
+    }
+  })();
+</script>
 </body>
 </html>
