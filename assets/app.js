@@ -25,6 +25,7 @@ document.addEventListener("DOMContentLoaded", function () {
     ar: {
       nav_home: "الرئيسية",
       nav_services: "الخدمات",
+      nav_about: "عن GENEX",
       nav_request: "طلب جديد",
       nav_join: "انضم",
       nav_contact: "تواصل",
@@ -144,6 +145,7 @@ document.addEventListener("DOMContentLoaded", function () {
     en: {
       nav_home: "Home",
       nav_services: "Services",
+      nav_about: "About GENEX",
       nav_request: "New Request",
       nav_join: "Join",
       nav_contact: "Contact",
