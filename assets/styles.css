@@ -1,3 +1,4 @@
+
 :root{
   --bg:#05070f;
   --bg2:#0b0710;
@@ -881,4 +882,36 @@ main .cards .card-box{
     gap:18px !important;
     row-gap:18px !important;
   }
+}
+#genex-bg{
+  position:fixed;
+  inset:0;
+  z-index:0;
+  overflow:hidden;
+  pointer-events:none;
+}
+
+.genex-orb{
+  position:absolute;
+  width:420px;
+  height:420px;
+  border-radius:50%;
+  filter:blur(80px);
+  opacity:.35;
+  background:radial-gradient(circle,
+  rgba(180,20,40,.9),
+  rgba(140,0,25,.6),
+  transparent 70%);
+  transform:translate3d(0,0,0);
+  transition:transform .2s linear;
+}
+
+.genex-grid{
+  position:absolute;
+  inset:0;
+  background:
+  linear-gradient(rgba(255,255,255,.03) 1px, transparent 1px),
+  linear-gradient(90deg, rgba(255,255,255,.03) 1px, transparent 1px);
+  background-size:70px 70px;
+  opacity:.25;
 }
