@@ -10,7 +10,6 @@
   <meta name="author" content="GENEX" />
   <meta name="robots" content="index, follow" />
   <link rel="canonical" href="https://genex-era.com/about.html" />
-
   <meta property="og:title" content="عن GENEX | أنظمة الذكاء الاصطناعي والأتمتة المتقدمة" />
   <meta property="og:description" content="GENEX شركة تقنية تبني أنظمة ذكاء اصطناعي مستقلة، منصات أتمتة ذكية، وبنية تشغيلية رقمية متقدمة." />
   <meta property="og:url" content="https://genex-era.com/about.html" />
@@ -31,7 +30,7 @@
   }
   </script>
 
-  <link rel="stylesheet" href="./assets/styles.css?v=30" />
+  <link rel="stylesheet" href="./assets/styles.css?v=40" />
 
   <style>
     :root{
@@ -42,11 +41,14 @@
       --stroke:rgba(255,255,255,.10);
       --shadow:0 18px 50px rgba(0,0,0,.30);
       --max:1180px;
-      --red-1:rgba(180,20,40,.95);
-      --red-2:rgba(130,10,28,.72);
-      --white-1:rgba(255,255,255,.95);
+      --red:#b41428;
+      --red-soft:rgba(180,20,40,.45);
+      --red-faint:rgba(180,20,40,.18);
+      --white-soft:rgba(255,255,255,.16);
       --glass:rgba(255,255,255,.05);
       --glass-2:rgba(255,255,255,.03);
+      --blur:blur(12px);
+      --ease:cubic-bezier(.22,.8,.2,1);
     }
 
     *{
@@ -58,9 +60,9 @@
       padding:0;
       min-height:100%;
       background:
-        radial-gradient(circle at 18% 14%, rgba(140,0,25,.10), transparent 30%),
-        radial-gradient(circle at 85% 10%, rgba(255,255,255,.04), transparent 18%),
-        linear-gradient(180deg,var(--bg),var(--bg2));
+        radial-gradient(circle at 20% 12%, rgba(140,0,25,.14), transparent 30%),
+        radial-gradient(circle at 82% 14%, rgba(255,255,255,.03), transparent 18%),
+        linear-gradient(180deg, var(--bg), var(--bg2));
       color:var(--text);
       font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
     }
@@ -71,29 +73,162 @@
     }
 
     a{
-      text-decoration:none;
       color:inherit;
+      text-decoration:none;
     }
 
-    #liquidBg{
+    /* Page transition */
+    .page-transition{
+      position:fixed;
+      inset:0;
+      z-index:9999;
+      pointer-events:none;
+      background:
+        radial-gradient(circle at center, rgba(255,255,255,.08), rgba(180,20,40,.10), rgba(5,7,15,.98) 70%);
+      opacity:0;
+      transform:scale(1.02);
+      transition:opacity .5s ease, transform .7s ease;
+    }
+
+    .page-transition.active{
+      opacity:1;
+      transform:scale(1);
+      pointer-events:auto;
+    }
+
+    /* Intro */
+    .genex-intro{
+      position:fixed;
+      inset:0;
+      z-index:9000;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      background:
+        radial-gradient(circle at center, rgba(255,255,255,.04), transparent 26%),
+        radial-gradient(circle at center, rgba(180,20,40,.10), transparent 42%),
+        linear-gradient(180deg, rgba(5,7,15,.98), rgba(9,13,24,.98));
+      overflow:hidden;
+      transition:opacity .9s ease, visibility .9s ease;
+    }
+
+    .genex-intro.hidden{
+      opacity:0;
+      visibility:hidden;
+    }
+
+    .intro-rings{
+      position:absolute;
+      inset:0;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      pointer-events:none;
+    }
+
+    .intro-rings span{
+      position:absolute;
+      border-radius:50%;
+      border:1px solid rgba(255,255,255,.08);
+      box-shadow:
+        0 0 0 1px rgba(180,20,40,.06) inset,
+        0 0 50px rgba(180,20,40,.08);
+      animation:introPulse 3.2s var(--ease) infinite;
+    }
+
+    .intro-rings span:nth-child(1){ width:180px; height:180px; animation-delay:0s; }
+    .intro-rings span:nth-child(2){ width:320px; height:320px; animation-delay:.35s; }
+    .intro-rings span:nth-child(3){ width:520px; height:520px; animation-delay:.7s; }
+    .intro-rings span:nth-child(4){ width:760px; height:760px; animation-delay:1.05s; opacity:.55; }
+
+    @keyframes introPulse{
+      0%{
+        transform:scale(.88);
+        opacity:0;
+      }
+      25%{
+        opacity:.8;
+      }
+      100%{
+        transform:scale(1.12);
+        opacity:0;
+      }
+    }
+
+    .intro-core{
+      position:relative;
+      z-index:2;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      gap:16px;
+      text-align:center;
+    }
+
+    .intro-logo-wrap{
+      position:relative;
+      width:170px;
+      height:170px;
+      display:grid;
+      place-items:center;
+    }
+
+    .intro-logo-wrap::before{
+      content:"";
+      position:absolute;
+      inset:-18%;
+      border-radius:50%;
+      background:
+        radial-gradient(circle, rgba(255,255,255,.16) 0%, rgba(180,20,40,.18) 28%, rgba(180,20,40,0) 70%);
+      filter:blur(18px);
+      animation:glowBreath 3.5s ease-in-out infinite;
+    }
+
+    @keyframes glowBreath{
+      0%,100%{ transform:scale(.94); opacity:.78; }
+      50%{ transform:scale(1.08); opacity:1; }
+    }
+
+    .intro-logo{
+      position:relative;
+      width:108px;
+      height:108px;
+      object-fit:contain;
+      filter:drop-shadow(0 0 18px rgba(255,255,255,.20));
+      z-index:2;
+    }
+
+    .intro-wordmark{
+      font-size:clamp(38px, 6vw, 72px);
+      font-weight:900;
+      letter-spacing:.34em;
+      margin-inline-start:.34em;
+      text-shadow:0 0 26px rgba(255,255,255,.08);
+    }
+
+    .intro-sub{
+      color:var(--muted);
+      font-size:18px;
+      letter-spacing:.14em;
+    }
+
+    /* Background */
+    #cinemaBg{
       position:fixed;
       inset:0;
       z-index:0;
       overflow:hidden;
       pointer-events:none;
       background:
-        radial-gradient(circle at 20% 20%, rgba(120,0,24,.12), transparent 28%),
-        radial-gradient(circle at 82% 12%, rgba(255,255,255,.03), transparent 16%),
-        linear-gradient(180deg,#05070f 0%, #090d18 100%);
+        linear-gradient(180deg, #05070f 0%, #090d18 100%);
     }
 
-    #liquidCanvas{
+    #cinemaCanvas{
       position:absolute;
       inset:0;
       width:100%;
       height:100%;
       display:block;
-      opacity:1;
     }
 
     .about-shell{
@@ -102,14 +237,14 @@
     }
 
     .container{
-      width:min(var(--max),92vw);
+      width:min(var(--max), 92vw);
       margin:auto;
     }
 
     .topbar{
       position:sticky;
       top:0;
-      z-index:30;
+      z-index:60;
       backdrop-filter:blur(16px);
       background:rgba(7,9,16,.68);
       border-bottom:1px solid rgba(255,255,255,.08);
@@ -154,6 +289,7 @@
       border:1px solid rgba(255,255,255,.12);
       background:rgba(255,255,255,.05);
       box-shadow:0 8px 24px rgba(0,0,0,.18);
+      backdrop-filter:blur(10px);
     }
 
     .lang-switch button{
@@ -186,6 +322,7 @@
       transition:transform .2s ease, background .2s ease, border-color .2s ease;
       white-space:nowrap;
       box-shadow:0 10px 28px rgba(0,0,0,.18);
+      backdrop-filter:blur(10px);
     }
 
     .back-btn:hover{
@@ -205,7 +342,7 @@
       border:1px solid var(--stroke);
       border-radius:32px;
       background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
-      backdrop-filter:blur(10px);
+      backdrop-filter:blur(12px);
       box-shadow:var(--shadow);
       margin-bottom:26px;
     }
@@ -327,7 +464,7 @@
       border:1px solid var(--stroke);
       border-radius:28px;
       background:linear-gradient(180deg, var(--glass), var(--glass-2));
-      backdrop-filter:blur(10px);
+      backdrop-filter:blur(12px);
       box-shadow:var(--shadow);
     }
 
@@ -633,13 +770,37 @@
       .brand{
         letter-spacing:.12em;
       }
+
+      .intro-wordmark{
+        letter-spacing:.22em;
+        margin-inline-start:.22em;
+      }
     }
   </style>
 </head>
 
 <body>
-  <div id="liquidBg" aria-hidden="true">
-    <canvas id="liquidCanvas"></canvas>
+  <div class="page-transition" id="pageTransition"></div>
+
+  <div class="genex-intro" id="genexIntro">
+    <div class="intro-rings">
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+
+    <div class="intro-core">
+      <div class="intro-logo-wrap">
+        <img class="intro-logo" src="./assets/logo.png" alt="GENEX Logo">
+      </div>
+      <div class="intro-wordmark">GENEX</div>
+      <div class="intro-sub">Autonomous AI Systems</div>
+    </div>
+  </div>
+
+  <div id="cinemaBg" aria-hidden="true">
+    <canvas id="cinemaCanvas"></canvas>
   </div>
 
   <div class="about-shell">
@@ -663,7 +824,6 @@
 
     <main class="about-page">
       <div class="container">
-
         <section class="hero">
           <div class="hero-grid">
             <div>
@@ -1036,9 +1196,41 @@
 
       applyLanguage(localStorage.getItem("genex_lang") || "ar");
 
-      const canvas = document.getElementById("liquidCanvas");
-      const ctx = canvas.getContext("2d");
+      // Intro
+      const intro = document.getElementById("genexIntro");
+      const introSeen = sessionStorage.getItem("genex_intro_seen");
+      if (introSeen) {
+        intro.classList.add("hidden");
+      } else {
+        setTimeout(() => {
+          intro.classList.add("hidden");
+          sessionStorage.setItem("genex_intro_seen", "1");
+        }, 2600);
+      }
 
+      // Page transition
+      const transition = document.getElementById("pageTransition");
+      document.querySelectorAll('a[href]').forEach((link) => {
+        const href = link.getAttribute('href');
+        if (!href) return;
+        if (href.startsWith('#')) return;
+        if (link.hasAttribute('target')) return;
+        if (href.startsWith('mailto:') || href.startsWith('tel:')) return;
+
+        link.addEventListener('click', function (e) {
+          const url = this.getAttribute('href');
+          if (!url) return;
+          e.preventDefault();
+          transition.classList.add('active');
+          setTimeout(() => {
+            window.location.href = url;
+          }, 420);
+        });
+      });
+
+      // Liquid cinematic background + ripple from logo center
+      const canvas = document.getElementById("cinemaCanvas");
+      const ctx = canvas.getContext("2d");
       let w = 0;
       let h = 0;
       let dpr = Math.min(window.devicePixelRatio || 1, 2);
@@ -1048,10 +1240,10 @@
       let time = 0;
 
       const blobs = [
-        { x: 0.20, y: 0.26, r: 0.24, dx: 0.7, dy: 0.4, hue: "red", alpha: 1.0 },
-        { x: 0.76, y: 0.30, r: 0.20, dx: -0.5, dy: 0.6, hue: "white", alpha: 0.55 },
-        { x: 0.52, y: 0.72, r: 0.27, dx: 0.4, dy: -0.5, hue: "red", alpha: 0.82 },
-        { x: 0.84, y: 0.74, r: 0.18, dx: -0.7, dy: -0.4, hue: "white", alpha: 0.28 }
+        { x: 0.22, y: 0.24, r: 0.24, dx: 0.65, dy: 0.42, hue: "red", alpha: 1.0 },
+        { x: 0.78, y: 0.28, r: 0.18, dx: -0.48, dy: 0.58, hue: "white", alpha: 0.44 },
+        { x: 0.50, y: 0.72, r: 0.26, dx: 0.36, dy: -0.44, hue: "red", alpha: 0.78 },
+        { x: 0.84, y: 0.74, r: 0.16, dx: -0.72, dy: -0.35, hue: "white", alpha: 0.24 }
       ];
 
       function resize() {
@@ -1071,8 +1263,8 @@
       function drawBlob(cx, cy, radius, colorA, colorB, alpha) {
         const g = ctx.createRadialGradient(cx, cy, radius * 0.08, cx, cy, radius);
         g.addColorStop(0, colorA.replace("ALPHA", alpha));
-        g.addColorStop(0.34, colorB.replace("ALPHA", alpha * 0.56));
-        g.addColorStop(0.74, colorB.replace("ALPHA", alpha * 0.16));
+        g.addColorStop(0.35, colorB.replace("ALPHA", alpha * 0.56));
+        g.addColorStop(0.74, colorB.replace("ALPHA", alpha * 0.18));
         g.addColorStop(1, "rgba(0,0,0,0)");
         ctx.fillStyle = g;
         ctx.beginPath();
@@ -1091,27 +1283,27 @@
           w * 0.5, h * 0.45, 40,
           w * 0.5, h * 0.45, Math.max(w, h) * 0.76
         );
-        vignette.addColorStop(0, "rgba(255,255,255,0.02)");
+        vignette.addColorStop(0, "rgba(255,255,255,0.018)");
         vignette.addColorStop(0.55, "rgba(20,10,16,0.08)");
-        vignette.addColorStop(1, "rgba(0,0,0,0.38)");
+        vignette.addColorStop(1, "rgba(0,0,0,0.42)");
         ctx.fillStyle = vignette;
         ctx.fillRect(0, 0, w, h);
       }
 
-      function drawGlassWaves() {
+      function drawWaves() {
         ctx.save();
         ctx.globalCompositeOperation = "screen";
         ctx.lineWidth = 1.1;
 
         for (let i = 0; i < 6; i++) {
-          const yBase = h * (0.14 + i * 0.13);
+          const yBase = h * (0.15 + i * 0.125);
           const shift = Math.sin(time * 0.7 + i * 0.9) * 16 + scrollFactor * (i % 2 ? 0.7 : -0.7);
 
           const grad = ctx.createLinearGradient(0, yBase, w, yBase + shift);
           grad.addColorStop(0, "rgba(255,255,255,0)");
-          grad.addColorStop(0.2, "rgba(255,255,255,0.025)");
-          grad.addColorStop(0.5, "rgba(180,20,40,0.06)");
-          grad.addColorStop(0.8, "rgba(255,255,255,0.025)");
+          grad.addColorStop(0.2, "rgba(255,255,255,0.022)");
+          grad.addColorStop(0.5, "rgba(180,20,40,0.065)");
+          grad.addColorStop(0.8, "rgba(255,255,255,0.022)");
           grad.addColorStop(1, "rgba(255,255,255,0)");
 
           ctx.strokeStyle = grad;
@@ -1120,7 +1312,7 @@
           for (let x = 0; x <= w; x += 18) {
             const y =
               yBase +
-              Math.sin(x * 0.006 + time * 1.2 + i) * 16 +
+              Math.sin(x * 0.006 + time * 1.18 + i) * 16 +
               Math.cos(x * 0.003 + time * 0.82 + i * 0.6) * 8 +
               shift;
 
@@ -1130,6 +1322,39 @@
 
           ctx.stroke();
         }
+
+        ctx.restore();
+      }
+
+      function drawLogoRipple() {
+        const cx = w * 0.5 + (mouse.x - 0.5) * w * 0.03;
+        const cy = h * 0.46 + (mouse.y - 0.5) * h * 0.03;
+
+        ctx.save();
+        ctx.globalCompositeOperation = "screen";
+
+        for (let i = 0; i < 4; i++) {
+          const radius = ((time * 38) + i * 120) % (Math.max(w, h) * 0.72);
+          const alpha = Math.max(0, 0.14 - (radius / (Math.max(w, h) * 7)));
+          const grad = ctx.createRadialGradient(cx, cy, radius * 0.82, cx, cy, radius);
+          grad.addColorStop(0, "rgba(255,255,255,0)");
+          grad.addColorStop(0.78, `rgba(255,255,255,${alpha * 0.75})`);
+          grad.addColorStop(0.9, `rgba(180,20,40,${alpha})`);
+          grad.addColorStop(1, "rgba(0,0,0,0)");
+
+          ctx.strokeStyle = grad;
+          ctx.lineWidth = 1.4;
+          ctx.beginPath();
+          ctx.arc(cx, cy, radius, 0, Math.PI * 2);
+          ctx.stroke();
+        }
+
+        const centerGlow = ctx.createRadialGradient(cx, cy, 0, cx, cy, Math.min(w, h) * 0.22);
+        centerGlow.addColorStop(0, "rgba(255,255,255,0.048)");
+        centerGlow.addColorStop(0.35, "rgba(180,20,40,0.042)");
+        centerGlow.addColorStop(1, "rgba(0,0,0,0)");
+        ctx.fillStyle = centerGlow;
+        ctx.fillRect(0, 0, w, h);
 
         ctx.restore();
       }
@@ -1182,21 +1407,8 @@
 
         ctx.restore();
 
-        drawGlassWaves();
-
-        const centerGlow = ctx.createRadialGradient(
-          w * (0.5 + (mouse.x - 0.5) * 0.05),
-          h * (0.46 + (mouse.y - 0.5) * 0.05),
-          0,
-          w * (0.5 + (mouse.x - 0.5) * 0.05),
-          h * (0.46 + (mouse.y - 0.5) * 0.05),
-          Math.min(w, h) * 0.42
-        );
-        centerGlow.addColorStop(0, "rgba(255,255,255,0.040)");
-        centerGlow.addColorStop(0.35, "rgba(180,20,40,0.042)");
-        centerGlow.addColorStop(1, "rgba(0,0,0,0)");
-        ctx.fillStyle = centerGlow;
-        ctx.fillRect(0, 0, w, h);
+        drawWaves();
+        drawLogoRipple();
 
         requestAnimationFrame(render);
       }
@@ -1209,7 +1421,7 @@
       }, { passive: true });
 
       window.addEventListener("scroll", () => {
-        scrollFactor = window.scrollY * 0.0025;
+        scrollFactor = window.scrollY * 0.0024;
       }, { passive: true });
 
       resize();
