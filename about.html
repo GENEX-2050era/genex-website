@@ -31,33 +31,35 @@
   }
   </script>
 
-  <link rel="stylesheet" href="./assets/styles.css?v=20" />
+  <link rel="stylesheet" href="./assets/styles.css?v=30" />
 
   <style>
     :root{
       --bg:#05070f;
       --bg2:#090d18;
-      --card:rgba(255,255,255,.05);
-      --stroke:rgba(255,255,255,.10);
       --text:#f5f7ff;
       --muted:rgba(245,247,255,.74);
+      --stroke:rgba(255,255,255,.10);
       --shadow:0 18px 50px rgba(0,0,0,.30);
-      --radius:24px;
       --max:1180px;
       --red-1:rgba(180,20,40,.95);
-      --red-2:rgba(125,8,28,.72);
-      --white-glow:rgba(255,255,255,.16);
+      --red-2:rgba(130,10,28,.72);
+      --white-1:rgba(255,255,255,.95);
+      --glass:rgba(255,255,255,.05);
+      --glass-2:rgba(255,255,255,.03);
     }
 
-    *{ box-sizing:border-box; }
+    *{
+      box-sizing:border-box;
+    }
 
     html,body{
       margin:0;
       padding:0;
       min-height:100%;
       background:
-        radial-gradient(circle at 20% 10%, rgba(140,0,25,.18), transparent 36%),
-        radial-gradient(circle at 80% 15%, rgba(255,255,255,.05), transparent 24%),
+        radial-gradient(circle at 18% 14%, rgba(140,0,25,.10), transparent 30%),
+        radial-gradient(circle at 85% 10%, rgba(255,255,255,.04), transparent 18%),
         linear-gradient(180deg,var(--bg),var(--bg2));
       color:var(--text);
       font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
@@ -73,74 +75,25 @@
       color:inherit;
     }
 
-    #futureBg{
+    #liquidBg{
       position:fixed;
       inset:0;
       z-index:0;
-      pointer-events:none;
       overflow:hidden;
+      pointer-events:none;
       background:
-        radial-gradient(circle at 20% 20%, rgba(140,0,25,.10), transparent 30%),
-        radial-gradient(circle at 80% 10%, rgba(255,255,255,.04), transparent 18%);
+        radial-gradient(circle at 20% 20%, rgba(120,0,24,.12), transparent 28%),
+        radial-gradient(circle at 82% 12%, rgba(255,255,255,.03), transparent 16%),
+        linear-gradient(180deg,#05070f 0%, #090d18 100%);
     }
 
-    .bg-grid{
-      position:absolute;
-      inset:0;
-      background:
-        linear-gradient(rgba(255,255,255,.018) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,.018) 1px, transparent 1px);
-      background-size:64px 64px;
-      opacity:.10;
-      transform:translateZ(0);
-    }
-
-    .bg-orb{
-      position:absolute;
-      width:34vw;
-      height:34vw;
-      min-width:240px;
-      min-height:240px;
-      max-width:520px;
-      max-height:520px;
-      border-radius:50%;
-      filter:blur(85px);
-      opacity:.34;
-      will-change:transform;
-      transform:translate3d(0,0,0);
-      background:
-        radial-gradient(circle,
-          rgba(180,20,40,.95) 0%,
-          rgba(125,8,28,.70) 38%,
-          rgba(255,255,255,.10) 55%,
-          transparent 72%);
-    }
-
-    .bg-orb.orb-2{
-      opacity:.22;
-      background:
-        radial-gradient(circle,
-          rgba(255,255,255,.22) 0%,
-          rgba(180,20,40,.40) 36%,
-          rgba(70,8,18,.18) 58%,
-          transparent 74%);
-    }
-
-    .bg-orb.orb-3{
-      opacity:.16;
-      background:
-        radial-gradient(circle,
-          rgba(180,20,40,.55) 0%,
-          rgba(255,255,255,.08) 40%,
-          transparent 74%);
-    }
-
-    canvas#meshCanvas{
+    #liquidCanvas{
       position:absolute;
       inset:0;
       width:100%;
       height:100%;
-      opacity:.75;
+      display:block;
+      opacity:1;
     }
 
     .about-shell{
@@ -149,7 +102,7 @@
     }
 
     .container{
-      width:min(var(--max), 92vw);
+      width:min(var(--max),92vw);
       margin:auto;
     }
 
@@ -212,6 +165,7 @@
       font-size:12px;
       font-weight:800;
       cursor:pointer;
+      transition:background .2s ease, opacity .2s ease;
     }
 
     .lang-switch button.active{
@@ -251,6 +205,7 @@
       border:1px solid var(--stroke);
       border-radius:32px;
       background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+      backdrop-filter:blur(10px);
       box-shadow:var(--shadow);
       margin-bottom:26px;
     }
@@ -261,7 +216,7 @@
       inset:auto auto -120px -120px;
       width:340px;
       height:340px;
-      background:radial-gradient(circle, rgba(170,20,40,.18), transparent 70%);
+      background:radial-gradient(circle, rgba(170,20,40,.16), transparent 70%);
       pointer-events:none;
     }
 
@@ -273,7 +228,7 @@
       transform:translateX(-50%);
       width:320px;
       height:320px;
-      background:radial-gradient(circle, rgba(255,255,255,.05), transparent 70%);
+      background:radial-gradient(circle, rgba(255,255,255,.04), transparent 70%);
       pointer-events:none;
     }
 
@@ -324,6 +279,7 @@
       border:1px solid var(--stroke);
       border-radius:28px;
       background:linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.03));
+      backdrop-filter:blur(14px);
       box-shadow:var(--shadow);
       display:flex;
       flex-direction:column;
@@ -370,7 +326,8 @@
       padding:30px 22px;
       border:1px solid var(--stroke);
       border-radius:28px;
-      background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.028));
+      background:linear-gradient(180deg, var(--glass), var(--glass-2));
+      backdrop-filter:blur(10px);
       box-shadow:var(--shadow);
     }
 
@@ -420,6 +377,7 @@
       border:1px solid var(--stroke);
       border-radius:22px;
       background:rgba(255,255,255,.04);
+      backdrop-filter:blur(10px);
       padding:24px 18px;
       transition:transform .25s ease, border-color .25s ease, background .25s ease;
     }
@@ -580,6 +538,7 @@
       background:
         radial-gradient(circle at 50% 0%, rgba(170,20,40,.16), transparent 45%),
         linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+      backdrop-filter:blur(10px);
       box-shadow:var(--shadow);
     }
 
@@ -679,12 +638,8 @@
 </head>
 
 <body>
-  <div id="futureBg" aria-hidden="true">
-    <div class="bg-grid"></div>
-    <div class="bg-orb orb-1"></div>
-    <div class="bg-orb orb-2"></div>
-    <div class="bg-orb orb-3"></div>
-    <canvas id="meshCanvas"></canvas>
+  <div id="liquidBg" aria-hidden="true">
+    <canvas id="liquidCanvas"></canvas>
   </div>
 
   <div class="about-shell">
@@ -993,7 +948,7 @@
           back_home: "Back to Home",
           eyebrow: "ABOUT GENEX • The Future Starts Here",
           hero_title: "We Build the Intelligent Infrastructure of the Next Era",
-          hero_desc: "GENEX is a technology company focused on developing autonomous AI systems, intelligent automation platforms, and digital operational infrastructure that enables businesses, facilities, and systems to work with greater speed, stronger precision, and higher execution autonomy.",
+          hero_desc: "GENEX is a technology company focused on developing autonomous AI systems, intelligent automation platforms, and digital operational infrastructure that enables businesses, facilities, and systems to operate with greater speed, stronger precision, and higher execution autonomy.",
           hero_badge: "Autonomous AI Systems<br>Digital Infrastructure • Intelligent Operations",
           who_title: "Who is GENEX",
           who_sub: "A clear technology identity focused on applied AI, advanced automation, and future systems.",
@@ -1081,121 +1036,184 @@
 
       applyLanguage(localStorage.getItem("genex_lang") || "ar");
 
-      const bg = document.getElementById("futureBg");
-      const canvas = document.getElementById("meshCanvas");
+      const canvas = document.getElementById("liquidCanvas");
       const ctx = canvas.getContext("2d");
-      const orb1 = document.querySelector(".orb-1");
-      const orb2 = document.querySelector(".orb-2");
-      const orb3 = document.querySelector(".orb-3");
-      const grid = document.querySelector(".bg-grid");
 
       let w = 0;
       let h = 0;
-      let mouseX = 0;
-      let mouseY = 0;
-      let scrollY = 0;
+      let dpr = Math.min(window.devicePixelRatio || 1, 2);
+      let mouse = { x: 0.5, y: 0.5 };
+      let targetMouse = { x: 0.5, y: 0.5 };
+      let scrollFactor = 0;
       let time = 0;
-      let nodes = [];
 
-      function resizeScene() {
-        w = canvas.width = window.innerWidth;
-        h = canvas.height = window.innerHeight;
+      const blobs = [
+        { x: 0.20, y: 0.26, r: 0.24, dx: 0.7, dy: 0.4, hue: "red", alpha: 1.0 },
+        { x: 0.76, y: 0.30, r: 0.20, dx: -0.5, dy: 0.6, hue: "white", alpha: 0.55 },
+        { x: 0.52, y: 0.72, r: 0.27, dx: 0.4, dy: -0.5, hue: "red", alpha: 0.82 },
+        { x: 0.84, y: 0.74, r: 0.18, dx: -0.7, dy: -0.4, hue: "white", alpha: 0.28 }
+      ];
 
-        const cols = w < 700 ? 6 : 9;
-        const rows = w < 700 ? 4 : 5;
-        nodes = [];
-
-        for (let y = 0; y < rows; y++) {
-          for (let x = 0; x < cols; x++) {
-            nodes.push({
-              baseX: (w / (cols + 1)) * (x + 1),
-              baseY: (h / (rows + 1)) * (y + 1),
-              size: Math.random() > 0.5 ? 2.8 : 3.4,
-              offset: Math.random() * Math.PI * 2
-            });
-          }
-        }
+      function resize() {
+        w = window.innerWidth;
+        h = window.innerHeight;
+        canvas.width = Math.floor(w * dpr);
+        canvas.height = Math.floor(h * dpr);
+        canvas.style.width = w + "px";
+        canvas.style.height = h + "px";
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
       }
 
-      window.addEventListener("resize", resizeScene);
+      function lerp(a, b, t) {
+        return a + (b - a) * t;
+      }
 
-      document.addEventListener("mousemove", function (e) {
-        mouseX = (e.clientX / window.innerWidth - 0.5);
-        mouseY = (e.clientY / window.innerHeight - 0.5);
-      });
+      function drawBlob(cx, cy, radius, colorA, colorB, alpha) {
+        const g = ctx.createRadialGradient(cx, cy, radius * 0.08, cx, cy, radius);
+        g.addColorStop(0, colorA.replace("ALPHA", alpha));
+        g.addColorStop(0.34, colorB.replace("ALPHA", alpha * 0.56));
+        g.addColorStop(0.74, colorB.replace("ALPHA", alpha * 0.16));
+        g.addColorStop(1, "rgba(0,0,0,0)");
+        ctx.fillStyle = g;
+        ctx.beginPath();
+        ctx.arc(cx, cy, radius, 0, Math.PI * 2);
+        ctx.fill();
+      }
 
-      window.addEventListener("scroll", function () {
-        scrollY = window.scrollY;
-      });
+      function drawBase() {
+        const base = ctx.createLinearGradient(0, 0, 0, h);
+        base.addColorStop(0, "#05070f");
+        base.addColorStop(1, "#090d18");
+        ctx.fillStyle = base;
+        ctx.fillRect(0, 0, w, h);
 
-      function animateBackground() {
-        time += 0.005;
+        const vignette = ctx.createRadialGradient(
+          w * 0.5, h * 0.45, 40,
+          w * 0.5, h * 0.45, Math.max(w, h) * 0.76
+        );
+        vignette.addColorStop(0, "rgba(255,255,255,0.02)");
+        vignette.addColorStop(0.55, "rgba(20,10,16,0.08)");
+        vignette.addColorStop(1, "rgba(0,0,0,0.38)");
+        ctx.fillStyle = vignette;
+        ctx.fillRect(0, 0, w, h);
+      }
 
-        const depthShift = scrollY * 0.03;
-        const centerX = w * 0.5;
-        const centerY = h * 0.45;
+      function drawGlassWaves() {
+        ctx.save();
+        ctx.globalCompositeOperation = "screen";
+        ctx.lineWidth = 1.1;
 
-        orb1.style.transform =
-          "translate3d(" +
-          (centerX - 260 + Math.sin(time * 1.1) * 90 + mouseX * 140) + "px," +
-          (centerY - 160 + Math.cos(time * 0.9) * 70 + mouseY * 100 + depthShift * 0.7) + "px,0)";
+        for (let i = 0; i < 6; i++) {
+          const yBase = h * (0.14 + i * 0.13);
+          const shift = Math.sin(time * 0.7 + i * 0.9) * 16 + scrollFactor * (i % 2 ? 0.7 : -0.7);
 
-        orb2.style.transform =
-          "translate3d(" +
-          (centerX + 40 + Math.cos(time * 0.8) * 120 - mouseX * 120) + "px," +
-          (centerY - 40 + Math.sin(time * 1.0) * 90 - mouseY * 90 - depthShift * 0.5) + "px,0)";
+          const grad = ctx.createLinearGradient(0, yBase, w, yBase + shift);
+          grad.addColorStop(0, "rgba(255,255,255,0)");
+          grad.addColorStop(0.2, "rgba(255,255,255,0.025)");
+          grad.addColorStop(0.5, "rgba(180,20,40,0.06)");
+          grad.addColorStop(0.8, "rgba(255,255,255,0.025)");
+          grad.addColorStop(1, "rgba(255,255,255,0)");
 
-        orb3.style.transform =
-          "translate3d(" +
-          (centerX - 40 + Math.sin(time * 0.6) * 160 + mouseX * 80) + "px," +
-          (centerY + 120 + Math.cos(time * 0.7) * 70 + mouseY * 60 + depthShift * 0.35) + "px,0)";
-
-        grid.style.transform =
-          "translate3d(" + (mouseX * 18) + "px," + (mouseY * 18 + scrollY * 0.02) + "px,0)";
-
-        ctx.clearRect(0, 0, w, h);
-
-        const animated = nodes.map(function (n, i) {
-          return {
-            x: n.baseX + Math.sin(time + n.offset + i * 0.05) * 12 + mouseX * 22,
-            y: n.baseY + Math.cos(time * 0.85 + n.offset + i * 0.04) * 12 + mouseY * 22 + scrollY * 0.03,
-            size: n.size
-          };
-        });
-
-        for (let i = 0; i < animated.length; i++) {
-          for (let j = i + 1; j < animated.length; j++) {
-            const dx = animated[i].x - animated[j].x;
-            const dy = animated[i].y - animated[j].y;
-            const dist = Math.sqrt(dx * dx + dy * dy);
-
-            if (dist < 180) {
-              ctx.beginPath();
-              ctx.moveTo(animated[i].x, animated[i].y);
-              ctx.lineTo(animated[j].x, animated[j].y);
-              ctx.strokeStyle = (i + j) % 3 === 0
-                ? "rgba(180,20,40,0.08)"
-                : "rgba(255,255,255,0.06)";
-              ctx.lineWidth = 1;
-              ctx.stroke();
-            }
-          }
-        }
-
-        animated.forEach(function (p, index) {
+          ctx.strokeStyle = grad;
           ctx.beginPath();
-          ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-          ctx.fillStyle = index % 4 === 0
-            ? "rgba(180,20,40,0.78)"
-            : "rgba(255,255,255,0.72)";
-          ctx.fill();
-        });
 
-        requestAnimationFrame(animateBackground);
+          for (let x = 0; x <= w; x += 18) {
+            const y =
+              yBase +
+              Math.sin(x * 0.006 + time * 1.2 + i) * 16 +
+              Math.cos(x * 0.003 + time * 0.82 + i * 0.6) * 8 +
+              shift;
+
+            if (x === 0) ctx.moveTo(x, y);
+            else ctx.lineTo(x, y);
+          }
+
+          ctx.stroke();
+        }
+
+        ctx.restore();
       }
 
-      resizeScene();
-      animateBackground();
+      function render() {
+        time += 0.008;
+        mouse.x = lerp(mouse.x, targetMouse.x, 0.06);
+        mouse.y = lerp(mouse.y, targetMouse.y, 0.06);
+
+        drawBase();
+
+        ctx.save();
+        ctx.globalCompositeOperation = "screen";
+        ctx.filter = "blur(40px) saturate(145%)";
+
+        blobs.forEach((b, i) => {
+          const waveX = Math.sin(time * b.dx + i) * w * 0.06;
+          const waveY = Math.cos(time * b.dy + i * 1.25) * h * 0.05;
+
+          const mx = (mouse.x - 0.5) * w * 0.09 * (i % 2 === 0 ? 1 : -1);
+          const my = (mouse.y - 0.5) * h * 0.09 * (i % 2 === 1 ? 1 : -1);
+
+          const sx = scrollFactor * (12 + i * 4) * (i % 2 === 0 ? 1 : -1);
+          const sy = scrollFactor * (18 + i * 5);
+
+          const cx = b.x * w + waveX + mx + sx;
+          const cy = b.y * h + waveY + my + sy;
+          const radius = Math.min(w, h) * b.r;
+
+          if (b.hue === "red") {
+            drawBlob(
+              cx,
+              cy,
+              radius,
+              "rgba(255,255,255,ALPHA)",
+              "rgba(180,20,40,ALPHA)",
+              b.alpha
+            );
+          } else {
+            drawBlob(
+              cx,
+              cy,
+              radius,
+              "rgba(255,255,255,ALPHA)",
+              "rgba(255,255,255,ALPHA)",
+              b.alpha * 0.76
+            );
+          }
+        });
+
+        ctx.restore();
+
+        drawGlassWaves();
+
+        const centerGlow = ctx.createRadialGradient(
+          w * (0.5 + (mouse.x - 0.5) * 0.05),
+          h * (0.46 + (mouse.y - 0.5) * 0.05),
+          0,
+          w * (0.5 + (mouse.x - 0.5) * 0.05),
+          h * (0.46 + (mouse.y - 0.5) * 0.05),
+          Math.min(w, h) * 0.42
+        );
+        centerGlow.addColorStop(0, "rgba(255,255,255,0.040)");
+        centerGlow.addColorStop(0.35, "rgba(180,20,40,0.042)");
+        centerGlow.addColorStop(1, "rgba(0,0,0,0)");
+        ctx.fillStyle = centerGlow;
+        ctx.fillRect(0, 0, w, h);
+
+        requestAnimationFrame(render);
+      }
+
+      window.addEventListener("resize", resize);
+
+      window.addEventListener("mousemove", (e) => {
+        targetMouse.x = e.clientX / w;
+        targetMouse.y = e.clientY / h;
+      }, { passive: true });
+
+      window.addEventListener("scroll", () => {
+        scrollFactor = window.scrollY * 0.0025;
+      }, { passive: true });
+
+      resize();
+      render();
     })();
   </script>
 </body>
