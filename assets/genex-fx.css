@@ -293,3 +293,41 @@ body{
     height:200px;
   }
 }
+#backFxWrap,
+#sceneWrap,
+#frontFxWrap{
+  display:block !important;
+  visibility:visible !important;
+  opacity:1 !important;
+}
+
+#backFxWrap{
+  z-index:0 !important;
+}
+
+#sceneWrap{
+  z-index:1 !important;
+}
+
+#frontFxWrap{
+  z-index:2 !important;
+}
+
+#backFxCanvas,
+#webglCanvas,
+#frontFxCanvas{
+  display:block !important;
+  width:100% !important;
+  height:100% !important;
+  opacity:1 !important;
+  visibility:visible !important;
+}
+
+.genex-page-shell,
+.genex-page-content,
+header,
+main,
+footer{
+  position:relative;
+  z-index:5;
+}
