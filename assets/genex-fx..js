@@ -10,25 +10,33 @@ import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.162.0/build/three.m
   const q = (s) => document.querySelector(s);
   const qa = (s) => Array.from(document.querySelectorAll(s));
 
+  function refreshAboutLabel() {
+    const lang = localStorage.getItem('genex_lang') || 'ar';
+    qa('[data-nav-about]').forEach((link) => {
+      link.textContent = lang === 'ar' ? 'عن جينكس' : 'About GENEX';
+      link.setAttribute('href', './about.html');
+      link.style.display = '';
+      link.style.visibility = 'visible';
+      link.style.opacity = '1';
+      link.style.pointerEvents = 'auto';
+    });
+  }
+
   function initAboutNavLabel() {
-    const update = () => {
-      const lang = localStorage.getItem('genex_lang') || 'ar';
-      qa('[data-nav-about]').forEach((link) => {
-        link.textContent = lang === 'ar' ? 'عن جينكس' : 'About GENEX';
-        link.setAttribute('href', './about.html');
-        link.style.display = '';
-        link.style.visibility = 'visible';
-        link.style.opacity = '1';
+    refreshAboutLabel();
+
+    window.addEventListener('storage', refreshAboutLabel);
+    document.addEventListener('DOMContentLoaded', refreshAboutLabel);
+
+    qa('.lang-switch button').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        setTimeout(refreshAboutLabel, 0);
       });
-    };
-    update();
-    window.addEventListener('storage', update);
-    document.addEventListener('DOMContentLoaded', update);
+    });
   }
 
   function initPageTransition() {
     const transition = q('#pageTransition');
-    if (!transition) return;
 
     qa('a[href]').forEach((link) => {
       const href = link.getAttribute('href');
@@ -38,6 +46,7 @@ import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.162.0/build/three.m
       if (link.hasAttribute('target')) return;
 
       link.addEventListener('click', function (e) {
+        if (!transition) return;
         e.preventDefault();
         transition.classList.add('active');
         setTimeout(() => {
@@ -126,6 +135,7 @@ import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.162.0/build/three.m
     const backCanvas = q('#backFxCanvas');
     const frontCanvas = q('#frontFxCanvas');
     const webglCanvas = q('#webglCanvas');
+
     if (!backCanvas || !frontCanvas || !webglCanvas) return;
 
     const backCtx = backCanvas.getContext('2d');
@@ -177,7 +187,7 @@ import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.162.0/build/three.m
     renderer.setSize(window.innerWidth, window.innerHeight);
 
     const scene = new THREE.Scene();
-    scene.fog = new THREE.FogExp2(0x05070f, 0.07);
+    scene.fog = new THREE.FogExp2(0x05070f, 0.065);
 
     const camera = new THREE.PerspectiveCamera(42, window.innerWidth / window.innerHeight, 0.1, 100);
     camera.position.set(0, 0, 12);
@@ -273,7 +283,6 @@ import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.162.0/build/three.m
     const particleCount = 2600;
     const particlePositions = new Float32Array(particleCount * 3);
     const particleColors = new Float32Array(particleCount * 3);
-    const particleSizes = new Float32Array(particleCount);
 
     for (let i = 0; i < particleCount; i++) {
       const radius = 3.4 + Math.random() * 8.0;
@@ -288,7 +297,6 @@ import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.162.0/build/three.m
       particleColors[i * 3] = crimson ? 0.70 : 1.0;
       particleColors[i * 3 + 1] = crimson ? 0.08 : 1.0;
       particleColors[i * 3 + 2] = crimson ? 0.16 : 1.0;
-      particleSizes[i] = crimson ? 0.040 : 0.028;
     }
 
     const particleGeo = new THREE.BufferGeometry();
