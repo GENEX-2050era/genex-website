@@ -10,6 +10,7 @@
   <meta name="author" content="GENEX" />
   <meta name="robots" content="index, follow" />
   <link rel="canonical" href="https://genex-era.com/about.html" />
+
   <meta property="og:title" content="عن GENEX | أنظمة الذكاء الاصطناعي والأتمتة المتقدمة" />
   <meta property="og:description" content="GENEX شركة تقنية تبني أنظمة ذكاء اصطناعي مستقلة، منصات أتمتة ذكية، وبنية تشغيلية رقمية متقدمة." />
   <meta property="og:url" content="https://genex-era.com/about.html" />
@@ -30,7 +31,7 @@
   }
   </script>
 
-  <link rel="stylesheet" href="./assets/styles.css?v=40" />
+  <link rel="stylesheet" href="./assets/styles.css?v=60" />
 
   <style>
     :root{
@@ -42,13 +43,11 @@
       --shadow:0 18px 50px rgba(0,0,0,.30);
       --max:1180px;
       --red:#b41428;
-      --red-soft:rgba(180,20,40,.45);
-      --red-faint:rgba(180,20,40,.18);
-      --white-soft:rgba(255,255,255,.16);
+      --red-soft:rgba(180,20,40,.42);
+      --red-faint:rgba(180,20,40,.16);
+      --white-soft:rgba(255,255,255,.14);
       --glass:rgba(255,255,255,.05);
       --glass-2:rgba(255,255,255,.03);
-      --blur:blur(12px);
-      --ease:cubic-bezier(.22,.8,.2,1);
     }
 
     *{
@@ -60,7 +59,7 @@
       padding:0;
       min-height:100%;
       background:
-        radial-gradient(circle at 20% 12%, rgba(140,0,25,.14), transparent 30%),
+        radial-gradient(circle at 20% 10%, rgba(140,0,25,.12), transparent 30%),
         radial-gradient(circle at 82% 14%, rgba(255,255,255,.03), transparent 18%),
         linear-gradient(180deg, var(--bg), var(--bg2));
       color:var(--text);
@@ -73,21 +72,20 @@
     }
 
     a{
-      color:inherit;
       text-decoration:none;
+      color:inherit;
     }
 
-    /* Page transition */
     .page-transition{
       position:fixed;
       inset:0;
       z-index:9999;
       pointer-events:none;
       background:
-        radial-gradient(circle at center, rgba(255,255,255,.08), rgba(180,20,40,.10), rgba(5,7,15,.98) 70%);
+        radial-gradient(circle at center, rgba(255,255,255,.06), rgba(180,20,40,.10), rgba(5,7,15,.98) 72%);
       opacity:0;
       transform:scale(1.02);
-      transition:opacity .5s ease, transform .7s ease;
+      transition:opacity .45s ease, transform .6s ease;
     }
 
     .page-transition.active{
@@ -96,7 +94,6 @@
       pointer-events:auto;
     }
 
-    /* Intro */
     .genex-intro{
       position:fixed;
       inset:0;
@@ -105,9 +102,9 @@
       align-items:center;
       justify-content:center;
       background:
-        radial-gradient(circle at center, rgba(255,255,255,.04), transparent 26%),
-        radial-gradient(circle at center, rgba(180,20,40,.10), transparent 42%),
-        linear-gradient(180deg, rgba(5,7,15,.98), rgba(9,13,24,.98));
+        radial-gradient(circle at center, rgba(255,255,255,.03), transparent 24%),
+        radial-gradient(circle at center, rgba(180,20,40,.08), transparent 42%),
+        linear-gradient(180deg, rgba(5,7,15,.985), rgba(9,13,24,.985));
       overflow:hidden;
       transition:opacity .9s ease, visibility .9s ease;
     }
@@ -115,44 +112,6 @@
     .genex-intro.hidden{
       opacity:0;
       visibility:hidden;
-    }
-
-    .intro-rings{
-      position:absolute;
-      inset:0;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      pointer-events:none;
-    }
-
-    .intro-rings span{
-      position:absolute;
-      border-radius:50%;
-      border:1px solid rgba(255,255,255,.08);
-      box-shadow:
-        0 0 0 1px rgba(180,20,40,.06) inset,
-        0 0 50px rgba(180,20,40,.08);
-      animation:introPulse 3.2s var(--ease) infinite;
-    }
-
-    .intro-rings span:nth-child(1){ width:180px; height:180px; animation-delay:0s; }
-    .intro-rings span:nth-child(2){ width:320px; height:320px; animation-delay:.35s; }
-    .intro-rings span:nth-child(3){ width:520px; height:520px; animation-delay:.7s; }
-    .intro-rings span:nth-child(4){ width:760px; height:760px; animation-delay:1.05s; opacity:.55; }
-
-    @keyframes introPulse{
-      0%{
-        transform:scale(.88);
-        opacity:0;
-      }
-      25%{
-        opacity:.8;
-      }
-      100%{
-        transform:scale(1.12);
-        opacity:0;
-      }
     }
 
     .intro-core{
@@ -176,17 +135,34 @@
     .intro-logo-wrap::before{
       content:"";
       position:absolute;
-      inset:-18%;
+      inset:-20%;
       border-radius:50%;
       background:
-        radial-gradient(circle, rgba(255,255,255,.16) 0%, rgba(180,20,40,.18) 28%, rgba(180,20,40,0) 70%);
+        radial-gradient(circle, rgba(255,255,255,.12) 0%, rgba(180,20,40,.16) 30%, rgba(180,20,40,0) 72%);
       filter:blur(18px);
-      animation:glowBreath 3.5s ease-in-out infinite;
+      animation:genexGlow 3.6s ease-in-out infinite;
     }
 
-    @keyframes glowBreath{
-      0%,100%{ transform:scale(.94); opacity:.78; }
+    .intro-logo-wrap::after{
+      content:"";
+      position:absolute;
+      width:220px;
+      height:220px;
+      border-radius:50%;
+      border:1px solid rgba(255,255,255,.08);
+      box-shadow:0 0 40px rgba(180,20,40,.10);
+      animation:genexRipple 2.8s ease-out infinite;
+    }
+
+    @keyframes genexGlow{
+      0%,100%{ transform:scale(.95); opacity:.75; }
       50%{ transform:scale(1.08); opacity:1; }
+    }
+
+    @keyframes genexRipple{
+      0%{ transform:scale(.6); opacity:0; }
+      35%{ opacity:.7; }
+      100%{ transform:scale(1.5); opacity:0; }
     }
 
     .intro-logo{
@@ -194,7 +170,7 @@
       width:108px;
       height:108px;
       object-fit:contain;
-      filter:drop-shadow(0 0 18px rgba(255,255,255,.20));
+      filter:drop-shadow(0 0 18px rgba(255,255,255,.18));
       z-index:2;
     }
 
@@ -212,15 +188,13 @@
       letter-spacing:.14em;
     }
 
-    /* Background */
     #cinemaBg{
       position:fixed;
       inset:0;
       z-index:0;
       overflow:hidden;
       pointer-events:none;
-      background:
-        linear-gradient(180deg, #05070f 0%, #090d18 100%);
+      background:linear-gradient(180deg, #05070f 0%, #090d18 100%);
     }
 
     #cinemaCanvas{
@@ -301,7 +275,7 @@
       font-size:12px;
       font-weight:800;
       cursor:pointer;
-      transition:background .2s ease, opacity .2s ease;
+      transition:background .2s ease;
     }
 
     .lang-switch button.active{
@@ -783,13 +757,6 @@
   <div class="page-transition" id="pageTransition"></div>
 
   <div class="genex-intro" id="genexIntro">
-    <div class="intro-rings">
-      <span></span>
-      <span></span>
-      <span></span>
-      <span></span>
-    </div>
-
     <div class="intro-core">
       <div class="intro-logo-wrap">
         <img class="intro-logo" src="./assets/logo.png" alt="GENEX Logo">
@@ -1196,7 +1163,6 @@
 
       applyLanguage(localStorage.getItem("genex_lang") || "ar");
 
-      // Intro
       const intro = document.getElementById("genexIntro");
       const introSeen = sessionStorage.getItem("genex_intro_seen");
       if (introSeen) {
@@ -1205,10 +1171,9 @@
         setTimeout(() => {
           intro.classList.add("hidden");
           sessionStorage.setItem("genex_intro_seen", "1");
-        }, 2600);
+        }, 2400);
       }
 
-      // Page transition
       const transition = document.getElementById("pageTransition");
       document.querySelectorAll('a[href]').forEach((link) => {
         const href = link.getAttribute('href');
@@ -1228,9 +1193,9 @@
         });
       });
 
-      // Liquid cinematic background + ripple from logo center
       const canvas = document.getElementById("cinemaCanvas");
       const ctx = canvas.getContext("2d");
+
       let w = 0;
       let h = 0;
       let dpr = Math.min(window.devicePixelRatio || 1, 2);
@@ -1277,16 +1242,6 @@
         base.addColorStop(0, "#05070f");
         base.addColorStop(1, "#090d18");
         ctx.fillStyle = base;
-        ctx.fillRect(0, 0, w, h);
-
-        const vignette = ctx.createRadialGradient(
-          w * 0.5, h * 0.45, 40,
-          w * 0.5, h * 0.45, Math.max(w, h) * 0.76
-        );
-        vignette.addColorStop(0, "rgba(255,255,255,0.018)");
-        vignette.addColorStop(0.55, "rgba(20,10,16,0.08)");
-        vignette.addColorStop(1, "rgba(0,0,0,0.42)");
-        ctx.fillStyle = vignette;
         ctx.fillRect(0, 0, w, h);
       }
 
@@ -1349,13 +1304,6 @@
           ctx.stroke();
         }
 
-        const centerGlow = ctx.createRadialGradient(cx, cy, 0, cx, cy, Math.min(w, h) * 0.22);
-        centerGlow.addColorStop(0, "rgba(255,255,255,0.048)");
-        centerGlow.addColorStop(0.35, "rgba(180,20,40,0.042)");
-        centerGlow.addColorStop(1, "rgba(0,0,0,0)");
-        ctx.fillStyle = centerGlow;
-        ctx.fillRect(0, 0, w, h);
-
         ctx.restore();
       }
 
@@ -1414,7 +1362,6 @@
       }
 
       window.addEventListener("resize", resize);
-
       window.addEventListener("mousemove", (e) => {
         targetMouse.x = e.clientX / w;
         targetMouse.y = e.clientY / h;
