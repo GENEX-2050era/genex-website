@@ -64,6 +64,7 @@
       position:relative;
       overflow-x:hidden;
     }
+    <div id="genex-bg"></div>
 
     a{
       text-decoration:none;
@@ -113,10 +114,47 @@
 
     .topbar-inner{
   min-height:82px;
-  display:grid;
-  grid-template-columns:1fr auto 1fr;
+  display:flex;
   align-items:center;
+  justify-content:space-between;
   gap:14px;
+}
+    .brand{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  font-weight:900;
+  letter-spacing:.18em;
+}
+
+.topbar-actions{
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+
+.lang-switch{
+  display:flex;
+  gap:6px;
+  padding:4px;
+  border-radius:16px;
+  border:1px solid rgba(255,255,255,.12);
+  background:rgba(255,255,255,.05);
+}
+
+.lang-switch button{
+  border:none;
+  background:transparent;
+  color:#fff;
+  padding:8px 12px;
+  border-radius:12px;
+  font-size:12px;
+  font-weight:800;
+  cursor:pointer;
+}
+
+.lang-switch button.active{
+  background:rgba(255,255,255,.14);
 }
 
 .brand{
