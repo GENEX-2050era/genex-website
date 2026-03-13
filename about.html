@@ -10,43 +10,45 @@
   <meta name="author" content="GENEX" />
   <meta name="robots" content="index, follow" />
   <link rel="canonical" href="https://genex-era.com/about.html" />
+
   <meta property="og:title" content="عن GENEX | أنظمة الذكاء الاصطناعي والأتمتة المتقدمة" />
   <meta property="og:description" content="GENEX شركة تقنية تبني أنظمة ذكاء اصطناعي مستقلة، منصات أتمتة ذكية، وبنية تشغيلية رقمية متقدمة." />
   <meta property="og:url" content="https://genex-era.com/about.html" />
   <meta property="og:type" content="website" />
   <meta property="og:image" content="https://genex-era.com/assets/logo.png" />
 
-  <link rel="stylesheet" href="./assets/styles.css?v=300" />
+  <link rel="stylesheet" href="./assets/styles.css?v=400" />
 
   <style>
     :root{
-      --bg:#f5f5f7;
-      --bg2:#ffffff;
-      --text:#111111;
-      --muted:rgba(17,17,17,.66);
-      --stroke:rgba(17,17,17,.10);
-      --stroke-strong:rgba(17,17,17,.16);
-      --glass:rgba(255,255,255,.58);
-      --glass-2:rgba(255,255,255,.38);
-      --glass-3:rgba(255,255,255,.74);
-      --crimson:#8f1129;
-      --crimson-soft:rgba(143,17,41,.16);
-      --crimson-faint:rgba(143,17,41,.08);
-      --shadow:0 20px 60px rgba(15,20,30,.10);
+      --bg:#05070f;
+      --bg2:#090d18;
+      --panel:rgba(255,255,255,.05);
+      --panel-2:rgba(255,255,255,.03);
+      --panel-3:rgba(255,255,255,.08);
+      --stroke:rgba(255,255,255,.10);
+      --stroke-strong:rgba(255,255,255,.16);
+      --text:#f5f7ff;
+      --muted:rgba(245,247,255,.74);
+      --crimson:#b41428;
+      --crimson-soft:rgba(180,20,40,.18);
+      --crimson-strong:rgba(180,20,40,.32);
+      --white-glow:rgba(255,255,255,.12);
+      --shadow:0 24px 70px rgba(0,0,0,.28);
       --radius:28px;
       --max:1220px;
     }
 
-    *{box-sizing:border-box}
+    *{ box-sizing:border-box; }
 
     html,body{
       margin:0;
       padding:0;
       min-height:100%;
       background:
-        radial-gradient(circle at 20% 10%, rgba(143,17,41,.05), transparent 24%),
-        radial-gradient(circle at 80% 10%, rgba(0,0,0,.03), transparent 18%),
-        linear-gradient(180deg,var(--bg),var(--bg2));
+        radial-gradient(circle at 20% 10%, rgba(180,20,40,.08), transparent 26%),
+        radial-gradient(circle at 80% 14%, rgba(255,255,255,.03), transparent 16%),
+        linear-gradient(180deg, var(--bg), var(--bg2));
       color:var(--text);
       font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
       scroll-behavior:smooth;
@@ -62,15 +64,43 @@
       text-decoration:none;
     }
 
-    #sceneWrap{
+    /* الخلفية الخلفية */
+    #backFxWrap{
       position:fixed;
       inset:0;
       z-index:0;
       pointer-events:none;
       overflow:hidden;
       background:
-        radial-gradient(circle at 50% 40%, rgba(143,17,41,.10), transparent 30%),
-        linear-gradient(180deg,#f5f5f7 0%, #ffffff 100%);
+        radial-gradient(circle at 50% 40%, rgba(180,20,40,.08), transparent 24%),
+        linear-gradient(180deg,#05070f 0%,#090d18 100%);
+    }
+
+    #backFxCanvas{
+      position:absolute;
+      inset:0;
+      width:100%;
+      height:100%;
+      display:block;
+    }
+
+    .back-vignette{
+      position:absolute;
+      inset:0;
+      background:
+        radial-gradient(circle at center, rgba(255,255,255,.02), transparent 22%),
+        radial-gradient(circle at center, rgba(180,20,40,.06), transparent 42%),
+        radial-gradient(circle at center, rgba(0,0,0,0), rgba(0,0,0,.58) 92%);
+      mix-blend-mode:screen;
+    }
+
+    /* المشهد */
+    #sceneWrap{
+      position:fixed;
+      inset:0;
+      z-index:1;
+      pointer-events:none;
+      overflow:hidden;
     }
 
     #webglCanvas{
@@ -81,22 +111,31 @@
       display:block;
     }
 
-    .scene-glow{
+    /* خلفية أمام المشهد شفافة */
+    #frontFxWrap{
+      position:fixed;
+      inset:0;
+      z-index:2;
+      pointer-events:none;
+      overflow:hidden;
+      mix-blend-mode:screen;
+    }
+
+    #frontFxCanvas{
+      position:absolute;
+      inset:0;
+      width:100%;
+      height:100%;
+      display:block;
+      opacity:.78;
+    }
+
+    .front-fade{
       position:absolute;
       inset:0;
       background:
-        radial-gradient(circle at 50% 42%, rgba(143,17,41,.10), transparent 24%),
-        radial-gradient(circle at 50% 46%, rgba(255,255,255,.35), transparent 38%),
-        radial-gradient(circle at 50% 50%, rgba(255,255,255,0), rgba(255,255,255,.78) 100%);
-      mix-blend-mode:multiply;
-    }
-
-    .scene-grain{
-      position:absolute;
-      inset:0;
-      opacity:.03;
-      background-image:radial-gradient(rgba(0,0,0,.9) .5px, transparent .5px);
-      background-size:4px 4px;
+        radial-gradient(circle at 50% 42%, rgba(255,255,255,.03), transparent 24%),
+        linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,0));
     }
 
     .page-transition{
@@ -107,7 +146,7 @@
       opacity:0;
       transform:scale(1.02);
       background:
-        radial-gradient(circle at center, rgba(255,255,255,.78), rgba(143,17,41,.18), rgba(255,255,255,.98) 74%);
+        radial-gradient(circle at center, rgba(255,255,255,.08), rgba(180,20,40,.12), rgba(5,7,15,.98) 74%);
       transition:opacity .5s ease, transform .7s ease;
     }
 
@@ -125,9 +164,9 @@
       align-items:center;
       justify-content:center;
       background:
-        radial-gradient(circle at center, rgba(255,255,255,.7), transparent 22%),
-        radial-gradient(circle at center, rgba(143,17,41,.12), transparent 40%),
-        linear-gradient(180deg, rgba(245,245,247,.98), rgba(255,255,255,.98));
+        radial-gradient(circle at center, rgba(255,255,255,.04), transparent 24%),
+        radial-gradient(circle at center, rgba(180,20,40,.08), transparent 42%),
+        linear-gradient(180deg, rgba(5,7,15,.985), rgba(9,13,24,.985));
       transition:opacity .9s ease, visibility .9s ease;
       overflow:hidden;
     }
@@ -164,15 +203,15 @@
 
     .intro-logo-wrap::before{
       inset:-18%;
-      background:radial-gradient(circle, rgba(143,17,41,.14) 0%, rgba(143,17,41,.08) 34%, rgba(143,17,41,0) 74%);
+      background:radial-gradient(circle, rgba(255,255,255,.12) 0%, rgba(180,20,40,.16) 32%, rgba(180,20,40,0) 74%);
       filter:blur(18px);
       animation:introGlow 3.2s ease-in-out infinite;
     }
 
     .intro-logo-wrap::after{
       inset:0;
-      border:1px solid rgba(17,17,17,.08);
-      box-shadow:0 0 42px rgba(143,17,41,.08);
+      border:1px solid rgba(255,255,255,.08);
+      box-shadow:0 0 42px rgba(180,20,40,.08);
       animation:introRing 2.8s ease-out infinite;
     }
 
@@ -191,7 +230,7 @@
       width:112px;
       height:112px;
       object-fit:contain;
-      filter:drop-shadow(0 0 16px rgba(143,17,41,.12));
+      filter:drop-shadow(0 0 16px rgba(180,20,40,.12));
       position:relative;
       z-index:2;
     }
@@ -201,6 +240,7 @@
       font-weight:900;
       letter-spacing:.34em;
       margin-inline-start:.34em;
+      text-shadow:0 0 26px rgba(255,255,255,.08);
     }
 
     .intro-sub{
@@ -211,7 +251,7 @@
 
     .about-shell{
       position:relative;
-      z-index:2;
+      z-index:5;
     }
 
     .container{
@@ -223,9 +263,9 @@
       position:sticky;
       top:0;
       z-index:120;
-      background:rgba(255,255,255,.55);
-      border-bottom:1px solid rgba(17,17,17,.08);
       backdrop-filter:blur(18px);
+      background:rgba(7,9,16,.62);
+      border-bottom:1px solid rgba(255,255,255,.08);
     }
 
     .topbar-inner{
@@ -249,6 +289,7 @@
       width:44px;
       height:44px;
       object-fit:contain;
+      filter:drop-shadow(0 0 12px rgba(255,255,255,.18));
     }
 
     .topbar-actions{
@@ -262,15 +303,16 @@
       gap:6px;
       padding:4px;
       border-radius:16px;
-      border:1px solid rgba(17,17,17,.08);
-      background:rgba(255,255,255,.6);
+      border:1px solid rgba(255,255,255,.12);
+      background:rgba(255,255,255,.05);
+      box-shadow:0 8px 24px rgba(0,0,0,.18);
       backdrop-filter:blur(12px);
     }
 
     .lang-switch button{
       border:none;
       background:transparent;
-      color:#111;
+      color:#fff;
       padding:8px 12px;
       border-radius:12px;
       font-size:12px;
@@ -279,8 +321,8 @@
     }
 
     .lang-switch button.active{
-      background:rgba(143,17,41,.10);
-      color:var(--crimson);
+      background:rgba(255,255,255,.14);
+      color:#fff;
     }
 
     .back-btn{
@@ -290,8 +332,9 @@
       min-width:150px;
       padding:12px 16px;
       border-radius:16px;
-      border:1px solid rgba(17,17,17,.08);
-      background:rgba(255,255,255,.62);
+      border:1px solid rgba(255,255,255,.12);
+      background:rgba(255,255,255,.06);
+      color:#fff;
       font-weight:800;
       backdrop-filter:blur(12px);
       transition:transform .2s ease, background .2s ease;
@@ -299,7 +342,7 @@
 
     .back-btn:hover{
       transform:translateY(-2px);
-      background:#fff;
+      background:rgba(255,255,255,.10);
     }
 
     .about-page{
@@ -309,7 +352,7 @@
     .panel{
       border:1px solid var(--stroke);
       border-radius:32px;
-      background:linear-gradient(180deg, rgba(255,255,255,.72), rgba(255,255,255,.42));
+      background:linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.03));
       backdrop-filter:blur(18px);
       box-shadow:var(--shadow);
     }
@@ -327,13 +370,12 @@
     .hero::before{
       content:"";
       position:absolute;
-      inset:auto;
       left:50%;
       top:50%;
       width:700px;
       height:700px;
       transform:translate(-50%,-50%);
-      background:radial-gradient(circle, rgba(143,17,41,.08), transparent 66%);
+      background:radial-gradient(circle, rgba(180,20,40,.08), transparent 66%);
       pointer-events:none;
     }
 
@@ -352,9 +394,9 @@
       align-items:center;
       gap:8px;
       padding:10px 14px;
-      border:1px solid rgba(17,17,17,.08);
+      border:1px solid rgba(255,255,255,.10);
       border-radius:999px;
-      background:rgba(255,255,255,.58);
+      background:rgba(255,255,255,.05);
       color:var(--muted);
       font-size:13px;
       font-weight:700;
@@ -388,7 +430,7 @@
       text-align:center;
       border-radius:30px;
       border:1px solid var(--stroke-strong);
-      background:linear-gradient(180deg, rgba(255,255,255,.82), rgba(255,255,255,.46));
+      background:linear-gradient(180deg, rgba(255,255,255,.10), rgba(255,255,255,.04));
       backdrop-filter:blur(18px);
       position:relative;
       overflow:hidden;
@@ -400,7 +442,7 @@
       position:absolute;
       width:180%;
       height:180%;
-      background:linear-gradient(115deg, transparent 30%, rgba(255,255,255,.25) 50%, transparent 70%);
+      background:linear-gradient(115deg, transparent 30%, rgba(255,255,255,.08) 50%, transparent 70%);
       transform:translateX(-60%) rotate(15deg);
       animation:badgeSweep 8s linear infinite;
     }
@@ -415,6 +457,7 @@
       margin-bottom:22px;
       position:relative;
       z-index:2;
+      filter:drop-shadow(0 0 16px rgba(255,255,255,.12));
     }
 
     .hero-badge strong{
@@ -477,17 +520,17 @@
     .card{
       border:1px solid var(--stroke);
       border-radius:22px;
-      background:rgba(255,255,255,.62);
+      background:rgba(255,255,255,.05);
       backdrop-filter:blur(14px);
       padding:24px 18px;
-      box-shadow:0 12px 34px rgba(16,20,30,.04);
+      box-shadow:0 12px 34px rgba(0,0,0,.08);
       transition:transform .25s ease, background .25s ease;
       transform-style:preserve-3d;
     }
 
     .card:hover{
       transform:translateY(-4px);
-      background:rgba(255,255,255,.84);
+      background:rgba(255,255,255,.08);
     }
 
     .icon{
@@ -496,8 +539,8 @@
       display:grid;
       place-items:center;
       border-radius:18px;
-      background:linear-gradient(180deg, rgba(143,17,41,.10), rgba(255,255,255,.70));
-      border:1px solid rgba(17,17,17,.08);
+      background:linear-gradient(180deg, rgba(180,20,40,.14), rgba(255,255,255,.08));
+      border:1px solid rgba(255,255,255,.10);
       margin-bottom:16px;
       font-size:24px;
     }
@@ -519,8 +562,8 @@
       text-align:center;
       padding:36px 24px;
       background:
-        radial-gradient(circle at 50% 0%, rgba(143,17,41,.10), transparent 45%),
-        linear-gradient(180deg, rgba(255,255,255,.76), rgba(255,255,255,.46));
+        radial-gradient(circle at 50% 0%, rgba(180,20,40,.10), transparent 45%),
+        linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.04));
       transform-style:preserve-3d;
     }
 
@@ -552,7 +595,7 @@
       padding:14px 18px;
       border-radius:18px;
       border:1px solid var(--stroke);
-      background:rgba(255,255,255,.68);
+      background:rgba(255,255,255,.08);
       font-weight:800;
       backdrop-filter:blur(10px);
       transition:transform .22s ease, background .22s ease;
@@ -560,7 +603,7 @@
 
     .cta-btn:hover{
       transform:translateY(-2px);
-      background:#fff;
+      background:rgba(255,255,255,.12);
     }
 
     .footer-note{
@@ -626,10 +669,18 @@
     </div>
   </div>
 
+  <div id="backFxWrap" aria-hidden="true">
+    <canvas id="backFxCanvas"></canvas>
+    <div class="back-vignette"></div>
+  </div>
+
   <div id="sceneWrap" aria-hidden="true">
     <canvas id="webglCanvas"></canvas>
-    <div class="scene-glow"></div>
-    <div class="scene-grain"></div>
+  </div>
+
+  <div id="frontFxWrap" aria-hidden="true">
+    <canvas id="frontFxCanvas"></canvas>
+    <div class="front-fade"></div>
   </div>
 
   <div class="about-shell">
@@ -652,7 +703,7 @@
 
     <main class="about-page">
       <div class="container">
-        <section class="hero panel tilt-card scene-stop" data-scene="0">
+        <section class="hero panel tilt-card">
           <div class="hero-grid">
             <div>
               <div class="eyebrow" data-i18n="eyebrow">ABOUT GENEX • المستقبل يبدأ من هنا</div>
@@ -672,7 +723,7 @@
           </div>
         </section>
 
-        <section class="section panel tilt-card scene-stop" data-scene="1">
+        <section class="section panel tilt-card">
           <div class="section-title">
             <h2 data-i18n="who_title">من هي GENEX</h2>
             <p data-i18n="who_sub">هوية واضحة لشركة تقنية تركز على الذكاء الاصطناعي التطبيقي، الأتمتة المتقدمة، والأنظمة المستقبلية.</p>
@@ -684,7 +735,7 @@
           </div>
         </section>
 
-        <section class="section panel tilt-card scene-stop" data-scene="2">
+        <section class="section panel tilt-card">
           <div class="section-title">
             <h2 data-i18n="builds_title">ماذا تطور GENEX</h2>
             <p data-i18n="builds_sub">مجموعة من التقنيات المصممة لتكون أساسًا لمنظومات التشغيل الذكية في المستقبل.</p>
@@ -714,7 +765,7 @@
           </div>
         </section>
 
-        <section class="cta panel tilt-card scene-stop" data-scene="3">
+        <section class="cta panel tilt-card">
           <h2 data-i18n="cta_title">GENEX ليست مجرد موقع تعريفي</h2>
           <p data-i18n="cta_desc">نحن نبني رؤية تقنية قابلة للتحول إلى منتجات، حلول، ومنظومات تشغيل ذكية حقيقية. إذا كنت تبحث عن شريك يفكر بالمستقبل وينفذ على أرض الواقع، فهذه هي بداية الطريق.</p>
 
@@ -738,4 +789,488 @@
         title: "عن GENEX | أنظمة الذكاء الاصطناعي والأتمتة المتقدمة",
         back_home: "العودة للرئيسية",
         eyebrow: "ABOUT GENEX • المستقبل يبدأ من هنا",
-        hero_title: "نبن
+        hero_title: "نبني البنية الذكية للعالم القادم",
+        hero_desc: "GENEX شركة تقنية متخصصة في تطوير أنظمة الذكاء الاصطناعي المستقلة، ومنصات الأتمتة الذكية، والبنية التشغيلية الرقمية التي تمكّن الشركات والمنشآت والأنظمة من العمل بسرعة أعلى، ودقة أكبر، واستقلالية أكثر في اتخاذ القرار والتنفيذ.",
+        hero_badge: "Autonomous AI Systems<br>Digital Infrastructure • Intelligent Operations",
+        who_title: "من هي GENEX",
+        who_sub: "هوية واضحة لشركة تقنية تركز على الذكاء الاصطناعي التطبيقي، الأتمتة المتقدمة، والأنظمة المستقبلية.",
+        who_p1: "تأسست GENEX برؤية واضحة: بناء أنظمة تقنية لا تكتفي بدعم العمليات، بل تصبح جزءًا من محركها الأساسي. نحن نعمل على تطوير حلول ذكاء اصطناعي متقدمة تساعد المؤسسات على الانتقال من الإجراءات التقليدية إلى بيئات تشغيل ذكية تعتمد على التحليل، الأتمتة، والتنفيذ المستقل.",
+        who_p2: "لا تركز GENEX على تقديم أدوات رقمية عامة فقط، بل على بناء بنية تشغيلية ذكية قادرة على خدمة الأعمال الحقيقية، وتحويل الخدمات إلى منظومات عملية قابلة للتوسع، وأكثر قابلية للقياس والتحكم.",
+        builds_title: "ماذا تطور GENEX",
+        builds_sub: "مجموعة من التقنيات المصممة لتكون أساسًا لمنظومات التشغيل الذكية في المستقبل.",
+        build_1_title: "أنظمة ذكاء اصطناعي مستقلة",
+        build_1_desc: "حلول ذكاء اصطناعي قادرة على فهم البيانات، تحليل السياق، واتخاذ قرارات تشغيلية مدروسة في بيئات عمل متنوعة.",
+        build_2_title: "منصات أتمتة ذكية",
+        build_2_desc: "تحويل العمليات اليومية والإجراءات المتكررة إلى تدفقات عمل ذكية أكثر سرعة وثباتًا وقدرة على التوسع.",
+        build_3_title: "بنية تشغيلية رقمية",
+        build_3_desc: "تصميم هيكل رقمي متكامل يربط بين البيانات والقرارات والتنفيذ في طبقة تشغيلية واحدة.",
+        build_4_title: "ذكاء بيانات متقدم",
+        build_4_desc: "توظيف التحليلات المتقدمة لاستخراج مؤشرات تشغيلية دقيقة تساعد في التنبؤ والتحسين المستمر.",
+        cta_title: "GENEX ليست مجرد موقع تعريفي",
+        cta_desc: "نحن نبني رؤية تقنية قابلة للتحول إلى منتجات، حلول، ومنظومات تشغيل ذكية حقيقية. إذا كنت تبحث عن شريك يفكر بالمستقبل وينفذ على أرض الواقع، فهذه هي بداية الطريق.",
+        cta_btn_1: "ابدأ مشروعك",
+        cta_btn_2: "استكشف الخدمات",
+        cta_btn_3: "تواصل مع GENEX"
+      },
+      en: {
+        title: "About GENEX | Advanced AI Systems & Automation",
+        back_home: "Back to Home",
+        eyebrow: "ABOUT GENEX • The Future Starts Here",
+        hero_title: "We Build the Intelligent Infrastructure of the Next Era",
+        hero_desc: "GENEX is a technology company focused on developing autonomous AI systems, intelligent automation platforms, and digital operational infrastructure that enables businesses, facilities, and systems to operate with greater speed, stronger precision, and higher execution autonomy.",
+        hero_badge: "Autonomous AI Systems<br>Digital Infrastructure • Intelligent Operations",
+        who_title: "Who is GENEX",
+        who_sub: "A clear technology identity focused on applied AI, advanced automation, and future systems.",
+        who_p1: "GENEX was founded on a clear vision: building technologies that do not merely support operations, but become part of their core engine. We develop advanced AI solutions that help organizations move from traditional procedures into intelligent operating environments driven by analysis, automation, and autonomous execution.",
+        who_p2: "GENEX is not focused on generic digital tools alone. It is focused on building intelligent operational infrastructure capable of serving real business environments and transforming services into scalable, measurable, and controllable intelligent systems.",
+        builds_title: "What GENEX Builds",
+        builds_sub: "A set of technologies designed to become the foundation of intelligent operational systems in the future.",
+        build_1_title: "Autonomous AI Systems",
+        build_1_desc: "Advanced AI systems capable of understanding data, analyzing context, and making informed operational decisions across different environments.",
+        build_2_title: "Intelligent Automation Platforms",
+        build_2_desc: "Transforming repetitive procedures and daily workflows into intelligent, faster, more stable, and scalable execution flows.",
+        build_3_title: "Digital Operational Infrastructure",
+        build_3_desc: "Designing an integrated digital structure that connects data, decisions, and execution in one operational layer.",
+        build_4_title: "Advanced Data Intelligence",
+        build_4_desc: "Using advanced analytics to extract operational signals that support prediction, optimization, and continuous improvement.",
+        cta_title: "GENEX is More Than a Showcase Website",
+        cta_desc: "We are building a technological vision that can evolve into products, solutions, and real intelligent operational systems. If you are looking for a future-focused partner that executes in reality, this is where the journey begins.",
+        cta_btn_1: "Start Your Project",
+        cta_btn_2: "Explore Services",
+        cta_btn_3: "Contact GENEX"
+      }
+    };
+
+    function applyLanguage(lang) {
+      document.documentElement.lang = lang;
+      document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+      localStorage.setItem('genex_lang', lang);
+      const dict = translations[lang];
+      if (!dict) return;
+
+      document.title = dict.title;
+      document.querySelectorAll('[data-i18n]').forEach((el) => {
+        const key = el.getAttribute('data-i18n');
+        if (dict[key]) {
+          if (key === 'hero_badge') el.innerHTML = dict[key];
+          else el.textContent = dict[key];
+        }
+      });
+
+      document.querySelectorAll('.lang-switch button').forEach((btn) => {
+        btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
+      });
+    }
+
+    document.querySelectorAll('.lang-switch button').forEach((btn) => {
+      btn.addEventListener('click', () => applyLanguage(btn.getAttribute('data-lang')));
+    });
+
+    applyLanguage(localStorage.getItem('genex_lang') || 'ar');
+
+    const intro = document.getElementById('genexIntro');
+    const introSeen = sessionStorage.getItem('genex_intro_seen');
+    if (introSeen) intro.classList.add('hidden');
+    else {
+      setTimeout(() => {
+        intro.classList.add('hidden');
+        sessionStorage.setItem('genex_intro_seen', '1');
+      }, 2400);
+    }
+
+    const transition = document.getElementById('pageTransition');
+    document.querySelectorAll('a[href]').forEach((link) => {
+      const href = link.getAttribute('href');
+      if (!href || href.startsWith('#') || href.startsWith('mailto:') || href.startsWith('tel:') || link.hasAttribute('target')) return;
+      link.addEventListener('click', function (e) {
+        e.preventDefault();
+        transition.classList.add('active');
+        setTimeout(() => {
+          window.location.href = this.getAttribute('href');
+        }, 520);
+      });
+    });
+
+    document.querySelectorAll('.tilt-card').forEach((el) => {
+      el.addEventListener('mousemove', (e) => {
+        const rect = el.getBoundingClientRect();
+        const px = (e.clientX - rect.left) / rect.width - 0.5;
+        const py = (e.clientY - rect.top) / rect.height - 0.5;
+        el.style.transform = `perspective(1400px) rotateY(${px * 8}deg) rotateX(${py * -8}deg) translateZ(0)`;
+      });
+      el.addEventListener('mouseleave', () => {
+        el.style.transform = 'perspective(1400px) rotateY(0deg) rotateX(0deg)';
+      });
+    });
+
+    /* الخلفية الخلفية 2D */
+    const backCanvas = document.getElementById('backFxCanvas');
+    const backCtx = backCanvas.getContext('2d');
+
+    /* الخلفية الأمامية 2D */
+    const frontCanvas = document.getElementById('frontFxCanvas');
+    const frontCtx = frontCanvas.getContext('2d');
+
+    let w = window.innerWidth;
+    let h = window.innerHeight;
+    let dpr = Math.min(window.devicePixelRatio || 1, 2);
+    let mouse = { x: 0.5, y: 0.5 };
+    let targetMouse = { x: 0.5, y: 0.5 };
+    let scrollTarget = 0;
+    let scrollCurrent = 0;
+
+    function resize2D() {
+      w = window.innerWidth;
+      h = window.innerHeight;
+
+      [backCanvas, frontCanvas].forEach((canvas) => {
+        canvas.width = Math.floor(w * dpr);
+        canvas.height = Math.floor(h * dpr);
+        canvas.style.width = w + 'px';
+        canvas.style.height = h + 'px';
+      });
+
+      backCtx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      frontCtx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    }
+
+    window.addEventListener('resize', resize2D);
+
+    window.addEventListener('mousemove', (e) => {
+      targetMouse.x = e.clientX / w;
+      targetMouse.y = e.clientY / h;
+    }, { passive: true });
+
+    window.addEventListener('scroll', () => {
+      const maxScroll = Math.max(document.body.scrollHeight - window.innerHeight, 1);
+      scrollTarget = window.scrollY / maxScroll;
+    }, { passive: true });
+
+    /* Three.js المشهد */
+    const renderer = new THREE.WebGLRenderer({
+      canvas: document.getElementById('webglCanvas'),
+      antialias: true,
+      alpha: true
+    });
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.setSize(window.innerWidth, window.innerHeight);
+
+    const scene = new THREE.Scene();
+    scene.fog = new THREE.FogExp2(0x05070f, 0.075);
+
+    const camera = new THREE.PerspectiveCamera(40, window.innerWidth / window.innerHeight, 0.1, 100);
+    camera.position.set(0, 0, 12);
+
+    const world = new THREE.Group();
+    scene.add(world);
+
+    const ambient = new THREE.AmbientLight(0xffffff, 0.92);
+    scene.add(ambient);
+
+    const crimsonLight = new THREE.PointLight(0xb41428, 18, 36, 2);
+    crimsonLight.position.set(2.8, 2.2, 5.2);
+    scene.add(crimsonLight);
+
+    const whiteLight = new THREE.PointLight(0xffffff, 8, 24, 2);
+    whiteLight.position.set(-2.0, 1.6, 4.8);
+    scene.add(whiteLight);
+
+    function phys(color, transmission = 0.18, opacity = 0.85) {
+      return new THREE.MeshPhysicalMaterial({
+        color,
+        roughness: 0.12,
+        metalness: 0.12,
+        transmission,
+        transparent: true,
+        opacity,
+        clearcoat: 1,
+        clearcoatRoughness: 0.10
+      });
+    }
+
+    const objects = [];
+    const shapes = new THREE.Group();
+    world.add(shapes);
+
+    function addShape(mesh, opts) {
+      mesh.position.set(opts.x, opts.y, opts.z);
+      mesh.rotation.set(opts.rx, opts.ry, opts.rz);
+      mesh.userData = { ...opts };
+      shapes.add(mesh);
+      objects.push(mesh);
+    }
+
+    addShape(new THREE.Mesh(new THREE.TorusKnotGeometry(0.85, 0.20, 180, 24), phys(0xb41428, 0.06, 0.86)), {
+      x:-3.1, y:1.8, z:-0.5, rx:0.4, ry:0.1, rz:0.2, speedA:0.8, speedB:0.6
+    });
+
+    addShape(new THREE.Mesh(new THREE.IcosahedronGeometry(0.9, 1), phys(0xffffff, 0.30, 0.58)), {
+      x:-0.2, y:2.2, z:-1.4, rx:0.2, ry:0.4, rz:0.0, speedA:0.65, speedB:0.55
+    });
+
+    addShape(new THREE.Mesh(new THREE.TorusGeometry(1.0, 0.17, 26, 160), phys(0xb41428, 0.12, 0.80)), {
+      x:3.0, y:1.3, z:-0.8, rx:1.0, ry:0.2, rz:0.0, speedA:0.9, speedB:0.45
+    });
+
+    addShape(new THREE.Mesh(new THREE.OctahedronGeometry(0.8, 0), phys(0xffffff, 0.24, 0.50)), {
+      x:-3.4, y:-1.0, z:-1.8, rx:0.2, ry:0.6, rz:0.3, speedA:0.75, speedB:0.7
+    });
+
+    addShape(new THREE.Mesh(new THREE.CylinderGeometry(0.85, 0.85, 0.25, 6, 1, true), phys(0xb41428, 0.14, 0.78)), {
+      x:-0.3, y:-1.0, z:-0.2, rx:1.2, ry:0.5, rz:0.2, speedA:0.55, speedB:0.45
+    });
+
+    addShape(new THREE.Mesh(new THREE.TorusKnotGeometry(0.62, 0.18, 150, 22, 3, 5), phys(0xffffff, 0.18, 0.56)), {
+      x:2.8, y:-1.1, z:-1.1, rx:0.2, ry:0.2, rz:0.8, speedA:0.65, speedB:0.8
+    });
+
+    const particleCount = 1800;
+    const particlePositions = new Float32Array(particleCount * 3);
+    const particleColors = new Float32Array(particleCount * 3);
+
+    for (let i = 0; i < particleCount; i++) {
+      const radius = 3.2 + Math.random() * 7.0;
+      const theta = Math.random() * Math.PI * 2;
+      const phi = Math.acos((Math.random() * 2) - 1);
+
+      particlePositions[i * 3] = radius * Math.sin(phi) * Math.cos(theta);
+      particlePositions[i * 3 + 1] = radius * Math.sin(phi) * Math.sin(theta) * 0.66;
+      particlePositions[i * 3 + 2] = radius * Math.cos(phi);
+
+      const crimson = i % 4 === 0;
+      particleColors[i * 3] = crimson ? 0.70 : 1.0;
+      particleColors[i * 3 + 1] = crimson ? 0.08 : 1.0;
+      particleColors[i * 3 + 2] = crimson ? 0.16 : 1.0;
+    }
+
+    const particleGeo = new THREE.BufferGeometry();
+    particleGeo.setAttribute('position', new THREE.BufferAttribute(particlePositions, 3));
+    particleGeo.setAttribute('color', new THREE.BufferAttribute(particleColors, 3));
+
+    const particleMat = new THREE.PointsMaterial({
+      size: 0.032,
+      vertexColors: true,
+      transparent: true,
+      opacity: 0.78,
+      depthWrite: false,
+      blending: THREE.AdditiveBlending
+    });
+
+    const particles = new THREE.Points(particleGeo, particleMat);
+    scene.add(particles);
+
+    const rings = [];
+    for (let i = 0; i < 5; i++) {
+      const ring = new THREE.Mesh(
+        new THREE.TorusGeometry(1.8 + i * 0.28, 0.012, 8, 220),
+        new THREE.MeshBasicMaterial({
+          color: i % 2 === 0 ? 0xb41428 : 0xffffff,
+          transparent: true,
+          opacity: i % 2 === 0 ? 0.12 : 0.08
+        })
+      );
+      ring.rotation.x = Math.PI / 2.4;
+      ring.position.z = -2.8 - i * 0.14;
+      ring.userData.offset = i * 0.42;
+      world.add(ring);
+      rings.push(ring);
+    }
+
+    function resizeWebGL() {
+      camera.aspect = window.innerWidth / window.innerHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(window.innerWidth, window.innerHeight);
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    }
+
+    window.addEventListener('resize', resizeWebGL);
+
+    const clock = new THREE.Clock();
+
+    function drawBackFx(t) {
+      backCtx.clearRect(0, 0, w, h);
+
+      const base = backCtx.createLinearGradient(0, 0, 0, h);
+      base.addColorStop(0, '#05070f');
+      base.addColorStop(1, '#090d18');
+      backCtx.fillStyle = base;
+      backCtx.fillRect(0, 0, w, h);
+
+      const orbs = [
+        { x: 0.22, y: 0.26, r: 0.30, a: 0.24, dx: 0.8, dy: 0.5, c1: 'rgba(180,20,40,ALPHA)', c2: 'rgba(255,255,255,ALPHA)' },
+        { x: 0.74, y: 0.22, r: 0.24, a: 0.14, dx: -0.6, dy: 0.4, c1: 'rgba(255,255,255,ALPHA)', c2: 'rgba(180,20,40,ALPHA)' },
+        { x: 0.52, y: 0.72, r: 0.34, a: 0.20, dx: 0.45, dy: -0.4, c1: 'rgba(180,20,40,ALPHA)', c2: 'rgba(255,255,255,ALPHA)' }
+      ];
+
+      backCtx.save();
+      backCtx.globalCompositeOperation = 'screen';
+      backCtx.filter = 'blur(42px) saturate(140%)';
+
+      orbs.forEach((o, i) => {
+        const cx = w * o.x + Math.sin(t * o.dx + i) * w * 0.05 + (mouse.x - 0.5) * 80;
+        const cy = h * o.y + Math.cos(t * o.dy + i) * h * 0.05 + (mouse.y - 0.5) * 60 + scrollCurrent * 140;
+        const r = Math.min(w, h) * o.r;
+        const g = backCtx.createRadialGradient(cx, cy, r * 0.08, cx, cy, r);
+        g.addColorStop(0, o.c2.replace('ALPHA', o.a * 0.85));
+        g.addColorStop(0.32, o.c1.replace('ALPHA', o.a));
+        g.addColorStop(0.72, o.c1.replace('ALPHA', o.a * 0.18));
+        g.addColorStop(1, 'rgba(0,0,0,0)');
+        backCtx.fillStyle = g;
+        backCtx.beginPath();
+        backCtx.arc(cx, cy, r, 0, Math.PI * 2);
+        backCtx.fill();
+      });
+
+      backCtx.restore();
+
+      backCtx.save();
+      backCtx.globalCompositeOperation = 'screen';
+
+      for (let i = 0; i < 7; i++) {
+        const yBase = h * (0.12 + i * 0.12);
+        const shift = Math.sin(t * 0.7 + i * 0.8) * 22;
+        const grad = backCtx.createLinearGradient(0, yBase, w, yBase + shift);
+        grad.addColorStop(0, 'rgba(255,255,255,0)');
+        grad.addColorStop(0.20, 'rgba(255,255,255,0.018)');
+        grad.addColorStop(0.50, 'rgba(180,20,40,0.085)');
+        grad.addColorStop(0.80, 'rgba(255,255,255,0.018)');
+        grad.addColorStop(1, 'rgba(255,255,255,0)');
+
+        backCtx.strokeStyle = grad;
+        backCtx.lineWidth = 1.2;
+        backCtx.beginPath();
+
+        for (let x = 0; x <= w; x += 18) {
+          const y =
+            yBase +
+            Math.sin(x * 0.006 + t * 1.15 + i) * 18 +
+            Math.cos(x * 0.003 + t * 0.74 + i) * 8 +
+            shift +
+            scrollCurrent * 40;
+
+          if (x === 0) backCtx.moveTo(x, y);
+          else backCtx.lineTo(x, y);
+        }
+        backCtx.stroke();
+      }
+
+      backCtx.restore();
+    }
+
+    function drawFrontFx(t) {
+      frontCtx.clearRect(0, 0, w, h);
+
+      frontCtx.save();
+      frontCtx.globalCompositeOperation = 'screen';
+
+      for (let i = 0; i < 3; i++) {
+        const cx = w * (0.2 + i * 0.3) + Math.sin(t * 0.6 + i) * 40;
+        const cy = h * (0.25 + i * 0.18) + Math.cos(t * 0.7 + i) * 30;
+        const r = Math.min(w, h) * (0.18 + i * 0.05);
+
+        const g = frontCtx.createRadialGradient(cx, cy, r * 0.1, cx, cy, r);
+        g.addColorStop(0, 'rgba(255,255,255,0.035)');
+        g.addColorStop(0.45, 'rgba(180,20,40,0.045)');
+        g.addColorStop(1, 'rgba(0,0,0,0)');
+        frontCtx.fillStyle = g;
+        frontCtx.beginPath();
+        frontCtx.arc(cx, cy, r, 0, Math.PI * 2);
+        frontCtx.fill();
+      }
+
+      for (let i = 0; i < 12; i++) {
+        const px = (i / 12) * w + Math.sin(t * 0.4 + i) * 30;
+        const py = h * (0.14 + (i % 6) * 0.12) + Math.cos(t * 0.5 + i) * 10;
+        const length = 140 + (i % 4) * 40;
+
+        const grad = frontCtx.createLinearGradient(px, py, px + length, py);
+        grad.addColorStop(0, 'rgba(255,255,255,0)');
+        grad.addColorStop(0.4, 'rgba(255,255,255,0.05)');
+        grad.addColorStop(0.65, 'rgba(180,20,40,0.08)');
+        grad.addColorStop(1, 'rgba(255,255,255,0)');
+
+        frontCtx.strokeStyle = grad;
+        frontCtx.lineWidth = 1;
+        frontCtx.beginPath();
+        frontCtx.moveTo(px, py);
+        frontCtx.quadraticCurveTo(px + length * 0.45, py - 16, px + length, py + 2);
+        frontCtx.stroke();
+      }
+
+      for (let i = 0; i < 40; i++) {
+        const x = ((i * 97) % w) + Math.sin(t * 0.8 + i) * 20;
+        const y = ((i * 67) % h) + Math.cos(t * 0.6 + i) * 18;
+        const size = i % 5 === 0 ? 2.2 : 1.3;
+
+        frontCtx.beginPath();
+        frontCtx.arc(x, y, size, 0, Math.PI * 2);
+        frontCtx.fillStyle = i % 4 === 0 ? 'rgba(180,20,40,0.18)' : 'rgba(255,255,255,0.18)';
+        frontCtx.fill();
+      }
+
+      frontCtx.restore();
+    }
+
+    function animate() {
+      requestAnimationFrame(animate);
+
+      const t = clock.getElapsedTime();
+      mouse.x += (targetMouse.x - mouse.x) * 0.06;
+      mouse.y += (targetMouse.y - mouse.y) * 0.06;
+      scrollCurrent += (scrollTarget - scrollCurrent) * 0.06;
+
+      drawBackFx(t);
+      drawFrontFx(t);
+
+      camera.position.x = (mouse.x - 0.5) * 1.8;
+      camera.position.y = -((mouse.y - 0.5) * 0.9) - scrollCurrent * 1.2;
+      camera.position.z = 12 - scrollCurrent * 1.2;
+      camera.lookAt(0, 0, 0);
+
+      world.rotation.y = (mouse.x - 0.5) * 0.35 + Math.sin(t * 0.18) * 0.05;
+      world.rotation.x = -((mouse.y - 0.5) * 0.18);
+      world.position.y = -scrollCurrent * 0.7;
+
+      objects.forEach((mesh, i) => {
+        const u = mesh.userData;
+        mesh.position.x = u.x + Math.sin(t * u.speedA + i) * 0.18 + (mouse.x - 0.5) * 0.8;
+        mesh.position.y = u.y + Math.cos(t * u.speedB + i * 0.7) * 0.22 + (mouse.y - 0.5) * 0.4;
+        mesh.rotation.x += 0.002 + (i * 0.0002);
+        mesh.rotation.y += 0.003 + (i * 0.00025);
+        mesh.rotation.z += 0.0012 + (i * 0.00012);
+      });
+
+      rings.forEach((ring, i) => {
+        ring.rotation.z = t * (0.10 + i * 0.02);
+        ring.rotation.y = Math.sin(t * 0.25 + i) * 0.25;
+        const s = 1 + Math.sin(t * 0.9 + ring.userData.offset) * 0.03;
+        ring.scale.set(s, s, s);
+      });
+
+      const pos = particleGeo.attributes.position.array;
+      for (let i = 0; i < particleCount; i++) {
+        const ix = i * 3;
+        const x = pos[ix];
+        const z = pos[ix + 2];
+        pos[ix] = x * Math.cos(0.0007) - z * Math.sin(0.0007);
+        pos[ix + 2] = x * Math.sin(0.0007) + z * Math.cos(0.0007);
+        pos[ix + 1] += Math.sin(t + i * 0.012) * 0.00055;
+      }
+      particleGeo.attributes.position.needsUpdate = true;
+      particles.rotation.y = t * 0.026;
+      particles.rotation.x = (mouse.y - 0.5) * 0.12;
+
+      crimsonLight.position.x = 2.8 + Math.sin(t * 0.8) * 0.8;
+      crimsonLight.position.y = 2.2 + Math.cos(t * 0.85) * 0.5;
+      whiteLight.position.x = -2.0 + Math.cos(t * 0.68) * 0.75;
+      whiteLight.position.y = 1.6 + Math.sin(t * 0.75) * 0.35;
+
+      renderer.render(scene, camera);
+    }
+
+    resize2D();
+    resizeWebGL();
+    animate();
+  </script>
+</body>
+</html>
