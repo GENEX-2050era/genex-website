@@ -3,96 +3,727 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>GENEX | طلب جديد</title>
-  <link rel="stylesheet" href="./assets/styles.css?v=16" />
+
+  <title>اطلب الآن | GENEX</title>
+  <meta name="description" content="أرسل طلبك إلى GENEX لبدء مشروعك في الذكاء الاصطناعي، الأتمتة، أو البنية الرقمية الحديثة." />
+  <meta name="keywords" content="GENEX Request, AI Project, Automation Project, Digital Infrastructure, Contact Request" />
+  <meta name="author" content="GENEX" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://genex-era.com/request.html" />
+
+  <meta property="og:title" content="اطلب الآن | GENEX" />
+  <meta property="og:description" content="ابدأ مشروعك مع GENEX في الذكاء الاصطناعي، الأتمتة، والبنية التشغيلية الرقمية." />
+  <meta property="og:url" content="https://genex-era.com/request.html" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://genex-era.com/assets/logo.png" />
+
+  <link rel="stylesheet" href="./assets/styles.css?v=500" />
+  <link rel="stylesheet" href="./assets/genex-fx.css?v=500" />
+
+  <style>
+    *{box-sizing:border-box}
+
+    html,body{
+      margin:0;
+      padding:0;
+      min-height:100%;
+      color:#f5f7ff;
+      font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
+    }
+
+    a{
+      color:inherit;
+      text-decoration:none;
+    }
+
+    .container{
+      width:min(1220px,92vw);
+      margin:auto;
+    }
+
+    .site-header{
+      position:sticky;
+      top:0;
+      z-index:120;
+      backdrop-filter:blur(18px);
+      background:rgba(7,9,16,.62);
+      border-bottom:1px solid rgba(255,255,255,.08);
+    }
+
+    .site-header-inner{
+      min-height:84px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      font-weight:900;
+      letter-spacing:.18em;
+      white-space:nowrap;
+    }
+
+    .brand img{
+      width:44px;
+      height:44px;
+      object-fit:contain;
+      filter:drop-shadow(0 0 12px rgba(255,255,255,.18));
+    }
+
+    .desktop-nav{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+
+    .desktop-nav a{
+      padding:11px 14px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.08);
+      background:rgba(255,255,255,.03);
+      color:rgba(245,247,255,.90);
+      font-size:14px;
+      font-weight:700;
+      transition:transform .2s ease, background .2s ease, border-color .2s ease;
+      white-space:nowrap;
+    }
+
+    .desktop-nav a:hover,
+    .desktop-nav a.active{
+      transform:translateY(-2px);
+      background:rgba(255,255,255,.08);
+      border-color:rgba(255,255,255,.14);
+    }
+
+    .header-actions{
+      display:flex;
+      align-items:center;
+      gap:10px;
+    }
+
+    .lang-switch{
+      display:flex;
+      gap:6px;
+      padding:4px;
+      border-radius:16px;
+      border:1px solid rgba(255,255,255,.12);
+      background:rgba(255,255,255,.05);
+      backdrop-filter:blur(12px);
+    }
+
+    .lang-switch button{
+      border:none;
+      background:transparent;
+      color:#fff;
+      padding:8px 12px;
+      border-radius:12px;
+      font-size:12px;
+      font-weight:800;
+      cursor:pointer;
+    }
+
+    .lang-switch button.active{
+      background:rgba(255,255,255,.14);
+    }
+
+    .mobile-toggle{
+      display:none;
+      width:46px;
+      height:46px;
+      border:none;
+      border-radius:14px;
+      background:rgba(255,255,255,.06);
+      color:#fff;
+      font-size:20px;
+      border:1px solid rgba(255,255,255,.1);
+      cursor:pointer;
+    }
+
+    .mobile-nav{
+      display:none;
+      padding:0 0 14px;
+    }
+
+    .mobile-nav.open{
+      display:grid;
+      gap:10px;
+    }
+
+    .mobile-nav a{
+      padding:13px 14px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.08);
+      background:rgba(255,255,255,.04);
+      color:rgba(245,247,255,.92);
+      font-weight:700;
+    }
+
+    .page-hero{
+      padding:42px 0 18px;
+    }
+
+    .page-hero-box{
+      min-height:390px;
+      display:grid;
+      grid-template-columns:1.08fr .92fr;
+      gap:24px;
+      align-items:center;
+      padding:38px 30px;
+      position:relative;
+      overflow:hidden;
+    }
+
+    .page-hero-box::before{
+      content:"";
+      position:absolute;
+      left:50%;
+      top:50%;
+      width:620px;
+      height:620px;
+      transform:translate(-50%,-50%);
+      background:radial-gradient(circle, rgba(180,20,40,.08), transparent 66%);
+      pointer-events:none;
+    }
+
+    .eyebrow{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:10px 14px;
+      border:1px solid rgba(255,255,255,.10);
+      border-radius:999px;
+      background:rgba(255,255,255,.05);
+      color:rgba(245,247,255,.74);
+      font-size:13px;
+      font-weight:700;
+      margin-bottom:18px;
+      backdrop-filter:blur(12px);
+    }
+
+    .page-hero h1{
+      margin:0 0 18px;
+      font-size:clamp(38px, 6vw, 72px);
+      line-height:1.03;
+      letter-spacing:-.03em;
+    }
+
+    .page-hero p{
+      margin:0;
+      max-width:760px;
+      color:rgba(245,247,255,.78);
+      font-size:18px;
+      line-height:1.95;
+    }
+
+    .hero-side{
+      min-height:320px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
+
+    .hero-side-box{
+      width:min(100%, 380px);
+      min-height:300px;
+      padding:28px;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      align-items:center;
+      text-align:center;
+      position:relative;
+      overflow:hidden;
+    }
+
+    .hero-side-box::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:
+        radial-gradient(circle at 50% 30%, rgba(255,255,255,.08), transparent 32%),
+        radial-gradient(circle at 50% 70%, rgba(180,20,40,.14), transparent 42%);
+    }
+
+    .hero-side-box img{
+      width:110px;
+      height:110px;
+      object-fit:contain;
+      margin-bottom:18px;
+      z-index:2;
+      position:relative;
+    }
+
+    .hero-side-box strong{
+      z-index:2;
+      position:relative;
+      display:block;
+      margin-bottom:10px;
+      font-size:34px;
+      letter-spacing:.24em;
+      margin-inline-start:.24em;
+    }
+
+    .hero-side-box span{
+      z-index:2;
+      position:relative;
+      color:rgba(245,247,255,.76);
+      line-height:1.9;
+      font-size:15px;
+    }
+
+    .section{
+      margin-top:22px;
+      padding:32px 24px;
+    }
+
+    .section-title{
+      display:flex;
+      align-items:end;
+      justify-content:space-between;
+      gap:16px;
+      margin-bottom:22px;
+    }
+
+    .section-title h2{
+      margin:0;
+      font-size:34px;
+      line-height:1.15;
+    }
+
+    .section-title p{
+      margin:0;
+      color:rgba(245,247,255,.74);
+      max-width:560px;
+      line-height:1.9;
+      font-size:15px;
+    }
+
+    .request-grid{
+      display:grid;
+      grid-template-columns:1.05fr .95fr;
+      gap:18px;
+      align-items:start;
+    }
+
+    .form-card,
+    .info-card{
+      padding:24px 18px;
+    }
+
+    .form-grid{
+      display:grid;
+      grid-template-columns:repeat(2,minmax(0,1fr));
+      gap:14px;
+    }
+
+    .field{
+      display:grid;
+      gap:8px;
+    }
+
+    .field.full{
+      grid-column:1 / -1;
+    }
+
+    .field label{
+      font-size:14px;
+      font-weight:700;
+      color:#fff;
+    }
+
+    .field input,
+    .field select,
+    .field textarea{
+      width:100%;
+      border:none;
+      outline:none;
+      border-radius:16px;
+      background:rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.10);
+      color:#fff;
+      padding:14px 14px;
+      font-size:15px;
+      backdrop-filter:blur(10px);
+    }
+
+    .field input::placeholder,
+    .field textarea::placeholder{
+      color:rgba(245,247,255,.46);
+    }
+
+    .field textarea{
+      min-height:180px;
+      resize:vertical;
+    }
+
+    .submit-row{
+      margin-top:18px;
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+      align-items:center;
+    }
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-width:170px;
+      padding:14px 18px;
+      border-radius:18px;
+      border:1px solid rgba(255,255,255,.12);
+      background:rgba(255,255,255,.08);
+      color:#fff;
+      font-weight:800;
+      transition:transform .2s ease, background .2s ease, border-color .2s ease;
+      backdrop-filter:blur(12px);
+      cursor:pointer;
+    }
+
+    .btn:hover{
+      transform:translateY(-2px);
+      background:rgba(255,255,255,.12);
+      border-color:rgba(255,255,255,.18);
+    }
+
+    .btn.primary{
+      background:linear-gradient(180deg, rgba(180,20,40,.36), rgba(180,20,40,.20));
+      border-color:rgba(180,20,40,.42);
+    }
+
+    .note{
+      color:rgba(245,247,255,.70);
+      font-size:14px;
+      line-height:1.8;
+    }
+
+    .info-list{
+      display:grid;
+      gap:16px;
+    }
+
+    .info-item{
+      padding:18px 16px;
+    }
+
+    .info-item strong{
+      display:block;
+      margin-bottom:8px;
+      font-size:18px;
+    }
+
+    .info-item p{
+      margin:0;
+      color:rgba(245,247,255,.74);
+      line-height:1.85;
+      font-size:14px;
+    }
+
+    .steps{
+      display:grid;
+      grid-template-columns:repeat(3,minmax(0,1fr));
+      gap:16px;
+    }
+
+    .step{
+      padding:22px 16px;
+      text-align:center;
+    }
+
+    .step strong{
+      display:block;
+      margin-bottom:10px;
+      font-size:28px;
+    }
+
+    .step span{
+      color:rgba(245,247,255,.74);
+      line-height:1.8;
+      font-size:14px;
+    }
+
+    .footer{
+      padding:34px 0 28px;
+      text-align:center;
+      color:rgba(245,247,255,.70);
+      font-size:14px;
+    }
+
+    @media (max-width:1100px){
+      .page-hero-box,
+      .request-grid,
+      .steps{
+        grid-template-columns:1fr;
+      }
+    }
+
+    @media (max-width:980px){
+      .desktop-nav{
+        display:none;
+      }
+
+      .mobile-toggle{
+        display:inline-flex;
+        align-items:center;
+        justify-content:center;
+      }
+
+      .section{
+        padding:24px 16px;
+      }
+
+      .section-title{
+        display:block;
+      }
+
+      .section-title h2{
+        margin-bottom:10px;
+      }
+
+      .form-grid{
+        grid-template-columns:1fr;
+      }
+
+      .page-hero h1{
+        font-size:42px;
+      }
+    }
+  </style>
 </head>
-<body>
-  <canvas id="bgCanvas"></canvas>
-  <div class="grid"></div>
 
-  <nav class="nav">
-    <div class="container nav-inner">
-      <a class="brand" href="./index.html">
-        <img class="brand-logo" src="./assets/logo.png" alt="GENEX Logo" />
-        <span>GENEX</span>
-      </a>
+<body data-page="inner" data-intro="false" data-music="true">
+  <div class="page-transition" id="pageTransition"></div>
 
-      <button class="menu-toggle" id="menuToggle">☰</button>
+  <div id="backFxWrap" aria-hidden="true">
+    <canvas id="backFxCanvas"></canvas>
+    <div class="back-vignette"></div>
+  </div>
 
-      <div class="nav-links">
-        <a href="./index.html" data-i18n="nav_home">الرئيسية</a>
-        <a href="./services.html" data-i18n="nav_services">الخدمات</a>
-        <a href="./about.html" data-i18n="nav_about">عن GENEX</a>
-        <a href="./request.html" data-i18n="nav_request">طلب جديد</a>
-        <a href="./join.html" data-i18n="nav_join">انضم</a>
-        <a href="./contact.html" data-i18n="nav_contact">تواصل</a>
-      </div>
+  <div id="sceneWrap" aria-hidden="true">
+    <canvas id="webglCanvas"></canvas>
+  </div>
 
-      <div class="lang-switch">
-        <button data-lang="ar" class="active">AR</button>
-        <button data-lang="en">EN</button>
-      </div>
+  <div id="frontFxWrap" aria-hidden="true">
+    <canvas id="frontFxCanvas"></canvas>
+    <div class="front-fade"></div>
+  </div>
 
-      <div class="nav-cta">
-        <a class="btn btn-primary" href="./request.html" data-i18n="nav_cta">ابدأ مشروعك مع GENEX</a>
-      </div>
-    </div>
-  </nav>
+  <audio id="siteMusic" loop preload="auto">
+    <source src="./assets/audio/fantasy-ambient.mp3" type="audio/mpeg">
+  </audio>
 
-  <main class="container" style="padding-top:110px;">
-    <div class="section-title">
-      <div>
-        <h1 data-i18n="request_page_title">طلب جديد</h1>
-        <p data-i18n="request_page_desc">أرسل احتياجك وسيتواصل معك فريق GENEX لدراسة المشروع.</p>
-      </div>
-    </div>
+  <button id="musicToggle" aria-label="Toggle music">♪</button>
 
-    <div class="form-grid">
-      <div class="form-box">
-        <form action="https://formsubmit.co/genex.2050era@gmail.com" method="POST">
-          <input type="hidden" name="_subject" value="GENEX | New Automation Request">
-          <input type="hidden" name="_captcha" value="false">
+  <div class="genex-page-shell">
+    <header class="site-header">
+      <div class="container site-header-inner">
+        <a class="brand" href="./index.html">
+          <img src="./assets/logo.png" alt="GENEX Logo">
+          <span>GENEX</span>
+        </a>
 
-          <label data-i18n="request_company">اسم الشركة / المنشأة</label>
-          <input type="text" name="company" data-i18n-placeholder="placeholder_company" placeholder="اكتب اسم الشركة" required>
+        <nav class="desktop-nav">
+          <a href="./index.html" data-i18n="nav_home">الرئيسية</a>
+          <a href="./services.html" data-i18n="nav_services">الخدمات</a>
+          <a href="./request.html" class="active" data-i18n="nav_request">اطلب الآن</a>
+          <a href="./join.html" data-i18n="nav_join">انضم إلينا</a>
+          <a href="./contact.html" data-i18n="nav_contact">تواصل</a>
+          <a href="./about.html" data-nav-about>عن جينكس</a>
+        </nav>
 
-          <label data-i18n="request_name">الاسم</label>
-          <input type="text" name="name" data-i18n-placeholder="placeholder_name" placeholder="اسمك" required>
-
-          <label data-i18n="request_email">البريد الإلكتروني</label>
-          <input type="email" name="email" data-i18n-placeholder="placeholder_email" placeholder="email@example.com" required>
-
-          <label data-i18n="request_type">نوع النشاط</label>
-          <input type="text" name="type" data-i18n-placeholder="placeholder_type" placeholder="مثال: متجر / منشأة / جهة حكومية">
-
-          <label data-i18n="request_details">وصف الاحتياج</label>
-          <textarea name="details" data-i18n-placeholder="placeholder_details" placeholder="اشرح ما الذي تريد أتمتته"></textarea>
-
-          <div style="margin-top:16px;">
-            <button class="btn btn-primary" type="submit" data-i18n="request_submit">إرسال الطلب</button>
+        <div class="header-actions">
+          <div class="lang-switch">
+            <button type="button" data-lang="en">EN</button>
+            <button type="button" data-lang="ar" class="active">AR</button>
           </div>
-        </form>
+          <button class="mobile-toggle" id="mobileToggle" aria-label="Menu">☰</button>
+        </div>
       </div>
 
-      <div class="form-box">
-        <h3 data-i18n="request_side_title">لماذا تبدأ الآن؟</h3>
-        <p data-i18n="request_side_desc" style="color:var(--muted); line-height:1.9;">
-          هذه المرحلة مناسبة للشركات التي تريد أن تكون من أوائل الجهات التي تطبق أتمتة وذكاء اصطناعي فعلي مع GENEX، مع فرصة لتصميم حل مخصص منذ البداية.
-        </p>
+      <div class="container">
+        <nav class="mobile-nav" id="mobileNav">
+          <a href="./index.html" data-i18n="nav_home">الرئيسية</a>
+          <a href="./services.html" data-i18n="nav_services">الخدمات</a>
+          <a href="./request.html" data-i18n="nav_request">اطلب الآن</a>
+          <a href="./join.html" data-i18n="nav_join">انضم إلينا</a>
+          <a href="./contact.html" data-i18n="nav_contact">تواصل</a>
+          <a href="./about.html" data-nav-about>عن جينكس</a>
+        </nav>
       </div>
-    </div>
-  </main>
+    </header>
 
-  <footer class="footer">
-    <div class="container row">
-      <div>
-        <b>GENEX</b>
-        <div id="year"></div>
-      </div>
-      <div style="opacity:.8;" data-i18n="footer_text">Autonomous AI Systems</div>
-    </div>
-  </footer>
+    <main class="genex-page-content">
+      <section class="page-hero">
+        <div class="container">
+          <div class="page-hero-box genex-panel tilt-card">
+            <div>
+              <div class="eyebrow" data-i18n="eyebrow">GENEX REQUEST • ابدأ من هنا</div>
+              <h1 data-i18n="hero_title">أرسل طلبك ودعنا نحول فكرتك إلى مشروع تقني حقيقي</h1>
+              <p data-i18n="hero_desc">
+                سواء كنت تحتاج إلى موقع شركة متقدم، أو تجربة رقمية حديثة، أو نظامًا يعتمد على الأتمتة والذكاء الاصطناعي، فإن GENEX جاهزة لبدء الرحلة معك من الأساس الصحيح.
+              </p>
+            </div>
 
-  <script src="./assets/app.js?v=16"></script>
-</body>
-</html>
+            <div class="hero-side">
+              <div class="hero-side-box genex-panel tilt-card">
+                <img src="./assets/logo.png" alt="GENEX Logo">
+                <strong>GENEX</strong>
+                <span data-i18n="hero_badge">Project Intake<br>AI • Automation • Digital Build</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container">
+          <div class="request-grid">
+            <div class="form-card genex-panel tilt-card">
+              <div class="section-title">
+                <h2 data-i18n="form_title">نموذج الطلب</h2>
+                <p data-i18n="form_desc">عبّئ المعلومات الأساسية وسنتواصل معك لفهم المشروع بشكل أدق.</p>
+              </div>
+
+              <form class="form-grid">
+                <div class="field">
+                  <label for="name" data-i18n="label_name">الاسم</label>
+                  <input id="name" type="text" data-i18n-placeholder="ph_name" placeholder="اكتب اسمك">
+                </div>
+
+                <div class="field">
+                  <label for="email" data-i18n="label_email">البريد الإلكتروني</label>
+                  <input id="email" type="email" data-i18n-placeholder="ph_email" placeholder="example@email.com">
+                </div>
+
+                <div class="field">
+                  <label for="phone" data-i18n="label_phone">رقم التواصل</label>
+                  <input id="phone" type="text" data-i18n-placeholder="ph_phone" placeholder="05xxxxxxxx">
+                </div>
+
+                <div class="field">
+                  <label for="service" data-i18n="label_service">نوع الخدمة</label>
+                  <select id="service">
+                    <option data-i18n="opt_1">موقع أو تجربة رقمية</option>
+                    <option data-i18n="opt_2">ذكاء اصطناعي</option>
+                    <option data-i18n="opt_3">أتمتة ذكية</option>
+                    <option data-i18n="opt_4">حل مخصص</option>
+                  </select>
+                </div>
+
+                <div class="field full">
+                  <label for="details" data-i18n="label_details">تفاصيل المشروع</label>
+                  <textarea id="details" data-i18n-placeholder="ph_details" placeholder="اكتب فكرتك أو متطلباتك هنا..."></textarea>
+                </div>
+              </form>
+
+              <div class="submit-row">
+                <button class="btn primary" type="button" data-i18n="send_btn">إرسال الطلب</button>
+                <div class="note" data-i18n="form_note">يمكنك أيضًا التواصل المباشر معنا إذا رغبت بمناقشة أسرع لمتطلباتك.</div>
+              </div>
+            </div>
+
+            <div class="info-card genex-panel tilt-card">
+              <div class="section-title">
+                <h2 data-i18n="info_title">ماذا يحدث بعد الإرسال؟</h2>
+                <p data-i18n="info_desc">نعتمد عملية واضحة ومباشرة حتى نصل إلى أفضل تصور للمشروع.</p>
+              </div>
+
+              <div class="info-list">
+                <div class="info-item genex-card tilt-card">
+                  <strong data-i18n="info_1_title">مراجعة أولية</strong>
+                  <p data-i18n="info_1_desc">نراجع الطلب لفهم الهدف، النطاق، ونوع الحل المناسب لمشروعك.</p>
+                </div>
+
+                <div class="info-item genex-card tilt-card">
+                  <strong data-i18n="info_2_title">تحديد المسار</strong>
+                  <p data-i18n="info_2_desc">نحدد أفضل اتجاه عملي للتنفيذ بناءً على الاحتياج الفعلي والنتيجة المطلوبة.</p>
+                </div>
+
+                <div class="info-item genex-card tilt-card">
+                  <strong data-i18n="info_3_title">بدء التنفيذ</strong>
+                  <p data-i18n="info_3_desc">بعد الاتفاق، نبدأ ببناء التجربة أو الحل ضمن رؤية تقنية واضحة ومنظمة.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container">
+          <div class="section-title">
+            <h2 data-i18n="steps_title">رحلة الطلب</h2>
+            <p data-i18n="steps_desc">مسار مختصر يوضح كيف ننتقل من الفكرة إلى التنفيذ.</p>
+          </div>
+
+          <div class="steps">
+            <div class="step genex-card tilt-card">
+              <strong>01</strong>
+              <span data-i18n="step_1">إرسال الطلب وتوضيح الفكرة الأساسية</span>
+            </div>
+            <div class="step genex-card tilt-card">
+              <strong>02</strong>
+              <span data-i18n="step_2">تحليل الاحتياج وتحديد الحل الأنسب</span>
+            </div>
+            <div class="step genex-card tilt-card">
+              <strong>03</strong>
+              <span data-i18n="step_3">البدء بالتنفيذ ضمن هوية GENEX التقنية</span>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container">GENEX © 2026</div>
+    </footer>
+  </div>
+
+  <script>
+    (function () {
+      const mobileToggle = document.getElementById('mobileToggle');
+      const mobileNav = document.getElementById('mobileNav');
+
+      if (mobileToggle && mobileNav) {
+        mobileToggle.addEventListener('click', () => {
+          mobileNav.classList.toggle('open');
+        });
+      }
+
+      const translations = {
+        ar: {
+          title: "اطلب الآن | GENEX",
+          nav_home: "الرئيسية",
+          nav_services: "الخدمات",
+          nav_request: "اطلب الآن",
+          nav_join: "انضم إلينا",
+          nav_contact: "تواصل",
+          eyebrow: "GENEX REQUEST • ابدأ من هنا",
+          hero_title: "أرسل طلبك ودعنا نحول فكرتك إلى مشروع تقني حقيقي",
+          hero_desc: "سواء كنت تحتاج إلى موقع شركة متقدم، أو تجربة رقمية حديثة، أو نظامًا يعتمد على الأتمتة والذكاء الاصطناعي، فإن GENEX جاهزة لبدء الرحلة معك من الأساس الصحيح.",
+          hero_badge: "Project Intake<br>AI • Automation • Digital Build",
+          form_title: "نموذج الطلب",
+          form_desc: "عبّئ المعلومات الأساسية وسنتواصل معك لفهم المشروع بشكل أدق.",
+          label_name: "الاسم",
+          label_email: "البريد الإلكتروني",
+          label_phone: "رقم التواصل",
+          label_service: "نوع الخدمة",
+          label_details: "تفاصيل المشروع",
+          ph_name: "اكتب اسمك",
+          ph_email: "example@email.com",
+          ph_phone: "05xxxxxxxx",
+          ph_details: "اكتب فكرتك أو متطلباتك هنا...",
+          opt_1: "موقع أو تجربة رقمية",
+          opt_2: "ذكاء اصطناعي",
+          opt_3: "أتمتة ذكية",
+          opt_4: "حل مخصص",
+          send_btn: "إرسال الطلب",
+          form_note: "يمكنك أيضًا التواصل المباشر معنا إذا رغبت بمناقشة أسرع لمتطلباتك.",
+          info_title: "ماذا يحدث بعد الإرسال؟",
+          info_desc: "نعتمد عملية واضحة ومباشرة حتى نصل إلى أفضل تصور للمشروع.",
+          info_1_t
