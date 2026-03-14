@@ -9,7 +9,7 @@
   <meta name="keywords" content="GENEX Request, AI Project, Automation Project, Digital Infrastructure, Contact Request" />
   <meta name="author" content="GENEX" />
   <meta name="robots" content="index, follow" />
-  <link rel="stylesheet" href="./assets/genex-fx.css?v=502">
+  <link rel="stylesheet" href="./assets/genex-fx.css?v=600">
   <meta property="og:title" content="اطلب الآن | GENEX" />
   <meta property="og:description" content="ابدأ مشروعك مع GENEX في الذكاء الاصطناعي، الأتمتة، والبنية التشغيلية الرقمية." />
   <meta property="og:url" content="https://genex-era.com/request.html" />
@@ -723,4 +723,110 @@
           form_note: "يمكنك أيضًا التواصل المباشر معنا إذا رغبت بمناقشة أسرع لمتطلباتك.",
           info_title: "ماذا يحدث بعد الإرسال؟",
           info_desc: "نعتمد عملية واضحة ومباشرة حتى نصل إلى أفضل تصور للمشروع.",
-          info_1_t
+          info_1_title: "مراجعة أولية",
+          info_1_desc: "نراجع الطلب لفهم الهدف، النطاق، ونوع الحل المناسب لمشروعك.",
+          info_2_title: "تحديد المسار",
+          info_2_desc: "نحدد أفضل اتجاه عملي للتنفيذ بناءً على الاحتياج الفعلي والنتيجة المطلوبة.",
+          info_3_title: "بدء التنفيذ",
+          info_3_desc: "بعد الاتفاق، نبدأ ببناء التجربة أو الحل ضمن رؤية تقنية واضحة ومنظمة.",
+          steps_title: "رحلة الطلب",
+          steps_desc: "مسار مختصر يوضح كيف ننتقل من الفكرة إلى التنفيذ.",
+          step_1: "إرسال الطلب وتوضيح الفكرة الأساسية",
+          step_2: "تحليل الاحتياج وتحديد الحل الأنسب",
+          step_3: "البدء بالتنفيذ ضمن هوية GENEX التقنية"
+        },
+        en: {
+          title: "Request Now | GENEX",
+          nav_home: "Home",
+          nav_services: "Services",
+          nav_request: "Request Now",
+          nav_join: "Join Us",
+          nav_contact: "Contact",
+          eyebrow: "GENEX REQUEST • Start Here",
+          hero_title: "Send your request and let us turn your idea into a real technical project",
+          hero_desc: "Whether you need a premium company website, a modern digital experience, or a system built on automation and AI, GENEX is ready to start the journey with you from the right foundation.",
+          hero_badge: "Project Intake<br>AI • Automation • Digital Build",
+          form_title: "Request Form",
+          form_desc: "Fill in the essential details and we will contact you to better understand the project.",
+          label_name: "Name",
+          label_email: "Email",
+          label_phone: "Phone",
+          label_service: "Service Type",
+          label_details: "Project Details",
+          ph_name: "Enter your name",
+          ph_email: "example@email.com",
+          ph_phone: "05xxxxxxxx",
+          ph_details: "Write your idea or requirements here...",
+          opt_1: "Website or digital experience",
+          opt_2: "Artificial intelligence",
+          opt_3: "Intelligent automation",
+          opt_4: "Custom solution",
+          send_btn: "Send Request",
+          form_note: "You can also contact us directly if you prefer a faster discussion of your requirements.",
+          info_title: "What happens after submission?",
+          info_desc: "We follow a clear and direct process to reach the best vision for your project.",
+          info_1_title: "Initial Review",
+          info_1_desc: "We review the request to understand the goal, scope, and the right type of solution for your project.",
+          info_2_title: "Path Definition",
+          info_2_desc: "We define the best practical direction for execution based on the actual need and desired outcome.",
+          info_3_title: "Execution Start",
+          info_3_desc: "Once aligned, we begin building the experience or solution within a clear and organized technical vision.",
+          steps_title: "Request Journey",
+          steps_desc: "A short path showing how we move from idea to execution.",
+          step_1: "Send the request and explain the core idea",
+          step_2: "Analyze the need and define the best-fit solution",
+          step_3: "Start execution within the GENEX technical identity"
+        }
+      };
+
+      function applyLanguage(lang) {
+        document.documentElement.lang = lang;
+        document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+        localStorage.setItem('genex_lang', lang);
+
+        const dict = translations[lang];
+        if (!dict) return;
+
+        document.title = dict.title;
+
+        document.querySelectorAll('[data-i18n]').forEach((el) => {
+          const key = el.getAttribute('data-i18n');
+          if (dict[key]) el.textContent = dict[key];
+        });
+
+        document.querySelectorAll('[data-i18n-placeholder]').forEach((el) => {
+          const key = el.getAttribute('data-i18n-placeholder');
+          if (dict[key]) el.setAttribute('placeholder', dict[key]);
+        });
+
+        const service = document.getElementById('service');
+        if (service) {
+          const options = service.querySelectorAll('option');
+          options.forEach((opt, index) => {
+            const keys = ['opt_1','opt_2','opt_3','opt_4'];
+            const key = keys[index];
+            if (dict[key]) opt.textContent = dict[key];
+          });
+        }
+
+        document.querySelectorAll('.lang-switch button').forEach((btn) => {
+          btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
+        });
+
+        const badge = document.querySelector('[data-i18n="hero_badge"]');
+        if (badge) badge.innerHTML = dict.hero_badge;
+      }
+
+      document.querySelectorAll('.lang-switch button').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          applyLanguage(btn.getAttribute('data-lang'));
+        });
+      });
+
+      applyLanguage(localStorage.getItem('genex_lang') || 'ar');
+    })();
+  </script>
+
+  <script type="module" src="./assets/genex-fx.js?v=600"></script>
+</body>
+</html>
