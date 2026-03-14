@@ -769,7 +769,16 @@
     applyLanguage(localStorage.getItem('genex_lang') || 'ar');
   })();
   </script>
+<script>
+window.addEventListener('load', function () {
+  const intro = document.getElementById('genexIntro');
+  if (!intro) return;
 
+  setTimeout(() => {
+    intro.classList.add('hidden');
+  }, 1800);
+});
+</script>
   <script src="./assets/genex-fx.js?v=507"></script>
 </body>
 </html>
