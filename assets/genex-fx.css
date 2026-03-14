@@ -331,3 +331,66 @@ footer{
   position:relative;
   z-index:5;
 }
+html, body {
+  background: transparent !important;
+}
+
+body {
+  position: relative !important;
+  overflow-x: hidden !important;
+}
+
+#backFxWrap,
+#sceneWrap,
+#frontFxWrap {
+  position: fixed !important;
+  inset: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  pointer-events: none !important;
+}
+
+#backFxWrap {
+  z-index: 0 !important;
+}
+
+#sceneWrap {
+  z-index: 1 !important;
+}
+
+#frontFxWrap {
+  z-index: 2 !important;
+}
+
+#backFxCanvas,
+#webglCanvas,
+#frontFxCanvas {
+  position: absolute !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+.back-vignette,
+.front-fade {
+  position: absolute !important;
+  inset: 0 !important;
+  display: block !important;
+}
+
+.genex-page-shell,
+.genex-page-content,
+header,
+main,
+footer,
+.site-header,
+.container {
+  position: relative;
+  z-index: 5;
+}
