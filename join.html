@@ -1,423 +1,858 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<title>انضم إلى GENEX</title>
+  <title>انضم إلى GENEX</title>
+  <meta name="description" content="انضم إلى GENEX وشارك في بناء تقنيات الذكاء الاصطناعي والأتمتة والأنظمة الرقمية المستقبلية." />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://genex-era.com/join.html" />
 
-<link rel="stylesheet" href="./assets/styles.css?v=500">
-<link rel="stylesheet" href="./assets/genex-fx.css?v=600">
+  <meta property="og:title" content="انضم إلى GENEX" />
+  <meta property="og:description" content="فرص للانضمام إلى GENEX والمساهمة في بناء تقنيات المستقبل." />
+  <meta property="og:url" content="https://genex-era.com/join.html" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://genex-era.com/assets/logo.png" />
 
-<style>
+  <link rel="stylesheet" href="./assets/styles.css?v=500" />
+  <link rel="stylesheet" href="./assets/genex-fx.css?v=600" />
 
-*{box-sizing:border-box}
+  <style>
+    *{box-sizing:border-box}
 
-html,body{
-margin:0;
-padding:0;
-min-height:100%;
-color:#f5f7ff;
-font-family:system-ui,-apple-system,"Segoe UI",Roboto,Arial;
-}
+    html,body{
+      margin:0;
+      padding:0;
+      min-height:100%;
+      color:#f5f7ff;
+      font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
+    }
 
-a{color:inherit;text-decoration:none}
+    a{
+      color:inherit;
+      text-decoration:none;
+    }
 
-.container{
-width:min(1200px,92vw);
-margin:auto;
-}
+    .container{
+      width:min(1220px,92vw);
+      margin:auto;
+    }
 
-/* HEADER */
+    .site-header{
+      position:sticky;
+      top:0;
+      z-index:120;
+      backdrop-filter:blur(18px);
+      background:rgba(7,9,16,.62);
+      border-bottom:1px solid rgba(255,255,255,.08);
+    }
 
-.site-header{
-position:sticky;
-top:0;
-z-index:100;
-backdrop-filter:blur(18px);
-background:rgba(7,9,16,.65);
-border-bottom:1px solid rgba(255,255,255,.08);
-}
+    .site-header-inner{
+      min-height:84px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+    }
 
-.site-header-inner{
-display:flex;
-align-items:center;
-justify-content:space-between;
-min-height:80px;
-gap:16px;
-}
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      font-weight:900;
+      letter-spacing:.18em;
+      white-space:nowrap;
+      flex-shrink:0;
+    }
 
-.brand{
-display:flex;
-align-items:center;
-gap:12px;
-font-weight:900;
-letter-spacing:.18em;
-}
+    .brand img{
+      width:44px;
+      height:44px;
+      object-fit:contain;
+      filter:drop-shadow(0 0 12px rgba(255,255,255,.18));
+    }
 
-.brand img{
-width:42px;
-height:42px;
-object-fit:contain;
-}
+    .desktop-nav{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      flex-wrap:wrap;
+    }
 
-/* NAV */
+    .desktop-nav a{
+      padding:11px 14px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.08);
+      background:rgba(255,255,255,.03);
+      color:rgba(245,247,255,.90);
+      font-size:14px;
+      font-weight:700;
+      transition:transform .2s ease, background .2s ease, border-color .2s ease;
+      white-space:nowrap;
+    }
 
-.desktop-nav{
-display:flex;
-gap:10px;
-}
+    .desktop-nav a:hover,
+    .desktop-nav a.active{
+      transform:translateY(-2px);
+      background:rgba(255,255,255,.08);
+      border-color:rgba(255,255,255,.14);
+    }
 
-.desktop-nav a{
-padding:10px 14px;
-border-radius:12px;
-border:1px solid rgba(255,255,255,.08);
-background:rgba(255,255,255,.03);
-font-size:14px;
-font-weight:700;
-}
+    .header-actions{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      flex-shrink:0;
+    }
 
-.desktop-nav a:hover{
-background:rgba(255,255,255,.08);
-}
+    .lang-switch{
+      display:flex;
+      gap:6px;
+      padding:4px;
+      border-radius:16px;
+      border:1px solid rgba(255,255,255,.12);
+      background:rgba(255,255,255,.05);
+      backdrop-filter:blur(12px);
+    }
 
-.header-actions{
-display:flex;
-align-items:center;
-gap:10px;
-}
+    .lang-switch button{
+      border:none;
+      background:transparent;
+      color:#fff;
+      padding:8px 12px;
+      border-radius:12px;
+      font-size:12px;
+      font-weight:800;
+      cursor:pointer;
+    }
 
-.lang-switch{
-display:flex;
-gap:6px;
-padding:4px;
-border-radius:14px;
-background:rgba(255,255,255,.05);
-border:1px solid rgba(255,255,255,.12);
-}
+    .lang-switch button.active{
+      background:rgba(255,255,255,.14);
+    }
 
-.lang-switch button{
-border:none;
-background:transparent;
-color:#fff;
-padding:7px 10px;
-font-weight:800;
-cursor:pointer;
-}
+    .mobile-toggle{
+      display:none;
+      width:46px;
+      height:46px;
+      border:none;
+      border-radius:14px;
+      background:rgba(255,255,255,.06);
+      color:#fff;
+      font-size:20px;
+      border:1px solid rgba(255,255,255,.1);
+      cursor:pointer;
+    }
 
-.lang-switch button.active{
-background:rgba(255,255,255,.14);
-border-radius:10px;
-}
+    .mobile-nav{
+      display:none;
+      padding:0 0 14px;
+    }
 
-/* MOBILE */
+    .mobile-nav.open{
+      display:grid;
+      gap:10px;
+    }
 
-.mobile-toggle{
-display:none;
-width:44px;
-height:44px;
-border:none;
-border-radius:12px;
-background:rgba(255,255,255,.06);
-border:1px solid rgba(255,255,255,.12);
-color:#fff;
-font-size:20px;
-cursor:pointer;
-}
+    .mobile-nav a{
+      padding:13px 14px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.08);
+      background:rgba(255,255,255,.04);
+      color:rgba(245,247,255,.92);
+      font-weight:700;
+    }
 
-.mobile-nav{
-display:none;
-padding-bottom:14px;
-}
+    .page-hero{
+      padding:42px 0 18px;
+    }
 
-.mobile-nav.open{
-display:grid;
-gap:10px;
-}
+    .page-hero-box{
+      min-height:430px;
+      display:grid;
+      grid-template-columns:1.1fr .9fr;
+      gap:24px;
+      align-items:center;
+      padding:38px 30px;
+      position:relative;
+      overflow:hidden;
+      border-radius:32px;
+    }
 
-.mobile-nav a{
-padding:12px 14px;
-border-radius:12px;
-border:1px solid rgba(255,255,255,.08);
-background:rgba(255,255,255,.04);
-}
+    .page-hero-box::before{
+      content:"";
+      position:absolute;
+      left:50%;
+      top:50%;
+      width:620px;
+      height:620px;
+      transform:translate(-50%,-50%);
+      background:radial-gradient(circle, rgba(180,20,40,.08), transparent 66%);
+      pointer-events:none;
+    }
 
-/* HERO */
+    .eyebrow{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:10px 14px;
+      border:1px solid rgba(255,255,255,.10);
+      border-radius:999px;
+      background:rgba(255,255,255,.05);
+      color:rgba(245,247,255,.74);
+      font-size:13px;
+      font-weight:700;
+      margin-bottom:18px;
+      backdrop-filter:blur(12px);
+    }
 
-.page-hero{
-padding:48px 0 24px;
-}
+    .page-hero h1{
+      margin:0 0 18px;
+      font-size:clamp(38px, 6vw, 74px);
+      line-height:1.05;
+      letter-spacing:-.03em;
+      max-width:720px;
+    }
 
-.hero-box{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:24px;
-padding:36px;
-position:relative;
-}
+    .page-hero p{
+      margin:0;
+      max-width:760px;
+      color:rgba(245,247,255,.78);
+      font-size:18px;
+      line-height:1.95;
+    }
 
-.hero-box::before{
-content:"";
-position:absolute;
-left:50%;
-top:50%;
-width:600px;
-height:600px;
-transform:translate(-50%,-50%);
-background:radial-gradient(circle, rgba(180,20,40,.08), transparent 70%);
-}
+    .hero-side{
+      min-height:360px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
 
-.hero-title{
-font-size:clamp(36px,5vw,68px);
-line-height:1.1;
-margin-bottom:16px;
-}
+    .hero-side-box{
+      width:min(100%, 390px);
+      min-height:320px;
+      padding:28px;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      align-items:center;
+      text-align:center;
+      position:relative;
+      overflow:hidden;
+      border-radius:28px;
+    }
 
-.hero-desc{
-font-size:18px;
-line-height:1.9;
-color:rgba(245,247,255,.78);
-}
+    .hero-side-box::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:
+        radial-gradient(circle at 50% 30%, rgba(255,255,255,.08), transparent 32%),
+        radial-gradient(circle at 50% 70%, rgba(180,20,40,.14), transparent 42%);
+    }
 
-/* FORM */
+    .hero-side-box img{
+      width:120px;
+      height:120px;
+      object-fit:contain;
+      margin-bottom:18px;
+      z-index:2;
+      position:relative;
+    }
 
-.section{
-padding:28px;
-margin-top:20px;
-}
+    .hero-side-box strong{
+      z-index:2;
+      position:relative;
+      display:block;
+      margin-bottom:10px;
+      font-size:36px;
+      letter-spacing:.24em;
+      margin-inline-start:.24em;
+    }
 
-.form-grid{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:14px;
-}
+    .hero-side-box span{
+      z-index:2;
+      position:relative;
+      color:rgba(245,247,255,.76);
+      line-height:1.9;
+      font-size:15px;
+    }
 
-.field{
-display:grid;
-gap:6px;
-}
+    .section{
+      margin-top:22px;
+      padding:32px 24px;
+    }
 
-.field.full{
-grid-column:1/-1;
-}
+    .section-title{
+      display:flex;
+      align-items:end;
+      justify-content:space-between;
+      gap:16px;
+      margin-bottom:22px;
+    }
 
-.field input,
-.field textarea{
-border:none;
-outline:none;
-padding:14px;
-border-radius:14px;
-background:rgba(255,255,255,.06);
-border:1px solid rgba(255,255,255,.1);
-color:#fff;
-}
+    .section-title h2{
+      margin:0;
+      font-size:34px;
+      line-height:1.15;
+    }
 
-.field textarea{
-min-height:180px;
-}
+    .section-title p{
+      margin:0;
+      color:rgba(245,247,255,.74);
+      max-width:560px;
+      line-height:1.9;
+      font-size:15px;
+    }
 
-.submit-row{
-margin-top:16px;
-}
+    .grid-3{
+      display:grid;
+      grid-template-columns:repeat(3,minmax(0,1fr));
+      gap:18px;
+    }
 
-.btn{
-padding:14px 18px;
-border-radius:16px;
-border:1px solid rgba(255,255,255,.12);
-background:rgba(255,255,255,.08);
-font-weight:800;
-cursor:pointer;
-}
+    .card{
+      padding:24px 18px;
+    }
 
-.btn.primary{
-background:linear-gradient(180deg, rgba(180,20,40,.36), rgba(180,20,40,.2));
-}
+    .icon{
+      width:56px;
+      height:56px;
+      display:grid;
+      place-items:center;
+      border-radius:18px;
+      background:linear-gradient(180deg, rgba(180,20,40,.14), rgba(255,255,255,.08));
+      border:1px solid rgba(255,255,255,.10);
+      margin-bottom:16px;
+      font-size:24px;
+    }
 
-/* FOOTER */
+    .card h3{
+      margin:0 0 12px;
+      font-size:22px;
+    }
 
-.footer{
-text-align:center;
-padding:30px 0;
-opacity:.7;
-}
+    .card p{
+      margin:0;
+      color:rgba(245,247,255,.74);
+      line-height:1.9;
+      font-size:15px;
+    }
 
-/* RESPONSIVE */
+    .jobs{
+      display:grid;
+      gap:14px;
+    }
 
-@media(max-width:900px){
+    .job{
+      padding:20px 18px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:16px;
+    }
 
-.desktop-nav{
-display:none;
-}
+    .job strong{
+      display:block;
+      margin-bottom:6px;
+      font-size:18px;
+    }
 
-.mobile-toggle{
-display:inline-flex;
-align-items:center;
-justify-content:center;
-}
+    .job p{
+      margin:0;
+      color:rgba(245,247,255,.74);
+      line-height:1.8;
+      font-size:14px;
+    }
 
-.hero-box{
-grid-template-columns:1fr;
-}
+    .job .meta{
+      display:flex;
+      flex-direction:column;
+      gap:4px;
+      text-align:end;
+      color:rgba(245,247,255,.70);
+      font-size:13px;
+      white-space:nowrap;
+    }
 
-.form-grid{
-grid-template-columns:1fr;
-}
+    .apply-box{
+      padding:28px 20px;
+    }
 
-}
+    .apply-grid{
+      display:grid;
+      grid-template-columns:repeat(2,minmax(0,1fr));
+      gap:14px;
+    }
 
-</style>
+    .field{
+      display:grid;
+      gap:8px;
+    }
+
+    .field.full{
+      grid-column:1 / -1;
+    }
+
+    .field label{
+      font-size:14px;
+      font-weight:700;
+      color:#fff;
+    }
+
+    .field input,
+    .field textarea{
+      width:100%;
+      border:none;
+      outline:none;
+      border-radius:16px;
+      background:rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.10);
+      color:#fff;
+      padding:14px 14px;
+      font-size:15px;
+      backdrop-filter:blur(10px);
+    }
+
+    .field input::placeholder,
+    .field textarea::placeholder{
+      color:rgba(245,247,255,.46);
+    }
+
+    .field textarea{
+      min-height:170px;
+      resize:vertical;
+    }
+
+    .submit-row{
+      margin-top:18px;
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+      align-items:center;
+    }
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-width:170px;
+      padding:14px 18px;
+      border-radius:18px;
+      border:1px solid rgba(255,255,255,.12);
+      background:rgba(255,255,255,.08);
+      color:#fff;
+      font-weight:800;
+      transition:transform .2s ease, background .2s ease, border-color .2s ease;
+      backdrop-filter:blur(12px);
+      cursor:pointer;
+    }
+
+    .btn:hover{
+      transform:translateY(-2px);
+      background:rgba(255,255,255,.12);
+      border-color:rgba(255,255,255,.18);
+    }
+
+    .btn.primary{
+      background:linear-gradient(180deg, rgba(180,20,40,.36), rgba(180,20,40,.20));
+      border-color:rgba(180,20,40,.42);
+    }
+
+    .footer{
+      padding:34px 0 28px;
+      text-align:center;
+      color:rgba(245,247,255,.70);
+      font-size:14px;
+    }
+
+    @media (max-width:1100px){
+      .page-hero-box,
+      .grid-3,
+      .apply-grid{
+        grid-template-columns:1fr;
+      }
+
+      .job{
+        flex-direction:column;
+        align-items:flex-start;
+      }
+
+      .job .meta{
+        text-align:start;
+      }
+    }
+
+    @media (max-width:980px){
+      .desktop-nav{
+        display:none;
+      }
+
+      .mobile-toggle{
+        display:inline-flex;
+        align-items:center;
+        justify-content:center;
+      }
+
+      .section{
+        padding:24px 16px;
+      }
+
+      .section-title{
+        display:block;
+      }
+
+      .section-title h2{
+        margin-bottom:10px;
+      }
+
+      .page-hero h1{
+        font-size:42px;
+      }
+
+      .site-header-inner{
+        min-height:76px;
+      }
+
+      .brand span{
+        font-size:16px;
+      }
+    }
+  </style>
 </head>
 
 <body data-page="inner" data-intro="false" data-music="true">
+  <div class="page-transition" id="pageTransition"></div>
 
-<div id="backFxWrap"><canvas id="backFxCanvas"></canvas></div>
-<div id="sceneWrap"><canvas id="webglCanvas"></canvas></div>
-<div id="frontFxWrap"><canvas id="frontFxCanvas"></canvas></div>
+  <div id="backFxWrap" aria-hidden="true">
+    <canvas id="backFxCanvas"></canvas>
+    <div class="back-vignette"></div>
+  </div>
 
-<div class="genex-page-shell">
+  <div id="sceneWrap" aria-hidden="true">
+    <canvas id="webglCanvas"></canvas>
+  </div>
 
-<header class="site-header">
-<div class="container site-header-inner">
+  <div id="frontFxWrap" aria-hidden="true">
+    <canvas id="frontFxCanvas"></canvas>
+    <div class="front-fade"></div>
+  </div>
 
-<a class="brand" href="./index.html">
-<img src="./assets/logo.png">
-<span>GENEX</span>
-</a>
+  <audio id="siteMusic" loop preload="auto">
+    <source src="./assets/audio/fantasy-ambient.mp3" type="audio/mpeg">
+  </audio>
 
-<nav class="desktop-nav">
-<a href="./index.html">الرئيسية</a>
-<a href="./services.html">الخدمات</a>
-<a href="./request.html">اطلب الآن</a>
-<a href="./join.html" class="active">انضم إلينا</a>
-<a href="./contact.html">تواصل</a>
-<a href="./about.html" data-nav-about>عن جينكس</a>
-</nav>
+  <button id="musicToggle" aria-label="Toggle music">♪</button>
 
-<div class="header-actions">
+  <div class="genex-page-shell">
+    <header class="site-header">
+      <div class="container site-header-inner">
+        <a class="brand" href="./index.html">
+          <img src="./assets/logo.png" alt="GENEX Logo">
+          <span>GENEX</span>
+        </a>
 
-<div class="lang-switch">
-<button data-lang="en">EN</button>
-<button data-lang="ar" class="active">AR</button>
-</div>
+        <nav class="desktop-nav">
+          <a href="./index.html" data-i18n="nav_home">الرئيسية</a>
+          <a href="./services.html" data-i18n="nav_services">الخدمات</a>
+          <a href="./request.html" data-i18n="nav_request">اطلب الآن</a>
+          <a href="./join.html" class="active" data-i18n="nav_join">انضم إلينا</a>
+          <a href="./contact.html" data-i18n="nav_contact">تواصل</a>
+          <a href="./about.html" data-nav-about>عن جينكس</a>
+        </nav>
 
-<button class="mobile-toggle" id="mobileToggle">☰</button>
+        <div class="header-actions">
+          <div class="lang-switch">
+            <button type="button" data-lang="en">EN</button>
+            <button type="button" data-lang="ar" class="active">AR</button>
+          </div>
+          <button class="mobile-toggle" id="mobileToggle" aria-label="Menu">☰</button>
+        </div>
+      </div>
 
-</div>
+      <div class="container">
+        <nav class="mobile-nav" id="mobileNav">
+          <a href="./index.html" data-i18n="nav_home">الرئيسية</a>
+          <a href="./services.html" data-i18n="nav_services">الخدمات</a>
+          <a href="./request.html" data-i18n="nav_request">اطلب الآن</a>
+          <a href="./join.html" class="active" data-i18n="nav_join">انضم إلينا</a>
+          <a href="./contact.html" data-i18n="nav_contact">تواصل</a>
+          <a href="./about.html" data-nav-about>عن جينكس</a>
+        </nav>
+      </div>
+    </header>
 
-</div>
+    <main class="genex-page-content">
+      <section class="page-hero">
+        <div class="container">
+          <div class="page-hero-box genex-panel tilt-card">
+            <div>
+              <div class="eyebrow" data-i18n="eyebrow">GENEX CAREERS • ابنِ المستقبل معنا</div>
+              <h1 data-i18n="hero_title">انضم إلى GENEX وشارك في بناء تقنيات الغد</h1>
+              <p data-i18n="hero_desc">
+                نحن نبحث عن أشخاص لديهم شغف بالتقنية، تصميم الأنظمة، الذكاء الاصطناعي، والتجارب الرقمية القوية، ويريدون المساهمة في بناء شيء يتجاوز النماذج التقليدية.
+              </p>
+            </div>
 
-<div class="container">
-<nav class="mobile-nav" id="mobileNav">
+            <div class="hero-side">
+              <div class="hero-side-box genex-panel tilt-card">
+                <img src="./assets/logo.png" alt="GENEX Logo">
+                <strong>GENEX</strong>
+                <span data-i18n="hero_badge">Careers • Innovation<br>AI • Automation • Digital Systems</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
-<a href="./index.html">الرئيسية</a>
-<a href="./services.html">الخدمات</a>
-<a href="./request.html">اطلب الآن</a>
-<a href="./join.html">انضم إلينا</a>
-<a href="./contact.html">تواصل</a>
-<a href="./about.html" data-nav-about>عن جينكس</a>
+      <section class="section">
+        <div class="container">
+          <div class="section-title">
+            <h2 data-i18n="why_title">لماذا الانضمام إلى GENEX</h2>
+            <p data-i18n="why_desc">نحن نبني بيئة تجمع بين الطموح التقني، المرونة، والرغبة في تطوير منتجات وأنظمة ذات أثر واضح.</p>
+          </div>
 
-</nav>
-</div>
+          <div class="grid-3">
+            <div class="card genex-card tilt-card">
+              <div class="icon">🚀</div>
+              <h3 data-i18n="card_1_title">بناء شيء جديد</h3>
+              <p data-i18n="card_1_desc">العمل في GENEX يعني المساهمة في تكوين هوية ومنتجات وأنظمة من بداياتها الحقيقية.</p>
+            </div>
 
-</header>
+            <div class="card genex-card tilt-card">
+              <div class="icon">🧠</div>
+              <h3 data-i18n="card_2_title">ثقافة تقنية طموحة</h3>
+              <p data-i18n="card_2_desc">بيئة تركز على التفكير، التطوير، والتحسين المستمر بدل الاكتفاء بالحلول التقليدية.</p>
+            </div>
 
-<main>
+            <div class="card genex-card tilt-card">
+              <div class="icon">🌐</div>
+              <h3 data-i18n="card_3_title">أثر مستقبلي</h3>
+              <p data-i18n="card_3_desc">كل مساهمة داخل GENEX جزء من مشروع أكبر لبناء بنية رقمية وذكاء تشغيلي متقدم.</p>
+            </div>
+          </div>
+        </div>
+      </section>
 
-<section class="page-hero">
-<div class="container">
+      <section class="section">
+        <div class="container">
+          <div class="section genex-panel tilt-card">
+            <div class="section-title">
+              <h2 data-i18n="jobs_title">فرص حالية</h2>
+              <p data-i18n="jobs_desc">بعض المسارات التي نرى أنها مناسبة للمرحلة الحالية والمستقبلية للشركة.</p>
+            </div>
 
-<div class="hero-box genex-panel">
+            <div class="jobs">
+              <div class="job genex-card tilt-card">
+                <div>
+                  <strong data-i18n="job_1_title">مهندس ذكاء اصطناعي</strong>
+                  <p data-i18n="job_1_desc">العمل على بناء حلول ذكاء اصطناعي، وكلاء ذكيين، ومنظومات تحليل وتنفيذ تعتمد على AI.</p>
+                </div>
+                <div class="meta">
+                  <span data-i18n="job_type_full">دوام / مرن</span>
+                  <span data-i18n="job_level_mid">متوسط إلى متقدم</span>
+                </div>
+              </div>
 
-<div>
+              <div class="job genex-card tilt-card">
+                <div>
+                  <strong data-i18n="job_2_title">مطوّر أتمتة وأنظمة</strong>
+                  <p data-i18n="job_2_desc">تصميم وبناء تدفقات تشغيل ذكية، تكاملات بين الأنظمة، وحلول تقلل العمل اليدوي المتكرر.</p>
+                </div>
+                <div class="meta">
+                  <span data-i18n="job_type_flex">مرن</span>
+                  <span data-i18n="job_level_mid">متوسط إلى متقدم</span>
+                </div>
+              </div>
 
-<h1 class="hero-title">انضم إلى GENEX</h1>
+              <div class="job genex-card tilt-card">
+                <div>
+                  <strong data-i18n="job_3_title">مطوّر واجهات وتجارب رقمية</strong>
+                  <p data-i18n="job_3_desc">بناء واجهات حديثة، مواقع وتجارب رقمية عالية الجودة تعكس مستوى GENEX بصريًا وتقنيًا.</p>
+                </div>
+                <div class="meta">
+                  <span data-i18n="job_type_project">مشاريع / مرن</span>
+                  <span data-i18n="job_level_mid">متوسط إلى متقدم</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
-<p class="hero-desc">
-إذا كنت مهتمًا ببناء مستقبل التكنولوجيا معنا،
-فإن GENEX تبحث دائمًا عن العقول التي ترغب في تطوير
-أنظمة ذكاء اصطناعي، أتمتة، وتجارب رقمية متقدمة.
-</p>
+      <section class="section">
+        <div class="container">
+          <div class="apply-box genex-panel tilt-card">
+            <div class="section-title">
+              <h2 data-i18n="apply_title">إرسال طلب انضمام</h2>
+              <p data-i18n="apply_desc">إذا كان لديك اهتمام حقيقي بالمشاركة في بناء GENEX، أرسل معلوماتك الأساسية وتعريفًا مختصرًا عن نفسك.</p>
+            </div>
 
-</div>
+            <form class="apply-grid">
+              <div class="field">
+                <label for="name" data-i18n="label_name">الاسم</label>
+                <input id="name" type="text" data-i18n-placeholder="ph_name" placeholder="اكتب اسمك">
+              </div>
 
-<div style="display:flex;align-items:center;justify-content:center">
+              <div class="field">
+                <label for="email" data-i18n="label_email">البريد الإلكتروني</label>
+                <input id="email" type="email" data-i18n-placeholder="ph_email" placeholder="example@email.com">
+              </div>
 
-<img src="./assets/logo.png" style="width:140px;opacity:.9">
+              <div class="field full">
+                <label for="details" data-i18n="label_details">نبذة عنك</label>
+                <textarea id="details" data-i18n-placeholder="ph_details" placeholder="عرّف بنفسك، واذكر مجالك أو مهاراتك أو ما ترغب في بنائه معنا..."></textarea>
+              </div>
+            </form>
 
-</div>
+            <div class="submit-row">
+              <button class="btn primary" type="button" data-i18n="send_btn">إرسال الطلب</button>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
 
-</div>
+    <footer class="footer">
+      <div class="container">GENEX © 2026</div>
+    </footer>
+  </div>
 
-</div>
-</section>
+  <script>
+    (function () {
+      const mobileToggle = document.getElementById('mobileToggle');
+      const mobileNav = document.getElementById('mobileNav');
 
-<section class="section">
-<div class="container">
+      if (mobileToggle && mobileNav) {
+        mobileToggle.addEventListener('click', () => {
+          mobileNav.classList.toggle('open');
+        });
+      }
 
-<div class="genex-panel">
+      const translations = {
+        ar: {
+          title: "انضم إلى GENEX",
+          nav_home: "الرئيسية",
+          nav_services: "الخدمات",
+          nav_request: "اطلب الآن",
+          nav_join: "انضم إلينا",
+          nav_contact: "تواصل",
+          eyebrow: "GENEX CAREERS • ابنِ المستقبل معنا",
+          hero_title: "انضم إلى GENEX وشارك في بناء تقنيات الغد",
+          hero_desc: "نحن نبحث عن أشخاص لديهم شغف بالتقنية، تصميم الأنظمة، الذكاء الاصطناعي، والتجارب الرقمية القوية، ويريدون المساهمة في بناء شيء يتجاوز النماذج التقليدية.",
+          hero_badge: "Careers • Innovation<br>AI • Automation • Digital Systems",
+          why_title: "لماذا الانضمام إلى GENEX",
+          why_desc: "نحن نبني بيئة تجمع بين الطموح التقني، المرونة، والرغبة في تطوير منتجات وأنظمة ذات أثر واضح.",
+          card_1_title: "بناء شيء جديد",
+          card_1_desc: "العمل في GENEX يعني المساهمة في تكوين هوية ومنتجات وأنظمة من بداياتها الحقيقية.",
+          card_2_title: "ثقافة تقنية طموحة",
+          card_2_desc: "بيئة تركز على التفكير، التطوير، والتحسين المستمر بدل الاكتفاء بالحلول التقليدية.",
+          card_3_title: "أثر مستقبلي",
+          card_3_desc: "كل مساهمة داخل GENEX جزء من مشروع أكبر لبناء بنية رقمية وذكاء تشغيلي متقدم.",
+          jobs_title: "فرص حالية",
+          jobs_desc: "بعض المسارات التي نرى أنها مناسبة للمرحلة الحالية والمستقبلية للشركة.",
+          job_1_title: "مهندس ذكاء اصطناعي",
+          job_1_desc: "العمل على بناء حلول ذكاء اصطناعي، وكلاء ذكيين، ومنظومات تحليل وتنفيذ تعتمد على AI.",
+          job_2_title: "مطوّر أتمتة وأنظمة",
+          job_2_desc: "تصميم وبناء تدفقات تشغيل ذكية، تكاملات بين الأنظمة، وحلول تقلل العمل اليدوي المتكرر.",
+          job_3_title: "مطوّر واجهات وتجارب رقمية",
+          job_3_desc: "بناء واجهات حديثة، مواقع وتجارب رقمية عالية الجودة تعكس مستوى GENEX بصريًا وتقنيًا.",
+          job_type_full: "دوام / مرن",
+          job_type_flex: "مرن",
+          job_type_project: "مشاريع / مرن",
+          job_level_mid: "متوسط إلى متقدم",
+          apply_title: "إرسال طلب انضمام",
+          apply_desc: "إذا كان لديك اهتمام حقيقي بالمشاركة في بناء GENEX، أرسل معلوماتك الأساسية وتعريفًا مختصرًا عن نفسك.",
+          label_name: "الاسم",
+          label_email: "البريد الإلكتروني",
+          label_details: "نبذة عنك",
+          ph_name: "اكتب اسمك",
+          ph_email: "example@email.com",
+          ph_details: "عرّف بنفسك، واذكر مجالك أو مهاراتك أو ما ترغب في بنائه معنا...",
+          send_btn: "إرسال الطلب"
+        },
+        en: {
+          title: "Join GENEX",
+          nav_home: "Home",
+          nav_services: "Services",
+          nav_request: "Request Now",
+          nav_join: "Join Us",
+          nav_contact: "Contact",
+          eyebrow: "GENEX CAREERS • Build the Future With Us",
+          hero_title: "Join GENEX and help build the technologies of tomorrow",
+          hero_desc: "We are looking for people who are passionate about technology, systems design, artificial intelligence, and strong digital experiences, and who want to contribute to building something beyond traditional models.",
+          hero_badge: "Careers • Innovation<br>AI • Automation • Digital Systems",
+          why_title: "Why Join GENEX",
+          why_desc: "We are building an environment that combines technical ambition, flexibility, and the desire to develop products and systems with real impact.",
+          card_1_title: "Build Something New",
+          card_1_desc: "Working at GENEX means contributing to the formation of identity, products, and systems from their real beginnings.",
+          card_2_title: "Ambitious Tech Culture",
+          card_2_desc: "An environment focused on thinking, development, and continuous improvement rather than settling for conventional solutions.",
+          card_3_title: "Future Impact",
+          card_3_desc: "Every contribution inside GENEX is part of a larger mission to build advanced digital infrastructure and operational intelligence.",
+          jobs_title: "Current Opportunities",
+          jobs_desc: "Some of the paths we see as suitable for the current and future stage of the company.",
+          job_1_title: "AI Engineer",
+          job_1_desc: "Working on AI solutions, intelligent agents, and analysis and execution systems powered by AI.",
+          job_2_title: "Automation & Systems Developer",
+          job_2_desc: "Designing and building smart workflows, system integrations, and solutions that reduce repetitive manual work.",
+          job_3_title: "Frontend & Digital Experience Developer",
+          job_3_desc: "Building modern interfaces, websites, and premium digital experiences that reflect GENEX visually and technically.",
+          job_type_full: "Full-time / Flexible",
+          job_type_flex: "Flexible",
+          job_type_project: "Project-based / Flexible",
+          job_level_mid: "Mid to Senior",
+          apply_title: "Submit an Application",
+          apply_desc: "If you have a real interest in contributing to GENEX, send your basic details and a short introduction about yourself.",
+          label_name: "Name",
+          label_email: "Email",
+          label_details: "About You",
+          ph_name: "Enter your name",
+          ph_email: "example@email.com",
+          ph_details: "Introduce yourself, mention your field, skills, or what you would like to build with us...",
+          send_btn: "Send Application"
+        }
+      };
 
-<h2 style="margin-bottom:18px">طلب الانضمام</h2>
+      function applyLanguage(lang) {
+        document.documentElement.lang = lang;
+        document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+        localStorage.setItem('genex_lang', lang);
 
-<form class="form-grid">
+        const dict = translations[lang];
+        if (!dict) return;
 
-<div class="field">
-<label>الاسم</label>
-<input placeholder="اسمك">
-</div>
+        document.title = dict.title;
 
-<div class="field">
-<label>البريد الإلكتروني</label>
-<input placeholder="email@example.com">
-</div>
+        document.querySelectorAll('[data-i18n]').forEach((el) => {
+          const key = el.getAttribute('data-i18n');
+          if (dict[key]) {
+            if (key === 'hero_badge') el.innerHTML = dict[key];
+            else el.textContent = dict[key];
+          }
+        });
 
-<div class="field">
-<label>المجال</label>
-<input placeholder="تطوير / تصميم / ذكاء اصطناعي">
-</div>
+        document.querySelectorAll('[data-i18n-placeholder]').forEach((el) => {
+          const key = el.getAttribute('data-i18n-placeholder');
+          if (dict[key]) el.setAttribute('placeholder', dict[key]);
+        });
 
-<div class="field">
-<label>الخبرة</label>
-<input placeholder="سنوات الخبرة">
-</div>
+        document.querySelectorAll('.lang-switch button').forEach((btn) => {
+          btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
+        });
+      }
 
-<div class="field full">
-<label>نبذة عنك</label>
-<textarea placeholder="اكتب نبذة قصيرة عن مهاراتك أو اهتمامك بالانضمام إلى GENEX"></textarea>
-</div>
+      document.querySelectorAll('.lang-switch button').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          applyLanguage(btn.getAttribute('data-lang'));
+        });
+      });
 
-</form>
+      applyLanguage(localStorage.getItem('genex_lang') || 'ar');
+    })();
+  </script>
 
-<div class="submit-row">
-<button class="btn primary">إرسال الطلب</button>
-</div>
-
-</div>
-
-</div>
-</section>
-
-</main>
-
-<footer class="footer">
-<div class="container">GENEX © 2026</div>
-</footer>
-
-</div>
-
-<script>
-
-const mobileToggle=document.getElementById("mobileToggle")
-const mobileNav=document.getElementById("mobileNav")
-
-if(mobileToggle){
-mobileToggle.onclick=()=>{
-mobileNav.classList.toggle("open")
-}
-}
-
-</script>
-
-<script type="module" src="./assets/genex-fx.js?v=600"></script>
-
+  <script type="module" src="./assets/genex-fx.js?v=600"></script>
 </body>
 </html>
