@@ -309,20 +309,15 @@
       a: Math.random() * 0.12 + 0.03,
       speed: Math.random() * 0.24 + 0.04,
       depth: 0.10 + Math.random() * 0.22,
-      hue: Math.random() > 0.82 ? "red" : "white"
+      hue: Math.random() > 0.84 ? "red" : "white"
     }));
 
-    const nodes = [
-      { x: 0.15, y: 0.18, r: 170, ring: 1.24, depth: 0.30, color: "white", drift: 0.16 },
-      { x: 0.52, y: 0.14, r: 230, ring: 1.34, depth: 0.40, color: "red", drift: 0.11 },
-      { x: 0.83, y: 0.26, r: 150, ring: 1.18, depth: 0.26, color: "white", drift: 0.18 },
-
-      { x: 0.24, y: 0.56, r: 260, ring: 1.42, depth: 0.46, color: "red", drift: 0.09 },
-      { x: 0.68, y: 0.50, r: 200, ring: 1.26, depth: 0.34, color: "white", drift: 0.14 },
-
-      { x: 0.12, y: 0.84, r: 150, ring: 1.16, depth: 0.22, color: "white", drift: 0.20 },
-      { x: 0.48, y: 0.80, r: 220, ring: 1.30, depth: 0.36, color: "red", drift: 0.12 },
-      { x: 0.86, y: 0.78, r: 170, ring: 1.18, depth: 0.24, color: "white", drift: 0.17 }
+    const planets = [
+      { x: 0.18, y: 0.16, r: 300, ring: 1.22, depth: 0.28, color: "white", drift: 0.13 },
+      { x: 0.67, y: 0.18, r: 420, ring: 1.30, depth: 0.42, color: "red",   drift: 0.09 },
+      { x: 0.30, y: 0.60, r: 500, ring: 1.36, depth: 0.48, color: "red",   drift: 0.08 },
+      { x: 0.80, y: 0.58, r: 340, ring: 1.20, depth: 0.30, color: "white", drift: 0.12 },
+      { x: 0.54, y: 0.88, r: 380, ring: 1.24, depth: 0.34, color: "white", drift: 0.10 }
     ];
 
     function drawBase() {
@@ -336,14 +331,14 @@
 
     function drawFieldFog(t) {
       const fogs = [
-        { x: 0.22, y: 0.20, r: 0.24, white: 0.05, red: 0.025, dx: 0.16, dy: 0.11 },
-        { x: 0.60, y: 0.52, r: 0.30, white: 0.045, red: 0.022, dx: 0.12, dy: -0.08 },
-        { x: 0.84, y: 0.74, r: 0.18, white: 0.04, red: 0.018, dx: -0.10, dy: 0.09 }
+        { x: 0.22, y: 0.20, r: 0.22, white: 0.05, red: 0.02, dx: 0.16, dy: 0.11 },
+        { x: 0.60, y: 0.52, r: 0.28, white: 0.045, red: 0.018, dx: 0.12, dy: -0.08 },
+        { x: 0.84, y: 0.74, r: 0.16, white: 0.04, red: 0.014, dx: -0.10, dy: 0.09 }
       ];
 
       backCtx.save();
       backCtx.globalCompositeOperation = "screen";
-      backCtx.filter = "blur(78px)";
+      backCtx.filter = "blur(82px)";
 
       fogs.forEach((f, i) => {
         const cx = w * f.x + Math.sin(t * f.dx + i) * w * 0.02 + mouse.x * 14;
@@ -393,35 +388,35 @@
       backCtx.restore();
     }
 
-    function drawNode(node, t, i) {
-      const x = node.x * w + Math.sin(t * node.drift + i) * 18 + mouse.x * 34 * node.depth;
-      const y = node.y * h + Math.cos(t * node.drift + i) * 14 + mouse.y * 22 * node.depth + scrollCurrent * 64 * node.depth;
-      const r = node.r * (1 + Math.sin(t * 0.45 + i) * 0.018);
-      const rot = Math.sin(t * 0.11 + i) * 0.72;
+    function drawPlanet(planet, t, i) {
+      const x = planet.x * w + Math.sin(t * planet.drift + i) * 14 + mouse.x * 28 * planet.depth;
+      const y = planet.y * h + Math.cos(t * planet.drift + i) * 12 + mouse.y * 18 * planet.depth + scrollCurrent * 54 * planet.depth;
+      const r = planet.r * (1 + Math.sin(t * 0.32 + i) * 0.012);
+      const rot = Math.sin(t * 0.08 + i) * 0.58;
 
       backCtx.save();
       backCtx.globalCompositeOperation = "screen";
 
-      const outer = backCtx.createRadialGradient(x, y, r * 0.04, x, y, r);
-      const inner = backCtx.createRadialGradient(x, y, r * 0.03, x, y, r * 0.52);
+      const outer = backCtx.createRadialGradient(x, y, r * 0.05, x, y, r);
+      const inner = backCtx.createRadialGradient(x, y, r * 0.04, x, y, r * 0.54);
 
-      if (node.color === "white") {
-        outer.addColorStop(0, "rgba(255,255,255,0.22)");
-        outer.addColorStop(0.18, "rgba(255,255,255,0.12)");
-        outer.addColorStop(0.48, "rgba(255,255,255,0.04)");
+      if (planet.color === "white") {
+        outer.addColorStop(0, "rgba(255,255,255,0.20)");
+        outer.addColorStop(0.18, "rgba(255,255,255,0.11)");
+        outer.addColorStop(0.52, "rgba(255,255,255,0.038)");
         outer.addColorStop(1, "rgba(255,255,255,0)");
 
-        inner.addColorStop(0, "rgba(255,255,255,0.90)");
-        inner.addColorStop(0.26, "rgba(255,255,255,0.28)");
+        inner.addColorStop(0, "rgba(255,255,255,0.82)");
+        inner.addColorStop(0.26, "rgba(255,255,255,0.24)");
         inner.addColorStop(1, "rgba(255,255,255,0)");
       } else {
-        outer.addColorStop(0, "rgba(86,8,18,0.14)");
-        outer.addColorStop(0.18, "rgba(86,8,18,0.09)");
-        outer.addColorStop(0.48, "rgba(86,8,18,0.028)");
+        outer.addColorStop(0, "rgba(86,8,18,0.12)");
+        outer.addColorStop(0.18, "rgba(86,8,18,0.08)");
+        outer.addColorStop(0.52, "rgba(86,8,18,0.026)");
         outer.addColorStop(1, "rgba(86,8,18,0)");
 
-        inner.addColorStop(0, "rgba(122,12,24,0.44)");
-        inner.addColorStop(0.28, "rgba(96,8,18,0.12)");
+        inner.addColorStop(0, "rgba(122,12,24,0.34)");
+        inner.addColorStop(0.28, "rgba(96,8,18,0.10)");
         inner.addColorStop(1, "rgba(96,8,18,0)");
       }
 
@@ -432,34 +427,34 @@
 
       backCtx.fillStyle = inner;
       backCtx.beginPath();
-      backCtx.arc(x, y, r * 0.52, 0, Math.PI * 2);
+      backCtx.arc(x, y, r * 0.54, 0, Math.PI * 2);
       backCtx.fill();
 
-      backCtx.strokeStyle = node.color === "white"
-        ? "rgba(255,255,255,0.12)"
-        : "rgba(96,8,18,0.10)";
-      backCtx.lineWidth = 1;
+      backCtx.strokeStyle = planet.color === "white"
+        ? "rgba(255,255,255,0.10)"
+        : "rgba(96,8,18,0.09)";
+      backCtx.lineWidth = 1.2;
 
       backCtx.beginPath();
-      backCtx.ellipse(x, y, r * node.ring, r * 0.22, rot, 0, Math.PI * 2);
+      backCtx.ellipse(x, y, r * planet.ring, r * 0.20, rot, 0, Math.PI * 2);
       backCtx.stroke();
 
       backCtx.beginPath();
-      backCtx.ellipse(x, y, r * (node.ring * 0.74), r * 0.16, -rot * 0.7, 0, Math.PI * 2);
+      backCtx.ellipse(x, y, r * (planet.ring * 0.74), r * 0.145, -rot * 0.7, 0, Math.PI * 2);
       backCtx.stroke();
 
       backCtx.beginPath();
-      backCtx.arc(x, y, r * 0.09, 0, Math.PI * 2);
-      backCtx.fillStyle = node.color === "white"
-        ? "rgba(255,255,255,0.82)"
-        : "rgba(150,18,32,0.36)";
+      backCtx.arc(x, y, r * 0.085, 0, Math.PI * 2);
+      backCtx.fillStyle = planet.color === "white"
+        ? "rgba(255,255,255,0.78)"
+        : "rgba(150,18,32,0.30)";
       backCtx.fill();
 
       backCtx.restore();
     }
 
-    function drawNodes(t) {
-      nodes.forEach((node, i) => drawNode(node, t, i));
+    function drawPlanets(t) {
+      planets.forEach((planet, i) => drawPlanet(planet, t, i));
     }
 
     function drawFront(t) {
@@ -467,15 +462,15 @@
       frontCtx.save();
       frontCtx.globalCompositeOperation = "screen";
 
-      for (let i = 0; i < 12; i++) {
-        const px = (i / 12) * w + Math.sin(t * 0.18 + i) * 24 + mouse.x * 8;
+      for (let i = 0; i < 10; i++) {
+        const px = (i / 10) * w + Math.sin(t * 0.18 + i) * 24 + mouse.x * 8;
         const py = h * (0.12 + (i % 4) * 0.20) + Math.cos(t * 0.20 + i) * 8 + mouse.y * 6;
         const len = 110 + (i % 3) * 36;
 
         const grad = frontCtx.createLinearGradient(px, py, px + len, py);
         grad.addColorStop(0, "rgba(255,255,255,0)");
         grad.addColorStop(0.34, "rgba(255,255,255,0.02)");
-        grad.addColorStop(0.68, "rgba(90,8,18,0.03)");
+        grad.addColorStop(0.68, "rgba(90,8,18,0.025)");
         grad.addColorStop(1, "rgba(255,255,255,0)");
 
         frontCtx.strokeStyle = grad;
@@ -512,7 +507,7 @@
       drawBase();
       drawFieldFog(t);
       drawStars(t);
-      drawNodes(t);
+      drawPlanets(t);
       drawFront(t);
     }
 
