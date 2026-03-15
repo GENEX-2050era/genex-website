@@ -122,25 +122,30 @@
   }
 
   function initIntro() {
-    const intro = q("#genexIntro");
-    if (!intro || !introEnabled) return;
-
-    const intro = document.querySelector("#genexIntro");
+  const intro = document.querySelector("#genexIntro");
   if (!intro || !introEnabled) return;
 
+  // أظهر الإنترو دائمًا عند فتح الرئيسية
+  intro.classList.remove("hidden");
 
-      const closeIntro = () => {
+  let closed = false;
+
+  const closeIntro = () => {
+    if (closed) return;
+    closed = true;
     intro.classList.add("hidden");
   };
 
+  // يبدأ العد مباشرة سواء الصفحة حملت بسرعة أو لا
+  setTimeout(closeIntro, 3800);
 
-    if (document.readyState === "complete") {
-      setTimeout(closeIntro, 4600);
-    } else {
-      window.addEventListener("load", () => {
+  // إغلاق احتياطي إضافي في حال حصل تعارض
+  window.addEventListener("pageshow", () => {
     setTimeout(closeIntro, 3800);
-  });
+  }, { once: true });
 
+  // السماح بالإغلاق اليدوي عند الضغط
+  intro.addEventListener("click", closeIntro, { once: true });
 }
   }
 
