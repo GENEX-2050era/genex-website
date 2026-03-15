@@ -189,79 +189,153 @@ import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.162.0/build/three.m
     const scene = new THREE.Scene();
     scene.fog = new THREE.FogExp2(0x05070f, 0.055);
 
-    const camera = new THREE.PerspectiveCamera(40, window.innerWidth / window.innerHeight, 0.1, 120);
+    const camera = new THREE.PerspectiveCamera(40, window.innerWidth / window.innerHeight, 0.1, 140);
     camera.position.set(0, 0, 13);
 
     const world = new THREE.Group();
     scene.add(world);
 
-    const ambient = new THREE.AmbientLight(0xffffff, 0.88);
+    const ambient = new THREE.AmbientLight(0xffffff, 0.9);
     scene.add(ambient);
 
-    const crimsonLight = new THREE.PointLight(0xb41428, 20, 40, 2);
-    crimsonLight.position.set(3, 2.5, 5.5);
+    const crimsonLight = new THREE.PointLight(0xb41428, 22, 44, 2);
+    crimsonLight.position.set(3, 2.4, 5.5);
     scene.add(crimsonLight);
 
-    const whiteLight = new THREE.PointLight(0xffffff, 7, 28, 2);
-    whiteLight.position.set(-2.5, 1.8, 5.2);
+    const whiteLight = new THREE.PointLight(0xffffff, 8, 30, 2);
+    whiteLight.position.set(-2.4, 1.8, 5.2);
     scene.add(whiteLight);
 
-    function phys(color, transmission = 0.18, opacity = 0.82) {
+    const nucleiGroup = new THREE.Group();
+    world.add(nucleiGroup);
+
+    const nuclei = [];
+
+    function nucleusMaterial(colorHex, opacity = 0.92) {
       return new THREE.MeshPhysicalMaterial({
-        color,
+        color: colorHex,
         roughness: 0.12,
-        metalness: 0.12,
-        transmission,
+        metalness: 0.08,
+        transmission: 0.12,
         transparent: true,
         opacity,
         clearcoat: 1,
-        clearcoatRoughness: 0.09
+        clearcoatRoughness: 0.06,
+        emissive: colorHex,
+        emissiveIntensity: colorHex === 0xffffff ? 0.8 : 0.45
       });
     }
 
-    const objects = [];
-    const shapes = new THREE.Group();
-    world.add(shapes);
-
-    function addShape(mesh, opts) {
-      mesh.position.set(opts.x, opts.y, opts.z);
-      mesh.rotation.set(opts.rx, opts.ry, opts.rz);
-      mesh.userData = { ...opts };
-      shapes.add(mesh);
-      objects.push(mesh);
+    function glowMaterial(colorHex, opacity = 0.22) {
+      return new THREE.MeshBasicMaterial({
+        color: colorHex,
+        transparent: true,
+        opacity,
+        depthWrite: false
+      });
     }
 
-    addShape(new THREE.Mesh(new THREE.TorusKnotGeometry(1.0, 0.22, 180, 26), phys(0xb41428, 0.06, 0.84)), {
-      x: -3.6, y: 2.0, z: -0.5, rx: 0.5, ry: 0.2, rz: 0.25, speedA: 0.8, speedB: 0.6
-    });
+    function ringMaterial(colorHex, opacity = 0.16) {
+      return new THREE.MeshBasicMaterial({
+        color: colorHex,
+        transparent: true,
+        opacity,
+        depthWrite: false
+      });
+    }
 
-    addShape(new THREE.Mesh(new THREE.IcosahedronGeometry(1.0, 1), phys(0xffffff, 0.28, 0.56)), {
-      x: -0.3, y: 2.7, z: -1.5, rx: 0.2, ry: 0.4, rz: 0.0, speedA: 0.64, speedB: 0.52
-    });
+    function createNucleus({
+      x, y, z, scale, isWhite, orbitCount, seed
+    }) {
+      const group = new THREE.Group();
+      const color = isWhite ? 0xffffff : 0x8f1222;
 
-    addShape(new THREE.Mesh(new THREE.TorusGeometry(1.15, 0.18, 30, 170), phys(0xb41428, 0.12, 0.78)), {
-      x: 3.4, y: 1.5, z: -0.9, rx: 1.0, ry: 0.2, rz: 0.1, speedA: 0.9, speedB: 0.46
-    });
+      const core = new THREE.Mesh(
+        new THREE.SphereGeometry(0.38, 28, 28),
+        nucleusMaterial(color, isWhite ? 0.95 : 0.90)
+      );
+      core.scale.setScalar(scale);
 
-    addShape(new THREE.Mesh(new THREE.OctahedronGeometry(0.95, 0), phys(0xffffff, 0.24, 0.48)), {
-      x: -3.8, y: -1.4, z: -1.9, rx: 0.2, ry: 0.6, rz: 0.32, speedA: 0.72, speedB: 0.68
-    });
+      const glow1 = new THREE.Mesh(
+        new THREE.SphereGeometry(0.62, 28, 28),
+        glowMaterial(color, isWhite ? 0.16 : 0.14)
+      );
+      glow1.scale.setScalar(scale * 1.7);
 
-    addShape(new THREE.Mesh(new THREE.CylinderGeometry(1.0, 1.0, 0.26, 6, 1, true), phys(0xb41428, 0.14, 0.76)), {
-      x: -0.3, y: -1.2, z: -0.2, rx: 1.22, ry: 0.5, rz: 0.22, speedA: 0.56, speedB: 0.44
-    });
+      const glow2 = new THREE.Mesh(
+        new THREE.SphereGeometry(0.82, 28, 28),
+        glowMaterial(color, isWhite ? 0.08 : 0.07)
+      );
+      glow2.scale.setScalar(scale * 2.35);
 
-    addShape(new THREE.Mesh(new THREE.TorusKnotGeometry(0.72, 0.18, 160, 24, 3, 5), phys(0xffffff, 0.18, 0.54)), {
-      x: 3.2, y: -1.35, z: -1.2, rx: 0.2, ry: 0.2, rz: 0.8, speedA: 0.66, speedB: 0.78
-    });
+      group.add(glow2);
+      group.add(glow1);
+      group.add(core);
 
-    addShape(new THREE.Mesh(new THREE.BoxGeometry(0.95, 0.95, 0.95), phys(0xffffff, 0.12, 0.40)), {
-      x: 1.5, y: 3.1, z: -2.3, rx: 0.3, ry: 0.2, rz: 0.12, speedA: 0.5, speedB: 0.6
-    });
+      const rings = [];
 
-    addShape(new THREE.Mesh(new THREE.SphereGeometry(0.84, 30, 30), phys(0xb41428, 0.10, 0.52)), {
-      x: -1.9, y: 3.4, z: -2.1, rx: 0.1, ry: 0.1, rz: 0.0, speedA: 0.42, speedB: 0.64
-    });
+      for (let i = 0; i < orbitCount; i++) {
+        const ring = new THREE.Mesh(
+          new THREE.TorusGeometry(scale * (1.25 + i * 0.38), scale * 0.015, 8, 160),
+          ringMaterial(isWhite ? 0xffffff : 0xb41428, isWhite ? 0.10 : 0.12)
+        );
+
+        ring.rotation.x = (Math.PI / 2.2) + i * 0.35;
+        ring.rotation.y = seed * 0.6 + i * 0.8;
+        ring.rotation.z = seed * 0.4 + i * 0.45;
+        group.add(ring);
+        rings.push(ring);
+      }
+
+      group.position.set(x, y, z);
+
+      nucleiGroup.add(group);
+      nuclei.push({
+        group,
+        core,
+        glow1,
+        glow2,
+        rings,
+        baseX: x,
+        baseY: y,
+        baseZ: z,
+        scale,
+        isWhite,
+        seed,
+        driftA: 0.24 + (seed % 7) * 0.03,
+        driftB: 0.20 + (seed % 5) * 0.035,
+        driftC: 0.16 + (seed % 6) * 0.028
+      });
+    }
+
+    const nucleusLayout = [
+      { x:-5.8, y: 3.2, z:-4.8, scale:1.10, isWhite:false, orbitCount:2, seed:1 },
+      { x:-2.4, y: 4.6, z:-6.4, scale:0.82, isWhite:true,  orbitCount:3, seed:2 },
+      { x: 1.4, y: 4.1, z:-3.8, scale:1.25, isWhite:false, orbitCount:2, seed:3 },
+      { x: 4.9, y: 3.0, z:-7.0, scale:0.72, isWhite:true,  orbitCount:3, seed:4 },
+
+      { x:-6.4, y: 0.6, z:-8.6, scale:0.62, isWhite:true,  orbitCount:2, seed:5 },
+      { x:-2.0, y: 1.4, z:-2.8, scale:1.42, isWhite:false, orbitCount:3, seed:6 },
+      { x: 2.3, y: 0.3, z:-9.2, scale:0.58, isWhite:true,  orbitCount:2, seed:7 },
+      { x: 5.8, y: 1.2, z:-4.2, scale:1.00, isWhite:false, orbitCount:2, seed:8 },
+
+      { x:-5.2, y:-2.4, z:-3.4, scale:1.20, isWhite:false, orbitCount:2, seed:9 },
+      { x:-1.3, y:-2.8, z:-7.8, scale:0.74, isWhite:true,  orbitCount:3, seed:10 },
+      { x: 2.8, y:-2.2, z:-4.9, scale:1.08, isWhite:false, orbitCount:2, seed:11 },
+      { x: 6.1, y:-3.0, z:-8.9, scale:0.60, isWhite:true,  orbitCount:2, seed:12 },
+
+      { x:-3.8, y: 5.8, z:-10.6, scale:0.50, isWhite:true, orbitCount:2, seed:13 },
+      { x: 3.9, y: 5.5, z:-10.2, scale:0.52, isWhite:false,orbitCount:2, seed:14 },
+      { x:-7.2, y: 2.2, z:-11.6, scale:0.44, isWhite:true, orbitCount:1, seed:15 },
+      { x: 7.0, y:-0.8, z:-11.2, scale:0.46, isWhite:false,orbitCount:1, seed:16 },
+
+      { x:-6.8, y:-4.8, z:-12.4, scale:0.40, isWhite:true, orbitCount:1, seed:17 },
+      { x:-0.2, y: 6.0, z:-12.0, scale:0.42, isWhite:false,orbitCount:1, seed:18 },
+      { x: 6.7, y: 4.7, z:-12.8, scale:0.38, isWhite:true, orbitCount:1, seed:19 },
+      { x: 4.6, y:-5.2, z:-12.0, scale:0.43, isWhite:false,orbitCount:1, seed:20 }
+    ];
+
+    nucleusLayout.forEach(createNucleus);
 
     const rings = [];
     for (let i = 0; i < 7; i++) {
@@ -485,17 +559,30 @@ import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.162.0/build/three.m
       camera.position.z = 13 - scrollCurrent * 1.3;
       camera.lookAt(0, 0, 0);
 
-      world.rotation.y = mouse.x * 0.28 + Math.sin(t * 0.16) * 0.05;
-      world.rotation.x = -(mouse.y * 0.14);
+      world.rotation.y = mouse.x * 0.22 + Math.sin(t * 0.16) * 0.04;
+      world.rotation.x = -(mouse.y * 0.11);
       world.position.y = -scrollCurrent * 0.72;
 
-      objects.forEach((mesh, i) => {
-        const u = mesh.userData;
-        mesh.position.x = u.x + Math.sin(t * u.speedA + i) * 0.22 + mouse.x * 0.55;
-        mesh.position.y = u.y + Math.cos(t * u.speedB + i * 0.7) * 0.25 + mouse.y * 0.30;
-        mesh.rotation.x += 0.002 + (i * 0.0002);
-        mesh.rotation.y += 0.003 + (i * 0.00025);
-        mesh.rotation.z += 0.0012 + (i * 0.00012);
+      nuclei.forEach((item, i) => {
+        const phase = t * item.driftA + item.seed * 0.9;
+
+        item.group.position.x = item.baseX + Math.sin(phase) * (0.16 + item.scale * 0.06) + mouse.x * (0.22 + item.scale * 0.04);
+        item.group.position.y = item.baseY + Math.cos(t * item.driftB + item.seed) * (0.18 + item.scale * 0.07) + mouse.y * (0.14 + item.scale * 0.03);
+        item.group.position.z = item.baseZ + Math.sin(t * item.driftC + item.seed * 0.7) * 0.18;
+
+        item.core.rotation.y += 0.006 + item.scale * 0.001;
+        item.core.rotation.x += 0.004 + item.scale * 0.0008;
+
+        const pulse = 1 + Math.sin(t * 1.2 + item.seed) * 0.05;
+        item.core.scale.setScalar(item.scale * pulse);
+        item.glow1.scale.setScalar(item.scale * 1.7 * (1 + Math.sin(t * 0.9 + item.seed) * 0.04));
+        item.glow2.scale.setScalar(item.scale * 2.35 * (1 + Math.cos(t * 0.7 + item.seed) * 0.05));
+
+        item.rings.forEach((ring, idx) => {
+          ring.rotation.z += 0.004 + idx * 0.0008;
+          ring.rotation.y += 0.0025 + idx * 0.0006;
+          ring.rotation.x += 0.0014 + idx * 0.0005;
+        });
       });
 
       rings.forEach((ring, i) => {
