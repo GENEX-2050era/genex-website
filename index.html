@@ -4,10 +4,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>GENEX | أنظمة الذكاء الاصطناعي والأتمتة المتقدمة</title>
-  <meta name="description" content="GENEX شركة تقنية متخصصة في أنظمة الذكاء الاصطناعي المستقلة، الأتمتة الذكية، والبنية التشغيلية الرقمية المستقبلية." />
+  <title>GENEX | Sovereign Intelligence Systems</title>
+  <meta name="description" content="GENEX builds sovereign AI systems, advanced automation, and next-generation digital infrastructure." />
 
-  <link rel="stylesheet" href="./assets/styles.css?v=904">
+  <link rel="stylesheet" href="./assets/styles.css?v=906">
   <link rel="stylesheet" href="./assets/genex-fx.css?v=904">
 
   <style>
@@ -21,7 +21,7 @@
 
     .hero-grid{
       display:grid;
-      grid-template-columns:1.12fr .88fr;
+      grid-template-columns:1.08fr .92fr;
       gap:28px;
       align-items:center;
     }
@@ -29,7 +29,7 @@
     .hero-copy{
       padding:54px 46px;
       border-radius:32px;
-      max-width:780px;
+      max-width:820px;
     }
 
     .eyebrow{
@@ -40,7 +40,7 @@
       border:1px solid rgba(255,255,255,.10);
       border-radius:999px;
       background:rgba(255,255,255,.05);
-      color:rgba(245,247,255,.74);
+      color:rgba(245,247,255,.72);
       font-size:13px;
       font-weight:700;
       margin-bottom:22px;
@@ -49,14 +49,23 @@
     }
 
     .hero h1{
-      margin:0 0 24px;
-      font-size:clamp(42px,7vw,92px);
-      line-height:1.08;
-      letter-spacing:-.04em;
+      margin:0 0 16px;
+      font-size:clamp(36px,5.4vw,68px);
+      line-height:1.06;
+      letter-spacing:-.035em;
       max-width:760px;
     }
 
-    .hero p{
+    .hero-subtitle{
+      margin:0 0 26px;
+      max-width:620px;
+      color:rgba(245,247,255,.70);
+      font-size:16px;
+      line-height:1.95;
+      letter-spacing:.01em;
+    }
+
+    .hero-body{
       margin:0 0 28px;
       max-width:650px;
       color:rgba(245,247,255,.78);
@@ -71,7 +80,7 @@
     }
 
     .hero-visual{
-      min-height:520px;
+      min-height:540px;
       display:flex;
       align-items:center;
       justify-content:center;
@@ -80,14 +89,14 @@
     }
 
     .hero-orb{
-      width:min(100%, 440px);
-      min-height:440px;
+      width:min(100%, 470px);
+      min-height:470px;
       display:flex;
       flex-direction:column;
       justify-content:center;
       align-items:center;
       text-align:center;
-      padding:34px;
+      padding:38px;
       position:relative;
       overflow:hidden;
       border-radius:32px;
@@ -98,8 +107,8 @@
       position:absolute;
       inset:0;
       background:
-        radial-gradient(circle at 50% 30%, rgba(255,255,255,.09), transparent 32%),
-        radial-gradient(circle at 50% 60%, rgba(180,20,40,.16), transparent 42%);
+        radial-gradient(circle at 50% 28%, rgba(255,255,255,.08), transparent 32%),
+        radial-gradient(circle at 50% 62%, rgba(120,10,20,.10), transparent 44%);
       pointer-events:none;
     }
 
@@ -108,9 +117,9 @@
       position:absolute;
       width:180%;
       height:180%;
-      background:linear-gradient(115deg, transparent 32%, rgba(255,255,255,.08) 50%, transparent 68%);
+      background:linear-gradient(115deg, transparent 34%, rgba(255,255,255,.07) 50%, transparent 66%);
       transform:translateX(-60%) rotate(15deg);
-      animation:orbSweep 8s linear infinite;
+      animation:orbSweep 10s linear infinite;
     }
 
     @keyframes orbSweep{
@@ -118,31 +127,32 @@
     }
 
     .hero-orb img{
-      width:150px;
-      height:150px;
+      width:164px;
+      height:164px;
       object-fit:contain;
       margin-bottom:20px;
       position:relative;
       z-index:2;
-      filter:drop-shadow(0 0 20px rgba(255,255,255,.16));
+      filter:drop-shadow(0 0 24px rgba(255,255,255,.14));
     }
 
     .hero-orb strong{
       position:relative;
       z-index:2;
       display:block;
-      margin-bottom:12px;
-      font-size:42px;
-      letter-spacing:.26em;
-      margin-inline-start:.26em;
+      margin-bottom:10px;
+      font-size:40px;
+      letter-spacing:.24em;
+      margin-inline-start:.24em;
     }
 
     .hero-orb span{
       position:relative;
       z-index:2;
-      color:rgba(245,247,255,.78);
+      color:rgba(245,247,255,.76);
       line-height:1.9;
       font-size:15px;
+      max-width:320px;
     }
 
     .stats{
@@ -183,7 +193,7 @@
       display:grid;
       place-items:center;
       border-radius:18px;
-      background:linear-gradient(180deg, rgba(180,20,40,.14), rgba(255,255,255,.08));
+      background:linear-gradient(180deg, rgba(120,10,20,.12), rgba(255,255,255,.08));
       border:1px solid rgba(255,255,255,.10);
       margin-bottom:16px;
       font-size:24px;
@@ -205,7 +215,7 @@
       text-align:center;
       padding:38px 24px;
       background:
-        radial-gradient(circle at 50% 0%, rgba(180,20,40,.12), transparent 45%),
+        radial-gradient(circle at 50% 0%, rgba(120,10,20,.10), transparent 45%),
         linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.04));
       border-radius:32px;
     }
@@ -231,11 +241,11 @@
       align-items:center;
       justify-content:center;
       background:
-        radial-gradient(circle at 50% 50%, rgba(180,20,40,.20), transparent 42%),
-        rgba(4,6,13,.95);
-      backdrop-filter:blur(16px);
-      -webkit-backdrop-filter:blur(16px);
-      transition:opacity .9s ease, visibility .9s ease, transform .9s ease;
+        radial-gradient(circle at 50% 50%, rgba(120,10,20,.14), transparent 42%),
+        rgba(4,6,13,.96);
+      backdrop-filter:blur(18px);
+      -webkit-backdrop-filter:blur(18px);
+      transition:opacity 1s ease, visibility 1s ease, transform 1s ease;
     }
 
     .genex-intro.hidden{
@@ -277,37 +287,37 @@
     .intro-logo-wrap::before{
       inset:-12%;
       background:
-        radial-gradient(circle, rgba(255,255,255,.16) 0%, rgba(180,20,40,.18) 28%, rgba(180,20,40,0) 70%);
-      filter:blur(28px);
-      animation:introWaveOuter 3.8s ease-in-out infinite;
+        radial-gradient(circle, rgba(255,255,255,.15) 0%, rgba(120,10,20,.14) 28%, rgba(120,10,20,0) 72%);
+      filter:blur(30px);
+      animation:introWaveOuter 4.8s ease-in-out infinite;
     }
 
     .intro-logo-wrap::after{
       inset:8%;
       border:1px solid rgba(255,255,255,.10);
       box-shadow:
-        0 0 70px rgba(180,20,40,.16),
-        0 0 140px rgba(255,255,255,.06);
-      animation:introWaveInner 2.9s ease-out infinite;
+        0 0 70px rgba(120,10,20,.10),
+        0 0 140px rgba(255,255,255,.05);
+      animation:introWaveInner 3.7s ease-out infinite;
     }
 
     @keyframes introWaveOuter{
-      0%{transform:scale(.76);opacity:.34}
-      50%{transform:scale(1.20);opacity:1}
-      100%{transform:scale(1.46);opacity:0}
+      0%{transform:scale(.76);opacity:.28}
+      50%{transform:scale(1.16);opacity:.9}
+      100%{transform:scale(1.40);opacity:0}
     }
 
     @keyframes introWaveInner{
-      0%{transform:scale(.84);opacity:.55}
-      45%{transform:scale(1.08);opacity:.96}
-      100%{transform:scale(1.34);opacity:0}
+      0%{transform:scale(.84);opacity:.48}
+      45%{transform:scale(1.06);opacity:.92}
+      100%{transform:scale(1.28);opacity:0}
     }
 
     .intro-logo{
       width:440px;
       height:440px;
       object-fit:contain;
-      filter:drop-shadow(0 0 34px rgba(255,255,255,.20));
+      filter:drop-shadow(0 0 34px rgba(255,255,255,.18));
       position:relative;
       z-index:3;
     }
@@ -317,7 +327,7 @@
       text-align:center;
       font-size:52px;
       font-weight:900;
-      letter-spacing:.34em;
+      letter-spacing:.30em;
       margin:0;
       padding:0;
       line-height:1;
@@ -327,13 +337,13 @@
     .intro-sub{
       width:100%;
       text-align:center;
-      color:rgba(245,247,255,.78);
-      font-size:16px;
-      letter-spacing:.18em;
-      margin-top:-2px;
+      color:rgba(245,247,255,.74);
+      font-size:15px;
+      letter-spacing:.16em;
+      margin-top:2px;
       padding:0;
       line-height:1.2;
-      transform:translateY(-12px);
+      transform:translateY(-10px);
     }
 
     @media (max-width:1100px){
@@ -356,7 +366,11 @@
 
     @media (max-width:980px){
       .hero h1{
-        font-size:46px;
+        font-size:42px;
+      }
+
+      .hero-subtitle{
+        font-size:15px;
       }
 
       .hero-orb{
@@ -367,14 +381,13 @@
         padding:34px 24px;
       }
 
-      .hero p{
+      .hero-body{
         font-size:17px;
       }
 
       .intro-logo-wrap{
         width:320px;
         height:320px;
-        margin:0 auto 0;
       }
 
       .intro-logo{
@@ -384,16 +397,14 @@
 
       .intro-wordmark{
         font-size:34px;
-        letter-spacing:.22em;
-        line-height:1;
+        letter-spacing:.20em;
         transform:translateY(-8px);
       }
 
       .intro-sub{
-        font-size:13px;
-        letter-spacing:.12em;
-        margin-top:0;
-        transform:translateY(-8px);
+        font-size:12px;
+        letter-spacing:.10em;
+        transform:translateY(-6px);
       }
     }
   </style>
@@ -408,7 +419,7 @@
         <img class="intro-logo" src="./assets/logo.png" alt="GENEX Logo">
       </div>
       <div class="intro-wordmark">GENEX</div>
-      <div class="intro-sub">Autonomous AI Systems</div>
+      <div class="intro-sub">SOVEREIGN INTELLIGENCE SYSTEMS</div>
     </div>
   </div>
 
@@ -470,10 +481,14 @@
       <section class="hero">
         <div class="container hero-grid">
           <div class="hero-copy genex-panel tilt-card">
-            <div class="eyebrow" data-i18n="eyebrow">GENEX • المستقبل يبدأ الآن</div>
-            <h1 data-i18n="hero_title">مرحباً بك في GENEX حيث لا نتخيل المستقبل فقط بل نبنيه</h1>
-            <p data-i18n="hero_desc">
-              نبني في GENEX منظومات ذكاء اصطناعي مستقلة، وحلول أتمتة متقدمة، وبنية تشغيلية رقمية تمنح الشركات سرعة أعلى، دقة أكبر، وقابلية توسع حقيقية في عالم سريع التغير.
+            <div class="eyebrow" data-i18n="eyebrow">GENEX • السيادة التقنية تبدأ هنا</div>
+
+            <h1 data-i18n="hero_title">مرحباً بك في GENEX</h1>
+
+            <p class="hero-subtitle" data-i18n="hero_subtitle">حيث لا نتخيل المستقبل فقط بل نبنيه.</p>
+
+            <p class="hero-body" data-i18n="hero_desc">
+              نبني في GENEX منظومات ذكاء اصطناعي سيادية، وبنية تشغيلية فائقة، وأتمتة متقدمة قادرة على رفع الشركات من مستوى الأدوات إلى مستوى الأنظمة المستقلة.
             </p>
 
             <div class="hero-actions">
@@ -486,7 +501,7 @@
             <div class="hero-orb genex-panel tilt-card">
               <img src="./assets/logo.png" alt="GENEX Logo">
               <strong>GENEX</strong>
-              <span data-i18n="hero_badge">Autonomous AI Systems<br>Smart Automation • Digital Infrastructure</span>
+              <span data-i18n="hero_badge">Sovereign AI Systems<br>Autonomous Infrastructure • Strategic Automation</span>
             </div>
           </div>
         </div>
@@ -495,14 +510,14 @@
       <section class="section">
         <div class="container">
           <div class="section-title">
-            <h2 data-i18n="stats_title">النتيجة التي نركز عليها</h2>
-            <p data-i18n="stats_desc">نحن لا نبني واجهات فقط، بل نبني طبقات تشغيل ذكية قادرة على دعم الأعمال، التسريع، والتحسين المستمر.</p>
+            <h2 data-i18n="stats_title">ما الذي تصنعه GENEX</h2>
+            <p data-i18n="stats_desc">نحن لا نبيع خدمات متفرقة، بل نبني طبقات تشغيل ذكية تجعل المؤسسة أسرع، أهدأ، وأكثر قدرة على التوسع والسيطرة.</p>
           </div>
 
           <div class="stats">
             <div class="stat genex-card tilt-card">
               <strong>AI</strong>
-              <span data-i18n="stat_1">أنظمة مستقلة وقابلة للتوسع</span>
+              <span data-i18n="stat_1">أنظمة سيادية مستقلة</span>
             </div>
             <div class="stat genex-card tilt-card">
               <strong>OPS</strong>
@@ -510,11 +525,11 @@
             </div>
             <div class="stat genex-card tilt-card">
               <strong>DATA</strong>
-              <span data-i18n="stat_3">تحليلات متقدمة وبنية مرنة</span>
+              <span data-i18n="stat_3">تحليلات عميقة وبنية مرنة</span>
             </div>
             <div class="stat genex-card tilt-card">
               <strong>UX</strong>
-              <span data-i18n="stat_4">تجارب رقمية حديثة ومؤثرة</span>
+              <span data-i18n="stat_4">تجارب رقمية تسبق السوق</span>
             </div>
           </div>
         </div>
@@ -523,27 +538,27 @@
       <section class="section">
         <div class="container">
           <div class="section-title">
-            <h2 data-i18n="features_title">ما الذي تبنيه GENEX</h2>
-            <p data-i18n="features_desc">مجالاتنا ترتكز على الدمج بين الذكاء الاصطناعي، الأتمتة، وتجربة رقمية متقدمة توصل الأعمال إلى مستوى أعلى.</p>
+            <h2 data-i18n="features_title">نموذج أبعد من الأدوات</h2>
+            <p data-i18n="features_desc">GENEX تبني طبقات تشغيل وفهم واتخاذ قرار، بحيث تصبح التقنية لديك بنية حية لا مجرد منصة تقليدية.</p>
           </div>
 
           <div class="grid-3">
             <div class="feature genex-card tilt-card">
               <div class="icon">🧠</div>
-              <h3 data-i18n="feature_1_title">أنظمة ذكاء اصطناعي مستقلة</h3>
-              <p data-i18n="feature_1_desc">حلول قادرة على فهم السياق، التعامل مع البيانات، والمساهمة في اتخاذ القرار والتنفيذ.</p>
+              <h3 data-i18n="feature_1_title">عقول تشغيلية مستقلة</h3>
+              <p data-i18n="feature_1_desc">أنظمة قادرة على فهم السياق، ترتيب الأولويات، ودعم التنفيذ الحقيقي داخل المؤسسة.</p>
             </div>
 
             <div class="feature genex-card tilt-card">
               <div class="icon">⚙️</div>
-              <h3 data-i18n="feature_2_title">أتمتة ذكية</h3>
-              <p data-i18n="feature_2_desc">تحويل العمليات المتكررة إلى تدفقات عمل أكثر سرعة وثباتًا وقابلية للتوسع.</p>
+              <h3 data-i18n="feature_2_title">أتمتة استراتيجية</h3>
+              <p data-i18n="feature_2_desc">تحويل العمليات المتكررة إلى تدفقات تشغيل أكثر هدوءًا وثباتًا ودقة وقابلية للتوسع.</p>
             </div>
 
             <div class="feature genex-card tilt-card">
               <div class="icon">🌐</div>
-              <h3 data-i18n="feature_3_title">بنية تشغيلية رقمية</h3>
-              <p data-i18n="feature_3_desc">تصميم طبقات تقنية تربط بين البيانات والتشغيل والتجربة الرقمية في مسار موحد.</p>
+              <h3 data-i18n="feature_3_title">بنية سيادية رقمية</h3>
+              <p data-i18n="feature_3_desc">ربط البيانات والتشغيل والتجربة الرقمية ضمن طبقة واحدة تمنحك وضوحًا وتحكمًا طويل الأمد.</p>
             </div>
           </div>
         </div>
@@ -552,9 +567,9 @@
       <section class="section">
         <div class="container">
           <div class="cta genex-panel tilt-card">
-            <h2 data-i18n="cta_title">ابدأ مع GENEX من نقطة أقوى</h2>
+            <h2 data-i18n="cta_title">ابنِ شيئًا لم يُبنَ من قبل</h2>
             <p data-i18n="cta_desc">
-              سواء كنت تبني خدمة، نظامًا تشغيليًا، أو تجربة رقمية مستقبلية، فإن GENEX تمنحك نقطة انطلاق أكثر قوة ووضوحًا.
+              إذا كنت تريد أن تنتقل من مستوى الشركات التقليدية إلى مستوى الكيانات التي تصنع بنيتها الذكية الخاصة، فإن GENEX هي نقطة الانطلاق.
             </p>
             <div class="hero-actions" style="justify-content:center;">
               <a class="btn primary" href="./request.html" data-i18n="cta_btn_1">أرسل طلبك</a>
@@ -574,67 +589,69 @@
     (function () {
       const translations = {
         ar: {
-          title: "GENEX | أنظمة الذكاء الاصطناعي والأتمتة المتقدمة",
-          description: "GENEX شركة تقنية متخصصة في أنظمة الذكاء الاصطناعي المستقلة، الأتمتة الذكية، والبنية التشغيلية الرقمية المستقبلية.",
+          title: "GENEX | Sovereign Intelligence Systems",
+          description: "GENEX تبني أنظمة ذكاء اصطناعي سيادية، وأتمتة متقدمة، وبنية تشغيلية رقمية تتجاوز النماذج التقليدية.",
           nav_home: "الرئيسية",
           nav_services: "الخدمات",
           nav_request: "اطلب الآن",
           nav_join: "انضم إلينا",
           nav_contact: "تواصل",
-          eyebrow: "GENEX • المستقبل يبدأ الآن",
-          hero_title: "مرحباً بك في GENEX حيث لا نتخيل المستقبل فقط بل نبنيه",
-          hero_desc: "نبني في GENEX منظومات ذكاء اصطناعي مستقلة، وحلول أتمتة متقدمة، وبنية تشغيلية رقمية تمنح الشركات سرعة أعلى، دقة أكبر، وقابلية توسع حقيقية في عالم سريع التغير.",
+          eyebrow: "GENEX • السيادة التقنية تبدأ هنا",
+          hero_title: "مرحباً بك في GENEX",
+          hero_subtitle: "حيث لا نتخيل المستقبل فقط بل نبنيه.",
+          hero_desc: "نبني في GENEX منظومات ذكاء اصطناعي سيادية، وبنية تشغيلية فائقة، وأتمتة متقدمة قادرة على رفع الشركات من مستوى الأدوات إلى مستوى الأنظمة المستقلة.",
           hero_btn_1: "ابدأ مشروعك",
           hero_btn_2: "استكشف الخدمات",
-          hero_badge: "Autonomous AI Systems<br>Smart Automation • Digital Infrastructure",
-          stats_title: "النتيجة التي نركز عليها",
-          stats_desc: "نحن لا نبني واجهات فقط، بل نبني طبقات تشغيل ذكية قادرة على دعم الأعمال، التسريع، والتحسين المستمر.",
-          stat_1: "أنظمة مستقلة وقابلة للتوسع",
+          hero_badge: "Sovereign AI Systems<br>Autonomous Infrastructure • Strategic Automation",
+          stats_title: "ما الذي تصنعه GENEX",
+          stats_desc: "نحن لا نبيع خدمات متفرقة، بل نبني طبقات تشغيل ذكية تجعل المؤسسة أسرع، أهدأ، وأكثر قدرة على التوسع والسيطرة.",
+          stat_1: "أنظمة سيادية مستقلة",
           stat_2: "تشغيل ذكي وقرارات أسرع",
-          stat_3: "تحليلات متقدمة وبنية مرنة",
-          stat_4: "تجارب رقمية حديثة ومؤثرة",
-          features_title: "ما الذي تبنيه GENEX",
-          features_desc: "مجالاتنا ترتكز على الدمج بين الذكاء الاصطناعي، الأتمتة، وتجربة رقمية متقدمة توصل الأعمال إلى مستوى أعلى.",
-          feature_1_title: "أنظمة ذكاء اصطناعي مستقلة",
-          feature_1_desc: "حلول قادرة على فهم السياق، التعامل مع البيانات، والمساهمة في اتخاذ القرار والتنفيذ.",
-          feature_2_title: "أتمتة ذكية",
-          feature_2_desc: "تحويل العمليات المتكررة إلى تدفقات عمل أكثر سرعة وثباتًا وقابلية للتوسع.",
-          feature_3_title: "بنية تشغيلية رقمية",
-          feature_3_desc: "تصميم طبقات تقنية تربط بين البيانات والتشغيل والتجربة الرقمية في مسار موحد.",
-          cta_title: "ابدأ مع GENEX من نقطة أقوى",
-          cta_desc: "سواء كنت تبني خدمة، نظامًا تشغيليًا، أو تجربة رقمية مستقبلية، فإن GENEX تمنحك نقطة انطلاق أكثر قوة ووضوحًا.",
+          stat_3: "تحليلات عميقة وبنية مرنة",
+          stat_4: "تجارب رقمية تسبق السوق",
+          features_title: "نموذج أبعد من الأدوات",
+          features_desc: "GENEX تبني طبقات تشغيل وفهم واتخاذ قرار، بحيث تصبح التقنية لديك بنية حية لا مجرد منصة تقليدية.",
+          feature_1_title: "عقول تشغيلية مستقلة",
+          feature_1_desc: "أنظمة قادرة على فهم السياق، ترتيب الأولويات، ودعم التنفيذ الحقيقي داخل المؤسسة.",
+          feature_2_title: "أتمتة استراتيجية",
+          feature_2_desc: "تحويل العمليات المتكررة إلى تدفقات تشغيل أكثر هدوءًا وثباتًا ودقة وقابلية للتوسع.",
+          feature_3_title: "بنية سيادية رقمية",
+          feature_3_desc: "ربط البيانات والتشغيل والتجربة الرقمية ضمن طبقة واحدة تمنحك وضوحًا وتحكمًا طويل الأمد.",
+          cta_title: "ابنِ شيئًا لم يُبنَ من قبل",
+          cta_desc: "إذا كنت تريد أن تنتقل من مستوى الشركات التقليدية إلى مستوى الكيانات التي تصنع بنيتها الذكية الخاصة، فإن GENEX هي نقطة الانطلاق.",
           cta_btn_1: "أرسل طلبك"
         },
         en: {
-          title: "GENEX | Advanced AI Systems & Automation",
-          description: "GENEX is a technology company specializing in autonomous AI systems, intelligent automation, and future-ready digital operational infrastructure.",
+          title: "GENEX | Sovereign Intelligence Systems",
+          description: "GENEX builds sovereign AI systems, advanced automation, and digital operational infrastructure far beyond conventional models.",
           nav_home: "Home",
           nav_services: "Services",
           nav_request: "Request Now",
           nav_join: "Join Us",
           nav_contact: "Contact",
-          eyebrow: "GENEX • The Future Starts Now",
-          hero_title: "Welcome to GENEX, where we don't just imagine the future — we build it.",
-          hero_desc: "At GENEX, we build autonomous AI systems, advanced automation solutions, and digital operational infrastructure that gives businesses greater speed, stronger precision, and real scalability in a fast-changing world.",
+          eyebrow: "GENEX • Technical Sovereignty Starts Here",
+          hero_title: "Welcome to GENEX",
+          hero_subtitle: "Where we do not only imagine the future — we build it.",
+          hero_desc: "GENEX builds sovereign AI systems, elevated operational architecture, and advanced automation capable of moving companies from tools to autonomous systems.",
           hero_btn_1: "Start Your Project",
           hero_btn_2: "Explore Services",
-          hero_badge: "Autonomous AI Systems<br>Smart Automation • Digital Infrastructure",
-          stats_title: "The Outcome We Focus On",
-          stats_desc: "We do not build interfaces only. We build intelligent operational layers that support business growth, acceleration, and continuous optimization.",
-          stat_1: "Scalable autonomous systems",
+          hero_badge: "Sovereign AI Systems<br>Autonomous Infrastructure • Strategic Automation",
+          stats_title: "What GENEX Builds",
+          stats_desc: "We do not sell fragmented services. We build intelligent operational layers that make the organization faster, calmer, and more capable of scaling with control.",
+          stat_1: "Sovereign autonomous systems",
           stat_2: "Smarter operations, faster decisions",
-          stat_3: "Advanced analytics, flexible infrastructure",
-          stat_4: "Modern digital experiences",
-          features_title: "What GENEX Builds",
-          features_desc: "Our focus is built around the integration of AI, automation, and premium digital experiences that elevate business capability.",
-          feature_1_title: "Autonomous AI Systems",
-          feature_1_desc: "Solutions capable of understanding context, working with data, and contributing to decision-making and execution.",
-          feature_2_title: "Intelligent Automation",
-          feature_2_desc: "Turning repetitive workflows into faster, more stable, and more scalable execution flows.",
-          feature_3_title: "Digital Operational Infrastructure",
-          feature_3_desc: "Designing technology layers that connect data, operations, and digital experience in one unified path.",
-          cta_title: "Start with GENEX from a Stronger Position",
-          cta_desc: "Whether you are building a service, an operational system, or a future digital experience, GENEX gives you a stronger and clearer starting point.",
+          stat_3: "Deep analytics, flexible architecture",
+          stat_4: "Digital experiences ahead of the market",
+          features_title: "A Model Beyond Tools",
+          features_desc: "GENEX builds layers of operation, understanding, and decision support, so your technology becomes a living infrastructure instead of a conventional platform.",
+          feature_1_title: "Autonomous Operational Minds",
+          feature_1_desc: "Systems capable of understanding context, prioritizing, and supporting real execution inside the organization.",
+          feature_2_title: "Strategic Automation",
+          feature_2_desc: "Turning repetitive operations into calmer, more stable, more precise, and more scalable execution flows.",
+          feature_3_title: "Sovereign Digital Infrastructure",
+          feature_3_desc: "Connecting data, operations, and digital experience in one layer that gives you clarity and long-term control.",
+          cta_title: "Build What Has Never Been Built",
+          cta_desc: "If you want to move from conventional company models to entities that build their own intelligent infrastructure, GENEX is your starting point.",
           cta_btn_1: "Send Your Request"
         }
       };
