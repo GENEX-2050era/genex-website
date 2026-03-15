@@ -2,107 +2,67 @@
 <html lang="ar" dir="rtl">
 
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>GENEX | إرسال طلب</title>
+<title>GENEX | طلب مشروع</title>
 
-<link rel="stylesheet" href="./assets/styles.css?v=701">
-<link rel="stylesheet" href="./assets/genex-fx.css?v=701">
+<meta name="description"
+content="أرسل طلب مشروعك إلى GENEX لبناء نظام ذكاء اصطناعي أو أتمتة متقدمة لعملك.">
+
+<link rel="stylesheet" href="./assets/styles.css?v=901">
+<link rel="stylesheet" href="./assets/genex-fx.css?v=901">
 
 <style>
 
-.container{
-width:min(1100px,92vw);
-margin:auto;
-}
-
 .request-hero{
-padding:120px 0 60px;
+padding:120px 0 50px;
 text-align:center;
 }
 
 .request-hero h1{
-font-size:48px;
-margin-bottom:14px;
+font-size:52px;
+margin-bottom:12px;
 }
 
 .request-hero p{
-max-width:700px;
+max-width:760px;
 margin:auto;
-opacity:.8;
-line-height:1.8;
+opacity:.85;
+line-height:1.9;
 }
 
-.request-box{
-margin-top:60px;
-padding:40px;
-border-radius:28px;
-background:rgba(255,255,255,.05);
-border:1px solid rgba(255,255,255,.08);
-backdrop-filter:blur(20px);
+.request-form{
+margin-top:40px;
+padding:36px;
 }
 
-.form-grid{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:20px;
-margin-top:20px;
-}
-
-.form-group{
+.submit-wrap{
+margin-top:22px;
 display:flex;
-flex-direction:column;
+justify-content:center;
 }
 
-.form-group label{
-margin-bottom:6px;
-font-size:14px;
-opacity:.8;
+.success-box{
+display:none;
+text-align:center;
+padding:30px;
 }
 
-.form-group input,
-.form-group textarea,
-.form-group select{
-
-padding:12px;
-border-radius:12px;
-border:1px solid rgba(255,255,255,.15);
-background:rgba(0,0,0,.25);
-color:white;
-font-size:14px;
-
+.success-box strong{
+display:block;
+font-size:22px;
+margin-bottom:8px;
 }
 
-.form-group textarea{
-min-height:120px;
-resize:vertical;
-}
-
-.full{
-grid-column:1 / -1;
-}
-
-.submit-btn{
-margin-top:20px;
-padding:14px 20px;
-border:none;
-border-radius:14px;
-background:#b41428;
-color:white;
-font-weight:700;
-cursor:pointer;
-}
-
-@media(max-width:900px){
-
-.form-grid{
-grid-template-columns:1fr;
-}
+@media(max-width:960px){
 
 .request-hero h1{
-font-size:34px;
+font-size:36px;
+}
+
+.request-form{
+padding:24px;
 }
 
 }
@@ -111,17 +71,27 @@ font-size:34px;
 
 </head>
 
-<body data-page="request" data-music="true">
+<body data-page="inner" data-intro="false" data-music="true">
 
 <div class="page-transition" id="pageTransition"></div>
 
-<div id="backFxWrap"><canvas id="backFxCanvas"></canvas></div>
-<div id="sceneWrap"><canvas id="webglCanvas"></canvas></div>
-<div id="frontFxWrap"><canvas id="frontFxCanvas"></canvas></div>
+<div id="backFxWrap">
+<canvas id="backFxCanvas"></canvas>
+<div class="back-vignette"></div>
+</div>
 
-<audio id="siteMusic" loop>
+<div id="sceneWrap"></div>
+
+<div id="frontFxWrap">
+<canvas id="frontFxCanvas"></canvas>
+<div class="front-fade"></div>
+</div>
+
+<audio id="siteMusic" loop preload="auto">
 <source src="./assets/audio/fantasy-ambient.mp3" type="audio/mpeg">
 </audio>
+
+<div class="genex-page-shell">
 
 <header class="site-header">
 
@@ -135,11 +105,16 @@ font-size:34px;
 <nav class="desktop-nav">
 
 <a href="./index.html">الرئيسية</a>
+
 <a href="./services.html">الخدمات</a>
+
 <a class="active" href="./request.html">اطلب الآن</a>
+
 <a href="./join.html">انضم إلينا</a>
+
 <a href="./contact.html">تواصل</a>
-<a href="./about.html">عن جينكس</a>
+
+<a href="./about.html" data-nav-about>عن جينكس</a>
 
 </nav>
 
@@ -150,7 +125,7 @@ font-size:34px;
 <button data-lang="ar" class="active">AR</button>
 </div>
 
-<button class="mobile-toggle" id="mobileToggle"></button>
+<button class="mobile-toggle"></button>
 
 </div>
 
@@ -161,11 +136,16 @@ font-size:34px;
 <nav class="mobile-nav" id="mobileNav">
 
 <a href="./index.html">الرئيسية</a>
+
 <a href="./services.html">الخدمات</a>
+
 <a class="active" href="./request.html">اطلب الآن</a>
+
 <a href="./join.html">انضم إلينا</a>
+
 <a href="./contact.html">تواصل</a>
-<a href="./about.html">عن جينكس</a>
+
+<a href="./about.html" data-nav-about>عن جينكس</a>
 
 </nav>
 
@@ -173,82 +153,90 @@ font-size:34px;
 
 </header>
 
-<main>
+<main class="genex-page-content">
 
 <section class="request-hero">
 
 <div class="container">
 
-<h1>أرسل طلب مشروع</h1>
+<h1>ابدأ مشروعك مع GENEX</h1>
 
 <p>
-إذا كنت ترغب في بناء نظام ذكاء اصطناعي أو منصة تقنية متقدمة
-يمكنك إرسال تفاصيل مشروعك وسيتواصل فريق GENEX معك.
+
+شاركنا فكرتك أو احتياجك التقني وسيتواصل معك فريق GENEX لتحليل المتطلبات
+وبناء تصور أولي للنظام أو الخدمة.
+
 </p>
 
 </div>
 
 </section>
 
-<section>
+<section class="section">
 
 <div class="container">
 
-<div class="request-box genex-panel tilt-card reveal-on-scroll">
+<div class="genex-panel request-form tilt-card">
 
-<form>
-
-<div class="form-grid">
+<form class="form-grid" id="genexRequestForm">
 
 <div class="form-group">
-
 <label>الاسم</label>
-<input type="text" placeholder="اسمك الكامل">
-
+<input type="text" required placeholder="اسمك">
 </div>
 
 <div class="form-group">
-
 <label>البريد الإلكتروني</label>
-<input type="email" placeholder="email@example.com">
-
+<input type="email" required placeholder="example@email.com">
 </div>
 
 <div class="form-group">
-
-<label>الشركة</label>
+<label>الشركة / الجهة</label>
 <input type="text" placeholder="اسم الشركة">
-
 </div>
 
 <div class="form-group">
-
 <label>نوع المشروع</label>
-
 <select>
-
-<option>ذكاء اصطناعي</option>
-<option>أتمتة</option>
+<option>نظام ذكاء اصطناعي</option>
+<option>أتمتة عمليات</option>
 <option>منصة رقمية</option>
-<option>تحليل بيانات</option>
-
+<option>استشارة تقنية</option>
 </select>
-
 </div>
 
 <div class="form-group full">
-
-<label>تفاصيل المشروع</label>
-
-<textarea placeholder="اكتب تفاصيل المشروع هنا"></textarea>
-
+<label>وصف المشروع</label>
+<textarea placeholder="صف فكرة المشروع أو المشكلة التي تريد حلها"></textarea>
 </div>
 
-</div>
+<div class="submit-wrap full">
 
-<button class="submit-btn">إرسال الطلب</button>
+<button class="btn primary" type="submit">
+
+إرسال الطلب
+
+</button>
+
+</div>
 
 </form>
+
+<div class="success-box" id="successBox">
+
+<strong>
+
+تم استلام طلبك
+
+</strong>
+
+<p>
+
+سيتواصل معك فريق GENEX خلال وقت قريب.
+
+</p>
+
+</div>
 
 </div>
 
@@ -261,12 +249,33 @@ font-size:34px;
 <footer class="footer">
 
 <div class="container">
+
 GENEX © 2026
+
 </div>
 
 </footer>
 
-<script type="module" src="./assets/genex-fx.js?v=701"></script>
+</div>
+
+<script>
+
+const form=document.getElementById("genexRequestForm")
+const success=document.getElementById("successBox")
+
+form.addEventListener("submit",function(e){
+
+e.preventDefault()
+
+form.style.display="none"
+success.style.display="block"
+
+})
+
+</script>
+
+<script src="./assets/genex-fx.js?v=901"></script>
 
 </body>
+
 </html>
