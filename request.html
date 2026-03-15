@@ -10,63 +10,59 @@
 <meta name="description"
 content="أرسل طلب مشروعك إلى GENEX لبناء نظام ذكاء اصطناعي أو أتمتة متقدمة لعملك.">
 
-<link rel="stylesheet" href="./assets/styles.css?v=904">
+<link rel="stylesheet" href="./assets/styles.css?v=905">
 <link rel="stylesheet" href="./assets/genex-fx.css?v=904">
 
 <style>
-
 .request-hero{
-padding:120px 0 50px;
-text-align:center;
+  padding:120px 0 50px;
+  text-align:center;
 }
 
 .request-hero h1{
-font-size:52px;
-margin-bottom:12px;
+  font-size:52px;
+  margin-bottom:12px;
 }
 
 .request-hero p{
-max-width:760px;
-margin:auto;
-opacity:.85;
-line-height:1.9;
+  max-width:760px;
+  margin:auto;
+  opacity:.85;
+  line-height:1.9;
 }
 
 .request-form{
-margin-top:40px;
-padding:36px;
+  margin-top:40px;
+  padding:36px;
 }
 
 .submit-wrap{
-margin-top:22px;
-display:flex;
-justify-content:center;
+  margin-top:22px;
+  display:flex;
+  justify-content:center;
 }
 
 .success-box{
-display:none;
-text-align:center;
-padding:30px;
+  display:none;
+  text-align:center;
+  padding:30px;
 }
 
 .success-box strong{
-display:block;
-font-size:22px;
-margin-bottom:8px;
+  display:block;
+  font-size:22px;
+  margin-bottom:8px;
 }
 
 @media(max-width:960px){
+  .request-hero h1{
+    font-size:36px;
+  }
 
-.request-hero h1{
-font-size:36px;
+  .request-form{
+    padding:24px;
+  }
 }
-
-.request-form{
-padding:24px;
-}
-
-}
-
 </style>
 
 </head>
@@ -75,81 +71,62 @@ padding:24px;
 
 <div class="page-transition" id="pageTransition"></div>
 
-<div id="backFxWrap">
-<canvas id="backFxCanvas"></canvas>
-<div class="back-vignette"></div>
+<div id="backFxWrap" aria-hidden="true">
+  <canvas id="backFxCanvas"></canvas>
+  <div class="back-vignette"></div>
 </div>
 
-<div id="sceneWrap"></div>
+<div id="sceneWrap" aria-hidden="true"></div>
 
-<div id="frontFxWrap">
-<canvas id="frontFxCanvas"></canvas>
-<div class="front-fade"></div>
+<div id="frontFxWrap" aria-hidden="true">
+  <canvas id="frontFxCanvas"></canvas>
+  <div class="front-fade"></div>
 </div>
 
 <audio id="siteMusic" loop preload="auto">
-<source src="./assets/audio/fantasy-ambient.mp3" type="audio/mpeg">
+  <source src="./assets/audio/fantasy-ambient.mp3" type="audio/mpeg">
 </audio>
 
 <div class="genex-page-shell">
 
 <header class="site-header">
 
-<div class="container site-header-inner">
+  <div class="container site-header-inner">
 
-<a class="brand" href="./index.html">
-<img src="./assets/logo.png">
-<span>GENEX</span>
-</a>
+    <a class="brand" href="./index.html">
+      <img src="./assets/logo.png" alt="GENEX">
+      <span>GENEX</span>
+    </a>
 
-<nav class="desktop-nav">
+    <nav class="desktop-nav">
+      <a href="./index.html" data-i18n="nav_home">الرئيسية</a>
+      <a href="./services.html" data-i18n="nav_services">الخدمات</a>
+      <a class="active" href="./request.html" data-i18n="nav_request">اطلب الآن</a>
+      <a href="./join.html" data-i18n="nav_join">انضم إلينا</a>
+      <a href="./contact.html" data-i18n="nav_contact">تواصل</a>
+      <a href="./about.html" data-nav-about>عن جينكس</a>
+    </nav>
 
-<a href="./index.html">الرئيسية</a>
+    <div class="header-actions">
+      <div class="lang-switch">
+        <button data-lang="en">EN</button>
+        <button data-lang="ar" class="active">AR</button>
+      </div>
+      <button class="mobile-toggle"></button>
+    </div>
 
-<a href="./services.html">الخدمات</a>
+  </div>
 
-<a class="active" href="./request.html">اطلب الآن</a>
-
-<a href="./join.html">انضم إلينا</a>
-
-<a href="./contact.html">تواصل</a>
-
-<a href="./about.html" data-nav-about>عن جينكس</a>
-
-</nav>
-
-<div class="header-actions">
-
-<div class="lang-switch">
-<button data-lang="en">EN</button>
-<button data-lang="ar" class="active">AR</button>
-</div>
-
-<button class="mobile-toggle"></button>
-
-</div>
-
-</div>
-
-<div class="container">
-
-<nav class="mobile-nav" id="mobileNav">
-
-<a href="./index.html">الرئيسية</a>
-
-<a href="./services.html">الخدمات</a>
-
-<a class="active" href="./request.html">اطلب الآن</a>
-
-<a href="./join.html">انضم إلينا</a>
-
-<a href="./contact.html">تواصل</a>
-
-<a href="./about.html" data-nav-about>عن جينكس</a>
-
-</nav>
-
-</div>
+  <div class="container">
+    <nav class="mobile-nav" id="mobileNav">
+      <a href="./index.html" data-i18n="nav_home">الرئيسية</a>
+      <a href="./services.html" data-i18n="nav_services">الخدمات</a>
+      <a class="active" href="./request.html" data-i18n="nav_request">اطلب الآن</a>
+      <a href="./join.html" data-i18n="nav_join">انضم إلينا</a>
+      <a href="./contact.html" data-i18n="nav_contact">تواصل</a>
+      <a href="./about.html" data-nav-about>عن جينكس</a>
+    </nav>
+  </div>
 
 </header>
 
@@ -157,124 +134,197 @@ padding:24px;
 
 <section class="request-hero">
 
-<div class="container">
+  <div class="container">
 
-<h1>ابدأ مشروعك مع GENEX</h1>
+    <h1 data-i18n="request_title">ابدأ مشروعك مع GENEX</h1>
 
-<p>
+    <p data-i18n="request_desc">
+      شاركنا فكرتك أو احتياجك التقني وسيتواصل معك فريق GENEX لتحليل المتطلبات
+      وبناء تصور أولي للنظام أو الخدمة.
+    </p>
 
-شاركنا فكرتك أو احتياجك التقني وسيتواصل معك فريق GENEX لتحليل المتطلبات
-وبناء تصور أولي للنظام أو الخدمة.
-
-</p>
-
-</div>
+  </div>
 
 </section>
 
 <section class="section">
 
-<div class="container">
+  <div class="container">
 
-<div class="genex-panel request-form tilt-card">
+    <div class="genex-panel request-form tilt-card">
 
-<form class="form-grid" id="genexRequestForm">
+      <form class="form-grid" id="genexRequestForm">
 
-<div class="form-group">
-<label>الاسم</label>
-<input type="text" required placeholder="اسمك">
-</div>
+        <div class="form-group">
+          <label data-i18n="label_name">الاسم</label>
+          <input type="text" required data-ph="ph_name" placeholder="اسمك">
+        </div>
 
-<div class="form-group">
-<label>البريد الإلكتروني</label>
-<input type="email" required placeholder="example@email.com">
-</div>
+        <div class="form-group">
+          <label data-i18n="label_email">البريد الإلكتروني</label>
+          <input type="email" required data-ph="ph_email" placeholder="example@email.com">
+        </div>
 
-<div class="form-group">
-<label>الشركة / الجهة</label>
-<input type="text" placeholder="اسم الشركة">
-</div>
+        <div class="form-group">
+          <label data-i18n="label_company">الشركة / الجهة</label>
+          <input type="text" data-ph="ph_company" placeholder="اسم الشركة">
+        </div>
 
-<div class="form-group">
-<label>نوع المشروع</label>
-<select>
-<option>نظام ذكاء اصطناعي</option>
-<option>أتمتة عمليات</option>
-<option>منصة رقمية</option>
-<option>استشارة تقنية</option>
-</select>
-</div>
+        <div class="form-group">
+          <label data-i18n="label_type">نوع المشروع</label>
+          <select id="projectType">
+            <option data-i18n-option="opt_ai">نظام ذكاء اصطناعي</option>
+            <option data-i18n-option="opt_automation">أتمتة عمليات</option>
+            <option data-i18n-option="opt_platform">منصة رقمية</option>
+            <option data-i18n-option="opt_consulting">استشارة تقنية</option>
+          </select>
+        </div>
 
-<div class="form-group full">
-<label>وصف المشروع</label>
-<textarea placeholder="صف فكرة المشروع أو المشكلة التي تريد حلها"></textarea>
-</div>
+        <div class="form-group full">
+          <label data-i18n="label_desc">وصف المشروع</label>
+          <textarea data-ph="ph_desc" placeholder="صف فكرة المشروع أو المشكلة التي تريد حلها"></textarea>
+        </div>
 
-<div class="submit-wrap full">
+        <div class="submit-wrap full">
+          <button class="btn primary" type="submit" data-i18n="submit_btn">إرسال الطلب</button>
+        </div>
 
-<button class="btn primary" type="submit">
+      </form>
 
-إرسال الطلب
+      <div class="success-box" id="successBox">
+        <strong data-i18n="success_title">تم استلام طلبك</strong>
+        <p data-i18n="success_desc">سيتواصل معك فريق GENEX خلال وقت قريب.</p>
+      </div>
 
-</button>
+    </div>
 
-</div>
-
-</form>
-
-<div class="success-box" id="successBox">
-
-<strong>
-
-تم استلام طلبك
-
-</strong>
-
-<p>
-
-سيتواصل معك فريق GENEX خلال وقت قريب.
-
-</p>
-
-</div>
-
-</div>
-
-</div>
+  </div>
 
 </section>
 
 </main>
 
 <footer class="footer">
-
-<div class="container">
-
-GENEX © 2026
-
-</div>
-
+  <div class="container">GENEX © 2026</div>
 </footer>
 
 </div>
 
 <script>
+(function () {
+  const translations = {
+    ar: {
+      title: "GENEX | طلب مشروع",
+      description: "أرسل طلب مشروعك إلى GENEX لبناء نظام ذكاء اصطناعي أو أتمتة متقدمة لعملك.",
+      nav_home: "الرئيسية",
+      nav_services: "الخدمات",
+      nav_request: "اطلب الآن",
+      nav_join: "انضم إلينا",
+      nav_contact: "تواصل",
+      request_title: "ابدأ مشروعك مع GENEX",
+      request_desc: "شاركنا فكرتك أو احتياجك التقني وسيتواصل معك فريق GENEX لتحليل المتطلبات وبناء تصور أولي للنظام أو الخدمة.",
+      label_name: "الاسم",
+      label_email: "البريد الإلكتروني",
+      label_company: "الشركة / الجهة",
+      label_type: "نوع المشروع",
+      label_desc: "وصف المشروع",
+      ph_name: "اسمك",
+      ph_email: "example@email.com",
+      ph_company: "اسم الشركة",
+      ph_desc: "صف فكرة المشروع أو المشكلة التي تريد حلها",
+      opt_ai: "نظام ذكاء اصطناعي",
+      opt_automation: "أتمتة عمليات",
+      opt_platform: "منصة رقمية",
+      opt_consulting: "استشارة تقنية",
+      submit_btn: "إرسال الطلب",
+      success_title: "تم استلام طلبك",
+      success_desc: "سيتواصل معك فريق GENEX خلال وقت قريب."
+    },
+    en: {
+      title: "GENEX | Project Request",
+      description: "Send your project request to GENEX to build an AI system or advanced automation for your business.",
+      nav_home: "Home",
+      nav_services: "Services",
+      nav_request: "Request Now",
+      nav_join: "Join Us",
+      nav_contact: "Contact",
+      request_title: "Start Your Project with GENEX",
+      request_desc: "Share your idea or technical need with us, and the GENEX team will contact you to analyze requirements and build an initial concept for the system or service.",
+      label_name: "Name",
+      label_email: "Email",
+      label_company: "Company / Organization",
+      label_type: "Project Type",
+      label_desc: "Project Description",
+      ph_name: "Your name",
+      ph_email: "example@email.com",
+      ph_company: "Company name",
+      ph_desc: "Describe the project idea or the problem you want to solve",
+      opt_ai: "AI System",
+      opt_automation: "Process Automation",
+      opt_platform: "Digital Platform",
+      opt_consulting: "Technical Consulting",
+      submit_btn: "Send Request",
+      success_title: "Your request has been received",
+      success_desc: "The GENEX team will contact you soon."
+    }
+  };
 
-const form=document.getElementById("genexRequestForm")
-const success=document.getElementById("successBox")
+  const metaDescription = document.querySelector('meta[name="description"]');
+  const form = document.getElementById("genexRequestForm");
+  const success = document.getElementById("successBox");
 
-form.addEventListener("submit",function(e){
+  function applyLanguage(lang) {
+    const dict = translations[lang];
+    if (!dict) return;
 
-e.preventDefault()
+    document.documentElement.lang = lang;
+    document.documentElement.dir = lang === "ar" ? "rtl" : "ltr";
+    localStorage.setItem("genex_lang", lang);
 
-form.style.display="none"
-success.style.display="block"
+    document.title = dict.title;
+    if (metaDescription) metaDescription.setAttribute("content", dict.description);
 
-})
+    document.querySelectorAll("[data-i18n]").forEach((el) => {
+      const key = el.getAttribute("data-i18n");
+      if (dict[key]) el.textContent = dict[key];
+    });
 
+    document.querySelectorAll("[data-ph]").forEach((el) => {
+      const key = el.getAttribute("data-ph");
+      if (dict[key]) el.setAttribute("placeholder", dict[key]);
+    });
+
+    document.querySelectorAll("[data-i18n-option]").forEach((el) => {
+      const key = el.getAttribute("data-i18n-option");
+      if (dict[key]) el.textContent = dict[key];
+    });
+
+    document.querySelectorAll(".lang-switch button").forEach((btn) => {
+      btn.classList.toggle("active", btn.getAttribute("data-lang") === lang);
+    });
+
+    document.querySelectorAll("[data-nav-about]").forEach((link) => {
+      link.textContent = lang === "ar" ? "عن جينكس" : "About GENEX";
+    });
+  }
+
+  document.querySelectorAll(".lang-switch button").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      applyLanguage(btn.getAttribute("data-lang"));
+    });
+  });
+
+  form.addEventListener("submit", function(e){
+    e.preventDefault();
+    form.style.display = "none";
+    success.style.display = "block";
+  });
+
+  applyLanguage(localStorage.getItem("genex_lang") || "ar");
+})();
 </script>
 
-<script src="./assets/genex-fx.js?v=903"></script>
+<script src="./assets/genex-fx.js?v=905"></script>
 
 </body>
 
