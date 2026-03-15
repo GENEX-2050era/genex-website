@@ -125,7 +125,6 @@
   const intro = document.querySelector("#genexIntro");
   if (!intro || !introEnabled) return;
 
-  // إعادة الحالة الافتراضية كل مرة
   intro.style.opacity = "1";
   intro.style.visibility = "visible";
   intro.style.pointerEvents = "auto";
@@ -144,16 +143,12 @@
     intro.style.pointerEvents = "none";
     intro.style.transform = "scale(1.02)";
 
-    // إخفاء نهائي بعد انتهاء الأنيميشن
     setTimeout(() => {
       intro.style.display = "none";
     }, 950);
   };
 
-  // يغلق بعد 4 ثواني
   setTimeout(closeIntro, 4000);
-
-  // إغلاق يدوي احتياطي
   intro.addEventListener("click", closeIntro, { once: true });
 }
   }
