@@ -135,7 +135,7 @@
       setTimeout(() => {
         intro.classList.add("hidden");
         sessionStorage.setItem("genex_intro_seen", "1");
-      }, 2200);
+      }, 4200);
     });
   }
 
@@ -289,97 +289,91 @@
     const starsFar = Array.from({ length: 220 }, () => ({
       x: Math.random(),
       y: Math.random(),
-      r: Math.random() * 1.1 + 0.25,
-      a: Math.random() * 0.35 + 0.08,
+      r: Math.random() * 1.05 + 0.22,
+      a: Math.random() * 0.30 + 0.08,
       drift: Math.random() * 20,
       speed: Math.random() * 0.05 + 0.01,
-      depth: 0.12 + Math.random() * 0.08
+      depth: 0.10 + Math.random() * 0.06
     }));
 
-    const starsMid = Array.from({ length: 140 }, () => ({
+    const starsMid = Array.from({ length: 150 }, () => ({
       x: Math.random(),
       y: Math.random(),
-      r: Math.random() * 1.6 + 0.35,
-      a: Math.random() * 0.45 + 0.12,
+      r: Math.random() * 1.45 + 0.30,
+      a: Math.random() * 0.40 + 0.10,
       drift: Math.random() * 20,
       speed: Math.random() * 0.07 + 0.02,
-      depth: 0.18 + Math.random() * 0.14
+      depth: 0.16 + Math.random() * 0.10
     }));
 
-    const starsNear = Array.from({ length: 80 }, () => ({
+    const starsNear = Array.from({ length: 70 }, () => ({
       x: Math.random(),
       y: Math.random(),
-      r: Math.random() * 2 + 0.45,
-      a: Math.random() * 0.55 + 0.16,
+      r: Math.random() * 1.8 + 0.40,
+      a: Math.random() * 0.46 + 0.12,
       drift: Math.random() * 20,
-      speed: Math.random() * 0.1 + 0.03,
-      depth: 0.28 + Math.random() * 0.20
+      speed: Math.random() * 0.09 + 0.03,
+      depth: 0.24 + Math.random() * 0.16
     }));
 
-    const particles = Array.from({ length: 120 }, () => ({
+    const particles = Array.from({ length: 95 }, () => ({
       x: Math.random(),
       y: Math.random(),
-      r: Math.random() * 2.4 + 0.8,
-      a: Math.random() * 0.16 + 0.04,
-      speed: Math.random() * 0.22 + 0.05,
-      hue: Math.random() > 0.65 ? "red" : "white",
-      depth: 0.12 + Math.random() * 0.3
+      r: Math.random() * 2.0 + 0.7,
+      a: Math.random() * 0.12 + 0.035,
+      speed: Math.random() * 0.20 + 0.04,
+      hue: Math.random() > 0.78 ? "red" : "white",
+      depth: 0.10 + Math.random() * 0.22
     }));
 
     const galaxies = [
-      { x:0.07, y:0.10, r:130, color:"red", depth:.30, drift:.11, ringA:1.22, ringB:.30, glow:0.18 },
-      { x:0.19, y:0.21, r:48, color:"white", depth:.14, drift:.18, ringA:.82, ringB:.20, glow:0.22 },
-      { x:0.32, y:0.08, r:78, color:"red", depth:.20, drift:.13, ringA:1.02, ringB:.26, glow:0.16 },
-      { x:0.46, y:0.18, r:58, color:"white", depth:.15, drift:.20, ringA:.88, ringB:.22, glow:0.24 },
-      { x:0.60, y:0.09, r:112, color:"red", depth:.26, drift:.12, ringA:1.12, ringB:.28, glow:0.18 },
-      { x:0.74, y:0.17, r:44, color:"white", depth:.12, drift:.18, ringA:.80, ringB:.20, glow:0.22 },
-      { x:0.90, y:0.11, r:90, color:"red", depth:.22, drift:.14, ringA:1.02, ringB:.26, glow:0.14 },
+      { x:0.08, y:0.11, r:150, color:"red",   depth:.30, drift:.10, ringA:1.24, ringB:.28, glow:0.10 },
+      { x:0.24, y:0.20, r:72,  color:"white", depth:.14, drift:.17, ringA:.86, ringB:.20, glow:0.18 },
+      { x:0.43, y:0.09, r:108, color:"red",   depth:.22, drift:.12, ringA:1.08, ringB:.25, glow:0.09 },
+      { x:0.66, y:0.18, r:84,  color:"white", depth:.16, drift:.16, ringA:.92, ringB:.22, glow:0.18 },
+      { x:0.88, y:0.12, r:132, color:"red",   depth:.26, drift:.11, ringA:1.18, ringB:.27, glow:0.08 },
 
-      { x:0.10, y:0.38, r:52, color:"white", depth:.12, drift:.19, ringA:.84, ringB:.20, glow:0.20 },
-      { x:0.25, y:0.31, r:150, color:"red", depth:.34, drift:.10, ringA:1.26, ringB:.32, glow:0.18 },
-      { x:0.42, y:0.40, r:66, color:"white", depth:.16, drift:.17, ringA:.90, ringB:.22, glow:0.22 },
-      { x:0.57, y:0.30, r:124, color:"red", depth:.28, drift:.11, ringA:1.14, ringB:.28, glow:0.16 },
-      { x:0.72, y:0.42, r:50, color:"white", depth:.13, drift:.20, ringA:.84, ringB:.20, glow:0.20 },
-      { x:0.88, y:0.35, r:94, color:"red", depth:.22, drift:.13, ringA:1.00, ringB:.25, glow:0.14 },
+      { x:0.12, y:0.43, r:86,  color:"white", depth:.16, drift:.15, ringA:.90, ringB:.21, glow:0.16 },
+      { x:0.34, y:0.33, r:182, color:"red",   depth:.34, drift:.10, ringA:1.30, ringB:.30, glow:0.11 },
+      { x:0.58, y:0.44, r:96,  color:"white", depth:.17, drift:.16, ringA:.94, ringB:.22, glow:0.17 },
+      { x:0.82, y:0.34, r:156, color:"red",   depth:.28, drift:.11, ringA:1.20, ringB:.28, glow:0.09 },
 
-      { x:0.08, y:0.71, r:118, color:"red", depth:.26, drift:.12, ringA:1.14, ringB:.28, glow:0.16 },
-      { x:0.22, y:0.84, r:40, color:"white", depth:.10, drift:.18, ringA:.76, ringB:.18, glow:0.18 },
-      { x:0.36, y:0.70, r:84, color:"red", depth:.20, drift:.14, ringA:1.00, ringB:.24, glow:0.14 },
-      { x:0.50, y:0.82, r:48, color:"white", depth:.11, drift:.18, ringA:.82, ringB:.20, glow:0.18 },
-      { x:0.65, y:0.72, r:76, color:"red", depth:.19, drift:.15, ringA:.96, ringB:.24, glow:0.13 },
-      { x:0.79, y:0.84, r:42, color:"white", depth:.10, drift:.19, ringA:.76, ringB:.18, glow:0.18 },
-      { x:0.92, y:0.73, r:72, color:"red", depth:.18, drift:.14, ringA:.94, ringB:.22, glow:0.12 }
+      { x:0.10, y:0.78, r:140, color:"red",   depth:.28, drift:.11, ringA:1.18, ringB:.27, glow:0.08 },
+      { x:0.30, y:0.86, r:68,  color:"white", depth:.13, drift:.17, ringA:.82, ringB:.18, glow:0.16 },
+      { x:0.50, y:0.71, r:118, color:"red",   depth:.22, drift:.12, ringA:1.06, ringB:.24, glow:0.08 },
+      { x:0.70, y:0.84, r:80,  color:"white", depth:.14, drift:.16, ringA:.86, ringB:.20, glow:0.17 },
+      { x:0.91, y:0.73, r:110, color:"red",   depth:.20, drift:.12, ringA:1.02, ringB:.23, glow:0.07 }
     ];
 
     function drawBaseBackground() {
       const base = backCtx.createLinearGradient(0, 0, 0, h);
-      base.addColorStop(0, "#04060c");
-      base.addColorStop(0.55, "#070a12");
-      base.addColorStop(1, "#05070f");
+      base.addColorStop(0, "#03050a");
+      base.addColorStop(0.50, "#060911");
+      base.addColorStop(1, "#04060d");
       backCtx.fillStyle = base;
       backCtx.fillRect(0, 0, w, h);
     }
 
     function drawCinematicFog(t) {
       const fogs = [
-        { x:.18, y:.14, r:.28, red:.10, white:.06, dx:.18, dy:.12 },
-        { x:.52, y:.58, r:.34, red:.08, white:.05, dx:.14, dy:-.10 },
-        { x:.82, y:.26, r:.22, red:.07, white:.05, dx:-.12, dy:.10 }
+        { x:.16, y:.18, r:.24, red:.05, white:.05, dx:.16, dy:.10 },
+        { x:.54, y:.58, r:.30, red:.04, white:.045, dx:.12, dy:-.09 },
+        { x:.84, y:.28, r:.20, red:.035, white:.04, dx:-.11, dy:.10 }
       ];
 
       backCtx.save();
       backCtx.globalCompositeOperation = "screen";
-      backCtx.filter = "blur(72px) saturate(130%)";
+      backCtx.filter = "blur(76px) saturate(116%)";
 
       fogs.forEach((f, i) => {
-        const cx = w * f.x + Math.sin(t * f.dx + i) * w * 0.03 + mouse.x * 18;
-        const cy = h * f.y + Math.cos(t * f.dy + i) * h * 0.03 + mouse.y * 14 + scrollCurrent * 60;
+        const cx = w * f.x + Math.sin(t * f.dx + i) * w * 0.025 + mouse.x * 14;
+        const cy = h * f.y + Math.cos(t * f.dy + i) * h * 0.025 + mouse.y * 10 + scrollCurrent * 48;
         const r = Math.min(w, h) * f.r;
 
-        const g = backCtx.createRadialGradient(cx, cy, r * 0.04, cx, cy, r);
+        const g = backCtx.createRadialGradient(cx, cy, r * 0.05, cx, cy, r);
         g.addColorStop(0, `rgba(255,255,255,${f.white})`);
-        g.addColorStop(0.26, `rgba(255,255,255,${f.white * 0.45})`);
-        g.addColorStop(0.42, `rgba(180,20,40,${f.red})`);
+        g.addColorStop(0.26, `rgba(255,255,255,${f.white * 0.42})`);
+        g.addColorStop(0.42, `rgba(120,10,20,${f.red})`);
         g.addColorStop(1, "rgba(0,0,0,0)");
 
         backCtx.fillStyle = g;
@@ -396,10 +390,10 @@
       backCtx.globalCompositeOperation = "screen";
 
       list.forEach((s, i) => {
-        const mx = mouse.x * 28 * s.depth;
-        const my = mouse.y * 20 * s.depth;
+        const mx = mouse.x * 22 * s.depth;
+        const my = mouse.y * 16 * s.depth;
         const sx = s.x * w + Math.sin(t * s.speed + s.drift) * 7 + mx;
-        const sy = s.y * h + Math.cos(t * s.speed + s.drift) * 7 + my + scrollCurrent * 46 * s.depth;
+        const sy = s.y * h + Math.cos(t * s.speed + s.drift) * 7 + my + scrollCurrent * 40 * s.depth;
 
         backCtx.beginPath();
         backCtx.arc(sx, sy, s.r, 0, Math.PI * 2);
@@ -408,12 +402,12 @@
 
         if (i % crossChance === 0) {
           backCtx.beginPath();
-          backCtx.moveTo(sx - s.r * 2.5, sy);
-          backCtx.lineTo(sx + s.r * 2.5, sy);
-          backCtx.moveTo(sx, sy - s.r * 2.5);
-          backCtx.lineTo(sx, sy + s.r * 2.5);
-          backCtx.strokeStyle = `rgba(255,255,255,${s.a * 0.24})`;
-          backCtx.lineWidth = 0.6;
+          backCtx.moveTo(sx - s.r * 2.2, sy);
+          backCtx.lineTo(sx + s.r * 2.2, sy);
+          backCtx.moveTo(sx, sy - s.r * 2.2);
+          backCtx.lineTo(sx, sy + s.r * 2.2);
+          backCtx.strokeStyle = `rgba(255,255,255,${s.a * 0.18})`;
+          backCtx.lineWidth = 0.55;
           backCtx.stroke();
         }
       });
@@ -422,37 +416,37 @@
     }
 
     function drawGalaxyCore(galaxy, t, i) {
-      const px = mouse.x * 44 * galaxy.depth;
-      const py = mouse.y * 32 * galaxy.depth;
-      const x = galaxy.x * w + Math.sin(t * galaxy.drift + i) * 22 + px;
-      const y = galaxy.y * h + Math.cos(t * galaxy.drift + i * 1.3) * 16 + py + scrollCurrent * 88 * galaxy.depth;
-      const r = galaxy.r * (1 + Math.sin(t * 0.55 + i) * 0.028);
-      const twist = Math.sin(t * 0.12 + i) * 0.7 + cameraDrift * 0.2;
+      const px = mouse.x * 34 * galaxy.depth;
+      const py = mouse.y * 26 * galaxy.depth;
+      const x = galaxy.x * w + Math.sin(t * galaxy.drift + i) * 18 + px;
+      const y = galaxy.y * h + Math.cos(t * galaxy.drift + i * 1.2) * 14 + py + scrollCurrent * 72 * galaxy.depth;
+      const r = galaxy.r * (1 + Math.sin(t * 0.45 + i) * 0.022);
+      const twist = Math.sin(t * 0.10 + i) * 0.6 + cameraDrift * 0.16;
 
       backCtx.save();
       backCtx.globalCompositeOperation = "screen";
 
       const outer = backCtx.createRadialGradient(x, y, r * 0.04, x, y, r);
-      const inner = backCtx.createRadialGradient(x, y, r * 0.02, x, y, r * 0.52);
+      const inner = backCtx.createRadialGradient(x, y, r * 0.02, x, y, r * 0.50);
 
       if (galaxy.color === "white") {
         outer.addColorStop(0, "rgba(255,255,255,0.26)");
-        outer.addColorStop(0.2, "rgba(255,255,255,0.16)");
-        outer.addColorStop(0.46, "rgba(255,255,255,0.06)");
+        outer.addColorStop(0.20, "rgba(255,255,255,0.15)");
+        outer.addColorStop(0.48, "rgba(255,255,255,0.05)");
         outer.addColorStop(1, "rgba(255,255,255,0)");
 
-        inner.addColorStop(0, "rgba(255,255,255,0.98)");
-        inner.addColorStop(0.26, "rgba(255,255,255,0.42)");
+        inner.addColorStop(0, "rgba(255,255,255,0.96)");
+        inner.addColorStop(0.26, "rgba(255,255,255,0.38)");
         inner.addColorStop(1, "rgba(255,255,255,0)");
       } else {
-        outer.addColorStop(0, "rgba(145,14,28,0.24)");
-        outer.addColorStop(0.22, "rgba(120,10,20,0.18)");
-        outer.addColorStop(0.48, "rgba(120,10,20,0.06)");
-        outer.addColorStop(1, "rgba(120,10,20,0)");
+        outer.addColorStop(0, "rgba(98,8,18,0.18)");
+        outer.addColorStop(0.22, "rgba(88,7,16,0.12)");
+        outer.addColorStop(0.50, "rgba(88,7,16,0.035)");
+        outer.addColorStop(1, "rgba(88,7,16,0)");
 
-        inner.addColorStop(0, "rgba(165,20,34,0.86)");
-        inner.addColorStop(0.28, "rgba(120,10,20,0.30)");
-        inner.addColorStop(1, "rgba(120,10,20,0)");
+        inner.addColorStop(0, "rgba(132,14,24,0.60)");
+        inner.addColorStop(0.28, "rgba(92,8,17,0.18)");
+        inner.addColorStop(1, "rgba(92,8,17,0)");
       }
 
       backCtx.fillStyle = outer;
@@ -467,7 +461,7 @@
 
       backCtx.strokeStyle = galaxy.color === "white"
         ? `rgba(255,255,255,${galaxy.glow})`
-        : `rgba(120,10,20,${galaxy.glow})`;
+        : `rgba(98,8,18,${galaxy.glow})`;
       backCtx.lineWidth = 1;
 
       backCtx.beginPath();
@@ -475,13 +469,13 @@
       backCtx.stroke();
 
       backCtx.beginPath();
-      backCtx.ellipse(x, y, r * (galaxy.ringA * 0.76), r * (galaxy.ringB * 0.74), -twist * 0.7, 0, Math.PI * 2);
+      backCtx.ellipse(x, y, r * (galaxy.ringA * 0.75), r * (galaxy.ringB * 0.74), -twist * 0.72, 0, Math.PI * 2);
       backCtx.stroke();
 
       if (galaxy.color === "white") {
         backCtx.beginPath();
-        backCtx.arc(x, y, r * 0.12, 0, Math.PI * 2);
-        backCtx.fillStyle = "rgba(255,255,255,0.9)";
+        backCtx.arc(x, y, r * 0.11, 0, Math.PI * 2);
+        backCtx.fillStyle = "rgba(255,255,255,0.86)";
         backCtx.fill();
       }
 
@@ -498,32 +492,32 @@
       frontCtx.save();
       frontCtx.globalCompositeOperation = "screen";
 
-      for (let i = 0; i < 18; i++) {
-        const px = (i / 18) * w + Math.sin(t * 0.24 + i) * 38 + mouse.x * 8;
-        const py = h * (0.12 + (i % 6) * 0.13) + Math.cos(t * 0.28 + i) * 12 + mouse.y * 6;
-        const length = 120 + (i % 4) * 48;
+      for (let i = 0; i < 14; i++) {
+        const px = (i / 14) * w + Math.sin(t * 0.20 + i) * 30 + mouse.x * 6;
+        const py = h * (0.14 + (i % 5) * 0.15) + Math.cos(t * 0.24 + i) * 10 + mouse.y * 5;
+        const length = 110 + (i % 4) * 40;
 
         const grad = frontCtx.createLinearGradient(px, py, px + length, py);
         grad.addColorStop(0, "rgba(255,255,255,0)");
-        grad.addColorStop(0.32, "rgba(255,255,255,0.03)");
-        grad.addColorStop(0.68, "rgba(120,10,20,0.06)");
+        grad.addColorStop(0.34, "rgba(255,255,255,0.025)");
+        grad.addColorStop(0.68, "rgba(98,8,18,0.035)");
         grad.addColorStop(1, "rgba(255,255,255,0)");
 
         frontCtx.strokeStyle = grad;
         frontCtx.lineWidth = 1;
         frontCtx.beginPath();
         frontCtx.moveTo(px, py);
-        frontCtx.quadraticCurveTo(px + length * 0.5, py - 14, px + length, py + 2);
+        frontCtx.quadraticCurveTo(px + length * 0.5, py - 12, px + length, py + 2);
         frontCtx.stroke();
       }
 
       particles.forEach((p, i) => {
-        const x = p.x * w + Math.sin(t * p.speed + i) * 18 + mouse.x * 10 * p.depth;
-        const y = p.y * h + Math.cos(t * p.speed + i) * 16 + mouse.y * 8 * p.depth + scrollCurrent * 34 * p.depth;
+        const x = p.x * w + Math.sin(t * p.speed + i) * 16 + mouse.x * 8 * p.depth;
+        const y = p.y * h + Math.cos(t * p.speed + i) * 14 + mouse.y * 6 * p.depth + scrollCurrent * 28 * p.depth;
         frontCtx.beginPath();
         frontCtx.arc(x, y, p.r, 0, Math.PI * 2);
         frontCtx.fillStyle = p.hue === "red"
-          ? `rgba(120,10,20,${p.a})`
+          ? `rgba(98,8,18,${p.a})`
           : `rgba(255,255,255,${p.a})`;
         frontCtx.fill();
       });
@@ -539,16 +533,16 @@
       mouse.x += (mouseTarget.x - mouse.x) * 0.05;
       mouse.y += (mouseTarget.y - mouse.y) * 0.05;
       scrollCurrent += (scrollTarget - scrollCurrent) * 0.05;
-      cameraDrift = Math.sin(t * 0.08) * 0.8;
+      cameraDrift = Math.sin(t * 0.07) * 0.7;
 
       backCtx.clearRect(0, 0, w, h);
       drawBaseBackground();
       drawCinematicFog(t);
-      drawStarLayer(starsFar, t, 13);
+      drawStarLayer(starsFar, t, 15);
       drawGalaxies(t);
-      drawStarLayer(starsMid, t, 9);
+      drawStarLayer(starsMid, t, 10);
       drawFront(t);
-      drawStarLayer(starsNear, t, 7);
+      drawStarLayer(starsNear, t, 8);
     }
 
     resize();
