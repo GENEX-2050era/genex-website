@@ -55,10 +55,9 @@ img{
   top:0;
   z-index:60;
   width:100%;
-  padding:10px 0 8px;
-  background:linear-gradient(180deg, rgba(4,6,13,.88), rgba(4,6,13,.62));
-  backdrop-filter:blur(16px);
-  -webkit-backdrop-filter:blur(16px);
+  padding:6px 0;
+  background:rgba(4,6,13,.78);
+  backdrop-filter:blur(12px);
   border-bottom:1px solid rgba(255,255,255,.05);
 }
 
@@ -66,8 +65,8 @@ img{
   display:flex;
   align-items:center;
   justify-content:space-between;
-  gap:12px;
-  min-height:56px;
+  gap:10px;
+  min-height:46px;
 }
 
 .brand{
@@ -78,8 +77,8 @@ img{
 }
 
 .brand img{
-  width:34px;
-  height:34px;
+  width:46px;
+  height:46px;
   object-fit:contain;
 }
 
