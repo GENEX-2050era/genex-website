@@ -15,103 +15,104 @@ content="انضم إلى GENEX وساهم في بناء أنظمة الذكاء 
 <link rel="stylesheet" href="./assets/genex-fx.css?v=904">
 
 <style>
-
 .join-hero{
-padding:120px 0 70px;
-text-align:center;
+  padding:120px 0 70px;
+  text-align:center;
 }
 
 .join-hero h1{
-font-size:46px;
-margin-bottom:16px;
+  font-size:46px;
+  margin-bottom:16px;
 }
 
 .join-hero p{
-max-width:760px;
-margin:auto;
-opacity:.85;
-line-height:1.9;
+  max-width:760px;
+  margin:auto;
+  opacity:.85;
+  line-height:1.9;
 }
 
 .jobs-grid{
-margin-top:70px;
-display:grid;
-grid-template-columns:repeat(2,1fr);
-gap:24px;
+  margin-top:70px;
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:24px;
 }
 
 .job-card{
-padding:32px;
+  padding:32px;
 }
 
 .job-card h3{
-margin:0 0 8px;
-font-size:24px;
+  margin:0 0 8px;
+  font-size:24px;
 }
 
-.job-card .role-meta{
-opacity:.6;
-font-size:14px;
-margin-bottom:16px;
+.role-meta{
+  opacity:.6;
+  font-size:14px;
+  margin-bottom:16px;
 }
 
 .job-card h4{
-font-size:16px;
-margin:18px 0 8px;
+  font-size:16px;
+  margin:18px 0 8px;
 }
 
 .job-card ul{
-margin:0;
-padding-inline-start:18px;
-opacity:.85;
-line-height:1.8;
-font-size:14px;
+  margin:0;
+  padding-inline-start:18px;
+  opacity:.85;
+  line-height:1.8;
+  font-size:14px;
 }
 
 .job-card li{
-margin-bottom:6px;
+  margin-bottom:6px;
 }
 
 .apply-box{
-margin-top:80px;
-padding:40px;
-text-align:center;
+  margin-top:80px;
+  padding:40px;
+  text-align:center;
+}
+
+.apply-box h2{
+  margin:0 0 12px;
+  font-size:30px;
 }
 
 .apply-box p{
-max-width:620px;
-margin:auto;
-opacity:.85;
-line-height:1.9;
+  max-width:620px;
+  margin:auto;
+  opacity:.85;
+  line-height:1.9;
 }
 
 .apply-btn{
-margin-top:20px;
-display:inline-block;
-padding:14px 26px;
-border-radius:14px;
-background:linear-gradient(180deg,rgba(255,255,255,.12),rgba(255,255,255,.05));
-border:1px solid rgba(255,255,255,.18);
-font-weight:700;
-transition:.25s;
+  margin-top:20px;
+  display:inline-block;
+  padding:14px 26px;
+  border-radius:14px;
+  background:linear-gradient(180deg,rgba(255,255,255,.12),rgba(255,255,255,.05));
+  border:1px solid rgba(255,255,255,.18);
+  font-weight:700;
+  transition:.25s;
 }
 
 .apply-btn:hover{
-transform:translateY(-2px);
+  transform:translateY(-2px);
 }
 
 @media(max-width:900px){
+  .jobs-grid{
+    grid-template-columns:1fr;
+  }
 
-.jobs-grid{
-grid-template-columns:1fr;
+  .join-hero h1{
+    font-size:34px;
+  }
 }
-
-.join-hero h1{
-font-size:34px;
-}
-
-}
-
 </style>
 
 </head>
@@ -148,30 +149,20 @@ font-size:34px;
 </a>
 
 <nav class="desktop-nav">
-
 <a href="./index.html" data-i18n="nav_home">الرئيسية</a>
-
 <a href="./services.html" data-i18n="nav_services">الخدمات</a>
-
 <a href="./request.html" data-i18n="nav_request">اطلب الآن</a>
-
 <a class="active" href="./join.html" data-i18n="nav_join">انضم إلينا</a>
-
 <a href="./contact.html" data-i18n="nav_contact">تواصل</a>
-
 <a href="./about.html" data-nav-about>عن جينكس</a>
-
 </nav>
 
 <div class="header-actions">
-
 <div class="lang-switch">
 <button data-lang="en">EN</button>
 <button data-lang="ar" class="active">AR</button>
 </div>
-
 <button class="mobile-toggle"></button>
-
 </div>
 
 </div>
@@ -179,19 +170,12 @@ font-size:34px;
 <div class="container">
 
 <nav class="mobile-nav" id="mobileNav">
-
 <a href="./index.html" data-i18n="nav_home">الرئيسية</a>
-
 <a href="./services.html" data-i18n="nav_services">الخدمات</a>
-
 <a href="./request.html" data-i18n="nav_request">اطلب الآن</a>
-
-<a href="./join.html" data-i18n="nav_join">انضم إلينا</a>
-
+<a class="active" href="./join.html" data-i18n="nav_join">انضم إلينا</a>
 <a href="./contact.html" data-i18n="nav_contact">تواصل</a>
-
 <a href="./about.html" data-nav-about>عن جينكس</a>
-
 </nav>
 
 </div>
@@ -204,9 +188,7 @@ font-size:34px;
 
 <div class="container">
 
-<h1 data-i18n="join_title">
-انضم إلى GENEX
-</h1>
+<h1 data-i18n="join_title">انضم إلى GENEX</h1>
 
 <p data-i18n="join_desc">
 نبحث عن أشخاص استثنائيين يرغبون في بناء الجيل القادم من الأنظمة الذكية والبنية الرقمية التي ستشكل مستقبل المؤسسات.
@@ -225,23 +207,18 @@ font-size:34px;
 <div class="job-card genex-card tilt-card">
 
 <h3 data-i18n="job1_title">مهندس أنظمة ذكاء اصطناعي</h3>
+<div class="role-meta" data-i18n="job1_meta">مستوى الخبرة: متقدم</div>
 
-<div class="role-meta" data-i18n="job1_meta">
-مستوى الخبرة: متقدم
-</div>
-
-<h4 data-i18n="resp">المسؤوليات</h4>
-
+<h4 data-i18n="resp_title">المسؤوليات</h4>
 <ul>
 <li data-i18n="job1_r1">تصميم أنظمة ذكاء اصطناعي قابلة للتوسع.</li>
 <li data-i18n="job1_r2">دمج نماذج التعلم الآلي داخل الأنظمة التشغيلية.</li>
 <li data-i18n="job1_r3">تحسين الأداء والاستجابة في البيئات الحقيقية.</li>
 </ul>
 
-<h4 data-i18n="req">المتطلبات</h4>
-
+<h4 data-i18n="req_title">المتطلبات</h4>
 <ul>
-<li data-i18n="job1_q1">خبرة في Python وMachine Learning.</li>
+<li data-i18n="job1_q1">خبرة قوية في Python وMachine Learning.</li>
 <li data-i18n="job1_q2">فهم عميق لبنى الأنظمة الموزعة.</li>
 <li data-i18n="job1_q3">القدرة على بناء نماذج قابلة للإنتاج.</li>
 </ul>
@@ -251,25 +228,62 @@ font-size:34px;
 <div class="job-card genex-card tilt-card">
 
 <h3 data-i18n="job2_title">مهندس بنية رقمية</h3>
+<div class="role-meta" data-i18n="job2_meta">مستوى الخبرة: متوسط إلى متقدم</div>
 
-<div class="role-meta" data-i18n="job2_meta">
-مستوى الخبرة: متوسط إلى متقدم
-</div>
-
-<h4 data-i18n="resp">المسؤوليات</h4>
-
+<h4 data-i18n="resp_title">المسؤوليات</h4>
 <ul>
 <li data-i18n="job2_r1">تصميم بنى تقنية قابلة للتوسع.</li>
 <li data-i18n="job2_r2">ربط الأنظمة المختلفة ضمن منظومة موحدة.</li>
 <li data-i18n="job2_r3">تحسين أداء البنية الرقمية.</li>
 </ul>
 
-<h4 data-i18n="req">المتطلبات</h4>
-
+<h4 data-i18n="req_title">المتطلبات</h4>
 <ul>
 <li data-i18n="job2_q1">خبرة في Cloud Architecture.</li>
-<li data-i18n="job2_q2">معرفة في DevOps.</li>
-<li data-i18n="job2_q3">القدرة على تصميم أنظمة كبيرة.</li>
+<li data-i18n="job2_q2">معرفة جيدة في DevOps وInfrastructure.</li>
+<li data-i18n="job2_q3">القدرة على تصميم أنظمة كبيرة ومستقرة.</li>
+</ul>
+
+</div>
+
+<div class="job-card genex-card tilt-card">
+
+<h3 data-i18n="job3_title">مصمم تجارب ومنتجات رقمية</h3>
+<div class="role-meta" data-i18n="job3_meta">مستوى الخبرة: متوسط إلى متقدم</div>
+
+<h4 data-i18n="resp_title">المسؤوليات</h4>
+<ul>
+<li data-i18n="job3_r1">تصميم تجارب استخدام عالية الجودة.</li>
+<li data-i18n="job3_r2">تحويل الرؤية التقنية إلى واجهات ومنتجات قابلة للاستخدام.</li>
+<li data-i18n="job3_r3">بناء لغة تصميم متسقة على مستوى المنصة كاملة.</li>
+</ul>
+
+<h4 data-i18n="req_title">المتطلبات</h4>
+<ul>
+<li data-i18n="job3_q1">إتقان Figma وتصميم الأنظمة.</li>
+<li data-i18n="job3_q2">فهم عميق لـ UX / UI والمنتجات الرقمية المعقدة.</li>
+<li data-i18n="job3_q3">القدرة على الربط بين الجمال البصري والمنطق الوظيفي.</li>
+</ul>
+
+</div>
+
+<div class="job-card genex-card tilt-card">
+
+<h3 data-i18n="job4_title">مهندس أتمتة وتشغيل</h3>
+<div class="role-meta" data-i18n="job4_meta">مستوى الخبرة: متوسط إلى متقدم</div>
+
+<h4 data-i18n="resp_title">المسؤوليات</h4>
+<ul>
+<li data-i18n="job4_r1">تحويل العمليات اليدوية إلى تدفقات مؤتمتة.</li>
+<li data-i18n="job4_r2">تصميم طبقات تنفيذ تربط بين الأنظمة المختلفة.</li>
+<li data-i18n="job4_r3">مراقبة الأداء وتحسين موثوقية التشغيل المستمر.</li>
+</ul>
+
+<h4 data-i18n="req_title">المتطلبات</h4>
+<ul>
+<li data-i18n="job4_q1">خبرة في أدوات الأتمتة والتكامل بين الخدمات.</li>
+<li data-i18n="job4_q2">قدرة على تحليل العمليات واكتشاف نقاط الهدر.</li>
+<li data-i18n="job4_q3">فهم جيد للواجهات البرمجية والتدفقات التشغيلية.</li>
 </ul>
 
 </div>
@@ -285,19 +299,11 @@ font-size:34px;
 <div class="container">
 
 <div class="apply-box genex-panel">
-
-<h2 data-i18n="apply_title">
-هل ترغب بالانضمام؟
-</h2>
-
+<h2 data-i18n="apply_title">هل ترغب بالانضمام؟</h2>
 <p data-i18n="apply_desc">
 إذا كنت ترى نفسك جزءًا من المستقبل الذي نبنيه في GENEX، أرسل لنا معلوماتك وسنتواصل معك.
 </p>
-
-<a href="./contact.html" class="apply-btn" data-i18n="apply_btn">
-تقديم الآن
-</a>
-
+<a href="./contact.html" class="apply-btn" data-i18n="apply_btn">تقديم الآن</a>
 </div>
 
 </div>
@@ -307,14 +313,159 @@ font-size:34px;
 </main>
 
 <footer class="footer">
-
 <div class="container">
 GENEX © 2026
 </div>
-
 </footer>
 
 </div>
+
+<script>
+(function(){
+
+const translations = {
+  ar: {
+    title: "GENEX | انضم إلينا",
+    description: "انضم إلى GENEX وساهم في بناء أنظمة الذكاء الاصطناعي السيادية والبنية الرقمية للمستقبل.",
+    nav_home: "الرئيسية",
+    nav_services: "الخدمات",
+    nav_request: "اطلب الآن",
+    nav_join: "انضم إلينا",
+    nav_contact: "تواصل",
+    join_title: "انضم إلى GENEX",
+    join_desc: "نبحث عن أشخاص استثنائيين يرغبون في بناء الجيل القادم من الأنظمة الذكية والبنية الرقمية التي ستشكل مستقبل المؤسسات.",
+    resp_title: "المسؤوليات",
+    req_title: "المتطلبات",
+    job1_title: "مهندس أنظمة ذكاء اصطناعي",
+    job1_meta: "مستوى الخبرة: متقدم",
+    job1_r1: "تصميم أنظمة ذكاء اصطناعي قابلة للتوسع.",
+    job1_r2: "دمج نماذج التعلم الآلي داخل الأنظمة التشغيلية.",
+    job1_r3: "تحسين الأداء والاستجابة في البيئات الحقيقية.",
+    job1_q1: "خبرة قوية في Python وMachine Learning.",
+    job1_q2: "فهم عميق لبنى الأنظمة الموزعة.",
+    job1_q3: "القدرة على بناء نماذج قابلة للإنتاج.",
+
+    job2_title: "مهندس بنية رقمية",
+    job2_meta: "مستوى الخبرة: متوسط إلى متقدم",
+    job2_r1: "تصميم بنى تقنية قابلة للتوسع.",
+    job2_r2: "ربط الأنظمة المختلفة ضمن منظومة موحدة.",
+    job2_r3: "تحسين أداء البنية الرقمية.",
+    job2_q1: "خبرة في Cloud Architecture.",
+    job2_q2: "معرفة جيدة في DevOps وInfrastructure.",
+    job2_q3: "القدرة على تصميم أنظمة كبيرة ومستقرة.",
+
+    job3_title: "مصمم تجارب ومنتجات رقمية",
+    job3_meta: "مستوى الخبرة: متوسط إلى متقدم",
+    job3_r1: "تصميم تجارب استخدام عالية الجودة.",
+    job3_r2: "تحويل الرؤية التقنية إلى واجهات ومنتجات قابلة للاستخدام.",
+    job3_r3: "بناء لغة تصميم متسقة على مستوى المنصة كاملة.",
+    job3_q1: "إتقان Figma وتصميم الأنظمة.",
+    job3_q2: "فهم عميق لـ UX / UI والمنتجات الرقمية المعقدة.",
+    job3_q3: "القدرة على الربط بين الجمال البصري والمنطق الوظيفي.",
+
+    job4_title: "مهندس أتمتة وتشغيل",
+    job4_meta: "مستوى الخبرة: متوسط إلى متقدم",
+    job4_r1: "تحويل العمليات اليدوية إلى تدفقات مؤتمتة.",
+    job4_r2: "تصميم طبقات تنفيذ تربط بين الأنظمة المختلفة.",
+    job4_r3: "مراقبة الأداء وتحسين موثوقية التشغيل المستمر.",
+    job4_q1: "خبرة في أدوات الأتمتة والتكامل بين الخدمات.",
+    job4_q2: "قدرة على تحليل العمليات واكتشاف نقاط الهدر.",
+    job4_q3: "فهم جيد للواجهات البرمجية والتدفقات التشغيلية.",
+
+    apply_title: "هل ترغب بالانضمام؟",
+    apply_desc: "إذا كنت ترى نفسك جزءًا من المستقبل الذي نبنيه في GENEX، أرسل لنا معلوماتك وسنتواصل معك.",
+    apply_btn: "تقديم الآن"
+  },
+  en: {
+    title: "GENEX | Join Us",
+    description: "Join GENEX and contribute to building sovereign AI systems and the digital infrastructure of the future.",
+    nav_home: "Home",
+    nav_services: "Services",
+    nav_request: "Request Now",
+    nav_join: "Join Us",
+    nav_contact: "Contact",
+    join_title: "Join GENEX",
+    join_desc: "We are looking for exceptional people who want to build the next generation of intelligent systems and digital infrastructure that will shape the future of institutions.",
+    resp_title: "Responsibilities",
+    req_title: "Requirements",
+
+    job1_title: "AI Systems Engineer",
+    job1_meta: "Experience Level: Advanced",
+    job1_r1: "Design scalable AI systems.",
+    job1_r2: "Integrate machine learning models into operational systems.",
+    job1_r3: "Improve performance and responsiveness in real environments.",
+    job1_q1: "Strong experience in Python and Machine Learning.",
+    job1_q2: "Deep understanding of distributed systems architecture.",
+    job1_q3: "Ability to build production-grade models.",
+
+    job2_title: "Digital Infrastructure Engineer",
+    job2_meta: "Experience Level: Mid to Senior",
+    job2_r1: "Design scalable technical architectures.",
+    job2_r2: "Connect different systems into a unified ecosystem.",
+    job2_r3: "Enhance digital infrastructure performance.",
+    job2_q1: "Experience in Cloud Architecture.",
+    job2_q2: "Good knowledge of DevOps and Infrastructure.",
+    job2_q3: "Ability to design large and stable systems.",
+
+    job3_title: "Digital Product & Experience Designer",
+    job3_meta: "Experience Level: Mid to Senior",
+    job3_r1: "Design high-quality user experiences.",
+    job3_r2: "Translate technical vision into usable interfaces and products.",
+    job3_r3: "Build a consistent design language across the full platform.",
+    job3_q1: "Strong mastery of Figma and design systems.",
+    job3_q2: "Deep understanding of UX/UI and complex digital products.",
+    job3_q3: "Ability to connect visual excellence with functional logic.",
+
+    job4_title: "Automation & Operations Engineer",
+    job4_meta: "Experience Level: Mid to Senior",
+    job4_r1: "Transform manual processes into automated flows.",
+    job4_r2: "Design execution layers connecting multiple systems.",
+    job4_r3: "Monitor performance and improve continuous operational reliability.",
+    job4_q1: "Experience with automation tools and service integrations.",
+    job4_q2: "Ability to analyze processes and identify waste points.",
+    job4_q3: "Good understanding of APIs and operational workflows.",
+
+    apply_title: "Interested in Joining?",
+    apply_desc: "If you see yourself as part of the future we are building at GENEX, send us your information and we will contact you.",
+    apply_btn: "Apply Now"
+  }
+};
+
+const metaDescription = document.querySelector('meta[name="description"]');
+
+function applyLanguage(lang){
+  const dict = translations[lang];
+  if (!dict) return;
+
+  document.documentElement.lang = lang;
+  document.documentElement.dir = lang === "ar" ? "rtl" : "ltr";
+  localStorage.setItem("genex_lang", lang);
+
+  document.title = dict.title;
+  if (metaDescription) metaDescription.setAttribute("content", dict.description);
+
+  document.querySelectorAll("[data-i18n]").forEach(el => {
+    const key = el.getAttribute("data-i18n");
+    if (dict[key]) el.textContent = dict[key];
+  });
+
+  document.querySelectorAll(".lang-switch button").forEach(btn => {
+    btn.classList.toggle("active", btn.dataset.lang === lang);
+  });
+
+  document.querySelectorAll("[data-nav-about]").forEach(link => {
+    link.textContent = lang === "ar" ? "عن جينكس" : "About GENEX";
+  });
+}
+
+document.querySelectorAll(".lang-switch button").forEach(btn => {
+  btn.addEventListener("click", () => applyLanguage(btn.dataset.lang));
+});
+
+applyLanguage(localStorage.getItem("genex_lang") || "ar");
+
+})();
+</script>
 
 <script src="./assets/genex-fx.js?v=906"></script>
 
