@@ -125,26 +125,35 @@
   const intro = document.querySelector("#genexIntro");
   if (!intro || !introEnabled) return;
 
-  // أظهر الإنترو دائمًا عند فتح الرئيسية
-  intro.classList.remove("hidden");
+  // إعادة الحالة الافتراضية كل مرة
+  intro.style.opacity = "1";
+  intro.style.visibility = "visible";
+  intro.style.pointerEvents = "auto";
+  intro.style.transform = "scale(1)";
+  intro.style.display = "flex";
 
   let closed = false;
 
   const closeIntro = () => {
     if (closed) return;
     closed = true;
-    intro.classList.add("hidden");
+
+    intro.style.transition = "opacity 0.9s ease, transform 0.9s ease, visibility 0.9s ease";
+    intro.style.opacity = "0";
+    intro.style.visibility = "hidden";
+    intro.style.pointerEvents = "none";
+    intro.style.transform = "scale(1.02)";
+
+    // إخفاء نهائي بعد انتهاء الأنيميشن
+    setTimeout(() => {
+      intro.style.display = "none";
+    }, 950);
   };
 
-  // يبدأ العد مباشرة سواء الصفحة حملت بسرعة أو لا
-  setTimeout(closeIntro, 3800);
+  // يغلق بعد 4 ثواني
+  setTimeout(closeIntro, 4000);
 
-  // إغلاق احتياطي إضافي في حال حصل تعارض
-  window.addEventListener("pageshow", () => {
-    setTimeout(closeIntro, 3800);
-  }, { once: true });
-
-  // السماح بالإغلاق اليدوي عند الضغط
+  // إغلاق يدوي احتياطي
   intro.addEventListener("click", closeIntro, { once: true });
 }
   }
