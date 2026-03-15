@@ -64,7 +64,7 @@
 
   function initReveal() {
     const items = qa(
-      ".genex-panel, .genex-card, .feature, .stat, .cta, .service-card, .job-item, .value-card, .mission-card, .timeline-item, .info-item, .why-card, .about-card, .process-card"
+      ".genex-panel, .genex-card, .feature, .stat, .cta, .service-card, .job-item, .value-card, .mission-card, .timeline-item, .info-item, .why-card, .about-card, .process-card, .principle-card, .capability-card, .job-card"
     );
 
     const unique = [...new Set(items)];
@@ -104,7 +104,7 @@
     const transition = q("#pageTransition");
     if (!transition) return;
 
-    qa('a[href]').forEach((link) => {
+    qa('a[href], .btn[href], .apply-btn[href], .quick-link[href], .chat-link[href]').forEach((link) => {
       const href = link.getAttribute("href");
       if (!href) return;
       if (href.startsWith("#")) return;
@@ -126,17 +126,24 @@
     if (!intro || !introEnabled) return;
 
     const seen = sessionStorage.getItem("genex_intro_seen");
+
     if (seen) {
       intro.classList.add("hidden");
       return;
     }
 
-    window.addEventListener("load", () => {
-      setTimeout(() => {
-        intro.classList.add("hidden");
-        sessionStorage.setItem("genex_intro_seen", "1");
-      }, 4200);
-    });
+    function closeIntro() {
+      intro.classList.add("hidden");
+      sessionStorage.setItem("genex_intro_seen", "1");
+    }
+
+    if (document.readyState === "complete") {
+      setTimeout(closeIntro, 5200);
+    } else {
+      window.addEventListener("load", () => {
+        setTimeout(closeIntro, 5200);
+      });
+    }
   }
 
   function initMusic() {
@@ -257,7 +264,6 @@
     const mouseTarget = { x: 0, y: 0 };
     let scrollTarget = 0;
     let scrollCurrent = 0;
-    let cameraDrift = 0;
 
     function resizeCanvas(canvas, ctx) {
       canvas.width = Math.floor(w * dpr);
@@ -286,97 +292,71 @@
       scrollTarget = window.scrollY / maxScroll;
     }, { passive: true });
 
-    const starsFar = Array.from({ length: 220 }, () => ({
+    const stars = Array.from({ length: 180 }, () => ({
       x: Math.random(),
       y: Math.random(),
-      r: Math.random() * 1.05 + 0.22,
-      a: Math.random() * 0.30 + 0.08,
-      drift: Math.random() * 20,
-      speed: Math.random() * 0.05 + 0.01,
-      depth: 0.10 + Math.random() * 0.06
+      r: Math.random() * 1.5 + 0.25,
+      a: Math.random() * 0.42 + 0.08,
+      speed: Math.random() * 0.07 + 0.015,
+      depth: 0.12 + Math.random() * 0.18,
+      drift: Math.random() * Math.PI * 2
     }));
 
-    const starsMid = Array.from({ length: 150 }, () => ({
+    const particles = Array.from({ length: 90 }, () => ({
       x: Math.random(),
       y: Math.random(),
-      r: Math.random() * 1.45 + 0.30,
-      a: Math.random() * 0.40 + 0.10,
-      drift: Math.random() * 20,
-      speed: Math.random() * 0.07 + 0.02,
-      depth: 0.16 + Math.random() * 0.10
+      r: Math.random() * 2 + 0.8,
+      a: Math.random() * 0.12 + 0.03,
+      speed: Math.random() * 0.24 + 0.04,
+      depth: 0.10 + Math.random() * 0.22,
+      hue: Math.random() > 0.82 ? "red" : "white"
     }));
 
-    const starsNear = Array.from({ length: 70 }, () => ({
-      x: Math.random(),
-      y: Math.random(),
-      r: Math.random() * 1.8 + 0.40,
-      a: Math.random() * 0.46 + 0.12,
-      drift: Math.random() * 20,
-      speed: Math.random() * 0.09 + 0.03,
-      depth: 0.24 + Math.random() * 0.16
-    }));
+    const nodes = [
+      { x: 0.15, y: 0.18, r: 170, ring: 1.24, depth: 0.30, color: "white", drift: 0.16 },
+      { x: 0.52, y: 0.14, r: 230, ring: 1.34, depth: 0.40, color: "red", drift: 0.11 },
+      { x: 0.83, y: 0.26, r: 150, ring: 1.18, depth: 0.26, color: "white", drift: 0.18 },
 
-    const particles = Array.from({ length: 95 }, () => ({
-      x: Math.random(),
-      y: Math.random(),
-      r: Math.random() * 2.0 + 0.7,
-      a: Math.random() * 0.12 + 0.035,
-      speed: Math.random() * 0.20 + 0.04,
-      hue: Math.random() > 0.78 ? "red" : "white",
-      depth: 0.10 + Math.random() * 0.22
-    }));
+      { x: 0.24, y: 0.56, r: 260, ring: 1.42, depth: 0.46, color: "red", drift: 0.09 },
+      { x: 0.68, y: 0.50, r: 200, ring: 1.26, depth: 0.34, color: "white", drift: 0.14 },
 
-    const galaxies = [
-      { x:0.08, y:0.11, r:150, color:"red",   depth:.30, drift:.10, ringA:1.24, ringB:.28, glow:0.10 },
-      { x:0.24, y:0.20, r:72,  color:"white", depth:.14, drift:.17, ringA:.86, ringB:.20, glow:0.18 },
-      { x:0.43, y:0.09, r:108, color:"red",   depth:.22, drift:.12, ringA:1.08, ringB:.25, glow:0.09 },
-      { x:0.66, y:0.18, r:84,  color:"white", depth:.16, drift:.16, ringA:.92, ringB:.22, glow:0.18 },
-      { x:0.88, y:0.12, r:132, color:"red",   depth:.26, drift:.11, ringA:1.18, ringB:.27, glow:0.08 },
-
-      { x:0.12, y:0.43, r:86,  color:"white", depth:.16, drift:.15, ringA:.90, ringB:.21, glow:0.16 },
-      { x:0.34, y:0.33, r:182, color:"red",   depth:.34, drift:.10, ringA:1.30, ringB:.30, glow:0.11 },
-      { x:0.58, y:0.44, r:96,  color:"white", depth:.17, drift:.16, ringA:.94, ringB:.22, glow:0.17 },
-      { x:0.82, y:0.34, r:156, color:"red",   depth:.28, drift:.11, ringA:1.20, ringB:.28, glow:0.09 },
-
-      { x:0.10, y:0.78, r:140, color:"red",   depth:.28, drift:.11, ringA:1.18, ringB:.27, glow:0.08 },
-      { x:0.30, y:0.86, r:68,  color:"white", depth:.13, drift:.17, ringA:.82, ringB:.18, glow:0.16 },
-      { x:0.50, y:0.71, r:118, color:"red",   depth:.22, drift:.12, ringA:1.06, ringB:.24, glow:0.08 },
-      { x:0.70, y:0.84, r:80,  color:"white", depth:.14, drift:.16, ringA:.86, ringB:.20, glow:0.17 },
-      { x:0.91, y:0.73, r:110, color:"red",   depth:.20, drift:.12, ringA:1.02, ringB:.23, glow:0.07 }
+      { x: 0.12, y: 0.84, r: 150, ring: 1.16, depth: 0.22, color: "white", drift: 0.20 },
+      { x: 0.48, y: 0.80, r: 220, ring: 1.30, depth: 0.36, color: "red", drift: 0.12 },
+      { x: 0.86, y: 0.78, r: 170, ring: 1.18, depth: 0.24, color: "white", drift: 0.17 }
     ];
 
-    function drawBaseBackground() {
-      const base = backCtx.createLinearGradient(0, 0, 0, h);
-      base.addColorStop(0, "#03050a");
-      base.addColorStop(0.50, "#060911");
-      base.addColorStop(1, "#04060d");
-      backCtx.fillStyle = base;
+    function drawBase() {
+      const g = backCtx.createLinearGradient(0, 0, 0, h);
+      g.addColorStop(0, "#02040a");
+      g.addColorStop(0.50, "#050811");
+      g.addColorStop(1, "#03050c");
+      backCtx.fillStyle = g;
       backCtx.fillRect(0, 0, w, h);
     }
 
-    function drawCinematicFog(t) {
+    function drawFieldFog(t) {
       const fogs = [
-        { x:.16, y:.18, r:.24, red:.05, white:.05, dx:.16, dy:.10 },
-        { x:.54, y:.58, r:.30, red:.04, white:.045, dx:.12, dy:-.09 },
-        { x:.84, y:.28, r:.20, red:.035, white:.04, dx:-.11, dy:.10 }
+        { x: 0.22, y: 0.20, r: 0.24, white: 0.05, red: 0.025, dx: 0.16, dy: 0.11 },
+        { x: 0.60, y: 0.52, r: 0.30, white: 0.045, red: 0.022, dx: 0.12, dy: -0.08 },
+        { x: 0.84, y: 0.74, r: 0.18, white: 0.04, red: 0.018, dx: -0.10, dy: 0.09 }
       ];
 
       backCtx.save();
       backCtx.globalCompositeOperation = "screen";
-      backCtx.filter = "blur(76px) saturate(116%)";
+      backCtx.filter = "blur(78px)";
 
       fogs.forEach((f, i) => {
-        const cx = w * f.x + Math.sin(t * f.dx + i) * w * 0.025 + mouse.x * 14;
-        const cy = h * f.y + Math.cos(t * f.dy + i) * h * 0.025 + mouse.y * 10 + scrollCurrent * 48;
+        const cx = w * f.x + Math.sin(t * f.dx + i) * w * 0.02 + mouse.x * 14;
+        const cy = h * f.y + Math.cos(t * f.dy + i) * h * 0.02 + mouse.y * 10 + scrollCurrent * 40;
         const r = Math.min(w, h) * f.r;
 
-        const g = backCtx.createRadialGradient(cx, cy, r * 0.05, cx, cy, r);
-        g.addColorStop(0, `rgba(255,255,255,${f.white})`);
-        g.addColorStop(0.26, `rgba(255,255,255,${f.white * 0.42})`);
-        g.addColorStop(0.42, `rgba(120,10,20,${f.red})`);
-        g.addColorStop(1, "rgba(0,0,0,0)");
+        const grad = backCtx.createRadialGradient(cx, cy, r * 0.08, cx, cy, r);
+        grad.addColorStop(0, `rgba(255,255,255,${f.white})`);
+        grad.addColorStop(0.24, `rgba(255,255,255,${f.white * 0.45})`);
+        grad.addColorStop(0.42, `rgba(110,10,20,${f.red})`);
+        grad.addColorStop(1, "rgba(0,0,0,0)");
 
-        backCtx.fillStyle = g;
+        backCtx.fillStyle = grad;
         backCtx.beginPath();
         backCtx.arc(cx, cy, r, 0, Math.PI * 2);
         backCtx.fill();
@@ -385,29 +365,27 @@
       backCtx.restore();
     }
 
-    function drawStarLayer(list, t, crossChance) {
+    function drawStars(t) {
       backCtx.save();
       backCtx.globalCompositeOperation = "screen";
 
-      list.forEach((s, i) => {
-        const mx = mouse.x * 22 * s.depth;
-        const my = mouse.y * 16 * s.depth;
-        const sx = s.x * w + Math.sin(t * s.speed + s.drift) * 7 + mx;
-        const sy = s.y * h + Math.cos(t * s.speed + s.drift) * 7 + my + scrollCurrent * 40 * s.depth;
+      stars.forEach((s, i) => {
+        const x = s.x * w + Math.sin(t * s.speed + s.drift) * 6 + mouse.x * 18 * s.depth;
+        const y = s.y * h + Math.cos(t * s.speed + s.drift) * 6 + mouse.y * 12 * s.depth + scrollCurrent * 36 * s.depth;
 
         backCtx.beginPath();
-        backCtx.arc(sx, sy, s.r, 0, Math.PI * 2);
+        backCtx.arc(x, y, s.r, 0, Math.PI * 2);
         backCtx.fillStyle = `rgba(255,255,255,${s.a})`;
         backCtx.fill();
 
-        if (i % crossChance === 0) {
+        if (i % 12 === 0) {
           backCtx.beginPath();
-          backCtx.moveTo(sx - s.r * 2.2, sy);
-          backCtx.lineTo(sx + s.r * 2.2, sy);
-          backCtx.moveTo(sx, sy - s.r * 2.2);
-          backCtx.lineTo(sx, sy + s.r * 2.2);
-          backCtx.strokeStyle = `rgba(255,255,255,${s.a * 0.18})`;
-          backCtx.lineWidth = 0.55;
+          backCtx.moveTo(x - s.r * 2.3, y);
+          backCtx.lineTo(x + s.r * 2.3, y);
+          backCtx.moveTo(x, y - s.r * 2.3);
+          backCtx.lineTo(x, y + s.r * 2.3);
+          backCtx.strokeStyle = `rgba(255,255,255,${s.a * 0.22})`;
+          backCtx.lineWidth = 0.6;
           backCtx.stroke();
         }
       });
@@ -415,38 +393,36 @@
       backCtx.restore();
     }
 
-    function drawGalaxyCore(galaxy, t, i) {
-      const px = mouse.x * 34 * galaxy.depth;
-      const py = mouse.y * 26 * galaxy.depth;
-      const x = galaxy.x * w + Math.sin(t * galaxy.drift + i) * 18 + px;
-      const y = galaxy.y * h + Math.cos(t * galaxy.drift + i * 1.2) * 14 + py + scrollCurrent * 72 * galaxy.depth;
-      const r = galaxy.r * (1 + Math.sin(t * 0.45 + i) * 0.022);
-      const twist = Math.sin(t * 0.10 + i) * 0.6 + cameraDrift * 0.16;
+    function drawNode(node, t, i) {
+      const x = node.x * w + Math.sin(t * node.drift + i) * 18 + mouse.x * 34 * node.depth;
+      const y = node.y * h + Math.cos(t * node.drift + i) * 14 + mouse.y * 22 * node.depth + scrollCurrent * 64 * node.depth;
+      const r = node.r * (1 + Math.sin(t * 0.45 + i) * 0.018);
+      const rot = Math.sin(t * 0.11 + i) * 0.72;
 
       backCtx.save();
       backCtx.globalCompositeOperation = "screen";
 
       const outer = backCtx.createRadialGradient(x, y, r * 0.04, x, y, r);
-      const inner = backCtx.createRadialGradient(x, y, r * 0.02, x, y, r * 0.50);
+      const inner = backCtx.createRadialGradient(x, y, r * 0.03, x, y, r * 0.52);
 
-      if (galaxy.color === "white") {
-        outer.addColorStop(0, "rgba(255,255,255,0.26)");
-        outer.addColorStop(0.20, "rgba(255,255,255,0.15)");
-        outer.addColorStop(0.48, "rgba(255,255,255,0.05)");
+      if (node.color === "white") {
+        outer.addColorStop(0, "rgba(255,255,255,0.22)");
+        outer.addColorStop(0.18, "rgba(255,255,255,0.12)");
+        outer.addColorStop(0.48, "rgba(255,255,255,0.04)");
         outer.addColorStop(1, "rgba(255,255,255,0)");
 
-        inner.addColorStop(0, "rgba(255,255,255,0.96)");
-        inner.addColorStop(0.26, "rgba(255,255,255,0.38)");
+        inner.addColorStop(0, "rgba(255,255,255,0.90)");
+        inner.addColorStop(0.26, "rgba(255,255,255,0.28)");
         inner.addColorStop(1, "rgba(255,255,255,0)");
       } else {
-        outer.addColorStop(0, "rgba(98,8,18,0.18)");
-        outer.addColorStop(0.22, "rgba(88,7,16,0.12)");
-        outer.addColorStop(0.50, "rgba(88,7,16,0.035)");
-        outer.addColorStop(1, "rgba(88,7,16,0)");
+        outer.addColorStop(0, "rgba(86,8,18,0.14)");
+        outer.addColorStop(0.18, "rgba(86,8,18,0.09)");
+        outer.addColorStop(0.48, "rgba(86,8,18,0.028)");
+        outer.addColorStop(1, "rgba(86,8,18,0)");
 
-        inner.addColorStop(0, "rgba(132,14,24,0.60)");
-        inner.addColorStop(0.28, "rgba(92,8,17,0.18)");
-        inner.addColorStop(1, "rgba(92,8,17,0)");
+        inner.addColorStop(0, "rgba(122,12,24,0.44)");
+        inner.addColorStop(0.28, "rgba(96,8,18,0.12)");
+        inner.addColorStop(1, "rgba(96,8,18,0)");
       }
 
       backCtx.fillStyle = outer;
@@ -456,68 +432,67 @@
 
       backCtx.fillStyle = inner;
       backCtx.beginPath();
-      backCtx.arc(x, y, r * 0.54, 0, Math.PI * 2);
+      backCtx.arc(x, y, r * 0.52, 0, Math.PI * 2);
       backCtx.fill();
 
-      backCtx.strokeStyle = galaxy.color === "white"
-        ? `rgba(255,255,255,${galaxy.glow})`
-        : `rgba(98,8,18,${galaxy.glow})`;
+      backCtx.strokeStyle = node.color === "white"
+        ? "rgba(255,255,255,0.12)"
+        : "rgba(96,8,18,0.10)";
       backCtx.lineWidth = 1;
 
       backCtx.beginPath();
-      backCtx.ellipse(x, y, r * galaxy.ringA, r * galaxy.ringB, twist, 0, Math.PI * 2);
+      backCtx.ellipse(x, y, r * node.ring, r * 0.22, rot, 0, Math.PI * 2);
       backCtx.stroke();
 
       backCtx.beginPath();
-      backCtx.ellipse(x, y, r * (galaxy.ringA * 0.75), r * (galaxy.ringB * 0.74), -twist * 0.72, 0, Math.PI * 2);
+      backCtx.ellipse(x, y, r * (node.ring * 0.74), r * 0.16, -rot * 0.7, 0, Math.PI * 2);
       backCtx.stroke();
 
-      if (galaxy.color === "white") {
-        backCtx.beginPath();
-        backCtx.arc(x, y, r * 0.11, 0, Math.PI * 2);
-        backCtx.fillStyle = "rgba(255,255,255,0.86)";
-        backCtx.fill();
-      }
+      backCtx.beginPath();
+      backCtx.arc(x, y, r * 0.09, 0, Math.PI * 2);
+      backCtx.fillStyle = node.color === "white"
+        ? "rgba(255,255,255,0.82)"
+        : "rgba(150,18,32,0.36)";
+      backCtx.fill();
 
       backCtx.restore();
     }
 
-    function drawGalaxies(t) {
-      galaxies.forEach((g, i) => drawGalaxyCore(g, t, i));
+    function drawNodes(t) {
+      nodes.forEach((node, i) => drawNode(node, t, i));
     }
 
     function drawFront(t) {
       frontCtx.clearRect(0, 0, w, h);
-
       frontCtx.save();
       frontCtx.globalCompositeOperation = "screen";
 
-      for (let i = 0; i < 14; i++) {
-        const px = (i / 14) * w + Math.sin(t * 0.20 + i) * 30 + mouse.x * 6;
-        const py = h * (0.14 + (i % 5) * 0.15) + Math.cos(t * 0.24 + i) * 10 + mouse.y * 5;
-        const length = 110 + (i % 4) * 40;
+      for (let i = 0; i < 12; i++) {
+        const px = (i / 12) * w + Math.sin(t * 0.18 + i) * 24 + mouse.x * 8;
+        const py = h * (0.12 + (i % 4) * 0.20) + Math.cos(t * 0.20 + i) * 8 + mouse.y * 6;
+        const len = 110 + (i % 3) * 36;
 
-        const grad = frontCtx.createLinearGradient(px, py, px + length, py);
+        const grad = frontCtx.createLinearGradient(px, py, px + len, py);
         grad.addColorStop(0, "rgba(255,255,255,0)");
-        grad.addColorStop(0.34, "rgba(255,255,255,0.025)");
-        grad.addColorStop(0.68, "rgba(98,8,18,0.035)");
+        grad.addColorStop(0.34, "rgba(255,255,255,0.02)");
+        grad.addColorStop(0.68, "rgba(90,8,18,0.03)");
         grad.addColorStop(1, "rgba(255,255,255,0)");
 
         frontCtx.strokeStyle = grad;
         frontCtx.lineWidth = 1;
         frontCtx.beginPath();
         frontCtx.moveTo(px, py);
-        frontCtx.quadraticCurveTo(px + length * 0.5, py - 12, px + length, py + 2);
+        frontCtx.quadraticCurveTo(px + len * 0.5, py - 10, px + len, py + 2);
         frontCtx.stroke();
       }
 
       particles.forEach((p, i) => {
-        const x = p.x * w + Math.sin(t * p.speed + i) * 16 + mouse.x * 8 * p.depth;
-        const y = p.y * h + Math.cos(t * p.speed + i) * 14 + mouse.y * 6 * p.depth + scrollCurrent * 28 * p.depth;
+        const x = p.x * w + Math.sin(t * p.speed + i) * 14 + mouse.x * 8 * p.depth;
+        const y = p.y * h + Math.cos(t * p.speed + i) * 12 + mouse.y * 6 * p.depth + scrollCurrent * 24 * p.depth;
         frontCtx.beginPath();
         frontCtx.arc(x, y, p.r, 0, Math.PI * 2);
         frontCtx.fillStyle = p.hue === "red"
-          ? `rgba(98,8,18,${p.a})`
+          ? `rgba(90,8,18,${p.a})`
           : `rgba(255,255,255,${p.a})`;
         frontCtx.fill();
       });
@@ -529,20 +504,16 @@
       requestAnimationFrame(animate);
 
       const t = performance.now() * 0.001;
-
       mouse.x += (mouseTarget.x - mouse.x) * 0.05;
       mouse.y += (mouseTarget.y - mouse.y) * 0.05;
       scrollCurrent += (scrollTarget - scrollCurrent) * 0.05;
-      cameraDrift = Math.sin(t * 0.07) * 0.7;
 
       backCtx.clearRect(0, 0, w, h);
-      drawBaseBackground();
-      drawCinematicFog(t);
-      drawStarLayer(starsFar, t, 15);
-      drawGalaxies(t);
-      drawStarLayer(starsMid, t, 10);
+      drawBase();
+      drawFieldFog(t);
+      drawStars(t);
+      drawNodes(t);
       drawFront(t);
-      drawStarLayer(starsNear, t, 8);
     }
 
     resize();
