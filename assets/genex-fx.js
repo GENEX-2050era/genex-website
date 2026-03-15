@@ -14,12 +14,34 @@
     });
   }
 
+  function initLanguageButtons() {
+    const langButtons = qa(".lang-switch button");
+    if (!langButtons.length) return;
+
+    function applyDocumentDirection(lang) {
+      document.documentElement.lang = lang;
+      document.documentElement.dir = lang === "ar" ? "rtl" : "ltr";
+      localStorage.setItem("genex_lang", lang);
+
+      langButtons.forEach((btn) => {
+        btn.classList.toggle("active", btn.dataset.lang === lang);
+      });
+
+      refreshAboutLabel();
+    }
+
+    langButtons.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        applyDocumentDirection(btn.dataset.lang || "ar");
+      });
+    });
+
+    applyDocumentDirection(localStorage.getItem("genex_lang") || "ar");
+  }
+
   function initAboutLabel() {
     refreshAboutLabel();
     window.addEventListener("storage", refreshAboutLabel);
-    qa(".lang-switch button").forEach((btn) => {
-      btn.addEventListener("click", () => setTimeout(refreshAboutLabel, 0));
-    });
   }
 
   function initHamburger() {
@@ -42,7 +64,7 @@
 
   function initReveal() {
     const items = qa(
-      ".genex-panel, .genex-card, .feature, .stat, .cta, .service-card, .job-item, .value-card, .mission-card, .timeline-item, .info-item, .why-card"
+      ".genex-panel, .genex-card, .feature, .stat, .cta, .service-card, .job-item, .value-card, .mission-card, .timeline-item, .info-item, .why-card, .about-card, .process-card"
     );
 
     const unique = [...new Set(items)];
@@ -263,68 +285,79 @@
       scrollTarget = window.scrollY / maxScroll;
     }, { passive: true });
 
-    const stars = Array.from({ length: 220 }, () => ({
+    const stars = Array.from({ length: 380 }, () => ({
       x: Math.random(),
       y: Math.random(),
-      r: Math.random() * 1.8 + 0.4,
-      a: Math.random() * 0.6 + 0.2,
-      speed: Math.random() * 0.08 + 0.02
+      r: Math.random() * 1.8 + 0.35,
+      a: Math.random() * 0.6 + 0.14,
+      speed: Math.random() * 0.1 + 0.03,
+      drift: Math.random() * 20
     }));
 
-    const particles = Array.from({ length: 80 }, () => ({
+    const particles = Array.from({ length: 140 }, () => ({
       x: Math.random(),
       y: Math.random(),
-      r: Math.random() * 2.2 + 0.8,
-      a: Math.random() * 0.15 + 0.05,
-      speed: Math.random() * 0.2 + 0.05
+      r: Math.random() * 2.8 + 0.8,
+      a: Math.random() * 0.18 + 0.05,
+      speed: Math.random() * 0.24 + 0.06,
+      hue: Math.random() > 0.5 ? "red" : "white"
     }));
 
     const nuclei = [
-      { x:0.10, y:0.16, r:100, color:"red", depth:.18, drift:.25 },
-      { x:0.28, y:0.22, r:54, color:"white", depth:.12, drift:.40 },
-      { x:0.47, y:0.13, r:76, color:"red", depth:.16, drift:.35 },
-      { x:0.76, y:0.18, r:46, color:"white", depth:.10, drift:.28 },
+      { x:0.06, y:0.10, r:118, color:"red", depth:.24, drift:.15, ringA:1.16, ringB:.34 },
+      { x:0.18, y:0.18, r:54, color:"white", depth:.12, drift:.28, ringA:.88, ringB:.24 },
+      { x:0.32, y:0.08, r:86, color:"red", depth:.18, drift:.19, ringA:1.04, ringB:.29 },
+      { x:0.46, y:0.16, r:62, color:"white", depth:.12, drift:.30, ringA:.90, ringB:.24 },
+      { x:0.60, y:0.09, r:104, color:"red", depth:.20, drift:.16, ringA:1.12, ringB:.32 },
+      { x:0.76, y:0.17, r:50, color:"white", depth:.10, drift:.31, ringA:.84, ringB:.22 },
+      { x:0.90, y:0.10, r:92, color:"red", depth:.18, drift:.20, ringA:1.05, ringB:.30 },
 
-      { x:0.16, y:0.48, r:58, color:"white", depth:.10, drift:.22 },
-      { x:0.36, y:0.41, r:128, color:"red", depth:.20, drift:.30 },
-      { x:0.58, y:0.46, r:52, color:"white", depth:.10, drift:.26 },
-      { x:0.82, y:0.40, r:90, color:"red", depth:.17, drift:.24 },
+      { x:0.10, y:0.38, r:58, color:"white", depth:.11, drift:.26, ringA:.86, ringB:.22 },
+      { x:0.24, y:0.32, r:138, color:"red", depth:.28, drift:.14, ringA:1.18, ringB:.36 },
+      { x:0.40, y:0.40, r:74, color:"white", depth:.13, drift:.27, ringA:.92, ringB:.25 },
+      { x:0.56, y:0.31, r:122, color:"red", depth:.24, drift:.15, ringA:1.10, ringB:.34 },
+      { x:0.72, y:0.40, r:56, color:"white", depth:.11, drift:.29, ringA:.86, ringB:.24 },
+      { x:0.88, y:0.34, r:98, color:"red", depth:.19, drift:.18, ringA:1.04, ringB:.30 },
 
-      { x:0.08, y:0.76, r:92, color:"red", depth:.16, drift:.30 },
-      { x:0.29, y:0.72, r:48, color:"white", depth:.10, drift:.34 },
-      { x:0.54, y:0.80, r:84, color:"red", depth:.15, drift:.22 },
-      { x:0.78, y:0.74, r:44, color:"white", depth:.08, drift:.28 }
+      { x:0.08, y:0.72, r:108, color:"red", depth:.21, drift:.18, ringA:1.12, ringB:.33 },
+      { x:0.22, y:0.82, r:48, color:"white", depth:.09, drift:.31, ringA:.82, ringB:.20 },
+      { x:0.36, y:0.70, r:94, color:"red", depth:.18, drift:.20, ringA:1.02, ringB:.28 },
+      { x:0.50, y:0.80, r:54, color:"white", depth:.10, drift:.28, ringA:.85, ringB:.23 },
+      { x:0.64, y:0.72, r:88, color:"red", depth:.17, drift:.19, ringA:1.00, ringB:.28 },
+      { x:0.78, y:0.82, r:46, color:"white", depth:.09, drift:.27, ringA:.80, ringB:.20 },
+      { x:0.92, y:0.72, r:84, color:"red", depth:.16, drift:.21, ringA:.98, ringB:.27 }
     ];
 
-    function drawNebula(t) {
-      backCtx.clearRect(0, 0, w, h);
-
+    function drawBaseBackground() {
       const base = backCtx.createLinearGradient(0, 0, 0, h);
       base.addColorStop(0, "#05070f");
       base.addColorStop(1, "#090d18");
       backCtx.fillStyle = base;
       backCtx.fillRect(0, 0, w, h);
+    }
 
+    function drawNebula(t) {
       const nebulae = [
-        { x:.18, y:.15, r:.36, a:.22, dx:.6, dy:.45 },
-        { x:.78, y:.14, r:.30, a:.14, dx:-.4, dy:.34 },
-        { x:.52, y:.68, r:.42, a:.18, dx:.34, dy:-.28 },
-        { x:.84, y:.62, r:.24, a:.11, dx:-.44, dy:-.36 }
+        { x:.14, y:.16, r:.40, red:.22, white:.16, dx:.52, dy:.34 },
+        { x:.78, y:.14, r:.30, red:.14, white:.12, dx:-.38, dy:.28 },
+        { x:.50, y:.66, r:.46, red:.20, white:.14, dx:.30, dy:-.24 },
+        { x:.88, y:.60, r:.26, red:.12, white:.10, dx:-.44, dy:-.31 }
       ];
 
       backCtx.save();
       backCtx.globalCompositeOperation = "screen";
-      backCtx.filter = "blur(54px) saturate(150%)";
+      backCtx.filter = "blur(62px) saturate(158%)";
 
       nebulae.forEach((n, i) => {
-        const cx = w * n.x + Math.sin(t * n.dx + i) * w * .05 + mouse.x * 30;
-        const cy = h * n.y + Math.cos(t * n.dy + i) * h * .05 + mouse.y * 24 + scrollCurrent * 110;
+        const cx = w * n.x + Math.sin(t * n.dx + i) * w * .05 + mouse.x * 34;
+        const cy = h * n.y + Math.cos(t * n.dy + i) * h * .05 + mouse.y * 26 + scrollCurrent * 120;
         const r = Math.min(w, h) * n.r;
 
         const g = backCtx.createRadialGradient(cx, cy, r * .08, cx, cy, r);
-        g.addColorStop(0, `rgba(255,255,255,${n.a * .6})`);
-        g.addColorStop(.28, `rgba(180,20,40,${n.a})`);
-        g.addColorStop(.72, `rgba(180,20,40,${n.a * .16})`);
+        g.addColorStop(0, `rgba(255,255,255,${n.white})`);
+        g.addColorStop(.18, `rgba(255,255,255,${n.white * .55})`);
+        g.addColorStop(.34, `rgba(180,20,40,${n.red})`);
+        g.addColorStop(.72, `rgba(180,20,40,${n.red * .16})`);
         g.addColorStop(1, "rgba(0,0,0,0)");
 
         backCtx.fillStyle = g;
@@ -341,59 +374,104 @@
       backCtx.globalCompositeOperation = "screen";
 
       stars.forEach((s, i) => {
-        const x = s.x * w + Math.sin(t * s.speed + i) * 6 + mouse.x * 10;
-        const y = s.y * h + Math.cos(t * s.speed + i) * 6 + mouse.y * 8 + scrollCurrent * 40;
+        const x = s.x * w + Math.sin(t * s.speed + s.drift) * 8 + mouse.x * 14;
+        const y = s.y * h + Math.cos(t * s.speed + s.drift) * 8 + mouse.y * 10 + scrollCurrent * 48;
+
         backCtx.beginPath();
         backCtx.arc(x, y, s.r, 0, Math.PI * 2);
         backCtx.fillStyle = `rgba(255,255,255,${s.a})`;
         backCtx.fill();
+
+        if (i % 9 === 0) {
+          backCtx.beginPath();
+          backCtx.moveTo(x - s.r * 3, y);
+          backCtx.lineTo(x + s.r * 3, y);
+          backCtx.moveTo(x, y - s.r * 3);
+          backCtx.lineTo(x, y + s.r * 3);
+          backCtx.strokeStyle = `rgba(255,255,255,${s.a * .28})`;
+          backCtx.lineWidth = .6;
+          backCtx.stroke();
+        }
       });
 
       backCtx.restore();
     }
 
-    function drawNuclei(t) {
+    function drawSingleNucleus(n, t, i) {
+      const x = n.x * w + Math.sin(t * n.drift + i) * 26 + mouse.x * 42 * n.depth;
+      const y = n.y * h + Math.cos(t * n.drift + i) * 18 + mouse.y * 34 * n.depth + scrollCurrent * 95 * n.depth;
+      const r = n.r * (1 + Math.sin(t * .8 + i) * .03);
+
+      const outer = backCtx.createRadialGradient(x, y, r * .04, x, y, r);
+      const mid = backCtx.createRadialGradient(x, y, r * .02, x, y, r * .55);
+
+      if (n.color === "white") {
+        outer.addColorStop(0, "rgba(255,255,255,.42)");
+        outer.addColorStop(.18, "rgba(255,255,255,.22)");
+        outer.addColorStop(.46, "rgba(255,255,255,.08)");
+        outer.addColorStop(1, "rgba(255,255,255,0)");
+
+        mid.addColorStop(0, "rgba(255,255,255,.98)");
+        mid.addColorStop(.28, "rgba(255,255,255,.42)");
+        mid.addColorStop(1, "rgba(255,255,255,0)");
+      } else {
+        outer.addColorStop(0, "rgba(180,20,40,.34)");
+        outer.addColorStop(.20, "rgba(180,20,40,.22)");
+        outer.addColorStop(.52, "rgba(180,20,40,.08)");
+        outer.addColorStop(1, "rgba(180,20,40,0)");
+
+        mid.addColorStop(0, "rgba(210,36,60,.94)");
+        mid.addColorStop(.28, "rgba(180,20,40,.42)");
+        mid.addColorStop(1, "rgba(180,20,40,0)");
+      }
+
       backCtx.save();
       backCtx.globalCompositeOperation = "screen";
 
-      nuclei.forEach((n, i) => {
-        const x = n.x * w + Math.sin(t * n.drift + i) * 24 + mouse.x * 40 * n.depth;
-        const y = n.y * h + Math.cos(t * n.drift + i) * 18 + mouse.y * 30 * n.depth + scrollCurrent * 90 * n.depth;
-        const r = n.r;
+      backCtx.fillStyle = outer;
+      backCtx.beginPath();
+      backCtx.arc(x, y, r, 0, Math.PI * 2);
+      backCtx.fill();
 
-        const outer = backCtx.createRadialGradient(x, y, r * .05, x, y, r);
-        if (n.color === "white") {
-          outer.addColorStop(0, "rgba(255,255,255,.35)");
-          outer.addColorStop(.18, "rgba(255,255,255,.18)");
-          outer.addColorStop(.52, "rgba(255,255,255,.06)");
-          outer.addColorStop(1, "rgba(255,255,255,0)");
-        } else {
-          outer.addColorStop(0, "rgba(180,20,40,.30)");
-          outer.addColorStop(.22, "rgba(180,20,40,.18)");
-          outer.addColorStop(.56, "rgba(180,20,40,.08)");
-          outer.addColorStop(1, "rgba(180,20,40,0)");
-        }
+      backCtx.fillStyle = mid;
+      backCtx.beginPath();
+      backCtx.arc(x, y, r * .56, 0, Math.PI * 2);
+      backCtx.fill();
 
-        backCtx.fillStyle = outer;
-        backCtx.beginPath();
-        backCtx.arc(x, y, r, 0, Math.PI * 2);
-        backCtx.fill();
+      backCtx.strokeStyle = n.color === "white"
+        ? "rgba(255,255,255,.12)"
+        : "rgba(180,20,40,.18)";
+      backCtx.lineWidth = 1;
 
-        backCtx.lineWidth = 1;
-        backCtx.strokeStyle = n.color === "white"
-          ? "rgba(255,255,255,.10)"
-          : "rgba(180,20,40,.16)";
+      backCtx.beginPath();
+      backCtx.ellipse(
+        x,
+        y,
+        r * n.ringA,
+        r * n.ringB,
+        Math.sin(t * .22 + i) * .8,
+        0,
+        Math.PI * 2
+      );
+      backCtx.stroke();
 
-        backCtx.beginPath();
-        backCtx.ellipse(x, y, r * .82, r * .26, Math.sin(t * .2 + i), 0, Math.PI * 2);
-        backCtx.stroke();
-
-        backCtx.beginPath();
-        backCtx.ellipse(x, y, r * 1.08, r * .32, Math.cos(t * .18 + i), 0, Math.PI * 2);
-        backCtx.stroke();
-      });
+      backCtx.beginPath();
+      backCtx.ellipse(
+        x,
+        y,
+        r * (n.ringA * .78),
+        r * (n.ringB * .72),
+        Math.cos(t * .18 + i) * .8,
+        0,
+        Math.PI * 2
+      );
+      backCtx.stroke();
 
       backCtx.restore();
+    }
+
+    function drawNuclei(t) {
+      nuclei.forEach((n, i) => drawSingleNucleus(n, t, i));
     }
 
     function drawFront(t) {
@@ -402,31 +480,33 @@
       frontCtx.save();
       frontCtx.globalCompositeOperation = "screen";
 
-      for (let i = 0; i < 20; i++) {
-        const px = (i / 20) * w + Math.sin(t * .35 + i) * 40;
-        const py = h * (.12 + (i % 7) * .11) + Math.cos(t * .46 + i) * 12;
-        const length = 100 + (i % 5) * 46;
+      for (let i = 0; i < 26; i++) {
+        const px = (i / 26) * w + Math.sin(t * .32 + i) * 42;
+        const py = h * (.10 + (i % 8) * .10) + Math.cos(t * .44 + i) * 14;
+        const length = 110 + (i % 5) * 54;
 
         const grad = frontCtx.createLinearGradient(px, py, px + length, py);
         grad.addColorStop(0, "rgba(255,255,255,0)");
-        grad.addColorStop(.35, "rgba(255,255,255,.04)");
-        grad.addColorStop(.65, "rgba(180,20,40,.08)");
+        grad.addColorStop(.30, "rgba(255,255,255,.04)");
+        grad.addColorStop(.65, "rgba(180,20,40,.10)");
         grad.addColorStop(1, "rgba(255,255,255,0)");
 
         frontCtx.strokeStyle = grad;
         frontCtx.lineWidth = 1;
         frontCtx.beginPath();
         frontCtx.moveTo(px, py);
-        frontCtx.quadraticCurveTo(px + length * .48, py - 18, px + length, py + 2);
+        frontCtx.quadraticCurveTo(px + length * .5, py - 20, px + length, py + 2);
         frontCtx.stroke();
       }
 
       particles.forEach((p, i) => {
-        const x = p.x * w + Math.sin(t * p.speed + i) * 18;
-        const y = p.y * h + Math.cos(t * p.speed + i) * 14;
+        const x = p.x * w + Math.sin(t * p.speed + i) * 20 + mouse.x * 8;
+        const y = p.y * h + Math.cos(t * p.speed + i) * 16 + mouse.y * 6;
         frontCtx.beginPath();
         frontCtx.arc(x, y, p.r, 0, Math.PI * 2);
-        frontCtx.fillStyle = i % 4 === 0 ? `rgba(180,20,40,${p.a})` : `rgba(255,255,255,${p.a})`;
+        frontCtx.fillStyle = p.hue === "red"
+          ? `rgba(180,20,40,${p.a})`
+          : `rgba(255,255,255,${p.a})`;
         frontCtx.fill();
       });
 
@@ -442,6 +522,8 @@
       mouse.y += (mouseTarget.y - mouse.y) * 0.06;
       scrollCurrent += (scrollTarget - scrollCurrent) * 0.06;
 
+      backCtx.clearRect(0, 0, w, h);
+      drawBaseBackground();
       drawNebula(t);
       drawStars(t);
       drawNuclei(t);
@@ -452,6 +534,7 @@
     animate();
   }
 
+  initLanguageButtons();
   initAboutLabel();
   initHamburger();
   initReveal();
