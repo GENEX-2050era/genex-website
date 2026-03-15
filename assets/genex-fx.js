@@ -15,28 +15,20 @@ import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.162.0/build/three.m
     qa('[data-nav-about]').forEach((link) => {
       link.textContent = lang === 'ar' ? 'عن جينكس' : 'About GENEX';
       link.setAttribute('href', './about.html');
-      link.style.display = '';
-      link.style.visibility = 'visible';
-      link.style.opacity = '1';
-      link.style.pointerEvents = 'auto';
     });
   }
 
-  function initAboutNavLabel() {
+  function initAboutLabel() {
     refreshAboutLabel();
-
     window.addEventListener('storage', refreshAboutLabel);
-    document.addEventListener('DOMContentLoaded', refreshAboutLabel);
-
     qa('.lang-switch button').forEach((btn) => {
-      btn.addEventListener('click', () => {
-        setTimeout(refreshAboutLabel, 0);
-      });
+      btn.addEventListener('click', () => setTimeout(refreshAboutLabel, 0));
     });
   }
 
-  function initPageTransition() {
+  function initTransitions() {
     const transition = q('#pageTransition');
+    if (!transition) return;
 
     qa('a[href]').forEach((link) => {
       const href = link.getAttribute('href');
@@ -46,12 +38,11 @@ import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.162.0/build/three.m
       if (link.hasAttribute('target')) return;
 
       link.addEventListener('click', function (e) {
-        if (!transition) return;
         e.preventDefault();
         transition.classList.add('active');
         setTimeout(() => {
           window.location.href = this.getAttribute('href');
-        }, 520);
+        }, 430);
       });
     });
   }
@@ -60,15 +51,42 @@ import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.162.0/build/three.m
     const intro = q('#genexIntro');
     if (!intro || !config.intro) return;
 
-    const introSeen = sessionStorage.getItem('genex_intro_seen');
-    if (introSeen) {
+    const seen = sessionStorage.getItem('genex_intro_seen');
+
+    if (seen) {
       intro.classList.add('hidden');
-    } else {
+      return;
+    }
+
+    window.addEventListener('load', () => {
       setTimeout(() => {
         intro.classList.add('hidden');
         sessionStorage.setItem('genex_intro_seen', '1');
-      }, 2600);
-    }
+      }, 2200);
+    });
+  }
+
+  function initReveal() {
+    const items = qa('.genex-panel, .genex-card, .section-title, .hero-copy, .hero-orb, .page-hero-box, .hero-side-box, .card, .feature, .stat, .job, .timeline-item, .info-item, .form-card, .info-card, .apply-box, .cta');
+    const unique = [...new Set(items)];
+
+    unique.forEach((el) => {
+      el.classList.add('reveal-on-scroll');
+    });
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in-view');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, {
+      threshold: 0.12,
+      rootMargin: '0px 0px -40px 0px'
+    });
+
+    unique.forEach((el) => observer.observe(el));
   }
 
   function initTilt() {
@@ -77,7 +95,7 @@ import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.162.0/build/three.m
         const rect = el.getBoundingClientRect();
         const px = (e.clientX - rect.left) / rect.width - 0.5;
         const py = (e.clientY - rect.top) / rect.height - 0.5;
-        el.style.transform = `perspective(1400px) rotateY(${px * 8}deg) rotateX(${py * -8}deg) translateZ(0)`;
+        el.style.transform = `perspective(1400px) rotateY(${px * 7}deg) rotateX(${py * -7}deg) translateZ(0)`;
       });
 
       el.addEventListener('mouseleave', () => {
@@ -90,30 +108,36 @@ import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.162.0/build/three.m
     if (!config.music) return;
 
     const audio = q('#siteMusic');
-    const btn = q('#musicToggle');
-    if (!audio || !btn) return;
+    let btn = q('#musicToggle');
+    if (!audio) return;
+
+    if (!btn) {
+      btn = document.createElement('button');
+      btn.id = 'musicToggle';
+      btn.setAttribute('aria-label', 'Toggle music');
+      btn.textContent = '♪';
+      document.body.appendChild(btn);
+    }
 
     audio.volume = 0.16;
+    audio.loop = true;
 
     const saved = localStorage.getItem('genex_music_enabled');
 
     async function playMusic() {
       try {
         await audio.play();
-        localStorage.setItem('genex_music_enabled', 'true');
         btn.textContent = '♫';
-        btn.style.opacity = '1';
+        localStorage.setItem('genex_music_enabled', 'true');
       } catch (e) {
         btn.textContent = '♪';
-        btn.style.opacity = '.85';
       }
     }
 
     function pauseMusic() {
       audio.pause();
-      localStorage.setItem('genex_music_enabled', 'false');
       btn.textContent = '♪';
-      btn.style.opacity = '.85';
+      localStorage.setItem('genex_music_enabled', 'false');
     }
 
     btn.addEventListener('click', () => {
@@ -121,14 +145,83 @@ import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.162.0/build/three.m
       else pauseMusic();
     });
 
-    if (saved === 'true') {
-      const startAfterInteraction = async () => {
+    if (saved !== 'false') {
+      const starter = async () => {
         await playMusic();
       };
-      window.addEventListener('click', startAfterInteraction, { once: true });
-      window.addEventListener('touchstart', startAfterInteraction, { once: true });
-      window.addEventListener('keydown', startAfterInteraction, { once: true });
+      window.addEventListener('click', starter, { once: true });
+      window.addEventListener('touchstart', starter, { once: true });
+      window.addEventListener('keydown', starter, { once: true });
     }
+  }
+
+  function initChat() {
+    if (q('#chatToggle')) return;
+
+    const btn = document.createElement('button');
+    btn.id = 'chatToggle';
+    btn.setAttribute('aria-label', 'Open chat');
+    btn.innerHTML = `
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+        <path d="M20 14a4 4 0 0 1-4 4H9l-5 3V8a4 4 0 0 1 4-4h8a4 4 0 0 1 4 4Z"/>
+      </svg>
+    `;
+
+    const panel = document.createElement('div');
+    panel.id = 'chatPanel';
+    panel.innerHTML = `
+      <div class="chat-head">
+        <strong>GENEX Connect</strong>
+        <button class="chat-close" aria-label="Close chat">×</button>
+      </div>
+      <div class="chat-body">
+        <div class="chat-bubble">
+          مرحبًا بك في GENEX. اختر طريقة التواصل السريعة المناسبة لك.
+        </div>
+        <div class="chat-actions">
+          <a class="chat-link" href="./contact.html">فتح صفحة التواصل</a>
+          <a class="chat-link" href="./request.html">إرسال طلب مشروع</a>
+          <a class="chat-link" href="mailto:contact@genex-era.com">contact@genex-era.com</a>
+        </div>
+      </div>
+    `;
+
+    document.body.appendChild(btn);
+    document.body.appendChild(panel);
+
+    const closeBtn = panel.querySelector('.chat-close');
+
+    btn.addEventListener('click', () => {
+      panel.classList.toggle('open');
+    });
+
+    closeBtn.addEventListener('click', () => {
+      panel.classList.remove('open');
+    });
+
+    document.addEventListener('click', (e) => {
+      if (!panel.classList.contains('open')) return;
+      if (panel.contains(e.target) || btn.contains(e.target)) return;
+      panel.classList.remove('open');
+    });
+  }
+
+  function initHamburger() {
+    qa('.mobile-toggle').forEach((btn) => {
+      if (!btn.querySelector('.line')) {
+        btn.innerHTML = `
+          <span class="line"></span>
+          <span class="line"></span>
+          <span class="line"></span>
+        `;
+      }
+
+      const nav = q('#mobileNav');
+      btn.addEventListener('click', () => {
+        btn.classList.toggle('is-open');
+        if (nav) nav.classList.toggle('open');
+      });
+    });
   }
 
   function initVisuals() {
@@ -187,7 +280,7 @@ import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.162.0/build/three.m
     renderer.setSize(window.innerWidth, window.innerHeight);
 
     const scene = new THREE.Scene();
-    scene.fog = new THREE.FogExp2(0x05070f, 0.055);
+    scene.fog = new THREE.FogExp2(0x05070f, 0.052);
 
     const camera = new THREE.PerspectiveCamera(40, window.innerWidth / window.innerHeight, 0.1, 140);
     camera.position.set(0, 0, 13);
@@ -195,7 +288,7 @@ import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.162.0/build/three.m
     const world = new THREE.Group();
     scene.add(world);
 
-    const ambient = new THREE.AmbientLight(0xffffff, 0.9);
+    const ambient = new THREE.AmbientLight(0xffffff, 0.92);
     scene.add(ambient);
 
     const crimsonLight = new THREE.PointLight(0xb41428, 22, 44, 2);
@@ -222,7 +315,7 @@ import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.162.0/build/three.m
         clearcoat: 1,
         clearcoatRoughness: 0.06,
         emissive: colorHex,
-        emissiveIntensity: colorHex === 0xffffff ? 0.8 : 0.45
+        emissiveIntensity: colorHex === 0xffffff ? 0.82 : 0.46
       });
     }
 
@@ -244,9 +337,7 @@ import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.162.0/build/three.m
       });
     }
 
-    function createNucleus({
-      x, y, z, scale, isWhite, orbitCount, seed
-    }) {
+    function createNucleus({ x, y, z, scale, isWhite, orbitCount, seed }) {
       const group = new THREE.Group();
       const color = isWhite ? 0xffffff : 0x8f1222;
 
@@ -258,7 +349,7 @@ import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.162.0/build/three.m
 
       const glow1 = new THREE.Mesh(
         new THREE.SphereGeometry(0.62, 28, 28),
-        glowMaterial(color, isWhite ? 0.16 : 0.14)
+        glowMaterial(color, isWhite ? 0.17 : 0.14)
       );
       glow1.scale.setScalar(scale * 1.7);
 
@@ -273,13 +364,11 @@ import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.162.0/build/three.m
       group.add(core);
 
       const rings = [];
-
       for (let i = 0; i < orbitCount; i++) {
         const ring = new THREE.Mesh(
           new THREE.TorusGeometry(scale * (1.25 + i * 0.38), scale * 0.015, 8, 160),
           ringMaterial(isWhite ? 0xffffff : 0xb41428, isWhite ? 0.10 : 0.12)
         );
-
         ring.rotation.x = (Math.PI / 2.2) + i * 0.35;
         ring.rotation.y = seed * 0.6 + i * 0.8;
         ring.rotation.z = seed * 0.4 + i * 0.45;
@@ -300,7 +389,6 @@ import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.162.0/build/three.m
         baseY: y,
         baseZ: z,
         scale,
-        isWhite,
         seed,
         driftA: 0.24 + (seed % 7) * 0.03,
         driftB: 0.20 + (seed % 5) * 0.035,
@@ -308,36 +396,32 @@ import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.162.0/build/three.m
       });
     }
 
-    const nucleusLayout = [
+    const layout = [
       { x:-5.8, y: 3.2, z:-4.8, scale:1.10, isWhite:false, orbitCount:2, seed:1 },
       { x:-2.4, y: 4.6, z:-6.4, scale:0.82, isWhite:true,  orbitCount:3, seed:2 },
       { x: 1.4, y: 4.1, z:-3.8, scale:1.25, isWhite:false, orbitCount:2, seed:3 },
       { x: 4.9, y: 3.0, z:-7.0, scale:0.72, isWhite:true,  orbitCount:3, seed:4 },
-
       { x:-6.4, y: 0.6, z:-8.6, scale:0.62, isWhite:true,  orbitCount:2, seed:5 },
       { x:-2.0, y: 1.4, z:-2.8, scale:1.42, isWhite:false, orbitCount:3, seed:6 },
       { x: 2.3, y: 0.3, z:-9.2, scale:0.58, isWhite:true,  orbitCount:2, seed:7 },
       { x: 5.8, y: 1.2, z:-4.2, scale:1.00, isWhite:false, orbitCount:2, seed:8 },
-
       { x:-5.2, y:-2.4, z:-3.4, scale:1.20, isWhite:false, orbitCount:2, seed:9 },
       { x:-1.3, y:-2.8, z:-7.8, scale:0.74, isWhite:true,  orbitCount:3, seed:10 },
       { x: 2.8, y:-2.2, z:-4.9, scale:1.08, isWhite:false, orbitCount:2, seed:11 },
       { x: 6.1, y:-3.0, z:-8.9, scale:0.60, isWhite:true,  orbitCount:2, seed:12 },
-
       { x:-3.8, y: 5.8, z:-10.6, scale:0.50, isWhite:true, orbitCount:2, seed:13 },
       { x: 3.9, y: 5.5, z:-10.2, scale:0.52, isWhite:false,orbitCount:2, seed:14 },
       { x:-7.2, y: 2.2, z:-11.6, scale:0.44, isWhite:true, orbitCount:1, seed:15 },
       { x: 7.0, y:-0.8, z:-11.2, scale:0.46, isWhite:false,orbitCount:1, seed:16 },
-
       { x:-6.8, y:-4.8, z:-12.4, scale:0.40, isWhite:true, orbitCount:1, seed:17 },
       { x:-0.2, y: 6.0, z:-12.0, scale:0.42, isWhite:false,orbitCount:1, seed:18 },
       { x: 6.7, y: 4.7, z:-12.8, scale:0.38, isWhite:true, orbitCount:1, seed:19 },
       { x: 4.6, y:-5.2, z:-12.0, scale:0.43, isWhite:false,orbitCount:1, seed:20 }
     ];
 
-    nucleusLayout.forEach(createNucleus);
+    layout.forEach(createNucleus);
 
-    const rings = [];
+    const orbitalRings = [];
     for (let i = 0; i < 7; i++) {
       const ring = new THREE.Mesh(
         new THREE.TorusGeometry(1.9 + i * 0.34, 0.012, 8, 230),
@@ -351,7 +435,7 @@ import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.162.0/build/three.m
       ring.position.z = -2.8 - i * 0.18;
       ring.userData.offset = i * 0.45;
       world.add(ring);
-      rings.push(ring);
+      orbitalRings.push(ring);
     }
 
     const particleCount = 3200;
@@ -554,20 +638,20 @@ import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.162.0/build/three.m
       drawBackFx(t);
       drawFrontFx(t);
 
-      camera.position.x = mouse.x * 1.4;
-      camera.position.y = -(mouse.y * 0.8) - scrollCurrent * 1.15;
+      camera.position.x = mouse.x * 1.55;
+      camera.position.y = -(mouse.y * 0.9) - scrollCurrent * 1.15;
       camera.position.z = 13 - scrollCurrent * 1.3;
       camera.lookAt(0, 0, 0);
 
-      world.rotation.y = mouse.x * 0.22 + Math.sin(t * 0.16) * 0.04;
-      world.rotation.x = -(mouse.y * 0.11);
+      world.rotation.y = mouse.x * 0.24 + Math.sin(t * 0.16) * 0.04;
+      world.rotation.x = -(mouse.y * 0.12);
       world.position.y = -scrollCurrent * 0.72;
 
-      nuclei.forEach((item, i) => {
+      nuclei.forEach((item) => {
         const phase = t * item.driftA + item.seed * 0.9;
 
-        item.group.position.x = item.baseX + Math.sin(phase) * (0.16 + item.scale * 0.06) + mouse.x * (0.22 + item.scale * 0.04);
-        item.group.position.y = item.baseY + Math.cos(t * item.driftB + item.seed) * (0.18 + item.scale * 0.07) + mouse.y * (0.14 + item.scale * 0.03);
+        item.group.position.x = item.baseX + Math.sin(phase) * (0.16 + item.scale * 0.06) + mouse.x * (0.24 + item.scale * 0.04);
+        item.group.position.y = item.baseY + Math.cos(t * item.driftB + item.seed) * (0.18 + item.scale * 0.07) + mouse.y * (0.16 + item.scale * 0.03);
         item.group.position.z = item.baseZ + Math.sin(t * item.driftC + item.seed * 0.7) * 0.18;
 
         item.core.rotation.y += 0.006 + item.scale * 0.001;
@@ -585,7 +669,7 @@ import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.162.0/build/three.m
         });
       });
 
-      rings.forEach((ring, i) => {
+      orbitalRings.forEach((ring, i) => {
         ring.rotation.z = t * (0.10 + i * 0.02);
         ring.rotation.y = Math.sin(t * 0.25 + i) * 0.25;
         const s = 1 + Math.sin(t * 0.9 + ring.userData.offset) * 0.04;
@@ -619,10 +703,13 @@ import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.162.0/build/three.m
     animate();
   }
 
-  initAboutNavLabel();
-  initPageTransition();
+  initAboutLabel();
+  initTransitions();
   initIntro();
+  initReveal();
   initTilt();
   initMusic();
+  initChat();
+  initHamburger();
   initVisuals();
 })();
