@@ -91,7 +91,7 @@
         const rect = el.getBoundingClientRect();
         const px = (e.clientX - rect.left) / rect.width - 0.5;
         const py = (e.clientY - rect.top) / rect.height - 0.5;
-        el.style.transform = `perspective(1400px) rotateY(${px * 5}deg) rotateX(${py * -5}deg)`;
+        el.style.transform = `perspective(1400px) rotateY(${px * 4.5}deg) rotateX(${py * -4.5}deg)`;
       });
 
       el.addEventListener("mouseleave", () => {
@@ -116,7 +116,7 @@
         transition.classList.add("active");
         setTimeout(() => {
           window.location.href = this.getAttribute("href");
-        }, 360);
+        }, 340);
       });
     });
   }
@@ -131,16 +131,16 @@
       return;
     }
 
-    function closeIntro() {
+    const closeIntro = () => {
       intro.classList.add("hidden");
       sessionStorage.setItem("genex_intro_seen", "1");
-    }
+    };
 
     if (document.readyState === "complete") {
-      setTimeout(closeIntro, 4800);
+      setTimeout(closeIntro, 4600);
     } else {
       window.addEventListener("load", () => {
-        setTimeout(closeIntro, 4800);
+        setTimeout(closeIntro, 4600);
       });
     }
   }
@@ -289,48 +289,47 @@
       scrollTarget = window.scrollY / maxScroll;
     }, { passive: true });
 
-    const stars = Array.from({ length: 140 }, () => ({
+    const stars = Array.from({ length: 160 }, () => ({
       x: Math.random(),
       y: Math.random(),
       r: Math.random() * 1.2 + 0.2,
-      a: Math.random() * 0.28 + 0.06,
-      speed: Math.random() * 0.06 + 0.01,
-      depth: 0.10 + Math.random() * 0.16,
+      a: Math.random() * 0.26 + 0.05,
+      speed: Math.random() * 0.05 + 0.01,
+      depth: 0.10 + Math.random() * 0.14,
       drift: Math.random() * Math.PI * 2
     }));
 
-    const particles = Array.from({ length: 55 }, () => ({
+    const particles = Array.from({ length: 60 }, () => ({
       x: Math.random(),
       y: Math.random(),
       r: Math.random() * 1.6 + 0.6,
-      a: Math.random() * 0.05 + 0.015,
-      speed: Math.random() * 0.18 + 0.03,
-      depth: 0.10 + Math.random() * 0.18,
-      hue: Math.random() > 0.92 ? "red" : "white"
+      a: Math.random() * 0.05 + 0.012,
+      speed: Math.random() * 0.16 + 0.03,
+      depth: 0.10 + Math.random() * 0.16,
+      hue: Math.random() > 0.94 ? "red" : "white"
     }));
 
     const planets = [
-      { x: 0.02, y: 0.16, r: 340, ring: 1.10, depth: 0.22, color: "white", drift: 0.10 },
-      { x: 0.82, y: 0.18, r: 500, ring: 1.18, depth: 0.34, color: "red", drift: 0.07 },
-      { x: 0.10, y: 0.76, r: 560, ring: 1.22, depth: 0.40, color: "red", drift: 0.06 },
-      { x: 0.92, y: 0.62, r: 370, ring: 1.12, depth: 0.24, color: "white", drift: 0.09 },
-      { x: 0.56, y: 1.08, r: 460, ring: 1.14, depth: 0.28, color: "white", drift: 0.08 }
+      { x: 0.05, y: 0.18, r: 260, ring: 1.08, depth: 0.18, color: "white", drift: 0.08 },
+      { x: 0.82, y: 0.16, r: 420, ring: 1.14, depth: 0.28, color: "red", drift: 0.06 },
+      { x: 0.12, y: 0.78, r: 470, ring: 1.18, depth: 0.34, color: "red", drift: 0.05 },
+      { x: 0.90, y: 0.62, r: 300, ring: 1.10, depth: 0.20, color: "white", drift: 0.07 },
+      { x: 0.56, y: 1.06, r: 360, ring: 1.12, depth: 0.24, color: "white", drift: 0.06 }
     ];
 
     function drawBase() {
       const g = backCtx.createLinearGradient(0, 0, 0, h);
       g.addColorStop(0, "#02040a");
-      g.addColorStop(0.52, "#04070f");
+      g.addColorStop(0.50, "#03060d");
       g.addColorStop(1, "#02040a");
       backCtx.fillStyle = g;
       backCtx.fillRect(0, 0, w, h);
     }
 
-    function drawFieldFog(t) {
+    function drawFog(t) {
       const fogs = [
-        { x: 0.24, y: 0.22, r: 0.16, white: 0.012, red: 0.006, dx: 0.12, dy: 0.10 },
-        { x: 0.60, y: 0.54, r: 0.18, white: 0.010, red: 0.006, dx: 0.10, dy: -0.08 },
-        { x: 0.82, y: 0.76, r: 0.12, white: 0.010, red: 0.005, dx: -0.08, dy: 0.07 }
+        { x: 0.22, y: 0.24, r: 0.14, white: 0.010, red: 0.004, dx: 0.10, dy: 0.08 },
+        { x: 0.60, y: 0.54, r: 0.16, white: 0.008, red: 0.004, dx: 0.08, dy: -0.06 }
       ];
 
       backCtx.save();
@@ -338,14 +337,14 @@
       backCtx.filter = "blur(96px)";
 
       fogs.forEach((f, i) => {
-        const cx = w * f.x + Math.sin(t * f.dx + i) * w * 0.015 + mouse.x * 8;
-        const cy = h * f.y + Math.cos(t * f.dy + i) * h * 0.015 + mouse.y * 6 + scrollCurrent * 20;
+        const cx = w * f.x + Math.sin(t * f.dx + i) * w * 0.012 + mouse.x * 5;
+        const cy = h * f.y + Math.cos(t * f.dy + i) * h * 0.012 + mouse.y * 4 + scrollCurrent * 12;
         const r = Math.min(w, h) * f.r;
 
         const grad = backCtx.createRadialGradient(cx, cy, r * 0.08, cx, cy, r);
         grad.addColorStop(0, `rgba(255,255,255,${f.white})`);
-        grad.addColorStop(0.30, `rgba(255,255,255,${f.white * 0.35})`);
-        grad.addColorStop(0.48, `rgba(110,10,20,${f.red})`);
+        grad.addColorStop(0.34, `rgba(255,255,255,${f.white * 0.28})`);
+        grad.addColorStop(0.52, `rgba(110,10,20,${f.red})`);
         grad.addColorStop(1, "rgba(0,0,0,0)");
 
         backCtx.fillStyle = grad;
@@ -362,22 +361,22 @@
       backCtx.globalCompositeOperation = "screen";
 
       stars.forEach((s, i) => {
-        const x = s.x * w + Math.sin(t * s.speed + s.drift) * 4 + mouse.x * 10 * s.depth;
-        const y = s.y * h + Math.cos(t * s.speed + s.drift) * 4 + mouse.y * 8 * s.depth + scrollCurrent * 18 * s.depth;
+        const x = s.x * w + Math.sin(t * s.speed + s.drift) * 3 + mouse.x * 8 * s.depth;
+        const y = s.y * h + Math.cos(t * s.speed + s.drift) * 3 + mouse.y * 6 * s.depth + scrollCurrent * 12 * s.depth;
 
         backCtx.beginPath();
         backCtx.arc(x, y, s.r, 0, Math.PI * 2);
         backCtx.fillStyle = `rgba(255,255,255,${s.a})`;
         backCtx.fill();
 
-        if (i % 16 === 0) {
+        if (i % 18 === 0) {
           backCtx.beginPath();
-          backCtx.moveTo(x - s.r * 1.8, y);
-          backCtx.lineTo(x + s.r * 1.8, y);
-          backCtx.moveTo(x, y - s.r * 1.8);
-          backCtx.lineTo(x, y + s.r * 1.8);
-          backCtx.strokeStyle = `rgba(255,255,255,${s.a * 0.12})`;
-          backCtx.lineWidth = 0.5;
+          backCtx.moveTo(x - s.r * 1.6, y);
+          backCtx.lineTo(x + s.r * 1.6, y);
+          backCtx.moveTo(x, y - s.r * 1.6);
+          backCtx.lineTo(x, y + s.r * 1.6);
+          backCtx.strokeStyle = `rgba(255,255,255,${s.a * 0.10})`;
+          backCtx.lineWidth = 0.45;
           backCtx.stroke();
         }
       });
@@ -385,35 +384,35 @@
       backCtx.restore();
     }
 
-    function drawPlanet(planet, t, i) {
-      const x = planet.x * w + Math.sin(t * planet.drift + i) * 8 + mouse.x * 12 * planet.depth;
-      const y = planet.y * h + Math.cos(t * planet.drift + i) * 7 + mouse.y * 10 * planet.depth + scrollCurrent * 26 * planet.depth;
-      const r = planet.r * (1 + Math.sin(t * 0.28 + i) * 0.006);
-      const rot = Math.sin(t * 0.06 + i) * 0.36;
+    function drawPlanet(p, t, i) {
+      const x = p.x * w + Math.sin(t * p.drift + i) * 6 + mouse.x * 8 * p.depth;
+      const y = p.y * h + Math.cos(t * p.drift + i) * 5 + mouse.y * 6 * p.depth + scrollCurrent * 16 * p.depth;
+      const r = p.r * (1 + Math.sin(t * 0.22 + i) * 0.004);
+      const rot = Math.sin(t * 0.05 + i) * 0.28;
 
       backCtx.save();
       backCtx.globalCompositeOperation = "screen";
 
-      const outer = backCtx.createRadialGradient(x, y, r * 0.06, x, y, r);
-      const inner = backCtx.createRadialGradient(x, y, r * 0.05, x, y, r * 0.56);
+      const outer = backCtx.createRadialGradient(x, y, r * 0.08, x, y, r);
+      const inner = backCtx.createRadialGradient(x, y, r * 0.06, x, y, r * 0.56);
 
-      if (planet.color === "white") {
-        outer.addColorStop(0, "rgba(255,255,255,0.030)");
-        outer.addColorStop(0.22, "rgba(255,255,255,0.018)");
-        outer.addColorStop(0.56, "rgba(255,255,255,0.006)");
+      if (p.color === "white") {
+        outer.addColorStop(0, "rgba(255,255,255,0.018)");
+        outer.addColorStop(0.24, "rgba(255,255,255,0.010)");
+        outer.addColorStop(0.60, "rgba(255,255,255,0.003)");
         outer.addColorStop(1, "rgba(255,255,255,0)");
 
-        inner.addColorStop(0, "rgba(255,255,255,0.08)");
-        inner.addColorStop(0.30, "rgba(255,255,255,0.028)");
+        inner.addColorStop(0, "rgba(255,255,255,0.045)");
+        inner.addColorStop(0.32, "rgba(255,255,255,0.016)");
         inner.addColorStop(1, "rgba(255,255,255,0)");
       } else {
-        outer.addColorStop(0, "rgba(86,8,18,0.070)");
-        outer.addColorStop(0.22, "rgba(86,8,18,0.045)");
-        outer.addColorStop(0.56, "rgba(86,8,18,0.012)");
+        outer.addColorStop(0, "rgba(86,8,18,0.050)");
+        outer.addColorStop(0.24, "rgba(86,8,18,0.028)");
+        outer.addColorStop(0.60, "rgba(86,8,18,0.008)");
         outer.addColorStop(1, "rgba(86,8,18,0)");
 
-        inner.addColorStop(0, "rgba(122,12,24,0.16)");
-        inner.addColorStop(0.30, "rgba(96,8,18,0.05)");
+        inner.addColorStop(0, "rgba(122,12,24,0.11)");
+        inner.addColorStop(0.32, "rgba(96,8,18,0.032)");
         inner.addColorStop(1, "rgba(96,8,18,0)");
       }
 
@@ -427,24 +426,24 @@
       backCtx.arc(x, y, r * 0.56, 0, Math.PI * 2);
       backCtx.fill();
 
-      backCtx.strokeStyle = planet.color === "white"
-        ? "rgba(255,255,255,0.035)"
-        : "rgba(96,8,18,0.045)";
-      backCtx.lineWidth = 1;
+      backCtx.strokeStyle = p.color === "white"
+        ? "rgba(255,255,255,0.024)"
+        : "rgba(96,8,18,0.030)";
+      backCtx.lineWidth = 0.9;
 
       backCtx.beginPath();
-      backCtx.ellipse(x, y, r * planet.ring, r * 0.16, rot, 0, Math.PI * 2);
+      backCtx.ellipse(x, y, r * p.ring, r * 0.15, rot, 0, Math.PI * 2);
       backCtx.stroke();
 
       backCtx.beginPath();
-      backCtx.ellipse(x, y, r * (planet.ring * 0.78), r * 0.12, -rot * 0.7, 0, Math.PI * 2);
+      backCtx.ellipse(x, y, r * (p.ring * 0.78), r * 0.11, -rot * 0.7, 0, Math.PI * 2);
       backCtx.stroke();
 
       backCtx.restore();
     }
 
     function drawPlanets(t) {
-      planets.forEach((planet, i) => drawPlanet(planet, t, i));
+      planets.forEach((p, i) => drawPlanet(p, t, i));
     }
 
     function drawFront(t) {
@@ -452,28 +451,28 @@
       frontCtx.save();
       frontCtx.globalCompositeOperation = "screen";
 
-      for (let i = 0; i < 6; i++) {
-        const px = (i / 6) * w + Math.sin(t * 0.18 + i) * 14 + mouse.x * 4;
-        const py = h * (0.16 + (i % 3) * 0.26) + Math.cos(t * 0.20 + i) * 6 + mouse.y * 3;
-        const len = 72 + (i % 3) * 22;
+      for (let i = 0; i < 5; i++) {
+        const px = (i / 5) * w + Math.sin(t * 0.16 + i) * 10 + mouse.x * 2;
+        const py = h * (0.18 + (i % 3) * 0.24) + Math.cos(t * 0.18 + i) * 4 + mouse.y * 2;
+        const len = 56 + (i % 3) * 18;
 
         const grad = frontCtx.createLinearGradient(px, py, px + len, py);
         grad.addColorStop(0, "rgba(255,255,255,0)");
-        grad.addColorStop(0.34, "rgba(255,255,255,0.010)");
-        grad.addColorStop(0.68, "rgba(90,8,18,0.010)");
+        grad.addColorStop(0.34, "rgba(255,255,255,0.008)");
+        grad.addColorStop(0.68, "rgba(90,8,18,0.008)");
         grad.addColorStop(1, "rgba(255,255,255,0)");
 
         frontCtx.strokeStyle = grad;
-        frontCtx.lineWidth = 1;
+        frontCtx.lineWidth = 0.9;
         frontCtx.beginPath();
         frontCtx.moveTo(px, py);
-        frontCtx.quadraticCurveTo(px + len * 0.5, py - 6, px + len, py + 2);
+        frontCtx.quadraticCurveTo(px + len * 0.5, py - 4, px + len, py + 1);
         frontCtx.stroke();
       }
 
       particles.forEach((p, i) => {
-        const x = p.x * w + Math.sin(t * p.speed + i) * 9 + mouse.x * 4 * p.depth;
-        const y = p.y * h + Math.cos(t * p.speed + i) * 8 + mouse.y * 3 * p.depth + scrollCurrent * 14 * p.depth;
+        const x = p.x * w + Math.sin(t * p.speed + i) * 7 + mouse.x * 3 * p.depth;
+        const y = p.y * h + Math.cos(t * p.speed + i) * 6 + mouse.y * 2 * p.depth + scrollCurrent * 8 * p.depth;
         frontCtx.beginPath();
         frontCtx.arc(x, y, p.r, 0, Math.PI * 2);
         frontCtx.fillStyle = p.hue === "red"
@@ -489,13 +488,13 @@
       requestAnimationFrame(animate);
 
       const t = performance.now() * 0.001;
-      mouse.x += (mouseTarget.x - mouse.x) * 0.045;
-      mouse.y += (mouseTarget.y - mouse.y) * 0.045;
-      scrollCurrent += (scrollTarget - scrollCurrent) * 0.045;
+      mouse.x += (mouseTarget.x - mouse.x) * 0.04;
+      mouse.y += (mouseTarget.y - mouse.y) * 0.04;
+      scrollCurrent += (scrollTarget - scrollCurrent) * 0.04;
 
       backCtx.clearRect(0, 0, w, h);
       drawBase();
-      drawFieldFog(t);
+      drawFog(t);
       drawStars(t);
       drawPlanets(t);
       drawFront(t);
