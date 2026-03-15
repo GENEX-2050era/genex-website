@@ -201,3 +201,77 @@ opacity:0;
 transform:translateX(-50%) rotate(-45deg);
 top:26px;
 }
+/* ===== GENEX MOBILE HEADER FIX ===== */
+
+.mobile-toggle{
+  display:none;
+}
+
+.mobile-nav{
+  display:none;
+  grid-template-columns:1fr;
+  gap:10px;
+  padding:0 0 14px;
+}
+
+.mobile-nav.open{
+  display:grid;
+}
+
+.mobile-nav a{
+  display:block;
+  width:100%;
+  padding:13px 14px;
+  border-radius:14px;
+  border:1px solid rgba(255,255,255,.08);
+  background:rgba(255,255,255,.04);
+  color:rgba(245,247,255,.92);
+  font-weight:700;
+  line-height:1.4;
+}
+
+@media (max-width:980px){
+
+  .site-header{
+    position:sticky;
+    top:0;
+  }
+
+  .site-header-inner{
+    min-height:76px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:12px;
+  }
+
+  .desktop-nav{
+    display:none !important;
+  }
+
+  .mobile-toggle{
+    display:inline-flex !important;
+    align-items:center;
+    justify-content:center;
+    flex-shrink:0;
+  }
+
+  .header-actions{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    flex-shrink:0;
+  }
+
+  .brand{
+    flex-shrink:0;
+  }
+
+  .brand span{
+    font-size:16px;
+  }
+
+  .lang-switch{
+    flex-shrink:0;
+  }
+    }
