@@ -65,6 +65,7 @@ function applyLanguage(lang){
  document.querySelectorAll(".lang-switch button").forEach(btn=>btn.classList.toggle("active",btn.dataset.lang===lang));
  document.querySelectorAll("[data-nav-about]").forEach(link=>link.textContent=lang==="ar"?"عن جينكس":"About GENEX");
 }
+window.applyGENEXLanguage = applyLanguage;
 document.querySelectorAll(".lang-switch button").forEach(btn=>btn.addEventListener("click",()=>applyLanguage(btn.dataset.lang)));
 applyLanguage(localStorage.getItem("genex_lang")||"ar");
 })();
