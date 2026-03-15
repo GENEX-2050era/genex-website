@@ -7,307 +7,261 @@
 
 <title>GENEX | تواصل</title>
 
-<link rel="stylesheet" href="./assets/styles.css?v=701">
-<link rel="stylesheet" href="./assets/genex-fx.css?v=701">
+<meta name="description"
+content="تواصل مع GENEX للاستفسارات، الشراكات، المشاريع، أو مناقشة حلول الذكاء الاصطناعي والأتمتة.">
+
+<link rel="stylesheet" href="./assets/styles.css?v=901">
+<link rel="stylesheet" href="./assets/genex-fx.css?v=901">
 
 <style>
-.container{
-width:min(1160px,92vw);
-margin:auto;
-}
-
 .contact-hero{
-padding:120px 0 60px;
-text-align:center;
+  padding:120px 0 60px;
+  text-align:center;
 }
 
 .contact-hero h1{
-font-size:50px;
-margin-bottom:14px;
+  font-size:50px;
+  margin-bottom:14px;
 }
 
 .contact-hero p{
-max-width:760px;
-margin:auto;
-opacity:.82;
-line-height:1.9;
+  max-width:760px;
+  margin:auto;
+  opacity:.82;
+  line-height:1.9;
 }
 
 .contact-grid{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:24px;
-margin-top:56px;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:24px;
+  margin-top:56px;
 }
 
 .info-panel,
 .form-panel{
-padding:34px;
-border-radius:28px;
-background:rgba(255,255,255,.05);
-border:1px solid rgba(255,255,255,.08);
-backdrop-filter:blur(18px);
+  padding:34px;
 }
 
 .info-panel h2,
 .form-panel h2{
-margin:0 0 18px;
-font-size:32px;
+  margin:0 0 18px;
+  font-size:32px;
 }
 
 .info-list{
-display:grid;
-gap:16px;
+  display:grid;
+  gap:16px;
 }
 
 .info-item{
-padding:20px;
-border-radius:20px;
-background:rgba(255,255,255,.04);
-border:1px solid rgba(255,255,255,.08);
+  padding:20px;
 }
 
 .info-item h3{
-margin:0 0 8px;
-font-size:20px;
+  margin:0 0 8px;
+  font-size:20px;
 }
 
 .info-item p{
-margin:0;
-opacity:.8;
-line-height:1.8;
-font-size:14px;
-}
-
-.form-grid{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:18px;
-}
-
-.form-group{
-display:flex;
-flex-direction:column;
-}
-
-.form-group label{
-margin-bottom:8px;
-font-size:14px;
-opacity:.82;
-}
-
-.form-group input,
-.form-group textarea{
-padding:13px 14px;
-border-radius:14px;
-border:1px solid rgba(255,255,255,.14);
-background:rgba(0,0,0,.22);
-color:#fff;
-font-size:14px;
-}
-
-.form-group textarea{
-min-height:160px;
-resize:vertical;
-}
-
-.full{
-grid-column:1 / -1;
-}
-
-.submit-btn{
-margin-top:20px;
-padding:14px 22px;
-border:none;
-border-radius:16px;
-background:#b41428;
-color:#fff;
-font-weight:800;
-cursor:pointer;
-box-shadow:0 14px 30px rgba(180,20,40,.24);
+  margin:0;
+  opacity:.8;
+  line-height:1.8;
+  font-size:14px;
 }
 
 .quick-links{
-margin-top:18px;
-display:flex;
-gap:12px;
-flex-wrap:wrap;
+  margin-top:18px;
+  display:flex;
+  gap:12px;
+  flex-wrap:wrap;
 }
 
 .quick-link{
-padding:12px 16px;
-border-radius:14px;
-background:rgba(255,255,255,.05);
-border:1px solid rgba(255,255,255,.10);
-font-size:14px;
-font-weight:700;
+  padding:12px 16px;
+  border-radius:14px;
+  background:rgba(255,255,255,.05);
+  border:1px solid rgba(255,255,255,.10);
+  font-size:14px;
+  font-weight:700;
+}
+
+.submit-wrap{
+  margin-top:20px;
+  display:flex;
+  justify-content:flex-start;
 }
 
 @media(max-width:960px){
+  .contact-grid{
+    grid-template-columns:1fr;
+  }
 
-.contact-grid{
-grid-template-columns:1fr;
-}
+  .contact-hero h1{
+    font-size:36px;
+  }
 
-.form-grid{
-grid-template-columns:1fr;
-}
-
-.contact-hero h1{
-font-size:36px;
-}
-
+  .info-panel,
+  .form-panel{
+    padding:24px;
+  }
 }
 </style>
+
 </head>
 
-<body data-page="contact" data-music="true">
+<body data-page="inner" data-intro="false" data-music="true">
 
 <div class="page-transition" id="pageTransition"></div>
 
-<div id="backFxWrap"><canvas id="backFxCanvas"></canvas></div>
-<div id="sceneWrap"><canvas id="webglCanvas"></canvas></div>
-<div id="frontFxWrap"><canvas id="frontFxCanvas"></canvas></div>
+<div id="backFxWrap" aria-hidden="true">
+  <canvas id="backFxCanvas"></canvas>
+  <div class="back-vignette"></div>
+</div>
 
-<audio id="siteMusic" loop>
-<source src="./assets/audio/fantasy-ambient.mp3" type="audio/mpeg">
+<div id="sceneWrap" aria-hidden="true"></div>
+
+<div id="frontFxWrap" aria-hidden="true">
+  <canvas id="frontFxCanvas"></canvas>
+  <div class="front-fade"></div>
+</div>
+
+<audio id="siteMusic" loop preload="auto">
+  <source src="./assets/audio/fantasy-ambient.mp3" type="audio/mpeg">
 </audio>
 
+<div class="genex-page-shell">
+
 <header class="site-header">
+  <div class="container site-header-inner">
 
-<div class="container site-header-inner">
+    <a class="brand" href="./index.html">
+      <img src="./assets/logo.png" alt="GENEX">
+      <span>GENEX</span>
+    </a>
 
-<a class="brand" href="./index.html">
-<img src="./assets/logo.png" alt="GENEX">
-<span>GENEX</span>
-</a>
+    <nav class="desktop-nav">
+      <a href="./index.html">الرئيسية</a>
+      <a href="./services.html">الخدمات</a>
+      <a href="./request.html">اطلب الآن</a>
+      <a href="./join.html">انضم إلينا</a>
+      <a class="active" href="./contact.html">تواصل</a>
+      <a href="./about.html" data-nav-about>عن جينكس</a>
+    </nav>
 
-<nav class="desktop-nav">
-<a href="./index.html">الرئيسية</a>
-<a href="./services.html">الخدمات</a>
-<a href="./request.html">اطلب الآن</a>
-<a href="./join.html">انضم إلينا</a>
-<a class="active" href="./contact.html">تواصل</a>
-<a href="./about.html" data-nav-about>عن جينكس</a>
-</nav>
+    <div class="header-actions">
+      <div class="lang-switch">
+        <button data-lang="en">EN</button>
+        <button data-lang="ar" class="active">AR</button>
+      </div>
+      <button class="mobile-toggle" id="mobileToggle" aria-label="Menu"></button>
+    </div>
 
-<div class="header-actions">
-<div class="lang-switch">
-<button data-lang="en">EN</button>
-<button data-lang="ar" class="active">AR</button>
-</div>
-<button class="mobile-toggle" id="mobileToggle" aria-label="Menu"></button>
-</div>
+  </div>
 
-</div>
-
-<div class="container">
-<nav class="mobile-nav" id="mobileNav">
-<a href="./index.html">الرئيسية</a>
-<a href="./services.html">الخدمات</a>
-<a href="./request.html">اطلب الآن</a>
-<a href="./join.html">انضم إلينا</a>
-<a class="active" href="./contact.html">تواصل</a>
-<a href="./about.html" data-nav-about>عن جينكس</a>
-</nav>
-</div>
-
+  <div class="container">
+    <nav class="mobile-nav" id="mobileNav">
+      <a href="./index.html">الرئيسية</a>
+      <a href="./services.html">الخدمات</a>
+      <a href="./request.html">اطلب الآن</a>
+      <a href="./join.html">انضم إلينا</a>
+      <a class="active" href="./contact.html">تواصل</a>
+      <a href="./about.html" data-nav-about>عن جينكس</a>
+    </nav>
+  </div>
 </header>
 
-<main>
+<main class="genex-page-content">
 
-<section class="contact-hero">
-<div class="container">
-<h1>تواصل مع GENEX</h1>
-<p>
-إذا كان لديك مشروع، استفسار، فرصة تعاون، أو رغبة في مناقشة فكرة تقنية مستقبلية،
-فإن فريق GENEX جاهز للاستماع والعمل معك.
-</p>
-</div>
-</section>
+  <section class="contact-hero">
+    <div class="container">
+      <h1>تواصل مع GENEX</h1>
+      <p>
+        إذا كان لديك مشروع، استفسار، فرصة تعاون، أو رغبة في مناقشة فكرة تقنية مستقبلية،
+        فإن فريق GENEX جاهز للاستماع والعمل معك.
+      </p>
+    </div>
+  </section>
 
-<section>
-<div class="container">
+  <section class="section">
+    <div class="container">
 
-<div class="contact-grid">
+      <div class="contact-grid">
 
-<div class="info-panel genex-panel tilt-card">
-<h2>قنوات التواصل</h2>
+        <div class="info-panel genex-panel tilt-card">
+          <h2>قنوات التواصل</h2>
 
-<div class="info-list">
+          <div class="info-list">
+            <div class="info-item genex-card tilt-card">
+              <h3>البريد الإلكتروني</h3>
+              <p>contact@genex-era.com</p>
+            </div>
 
-<div class="info-item genex-card tilt-card">
-<h3>البريد الإلكتروني</h3>
-<p>contact@genex-era.com</p>
-</div>
+            <div class="info-item genex-card tilt-card">
+              <h3>الموقع</h3>
+              <p>genex-era.com</p>
+            </div>
 
-<div class="info-item genex-card tilt-card">
-<h3>الموقع</h3>
-<p>genex-era.com</p>
-</div>
+            <div class="info-item genex-card tilt-card">
+              <h3>نوع التواصل</h3>
+              <p>
+                استفسارات عامة، شراكات، مشاريع، تطوير منصات،
+                حلول ذكاء اصطناعي، أتمتة، وتجارب رقمية متقدمة.
+              </p>
+            </div>
+          </div>
 
-<div class="info-item genex-card tilt-card">
-<h3>نوع التواصل</h3>
-<p>
-استفسارات عامة، شراكات، مشاريع، تطوير منصات،
-حلول ذكاء اصطناعي، أتمتة، وتجارب رقمية متقدمة.
-</p>
-</div>
+          <div class="quick-links">
+            <a class="quick-link" href="./request.html">إرسال طلب مشروع</a>
+            <a class="quick-link" href="./services.html">استعراض الخدمات</a>
+          </div>
+        </div>
 
-</div>
+        <div class="form-panel genex-panel tilt-card">
+          <h2>أرسل رسالة</h2>
 
-<div class="quick-links">
-<a class="quick-link" href="./request.html">إرسال طلب مشروع</a>
-<a class="quick-link" href="./services.html">استعراض الخدمات</a>
-</div>
+          <div class="form-grid">
+            <div class="form-group">
+              <label>الاسم</label>
+              <input type="text" placeholder="اسمك الكامل">
+            </div>
 
-</div>
+            <div class="form-group">
+              <label>البريد الإلكتروني</label>
+              <input type="email" placeholder="example@email.com">
+            </div>
 
-<div class="form-panel genex-panel tilt-card">
-<h2>أرسل رسالة</h2>
+            <div class="form-group full">
+              <label>الموضوع</label>
+              <input type="text" placeholder="عنوان الرسالة">
+            </div>
 
-<form>
-<div class="form-grid">
+            <div class="form-group full">
+              <label>الرسالة</label>
+              <textarea placeholder="اكتب رسالتك هنا..."></textarea>
+            </div>
+          </div>
 
-<div class="form-group">
-<label>الاسم</label>
-<input type="text" placeholder="اسمك الكامل">
-</div>
+          <div class="submit-wrap">
+            <button class="btn primary" type="button">إرسال</button>
+          </div>
+        </div>
 
-<div class="form-group">
-<label>البريد الإلكتروني</label>
-<input type="email" placeholder="email@example.com">
-</div>
+      </div>
 
-<div class="form-group full">
-<label>الموضوع</label>
-<input type="text" placeholder="عنوان الرسالة">
-</div>
-
-<div class="form-group full">
-<label>الرسالة</label>
-<textarea placeholder="اكتب رسالتك هنا..."></textarea>
-</div>
-
-</div>
-
-<button class="submit-btn" type="button">إرسال</button>
-</form>
-
-</div>
-
-</div>
-
-</div>
-</section>
+    </div>
+  </section>
 
 </main>
 
 <footer class="footer">
-<div class="container">GENEX © 2026</div>
+  <div class="container">GENEX © 2026</div>
 </footer>
 
-<script type="module" src="./assets/genex-fx.js?v=701"></script>
+</div>
+
+<script src="./assets/genex-fx.js?v=901"></script>
 
 </body>
+
 </html>
