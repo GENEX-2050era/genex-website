@@ -7,431 +7,349 @@
 
 <title>GENEX | انضم إلينا</title>
 
-<link rel="stylesheet" href="./assets/styles.css?v=701">
-<link rel="stylesheet" href="./assets/genex-fx.css?v=701">
+<meta name="description"
+content="انضم إلى GENEX وكن جزءًا من بناء أنظمة الذكاء الاصطناعي والأتمتة المستقبلية.">
+
+<link rel="stylesheet" href="./assets/styles.css?v=901">
+<link rel="stylesheet" href="./assets/genex-fx.css?v=901">
 
 <style>
-.container{
-width:min(1180px,92vw);
-margin:auto;
-}
-
 .join-hero{
-padding:120px 0 60px;
-text-align:center;
+  padding:120px 0 60px;
+  text-align:center;
 }
 
 .join-hero h1{
-font-size:50px;
-margin-bottom:14px;
+  font-size:50px;
+  margin-bottom:14px;
 }
 
 .join-hero p{
-max-width:760px;
-margin:auto;
-opacity:.82;
-line-height:1.9;
+  max-width:760px;
+  margin:auto;
+  opacity:.82;
+  line-height:1.9;
 }
 
 .why-join{
-margin-top:56px;
-display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:20px;
+  margin-top:56px;
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:20px;
 }
 
 .why-card{
-padding:28px;
-border-radius:24px;
-background:rgba(255,255,255,.05);
-border:1px solid rgba(255,255,255,.08);
-backdrop-filter:blur(18px);
+  padding:28px;
 }
 
 .why-card .icon{
-font-size:34px;
-margin-bottom:12px;
+  font-size:34px;
+  margin-bottom:12px;
 }
 
 .why-card h3{
-margin:0 0 10px;
-font-size:22px;
+  margin:0 0 10px;
+  font-size:22px;
 }
 
 .why-card p{
-margin:0;
-opacity:.8;
-line-height:1.8;
-font-size:15px;
+  margin:0;
+  opacity:.8;
+  line-height:1.8;
+  font-size:15px;
 }
 
 .openings{
-margin-top:60px;
-padding:36px;
-border-radius:28px;
-background:rgba(255,255,255,.05);
-border:1px solid rgba(255,255,255,.08);
-backdrop-filter:blur(18px);
+  margin-top:60px;
+  padding:36px;
 }
 
 .openings h2{
-margin:0 0 20px;
-font-size:34px;
+  margin:0 0 20px;
+  font-size:34px;
 }
 
 .job-list{
-display:grid;
-gap:16px;
+  display:grid;
+  gap:16px;
 }
 
 .job-item{
-display:flex;
-justify-content:space-between;
-align-items:center;
-gap:18px;
-padding:20px;
-border-radius:20px;
-background:rgba(255,255,255,.04);
-border:1px solid rgba(255,255,255,.08);
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:18px;
+  padding:20px;
 }
 
 .job-info h3{
-margin:0 0 8px;
-font-size:21px;
+  margin:0 0 8px;
+  font-size:21px;
 }
 
 .job-info p{
-margin:0;
-opacity:.8;
-line-height:1.8;
-font-size:14px;
+  margin:0;
+  opacity:.8;
+  line-height:1.8;
+  font-size:14px;
 }
 
 .job-meta{
-display:flex;
-flex-direction:column;
-align-items:flex-end;
-gap:6px;
-opacity:.76;
-font-size:13px;
+  display:flex;
+  flex-direction:column;
+  align-items:flex-end;
+  gap:6px;
+  opacity:.76;
+  font-size:13px;
 }
 
 .apply-box{
-margin-top:60px;
-padding:38px;
-border-radius:28px;
-background:rgba(255,255,255,.05);
-border:1px solid rgba(255,255,255,.08);
-backdrop-filter:blur(18px);
+  margin-top:60px;
+  padding:38px;
 }
 
 .apply-box h2{
-margin:0 0 12px;
-font-size:34px;
+  margin:0 0 12px;
+  font-size:34px;
 }
 
 .apply-box p{
-margin:0 0 24px;
-opacity:.82;
-line-height:1.9;
-max-width:760px;
-}
-
-.form-grid{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:18px;
-}
-
-.form-group{
-display:flex;
-flex-direction:column;
-}
-
-.form-group label{
-margin-bottom:8px;
-font-size:14px;
-opacity:.82;
-}
-
-.form-group input,
-.form-group textarea,
-.form-group select{
-padding:13px 14px;
-border-radius:14px;
-border:1px solid rgba(255,255,255,.14);
-background:rgba(0,0,0,.22);
-color:#fff;
-font-size:14px;
-}
-
-.form-group textarea{
-min-height:140px;
-resize:vertical;
-}
-
-.full{
-grid-column:1 / -1;
-}
-
-.submit-btn{
-margin-top:20px;
-padding:14px 22px;
-border:none;
-border-radius:16px;
-background:#b41428;
-color:#fff;
-font-weight:800;
-cursor:pointer;
-box-shadow:0 14px 30px rgba(180,20,40,.24);
+  margin:0 0 24px;
+  opacity:.82;
+  line-height:1.9;
+  max-width:760px;
 }
 
 @media(max-width:960px){
+  .why-join{
+    grid-template-columns:1fr;
+  }
 
-.why-join{
-grid-template-columns:1fr;
-}
+  .job-item{
+    flex-direction:column;
+    align-items:flex-start;
+  }
 
-.form-grid{
-grid-template-columns:1fr;
-}
+  .job-meta{
+    align-items:flex-start;
+  }
 
-.job-item{
-flex-direction:column;
-align-items:flex-start;
-}
+  .join-hero h1{
+    font-size:36px;
+  }
 
-.job-meta{
-align-items:flex-start;
-}
-
-.join-hero h1{
-font-size:36px;
-}
-
+  .apply-box{
+    padding:24px;
+  }
 }
 </style>
+
 </head>
 
-<body data-page="join" data-music="true">
+<body data-page="inner" data-intro="false" data-music="true">
 
 <div class="page-transition" id="pageTransition"></div>
 
-<div id="backFxWrap"><canvas id="backFxCanvas"></canvas></div>
-<div id="sceneWrap"><canvas id="webglCanvas"></canvas></div>
-<div id="frontFxWrap"><canvas id="frontFxCanvas"></canvas></div>
+<div id="backFxWrap" aria-hidden="true">
+  <canvas id="backFxCanvas"></canvas>
+  <div class="back-vignette"></div>
+</div>
 
-<audio id="siteMusic" loop>
-<source src="./assets/audio/fantasy-ambient.mp3" type="audio/mpeg">
+<div id="sceneWrap" aria-hidden="true"></div>
+
+<div id="frontFxWrap" aria-hidden="true">
+  <canvas id="frontFxCanvas"></canvas>
+  <div class="front-fade"></div>
+</div>
+
+<audio id="siteMusic" loop preload="auto">
+  <source src="./assets/audio/fantasy-ambient.mp3" type="audio/mpeg">
 </audio>
 
+<div class="genex-page-shell">
+
 <header class="site-header">
+  <div class="container site-header-inner">
 
-<div class="container site-header-inner">
+    <a class="brand" href="./index.html">
+      <img src="./assets/logo.png" alt="GENEX">
+      <span>GENEX</span>
+    </a>
 
-<a class="brand" href="./index.html">
-<img src="./assets/logo.png" alt="GENEX">
-<span>GENEX</span>
-</a>
+    <nav class="desktop-nav">
+      <a href="./index.html">الرئيسية</a>
+      <a href="./services.html">الخدمات</a>
+      <a href="./request.html">اطلب الآن</a>
+      <a class="active" href="./join.html">انضم إلينا</a>
+      <a href="./contact.html">تواصل</a>
+      <a href="./about.html" data-nav-about>عن جينكس</a>
+    </nav>
 
-<nav class="desktop-nav">
-<a href="./index.html">الرئيسية</a>
-<a href="./services.html">الخدمات</a>
-<a href="./request.html">اطلب الآن</a>
-<a class="active" href="./join.html">انضم إلينا</a>
-<a href="./contact.html">تواصل</a>
-<a href="./about.html" data-nav-about>عن جينكس</a>
-</nav>
+    <div class="header-actions">
+      <div class="lang-switch">
+        <button data-lang="en">EN</button>
+        <button data-lang="ar" class="active">AR</button>
+      </div>
+      <button class="mobile-toggle" id="mobileToggle" aria-label="Menu"></button>
+    </div>
 
-<div class="header-actions">
-<div class="lang-switch">
-<button data-lang="en">EN</button>
-<button data-lang="ar" class="active">AR</button>
-</div>
-<button class="mobile-toggle" id="mobileToggle" aria-label="Menu"></button>
-</div>
+  </div>
 
-</div>
-
-<div class="container">
-<nav class="mobile-nav" id="mobileNav">
-<a href="./index.html">الرئيسية</a>
-<a href="./services.html">الخدمات</a>
-<a href="./request.html">اطلب الآن</a>
-<a class="active" href="./join.html">انضم إلينا</aط>
-<a href="./contact.html">تواصل</a>
-<a href="./about.html" data-nav-about>عن جينكس</a>
-</nav>
-</div>
-
+  <div class="container">
+    <nav class="mobile-nav" id="mobileNav">
+      <a href="./index.html">الرئيسية</a>
+      <a href="./services.html">الخدمات</a>
+      <a href="./request.html">اطلب الآن</a>
+      <a class="active" href="./join.html">انضم إلينا</a>
+      <a href="./contact.html">تواصل</a>
+      <a href="./about.html" data-nav-about>عن جينكس</a>
+    </nav>
+  </div>
 </header>
 
-<main>
+<main class="genex-page-content">
 
-<section class="join-hero">
-<div class="container">
-<h1>انضم إلى GENEX</h1>
-<p>
-نبحث عن أشخاص يملكون شغفًا بالتقنية وبناء المستقبل،
-يريدون المشاركة في تطوير أنظمة ذكاء اصطناعي، أتمتة ذكية،
-وتجارب رقمية حديثة تصنع أثرًا حقيقيًا.
-</p>
-</div>
-</section>
+  <section class="join-hero">
+    <div class="container">
+      <h1>انضم إلى GENEX</h1>
+      <p>
+        نبحث عن أشخاص يملكون شغفًا بالتقنية وبناء المستقبل، ويريدون المشاركة في تطوير
+        أنظمة ذكاء اصطناعي، أتمتة ذكية، وتجارب رقمية حديثة تصنع أثرًا حقيقيًا.
+      </p>
+    </div>
+  </section>
 
-<section>
-<div class="container">
+  <section class="section">
+    <div class="container">
 
-<div class="why-join">
+      <div class="why-join">
+        <div class="why-card genex-card tilt-card">
+          <div class="icon">🚀</div>
+          <h3>بناء شيء جديد</h3>
+          <p>
+            في GENEX ستكون جزءًا من رحلة تأسيس وتطوير منتجات وأنظمة تقنية من بداياتها الحقيقية.
+          </p>
+        </div>
 
-<div class="why-card genex-card tilt-card">
-<div class="icon">🚀</div>
-<h3>بناء شيء جديد</h3>
-<p>
-في GENEX ستكون جزءًا من رحلة تأسيس وتطوير منتجات وأنظمة
-تقنية من بداياتها الحقيقية.
-</p>
-</div>
+        <div class="why-card genex-card tilt-card">
+          <div class="icon">🧠</div>
+          <h3>ثقافة تقنية طموحة</h3>
+          <p>
+            نركز على التفكير العميق، التطوير المستمر، والابتكار بدل الحلول التقليدية الجاهزة.
+          </p>
+        </div>
 
-<div class="why-card genex-card tilt-card">
-<div class="icon">🧠</div>
-<h3>ثقافة تقنية طموحة</h3>
-<p>
-نركز على التفكير العميق، التطوير المستمر، والابتكار
-بدل الحلول التقليدية الجاهزة.
-</p>
-</div>
+        <div class="why-card genex-card tilt-card">
+          <div class="icon">🌌</div>
+          <h3>أثر مستقبلي</h3>
+          <p>
+            كل مساهمة داخل GENEX هي جزء من منظومة أكبر تبني البنية الذكية للعالم القادم.
+          </p>
+        </div>
+      </div>
 
-<div class="why-card genex-card tilt-card">
-<div class="icon">🌌</div>
-<h3>أثر مستقبلي</h3>
-<p>
-كل مساهمة داخل GENEX هي جزء من منظومة أكبر
-تبني البنية الذكية للعالم القادم.
-</p>
-</div>
+      <div class="openings genex-panel tilt-card">
+        <h2>الفرص الحالية</h2>
 
-</div>
+        <div class="job-list">
+          <div class="job-item genex-card tilt-card">
+            <div class="job-info">
+              <h3>مهندس ذكاء اصطناعي</h3>
+              <p>
+                العمل على بناء حلول AI، وكلاء ذكيين، وأنظمة تحليل وتنفيذ تعتمد على البيانات والذكاء الاصطناعي.
+              </p>
+            </div>
+            <div class="job-meta">
+              <span>دوام / مرن</span>
+              <span>متوسط إلى متقدم</span>
+            </div>
+          </div>
 
-</div>
-</section>
+          <div class="job-item genex-card tilt-card">
+            <div class="job-info">
+              <h3>مطوّر أتمتة وأنظمة</h3>
+              <p>
+                تصميم تدفقات تشغيل ذكية، تكاملات بين الأنظمة، وحلول تقلل العمل اليدوي المتكرر.
+              </p>
+            </div>
+            <div class="job-meta">
+              <span>مرن</span>
+              <span>متوسط إلى متقدم</span>
+            </div>
+          </div>
 
-<section>
-<div class="container">
+          <div class="job-item genex-card tilt-card">
+            <div class="job-info">
+              <h3>مطوّر واجهات وتجارب رقمية</h3>
+              <p>
+                بناء واجهات حديثة وتجارب رقمية عالية الجودة تعكس مستوى GENEX بصريًا وتقنيًا.
+              </p>
+            </div>
+            <div class="job-meta">
+              <span>مشاريع / مرن</span>
+              <span>متوسط إلى متقدم</span>
+            </div>
+          </div>
+        </div>
+      </div>
 
-<div class="openings genex-panel tilt-card">
-<h2>الفرص الحالية</h2>
+      <div class="apply-box genex-panel tilt-card">
+        <h2>إرسال اهتمام بالانضمام</h2>
+        <p>
+          إذا كان لديك اهتمام حقيقي بالمشاركة في بناء GENEX، أرسل لنا نبذة مختصرة عنك
+          وسنتواصل معك عند توفر الفرصة المناسبة.
+        </p>
 
-<div class="job-list">
+        <div class="form-grid">
+          <div class="form-group">
+            <label>الاسم</label>
+            <input type="text" placeholder="اسمك الكامل">
+          </div>
 
-<div class="job-item genex-card tilt-card">
-<div class="job-info">
-<h3>مهندس ذكاء اصطناعي</h3>
-<p>
-العمل على بناء حلول AI، وكلاء ذكيين، وأنظمة تحليل وتنفيذ
-تعتمد على البيانات والذكاء الاصطناعي.
-</p>
-</div>
-<div class="job-meta">
-<span>دوام / مرن</span>
-<span>متوسط إلى متقدم</span>
-</div>
-</div>
+          <div class="form-group">
+            <label>البريد الإلكتروني</label>
+            <input type="email" placeholder="example@email.com">
+          </div>
 
-<div class="job-item genex-card tilt-card">
-<div class="job-info">
-<h3>مطوّر أتمتة وأنظمة</h3>
-<p>
-تصميم تدفقات تشغيل ذكية، تكاملات بين الأنظمة،
-وحلول تقلل العمل اليدوي المتكرر.
-</p>
-</div>
-<div class="job-meta">
-<span>مرن</span>
-<span>متوسط إلى متقدم</span>
-</div>
-</div>
+          <div class="form-group">
+            <label>المجال</label>
+            <select>
+              <option>ذكاء اصطناعي</option>
+              <option>أتمتة وأنظمة</option>
+              <option>واجهة وتجربة رقمية</option>
+              <option>إدارة وتشغيل</option>
+            </select>
+          </div>
 
-<div class="job-item genex-card tilt-card">
-<div class="job-info">
-<h3>مطوّر واجهات وتجارب رقمية</h3>
-<p>
-بناء واجهات حديثة وتجارب رقمية عالية الجودة
-تعكس مستوى GENEX بصريًا وتقنيًا.
-</p>
-</div>
-<div class="job-meta">
-<span>مشاريع / مرن</span>
-<span>متوسط إلى متقدم</span>
-</div>
-</div>
+          <div class="form-group">
+            <label>عدد سنوات الخبرة</label>
+            <input type="text" placeholder="مثال: 3 سنوات">
+          </div>
 
-</div>
-</div>
+          <div class="form-group full">
+            <label>نبذة عنك</label>
+            <textarea placeholder="عرّف بنفسك، واذكر مهاراتك، وما الذي يمكنك أن تضيفه إلى GENEX"></textarea>
+          </div>
 
-</div>
-</section>
+          <div class="form-group full" style="display:flex;justify-content:center;align-items:center;">
+            <button class="btn primary" type="button">إرسال</button>
+          </div>
+        </div>
+      </div>
 
-<section>
-<div class="container">
-
-<div class="apply-box genex-panel tilt-card">
-<h2>إرسال طلب انضمام</h2>
-<p>
-إذا كان لديك اهتمام حقيقي بالمشاركة في بناء GENEX،
-أرسل معلوماتك الأساسية وتعريفًا مختصرًا عن نفسك.
-</p>
-
-<form>
-<div class="form-grid">
-
-<div class="form-group">
-<label>الاسم</label>
-<input type="text" placeholder="اسمك الكامل">
-</div>
-
-<div class="form-group">
-<label>البريد الإلكتروني</label>
-<input type="email" placeholder="email@example.com">
-</div>
-
-<div class="form-group">
-<label>المجال</label>
-<select>
-<option>ذكاء اصطناعي</option>
-<option>أتمتة وأنظمة</option>
-<option>واجهة وتجربة رقمية</option>
-<option>مجال آخر</option>
-</select>
-</div>
-
-<div class="form-group">
-<label>الخبرة</label>
-<input type="text" placeholder="مثال: 3 سنوات">
-</div>
-
-<div class="form-group full">
-<label>نبذة عنك</label>
-<textarea placeholder="عرّف بنفسك، واذكر مهاراتك، وما ترغب في بنائه معنا..."></textarea>
-</div>
-
-</div>
-
-<button class="submit-btn" type="button">إرسال الطلب</button>
-</form>
-
-</div>
-
-</div>
-</section>
+    </div>
+  </section>
 
 </main>
 
 <footer class="footer">
-<div class="container">GENEX © 2026</div>
+  <div class="container">GENEX © 2026</div>
 </footer>
 
-<script type="module" src="./assets/genex-fx.js?v=701"></script>
+</div>
+
+<script src="./assets/genex-fx.js?v=901"></script>
 
 </body>
+
 </html>
