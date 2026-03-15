@@ -288,15 +288,15 @@
       scrollTarget = window.scrollY / maxScroll;
     }, { passive: true });
 
-    const stars = Array.from({ length: 160 }, () => ({
-      x: Math.random(),
-      y: Math.random(),
-      r: Math.random() * 1.2 + 0.2,
-      a: Math.random() * 0.26 + 0.05,
-      speed: Math.random() * 0.05 + 0.01,
-      depth: 0.10 + Math.random() * 0.14,
-      drift: Math.random() * Math.PI * 2
-    }));
+    const stars = Array.from({ length:260 }, () => ({
+x:Math.random(),
+y:Math.random(),
+r:Math.random()*1.5+.3,
+a:Math.random()*0.25+.06,
+speed:Math.random()*0.08+.02,
+depth:.12+Math.random()*.18,
+drift:Math.random()*Math.PI*2
+}));
 
     const particles = Array.from({ length: 60 }, () => ({
       x: Math.random(),
@@ -309,12 +309,18 @@
     }));
 
     const planets = [
-      { x: 0.05, y: 0.18, r: 260, ring: 1.08, depth: 0.18, color: "white", drift: 0.08 },
-      { x: 0.82, y: 0.16, r: 420, ring: 1.14, depth: 0.28, color: "red", drift: 0.06 },
-      { x: 0.12, y: 0.78, r: 470, ring: 1.18, depth: 0.34, color: "red", drift: 0.05 },
-      { x: 0.90, y: 0.62, r: 300, ring: 1.10, depth: 0.20, color: "white", drift: 0.07 },
-      { x: 0.56, y: 1.06, r: 360, ring: 1.12, depth: 0.24, color: "white", drift: 0.06 }
-    ];
+
+{ x:0.05, y:0.20, r:420, depth:.22, color:"white", drift:.04 },
+
+{ x:0.80, y:0.16, r:520, depth:.28, color:"red", drift:.05 },
+
+{ x:0.14, y:0.78, r:620, depth:.34, color:"red", drift:.04 },
+
+{ x:0.90, y:0.62, r:480, depth:.24, color:"white", drift:.05 },
+
+{ x:0.56, y:1.06, r:560, depth:.30, color:"white", drift:.04 }
+
+];
 
     function drawBase() {
       const g = backCtx.createLinearGradient(0, 0, 0, h);
