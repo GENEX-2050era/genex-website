@@ -2,7 +2,6 @@
 <html lang="ar" dir="rtl">
 
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -11,95 +10,130 @@
 <meta name="description"
 content="تعرف على رؤية GENEX لبناء أنظمة ذكاء اصطناعي مستقلة وأتمتة متقدمة للمستقبل.">
 
-<link rel="stylesheet" href="./assets/styles.css?v=901">
-<link rel="stylesheet" href="./assets/genex-fx.css?v=901">
+<link rel="stylesheet" href="./assets/styles.css?v=904">
+<link rel="stylesheet" href="./assets/genex-fx.css?v=904">
 
 <style>
-
 .about-hero{
-padding:120px 0 60px;
-text-align:center;
+  padding:120px 0 60px;
+  text-align:center;
 }
 
 .about-hero h1{
-font-size:50px;
-margin-bottom:14px;
+  font-size:50px;
+  margin-bottom:14px;
 }
 
 .about-hero p{
-max-width:760px;
-margin:auto;
-opacity:.85;
-line-height:1.9;
+  max-width:760px;
+  margin:auto;
+  opacity:.85;
+  line-height:1.9;
+}
+
+.back-home-btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  min-width:180px;
+  padding:12px 16px;
+  border-radius:14px;
+  border:1px solid rgba(255,255,255,.14);
+  background:linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.04));
+  color:#fff;
+  font-weight:800;
+  backdrop-filter:blur(14px);
+  -webkit-backdrop-filter:blur(14px);
+  box-shadow:
+    0 10px 22px rgba(0,0,0,.16),
+    inset 0 1px 0 rgba(255,255,255,.05);
+  transition:
+    transform .22s ease,
+    background .22s ease,
+    border-color .22s ease;
+}
+
+.back-home-btn:hover{
+  transform:translateY(-2px);
+  background:linear-gradient(180deg, rgba(255,255,255,.12), rgba(255,255,255,.06));
+  border-color:rgba(255,255,255,.22);
 }
 
 .about-grid{
-margin-top:60px;
-display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:22px;
+  margin-top:60px;
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:22px;
 }
 
 .about-card{
-padding:28px;
+  padding:28px;
 }
 
 .about-card h3{
-margin:0 0 10px;
-font-size:22px;
+  margin:0 0 10px;
+  font-size:22px;
 }
 
 .about-card p{
-margin:0;
-opacity:.82;
-line-height:1.8;
-font-size:15px;
+  margin:0;
+  opacity:.82;
+  line-height:1.8;
+  font-size:15px;
 }
 
 .timeline{
-margin-top:70px;
-padding:36px;
+  margin-top:70px;
+  padding:36px;
 }
 
 .timeline h2{
-margin:0 0 24px;
-font-size:34px;
+  margin:0 0 24px;
+  font-size:34px;
 }
 
 .timeline-list{
-display:grid;
-gap:20px;
+  display:grid;
+  gap:20px;
 }
 
 .timeline-item{
-padding:22px;
+  padding:22px;
 }
 
 .timeline-item strong{
-display:block;
-font-size:18px;
-margin-bottom:8px;
+  display:block;
+  font-size:18px;
+  margin-bottom:8px;
 }
 
 .timeline-item p{
-margin:0;
-opacity:.82;
-line-height:1.8;
-font-size:14px;
+  margin:0;
+  opacity:.82;
+  line-height:1.8;
+  font-size:14px;
 }
 
 @media(max-width:960px){
+  .about-grid{
+    grid-template-columns:1fr;
+  }
 
-.about-grid{
-grid-template-columns:1fr;
+  .about-hero h1{
+    font-size:36px;
+  }
+
+  .back-home-btn{
+    min-width:auto;
+    padding:11px 14px;
+    font-size:14px;
+  }
+
+  .timeline{
+    padding:24px;
+  }
 }
-
-.about-hero h1{
-font-size:36px;
-}
-
-}
-
 </style>
 
 </head>
@@ -108,81 +142,52 @@ font-size:36px;
 
 <div class="page-transition" id="pageTransition"></div>
 
-<div id="backFxWrap">
-<canvas id="backFxCanvas"></canvas>
-<div class="back-vignette"></div>
+<div id="backFxWrap" aria-hidden="true">
+  <canvas id="backFxCanvas"></canvas>
+  <div class="back-vignette"></div>
 </div>
 
-<div id="sceneWrap"></div>
+<div id="sceneWrap" aria-hidden="true"></div>
 
-<div id="frontFxWrap">
-<canvas id="frontFxCanvas"></canvas>
-<div class="front-fade"></div>
+<div id="frontFxWrap" aria-hidden="true">
+  <canvas id="frontFxCanvas"></canvas>
+  <div class="front-fade"></div>
 </div>
 
 <audio id="siteMusic" loop preload="auto">
-<source src="./assets/audio/fantasy-ambient.mp3" type="audio/mpeg">
+  <source src="./assets/audio/fantasy-ambient.mp3" type="audio/mpeg">
 </audio>
 
 <div class="genex-page-shell">
 
 <header class="site-header">
 
-<div class="container site-header-inner">
+  <div class="container site-header-inner">
 
-<a class="brand" href="./index.html">
-<img src="./assets/logo.png">
-<span>GENEX</span>
-</a>
+    <a class="brand" href="./index.html">
+      <img src="./assets/logo.png" alt="GENEX">
+      <span>GENEX</span>
+    </a>
 
-<nav class="desktop-nav">
+    <nav class="desktop-nav">
+      <a href="./index.html">الرئيسية</a>
+      <a href="./services.html">الخدمات</a>
+      <a href="./request.html">اطلب الآن</a>
+      <a href="./join.html">انضم إلينا</a>
+      <a href="./contact.html">تواصل</a>
+      <a class="active" href="./about.html" data-nav-about>عن جينكس</a>
+    </nav>
 
-<a href="./index.html">الرئيسية</a>
+    <div class="header-actions">
+      <a class="back-home-btn" href="./index.html">العودة للرئيسية</a>
 
-<a href="./services.html">الخدمات</a>
+      <div class="lang-switch">
+        <button data-lang="en">EN</button>
+        <button data-lang="ar" class="active">AR</button>
+      </div>
+    </div>
 
-<a href="./request.html">اطلب الآن</a>
-
-<a href="./join.html">انضم إلينا</a>
-
-<a href="./contact.html">تواصل</a>
-
-<a class="active" href="./about.html" data-nav-about>عن جينكس</a>
-
-</nav>
-
-<div class="header-actions">
-
-<div class="lang-switch">
-<button data-lang="en">EN</button>
-<button data-lang="ar" class="active">AR</button>
-</div>
-
-<button class="mobile-toggle"></button>
-
-</div>
-
-</div>
-
-<div class="container">
-
-<nav class="mobile-nav" id="mobileNav">
-
-<a href="./index.html">الرئيسية</a>
-
-<a href="./services.html">الخدمات</a>
-
-<a href="./request.html">اطلب الآن</a>
-
-<a href="./join.html">انضم إلينا</a>
-
-<a href="./contact.html">تواصل</a>
-
-<a class="active" href="./about.html" data-nav-about>عن جينكس</a>
-
-</nav>
-
-</div>
+  </div>
 
 </header>
 
@@ -190,132 +195,96 @@ font-size:36px;
 
 <section class="about-hero">
 
-<div class="container">
+  <div class="container">
 
-<h1>عن GENEX</h1>
+    <h1>عن GENEX</h1>
 
-<p>
+    <p>
+      GENEX شركة تقنية تركز على بناء أنظمة ذكاء اصطناعي مستقلة
+      وتحويل العمليات التقليدية إلى أنظمة آلية قادرة على العمل
+      والتوسع بكفاءة في المستقبل الرقمي.
+    </p>
 
-GENEX شركة تقنية تركز على بناء أنظمة ذكاء اصطناعي مستقلة
-وتحويل العمليات التقليدية إلى أنظمة آلية قادرة على العمل
-والتوسع بكفاءة في المستقبل الرقمي.
-
-</p>
-
-</div>
+  </div>
 
 </section>
 
 <section class="section">
 
-<div class="container">
+  <div class="container">
 
-<div class="about-grid">
+    <div class="about-grid">
 
-<div class="about-card genex-card tilt-card">
+      <div class="about-card genex-card tilt-card">
+        <h3>الرؤية</h3>
+        <p>
+          بناء بنية رقمية تعتمد على أنظمة ذكية قادرة على تنفيذ
+          المهام المعقدة واتخاذ القرارات بشكل مستقل.
+        </p>
+      </div>
 
-<h3>الرؤية</h3>
+      <div class="about-card genex-card tilt-card">
+        <h3>المهمة</h3>
+        <p>
+          تحويل المؤسسات والخدمات التقليدية إلى أنظمة
+          مؤتمتة تعتمد على الذكاء الاصطناعي.
+        </p>
+      </div>
 
-<p>
+      <div class="about-card genex-card tilt-card">
+        <h3>الاتجاه</h3>
+        <p>
+          العمل على تطوير حلول تقنية قادرة على
+          تشكيل الجيل القادم من الأنظمة الذكية.
+        </p>
+      </div>
 
-بناء بنية رقمية تعتمد على أنظمة ذكية قادرة على تنفيذ
-المهام المعقدة واتخاذ القرارات بشكل مستقل.
+    </div>
 
-</p>
+    <div class="timeline genex-panel tilt-card">
 
-</div>
+      <h2>رحلة GENEX</h2>
 
-<div class="about-card genex-card tilt-card">
+      <div class="timeline-list">
 
-<h3>المهمة</h3>
+        <div class="timeline-item genex-card tilt-card">
+          <strong>البداية</strong>
+          <p>
+            نشأت فكرة GENEX من رؤية لبناء أنظمة تقنية
+            تستطيع تحويل الخدمات التقليدية إلى عمليات آلية بالكامل.
+          </p>
+        </div>
 
-<p>
+        <div class="timeline-item genex-card tilt-card">
+          <strong>التطوير</strong>
+          <p>
+            التركيز على تصميم منصات تعتمد على الذكاء الاصطناعي
+            وقادرة على التوسع مع نمو الأعمال.
+          </p>
+        </div>
 
-تحويل المؤسسات والخدمات التقليدية إلى أنظمة
-مؤتمتة تعتمد على الذكاء الاصطناعي.
+        <div class="timeline-item genex-card tilt-card">
+          <strong>المستقبل</strong>
+          <p>
+            توسيع نطاق الحلول لتشمل أنظمة تشغيل ذكية
+            ووكلاء ذكاء اصطناعي قادرين على إدارة العمليات.
+          </p>
+        </div>
 
-</p>
+      </div>
 
-</div>
+    </div>
 
-<div class="about-card genex-card tilt-card">
-
-<h3>الاتجاه</h3>
-
-<p>
-
-العمل على تطوير حلول تقنية قادرة على
-تشكيل الجيل القادم من الأنظمة الذكية.
-
-</p>
-
-</div>
-
-</div>
-
-<div class="timeline genex-panel tilt-card">
-
-<h2>رحلة GENEX</h2>
-
-<div class="timeline-list">
-
-<div class="timeline-item genex-card tilt-card">
-
-<strong>البداية</strong>
-
-<p>
-
-نشأت فكرة GENEX من رؤية لبناء أنظمة تقنية
-تستطيع تحويل الخدمات التقليدية إلى عمليات آلية بالكامل.
-
-</p>
-
-</div>
-
-<div class="timeline-item genex-card tilt-card">
-
-<strong>التطوير</strong>
-
-<p>
-
-التركيز على تصميم منصات تعتمد على الذكاء الاصطناعي
-وقادرة على التوسع مع نمو الأعمال.
-
-</p>
-
-</div>
-
-<div class="timeline-item genex-card tilt-card">
-
-<strong>المستقبل</strong>
-
-<p>
-
-توسيع نطاق الحلول لتشمل أنظمة تشغيل ذكية
-ووكالات ذكاء اصطناعي قادرة على إدارة العمليات.
-
-</p>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
+  </div>
 
 </section>
 
 </main>
 
 <footer class="footer">
-
-<div class="container">
-
-GENEX © 2026
-
-</div>
-
+  <div class="container">
+    GENEX © 2026
+  </div>
 </footer>
 
 </div>
