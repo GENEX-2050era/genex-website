@@ -121,37 +121,9 @@
     });
   }
 
-  function initIntro() {
-  const intro = document.querySelector("#genexIntro");
-  if (!intro || !introEnabled) return;
-
-  intro.style.opacity = "1";
-  intro.style.visibility = "visible";
-  intro.style.pointerEvents = "auto";
-  intro.style.transform = "scale(1)";
-  intro.style.display = "flex";
-
-  let closed = false;
-
-  const closeIntro = () => {
-    if (closed) return;
-    closed = true;
-
-    intro.style.transition = "opacity 0.9s ease, transform 0.9s ease, visibility 0.9s ease";
-    intro.style.opacity = "0";
-    intro.style.visibility = "hidden";
-    intro.style.pointerEvents = "none";
-    intro.style.transform = "scale(1.02)";
-
-    setTimeout(() => {
-      intro.style.display = "none";
-    }, 950);
-  };
-
-  setTimeout(closeIntro, 4000);
-  intro.addEventListener("click", closeIntro, { once: true });
-}
-  }
+  function initIntro() {}
+  
+  
 
   function initMusic() {
     if (!musicEnabled) return;
