@@ -9,7 +9,7 @@
   <meta name="keywords" content="GENEX, AI, Automation, Autonomous Systems, Artificial Intelligence, Future Technology, Smart Operations" />
   <meta name="author" content="GENEX" />
   <meta name="robots" content="index, follow" />
-  <link rel="stylesheet" href="./assets/genex-fx.css?v=602" />
+  <link rel="canonical" href="https://genex-era.com/" />
 
   <meta property="og:title" content="GENEX | أنظمة الذكاء الاصطناعي والأتمتة المتقدمة" />
   <meta property="og:description" content="شركة تقنية تبني أنظمة ذكاء اصطناعي مستقلة، منصات أتمتة ذكية، وبنية تشغيلية رقمية متقدمة." />
@@ -17,7 +17,8 @@
   <meta property="og:type" content="website" />
   <meta property="og:image" content="https://genex-era.com/assets/logo.png" />
 
-  
+  <link rel="stylesheet" href="./assets/styles.css?v=500" />
+  <link rel="stylesheet" href="./assets/genex-fx.css?v=604" />
 
   <style>
     *{box-sizing:border-box}
@@ -132,38 +133,6 @@
       background:rgba(255,255,255,.14);
     }
 
-    .mobile-toggle{
-      display:none;
-      width:46px;
-      height:46px;
-      border:none;
-      border-radius:14px;
-      background:rgba(255,255,255,.06);
-      color:#fff;
-      font-size:20px;
-      border:1px solid rgba(255,255,255,.1);
-      cursor:pointer;
-    }
-
-    .mobile-nav{
-      display:none;
-      padding:0 0 14px;
-    }
-
-    .mobile-nav.open{
-      display:grid;
-      gap:10px;
-    }
-
-    .mobile-nav a{
-      padding:13px 14px;
-      border-radius:14px;
-      border:1px solid rgba(255,255,255,.08);
-      background:rgba(255,255,255,.04);
-      color:rgba(245,247,255,.92);
-      font-weight:700;
-    }
-
     .hero{
       min-height:92vh;
       display:flex;
@@ -180,9 +149,9 @@
     }
 
     .hero-copy{
-      padding:48px 42px;
+      padding:54px 46px;
       border-radius:32px;
-      max-width:760px;
+      max-width:780px;
     }
 
     .eyebrow{
@@ -203,14 +172,14 @@
     .hero h1{
       margin:0 0 24px;
       font-size:clamp(42px,7vw,92px);
-      line-height:1.12;
+      line-height:1.08;
       letter-spacing:-.04em;
-      max-width:700px;
+      max-width:760px;
     }
 
     .hero p{
       margin:0 0 28px;
-      max-width:640px;
+      max-width:650px;
       color:rgba(245,247,255,.78);
       font-size:18px;
       line-height:2;
@@ -259,8 +228,8 @@
     }
 
     .hero-orb{
-      width:min(100%, 430px);
-      min-height:430px;
+      width:min(100%, 440px);
+      min-height:440px;
       display:flex;
       flex-direction:column;
       justify-content:center;
@@ -297,8 +266,8 @@
     }
 
     .hero-orb img{
-      width:138px;
-      height:138px;
+      width:150px;
+      height:150px;
       object-fit:contain;
       margin-bottom:20px;
       position:relative;
@@ -358,7 +327,7 @@
     }
 
     .stat{
-      padding:22px 16px;
+      padding:24px 18px;
       text-align:center;
     }
 
@@ -436,131 +405,118 @@
       font-size:14px;
     }
 
+    /* INTRO */
     .genex-intro{
-  position:fixed;
-  inset:0;
-  z-index:9999;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  background:
-    radial-gradient(circle at 50% 50%, rgba(180,20,40,.20), transparent 42%),
-    rgba(4,6,13,.95);
-  backdrop-filter:blur(16px);
-  transition:opacity .9s ease, visibility .9s ease, transform .9s ease;
-}
+      position:fixed;
+      inset:0;
+      z-index:9999;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      background:
+        radial-gradient(circle at 50% 50%, rgba(180,20,40,.20), transparent 42%),
+        rgba(4,6,13,.95);
+      backdrop-filter:blur(16px);
+      transition:opacity .9s ease, visibility .9s ease, transform .9s ease;
+    }
 
-.genex-intro.hidden{
-  opacity:0;
-  visibility:hidden;
-  pointer-events:none;
-  transform:scale(1.02);
-}
+    .genex-intro.hidden{
+      opacity:0;
+      visibility:hidden;
+      pointer-events:none;
+      transform:scale(1.02);
+    }
 
-.intro-core{
-  position:relative;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
-  text-align:center;
-  padding:40px 20px 24px;
-  width:min(92vw, 980px);
-}
+    .intro-core{
+      position:relative;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+      padding:20px 20px 10px;
+      width:min(92vw, 980px);
+      margin:0 auto;
+    }
 
-.intro-logo-wrap{
-  position:relative;
-  width:540px;
-  height:540px;
-  display:grid;
-  place-items:center;
-  margin:0 auto 26px;
-}
+    .intro-logo-wrap{
+      position:relative;
+      width:560px;
+      height:560px;
+      display:grid;
+      place-items:center;
+      margin:0 auto 0;
+    }
 
-.intro-logo-wrap::before,
-.intro-logo-wrap::after{
-  content:"";
-  position:absolute;
-  inset:0;
-  border-radius:50%;
-}
+    .intro-logo-wrap::before,
+    .intro-logo-wrap::after{
+      content:"";
+      position:absolute;
+      inset:0;
+      border-radius:50%;
+    }
 
-.intro-logo-wrap::before{
-  inset:-10%;
-  background:
-    radial-gradient(circle, rgba(255,255,255,.16) 0%, rgba(180,20,40,.18) 28%, rgba(180,20,40,0) 70%);
-  filter:blur(26px);
-  animation:introWaveOuter 3.6s ease-in-out infinite;
-}
+    .intro-logo-wrap::before{
+      inset:-12%;
+      background:
+        radial-gradient(circle, rgba(255,255,255,.16) 0%, rgba(180,20,40,.18) 28%, rgba(180,20,40,0) 70%);
+      filter:blur(28px);
+      animation:introWaveOuter 3.8s ease-in-out infinite;
+    }
 
-.intro-logo-wrap::after{
-  inset:8%;
-  border:1px solid rgba(255,255,255,.10);
-  box-shadow:
-    0 0 70px rgba(180,20,40,.16),
-    0 0 140px rgba(255,255,255,.06);
-  animation:introWaveInner 2.8s ease-out infinite;
-}
+    .intro-logo-wrap::after{
+      inset:8%;
+      border:1px solid rgba(255,255,255,.10);
+      box-shadow:
+        0 0 70px rgba(180,20,40,.16),
+        0 0 140px rgba(255,255,255,.06);
+      animation:introWaveInner 2.9s ease-out infinite;
+    }
 
-@keyframes introWaveOuter{
-  0%{
-    transform:scale(.78);
-    opacity:.38;
-  }
-  50%{
-    transform:scale(1.18);
-    opacity:1;
-  }
-  100%{
-    transform:scale(1.42);
-    opacity:0;
-  }
-}
+    @keyframes introWaveOuter{
+      0%{transform:scale(.76);opacity:.34}
+      50%{transform:scale(1.20);opacity:1}
+      100%{transform:scale(1.46);opacity:0}
+    }
 
-@keyframes introWaveInner{
-  0%{
-    transform:scale(.86);
-    opacity:.55;
-  }
-  45%{
-    transform:scale(1.08);
-    opacity:.95;
-  }
-  100%{
-    transform:scale(1.32);
-    opacity:0;
-  }
-}
+    @keyframes introWaveInner{
+      0%{transform:scale(.84);opacity:.55}
+      45%{transform:scale(1.08);opacity:.96}
+      100%{transform:scale(1.34);opacity:0}
+    }
 
-.intro-logo{
-  width:420px;
-  height:420px;
-  object-fit:contain;
-  filter:drop-shadow(0 0 34px rgba(255,255,255,.20));
-  position:relative;
-  z-index:3;
-}
+    .intro-logo{
+      width:440px;
+      height:440px;
+      object-fit:contain;
+      filter:drop-shadow(0 0 34px rgba(255,255,255,.20));
+      position:relative;
+      z-index:3;
+    }
 
-.intro-wordmark{
-  width:100%;
-  text-align:center;
-  font-size:52px;
-  font-weight:900;
-  letter-spacing:.34em;
-  margin:0;
-  padding-inline-start:.34em;
-  line-height:1.1;
-}
+    .intro-wordmark{
+      width:100%;
+      text-align:center;
+      font-size:52px;
+      font-weight:900;
+      letter-spacing:.34em;
+      margin:0;
+      padding:0;
+      line-height:1;
+      transform:translateY(-14px);
+    }
 
-.intro-sub{
-  width:100%;
-  text-align:center;
-  color:rgba(245,247,255,.78);
-  font-size:16px;
-  letter-spacing:.18em;
-  margin-top:12px;
-  padding-inline-start:.18em;
-}
+    .intro-sub{
+      width:100%;
+      text-align:center;
+      color:rgba(245,247,255,.78);
+      font-size:16px;
+      letter-spacing:.18em;
+      margin-top:-2px;
+      padding:0;
+      line-height:1.2;
+      transform:translateY(-12px);
+    }
 
     @media (max-width:1100px){
       .hero-grid,
@@ -583,12 +539,6 @@
     @media (max-width:980px){
       .desktop-nav{
         display:none;
-      }
-
-      .mobile-toggle{
-        display:inline-flex;
-        align-items:center;
-        justify-content:center;
       }
 
       .site-header-inner{
@@ -619,34 +569,37 @@
         min-height:360px;
       }
 
-      .intro-logo-wrap{
-  width:300px;
-  height:300px;
-}
-
-.intro-logo{
-  width:220px;
-  height:220px;
-}
-
-.intro-wordmark{
-  font-size:34px;
-  letter-spacing:.22em;
-  padding-inline-start:.22em;
-}
-
-.intro-sub{
-  font-size:13px;
-  letter-spacing:.12em;
-  padding-inline-start:.12em;
-}
-
       .hero-copy{
         padding:34px 24px;
       }
 
       .hero p{
         font-size:17px;
+      }
+
+      .intro-logo-wrap{
+        width:320px;
+        height:320px;
+        margin:0 auto 0;
+      }
+
+      .intro-logo{
+        width:240px;
+        height:240px;
+      }
+
+      .intro-wordmark{
+        font-size:34px;
+        letter-spacing:.22em;
+        line-height:1;
+        transform:translateY(-8px);
+      }
+
+      .intro-sub{
+        font-size:13px;
+        letter-spacing:.12em;
+        margin-top:0;
+        transform:translateY(-8px);
       }
     }
   </style>
@@ -683,8 +636,6 @@
     <source src="./assets/audio/fantasy-ambient.mp3" type="audio/mpeg">
   </audio>
 
-  <button id="musicToggle" aria-label="Toggle music">♪</button>
-
   <div class="genex-page-shell">
     <header class="site-header">
       <div class="container site-header-inner">
@@ -707,7 +658,7 @@
             <button type="button" data-lang="en">EN</button>
             <button type="button" data-lang="ar" class="active">AR</button>
           </div>
-          <button class="mobile-toggle" id="mobileToggle" aria-label="Menu">☰</button>
+          <button class="mobile-toggle" id="mobileToggle" aria-label="Menu"></button>
         </div>
       </div>
 
@@ -829,4 +780,104 @@
 
   <script>
     (function () {
-      const mobileToggle = document.getElementById('mobile
+      const translations = {
+        ar: {
+          title: "GENEX | أنظمة الذكاء الاصطناعي والأتمتة المتقدمة",
+          nav_home: "الرئيسية",
+          nav_services: "الخدمات",
+          nav_request: "اطلب الآن",
+          nav_join: "انضم إلينا",
+          nav_contact: "تواصل",
+          eyebrow: "GENEX • المستقبل يبدأ الآن",
+          hero_title: "مرحباً بك في GENEX حيث لا نتخيل المستقبل فقط بل نبنيه",
+          hero_desc: "نبني في GENEX منظومات ذكاء اصطناعي مستقلة، وحلول أتمتة متقدمة، وبنية تشغيلية رقمية تمنح الشركات سرعة أعلى، دقة أكبر، وقابلية توسع حقيقية في عالم سريع التغير.",
+          hero_btn_1: "ابدأ مشروعك",
+          hero_btn_2: "استكشف الخدمات",
+          hero_badge: "Autonomous AI Systems<br>Smart Automation • Digital Infrastructure",
+          stats_title: "النتيجة التي نركز عليها",
+          stats_desc: "نحن لا نبني واجهات فقط، بل نبني طبقات تشغيل ذكية قادرة على دعم الأعمال، التسريع، والتحسين المستمر.",
+          stat_1: "أنظمة مستقلة وقابلة للتوسع",
+          stat_2: "تشغيل ذكي وقرارات أسرع",
+          stat_3: "تحليلات متقدمة وبنية مرنة",
+          stat_4: "تجارب رقمية حديثة ومؤثرة",
+          features_title: "ما الذي تبنيه GENEX",
+          features_desc: "مجالاتنا ترتكز على الدمج بين الذكاء الاصطناعي، الأتمتة، وتجربة رقمية متقدمة توصل الأعمال إلى مستوى أعلى.",
+          feature_1_title: "أنظمة ذكاء اصطناعي مستقلة",
+          feature_1_desc: "حلول قادرة على فهم السياق، التعامل مع البيانات، والمساهمة في اتخاذ القرار والتنفيذ.",
+          feature_2_title: "أتمتة ذكية",
+          feature_2_desc: "تحويل العمليات المتكررة إلى تدفقات عمل أكثر سرعة وثباتًا وقابلية للتوسع.",
+          feature_3_title: "بنية تشغيلية رقمية",
+          feature_3_desc: "تصميم طبقات تقنية تربط بين البيانات والتشغيل والتجربة الرقمية في مسار موحد.",
+          cta_title: "ابدأ مع GENEX من نقطة أقوى",
+          cta_desc: "سواء كنت تبني خدمة، نظامًا تشغيليًا، أو تجربة رقمية مستقبلية، فإن GENEX تمنحك نقطة انطلاق أكثر قوة ووضوحًا.",
+          cta_btn_1: "أرسل طلبك"
+        },
+        en: {
+          title: "GENEX | Advanced AI Systems & Automation",
+          nav_home: "Home",
+          nav_services: "Services",
+          nav_request: "Request Now",
+          nav_join: "Join Us",
+          nav_contact: "Contact",
+          eyebrow: "GENEX • The Future Starts Now",
+          hero_title: "Welcome to GENEX, where we don't just imagine the future — we build it.",
+          hero_desc: "At GENEX, we build autonomous AI systems, advanced automation solutions, and digital operational infrastructure that gives businesses greater speed, stronger precision, and real scalability in a fast-changing world.",
+          hero_btn_1: "Start Your Project",
+          hero_btn_2: "Explore Services",
+          hero_badge: "Autonomous AI Systems<br>Smart Automation • Digital Infrastructure",
+          stats_title: "The Outcome We Focus On",
+          stats_desc: "We do not build interfaces only. We build intelligent operational layers that support business growth, acceleration, and continuous optimization.",
+          stat_1: "Scalable autonomous systems",
+          stat_2: "Smarter operations, faster decisions",
+          stat_3: "Advanced analytics, flexible infrastructure",
+          stat_4: "Modern digital experiences",
+          features_title: "What GENEX Builds",
+          features_desc: "Our focus is built around the integration of AI, automation, and premium digital experiences that elevate business capability.",
+          feature_1_title: "Autonomous AI Systems",
+          feature_1_desc: "Solutions capable of understanding context, working with data, and contributing to decision-making and execution.",
+          feature_2_title: "Intelligent Automation",
+          feature_2_desc: "Turning repetitive workflows into faster, more stable, and more scalable execution flows.",
+          feature_3_title: "Digital Operational Infrastructure",
+          feature_3_desc: "Designing technology layers that connect data, operations, and digital experience in one unified path.",
+          cta_title: "Start with GENEX from a Stronger Position",
+          cta_desc: "Whether you are building a service, an operational system, or a future digital experience, GENEX gives you a stronger and clearer starting point.",
+          cta_btn_1: "Send Your Request"
+        }
+      };
+
+      function applyLanguage(lang) {
+        document.documentElement.lang = lang;
+        document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+        localStorage.setItem('genex_lang', lang);
+
+        const dict = translations[lang];
+        if (!dict) return;
+
+        document.title = dict.title;
+
+        document.querySelectorAll('[data-i18n]').forEach((el) => {
+          const key = el.getAttribute('data-i18n');
+          if (dict[key]) {
+            if (key === 'hero_badge') el.innerHTML = dict[key];
+            else el.textContent = dict[key];
+          }
+        });
+
+        document.querySelectorAll('.lang-switch button').forEach((btn) => {
+          btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
+        });
+      }
+
+      document.querySelectorAll('.lang-switch button').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          applyLanguage(btn.getAttribute('data-lang'));
+        });
+      });
+
+      applyLanguage(localStorage.getItem('genex_lang') || 'ar');
+    })();
+  </script>
+
+  <script type="module" src="./assets/genex-fx.js?v=604"></script>
+</body>
+</html>
