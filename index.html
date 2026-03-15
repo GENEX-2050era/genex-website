@@ -9,7 +9,7 @@
   <meta name="keywords" content="GENEX, AI, Automation, Autonomous Systems, Artificial Intelligence, Future Technology, Smart Operations" />
   <meta name="author" content="GENEX" />
   <meta name="robots" content="index, follow" />
-  <link rel="canonical" href="https://genex-era.com/" />
+  <link rel="stylesheet" href="./assets/genex-fx.css?v=602" />
 
   <meta property="og:title" content="GENEX | أنظمة الذكاء الاصطناعي والأتمتة المتقدمة" />
   <meta property="og:description" content="شركة تقنية تبني أنظمة ذكاء اصطناعي مستقلة، منصات أتمتة ذكية، وبنية تشغيلية رقمية متقدمة." />
@@ -17,8 +17,7 @@
   <meta property="og:type" content="website" />
   <meta property="og:image" content="https://genex-era.com/assets/logo.png" />
 
-  <link rel="stylesheet" href="./assets/styles.css?v=500" />
-  <link rel="stylesheet" href="./assets/genex-fx.css?v=601" />
+  
 
   <style>
     *{box-sizing:border-box}
@@ -438,88 +437,130 @@
     }
 
     .genex-intro{
-      position:fixed;
-      inset:0;
-      z-index:9999;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      background:
-        radial-gradient(circle at 50% 50%, rgba(180,20,40,.18), transparent 40%),
-        rgba(4,6,13,.94);
-      backdrop-filter:blur(14px);
-      transition:opacity .8s ease, visibility .8s ease, transform .8s ease;
-    }
+  position:fixed;
+  inset:0;
+  z-index:9999;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:
+    radial-gradient(circle at 50% 50%, rgba(180,20,40,.20), transparent 42%),
+    rgba(4,6,13,.95);
+  backdrop-filter:blur(16px);
+  transition:opacity .9s ease, visibility .9s ease, transform .9s ease;
+}
 
-    .genex-intro.hidden{
-      opacity:0;
-      visibility:hidden;
-      pointer-events:none;
-      transform:scale(1.02);
-    }
+.genex-intro.hidden{
+  opacity:0;
+  visibility:hidden;
+  pointer-events:none;
+  transform:scale(1.02);
+}
 
-    .intro-core{
-      position:relative;
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-      justify-content:center;
-      text-align:center;
-      padding:40px 26px;
-    }
+.intro-core{
+  position:relative;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  padding:40px 20px 24px;
+  width:min(92vw, 980px);
+}
 
-    .intro-logo-wrap{
-      position:relative;
-      width:220px;
-      height:220px;
-      display:grid;
-      place-items:center;
-      margin-bottom:20px;
-    }
+.intro-logo-wrap{
+  position:relative;
+  width:540px;
+  height:540px;
+  display:grid;
+  place-items:center;
+  margin:0 auto 26px;
+}
 
-    .intro-logo-wrap::before,
-    .intro-logo-wrap::after{
-      content:"";
-      position:absolute;
-      inset:0;
-      border-radius:50%;
-      border:1px solid rgba(255,255,255,.10);
-      animation:introPulse 2.8s ease-in-out infinite;
-    }
+.intro-logo-wrap::before,
+.intro-logo-wrap::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  border-radius:50%;
+}
 
-    .intro-logo-wrap::after{
-      inset:18px;
-      border-color:rgba(180,20,40,.20);
-      animation-delay:.35s;
-    }
+.intro-logo-wrap::before{
+  inset:-10%;
+  background:
+    radial-gradient(circle, rgba(255,255,255,.16) 0%, rgba(180,20,40,.18) 28%, rgba(180,20,40,0) 70%);
+  filter:blur(26px);
+  animation:introWaveOuter 3.6s ease-in-out infinite;
+}
 
-    @keyframes introPulse{
-      0%,100%{transform:scale(1);opacity:.55}
-      50%{transform:scale(1.08);opacity:1}
-    }
+.intro-logo-wrap::after{
+  inset:8%;
+  border:1px solid rgba(255,255,255,.10);
+  box-shadow:
+    0 0 70px rgba(180,20,40,.16),
+    0 0 140px rgba(255,255,255,.06);
+  animation:introWaveInner 2.8s ease-out infinite;
+}
 
-    .intro-logo{
-      width:140px;
-      height:140px;
-      object-fit:contain;
-      filter:drop-shadow(0 0 24px rgba(255,255,255,.18));
-      position:relative;
-      z-index:2;
-    }
+@keyframes introWaveOuter{
+  0%{
+    transform:scale(.78);
+    opacity:.38;
+  }
+  50%{
+    transform:scale(1.18);
+    opacity:1;
+  }
+  100%{
+    transform:scale(1.42);
+    opacity:0;
+  }
+}
 
-    .intro-wordmark{
-      font-size:42px;
-      font-weight:900;
-      letter-spacing:.38em;
-      margin-inline-start:.38em;
-      margin-bottom:10px;
-    }
+@keyframes introWaveInner{
+  0%{
+    transform:scale(.86);
+    opacity:.55;
+  }
+  45%{
+    transform:scale(1.08);
+    opacity:.95;
+  }
+  100%{
+    transform:scale(1.32);
+    opacity:0;
+  }
+}
 
-    .intro-sub{
-      color:rgba(245,247,255,.76);
-      font-size:14px;
-      letter-spacing:.12em;
-    }
+.intro-logo{
+  width:420px;
+  height:420px;
+  object-fit:contain;
+  filter:drop-shadow(0 0 34px rgba(255,255,255,.20));
+  position:relative;
+  z-index:3;
+}
+
+.intro-wordmark{
+  width:100%;
+  text-align:center;
+  font-size:52px;
+  font-weight:900;
+  letter-spacing:.34em;
+  margin:0;
+  padding-inline-start:.34em;
+  line-height:1.1;
+}
+
+.intro-sub{
+  width:100%;
+  text-align:center;
+  color:rgba(245,247,255,.78);
+  font-size:16px;
+  letter-spacing:.18em;
+  margin-top:12px;
+  padding-inline-start:.18em;
+}
 
     @media (max-width:1100px){
       .hero-grid,
@@ -579,18 +620,26 @@
       }
 
       .intro-logo-wrap{
-        width:180px;
-        height:180px;
-      }
+  width:300px;
+  height:300px;
+}
 
-      .intro-logo{
-        width:120px;
-        height:120px;
-      }
+.intro-logo{
+  width:220px;
+  height:220px;
+}
 
-      .intro-wordmark{
-        font-size:34px;
-      }
+.intro-wordmark{
+  font-size:34px;
+  letter-spacing:.22em;
+  padding-inline-start:.22em;
+}
+
+.intro-sub{
+  font-size:13px;
+  letter-spacing:.12em;
+  padding-inline-start:.12em;
+}
 
       .hero-copy{
         padding:34px 24px;
