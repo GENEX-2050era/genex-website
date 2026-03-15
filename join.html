@@ -9,21 +9,21 @@
 <title>GENEX | انضم إلينا</title>
 
 <meta name="description"
-content="انضم إلى فريق GENEX وشارك في بناء أنظمة الذكاء الاصطناعي والأتمتة المتقدمة.">
+content="انضم إلى GENEX وساهم في بناء أنظمة الذكاء الاصطناعي السيادية والبنية الرقمية للمستقبل.">
 
-<link rel="stylesheet" href="./assets/styles.css?v=905">
+<link rel="stylesheet" href="./assets/styles.css?v=906">
 <link rel="stylesheet" href="./assets/genex-fx.css?v=904">
 
 <style>
 
 .join-hero{
-padding:120px 0 60px;
+padding:120px 0 70px;
 text-align:center;
 }
 
 .join-hero h1{
-font-size:48px;
-margin-bottom:14px;
+font-size:46px;
+margin-bottom:16px;
 }
 
 .join-hero p{
@@ -33,61 +33,76 @@ opacity:.85;
 line-height:1.9;
 }
 
-.values-grid{
+.jobs-grid{
 margin-top:70px;
 display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:22px;
+grid-template-columns:repeat(2,1fr);
+gap:24px;
 }
 
-.value-card{
-padding:28px;
+.job-card{
+padding:32px;
 }
 
-.value-card h3{
-margin:0 0 10px;
-font-size:22px;
+.job-card h3{
+margin:0 0 8px;
+font-size:24px;
 }
 
-.value-card p{
+.job-card .role-meta{
+opacity:.6;
+font-size:14px;
+margin-bottom:16px;
+}
+
+.job-card h4{
+font-size:16px;
+margin:18px 0 8px;
+}
+
+.job-card ul{
 margin:0;
-opacity:.82;
+padding-inline-start:18px;
+opacity:.85;
 line-height:1.8;
-font-size:15px;
-}
-
-.jobs-section{
-margin-top:90px;
-}
-
-.jobs-grid{
-margin-top:30px;
-display:grid;
-gap:18px;
-}
-
-.job-item{
-padding:24px;
-display:flex;
-justify-content:space-between;
-align-items:center;
-flex-wrap:wrap;
-gap:10px;
-}
-
-.job-title{
-font-size:18px;
-font-weight:700;
-}
-
-.job-meta{
-opacity:.7;
 font-size:14px;
 }
 
-@media(max-width:960px){
+.job-card li{
+margin-bottom:6px;
+}
 
-.values-grid{
+.apply-box{
+margin-top:80px;
+padding:40px;
+text-align:center;
+}
+
+.apply-box p{
+max-width:620px;
+margin:auto;
+opacity:.85;
+line-height:1.9;
+}
+
+.apply-btn{
+margin-top:20px;
+display:inline-block;
+padding:14px 26px;
+border-radius:14px;
+background:linear-gradient(180deg,rgba(255,255,255,.12),rgba(255,255,255,.05));
+border:1px solid rgba(255,255,255,.18);
+font-weight:700;
+transition:.25s;
+}
+
+.apply-btn:hover{
+transform:translateY(-2px);
+}
+
+@media(max-width:900px){
+
+.jobs-grid{
 grid-template-columns:1fr;
 }
 
@@ -128,7 +143,7 @@ font-size:34px;
 <div class="container site-header-inner">
 
 <a class="brand" href="./index.html">
-<img src="./assets/logo.png">
+<img src="./assets/logo.png" alt="GENEX">
 <span>GENEX</span>
 </a>
 
@@ -171,7 +186,7 @@ font-size:34px;
 
 <a href="./request.html" data-i18n="nav_request">اطلب الآن</a>
 
-<a class="active" href="./join.html" data-i18n="nav_join">انضم إلينا</a>
+<a href="./join.html" data-i18n="nav_join">انضم إلينا</a>
 
 <a href="./contact.html" data-i18n="nav_contact">تواصل</a>
 
@@ -189,78 +204,73 @@ font-size:34px;
 
 <div class="container">
 
-<h1 data-i18n="join_title">انضم إلى GENEX</h1>
+<h1 data-i18n="join_title">
+انضم إلى GENEX
+</h1>
 
 <p data-i18n="join_desc">
-
-نبحث عن أشخاص شغوفين بالتقنية لبناء الجيل القادم
-من أنظمة الذكاء الاصطناعي والأتمتة الرقمية.
-
+نبحث عن أشخاص استثنائيين يرغبون في بناء الجيل القادم من الأنظمة الذكية والبنية الرقمية التي ستشكل مستقبل المؤسسات.
 </p>
 
 </div>
 
 </section>
-
-
 
 <section class="section">
 
 <div class="container">
 
-<div class="section-title">
+<div class="jobs-grid">
 
-<h2 data-i18n="values_title">قيم العمل في GENEX</h2>
+<div class="job-card genex-card tilt-card">
 
-<p data-i18n="values_desc">
+<h3 data-i18n="job1_title">مهندس أنظمة ذكاء اصطناعي</h3>
 
-نركز على الإبداع التقني والعمل الجماعي
-والتطوير المستمر.
+<div class="role-meta" data-i18n="job1_meta">
+مستوى الخبرة: متقدم
+</div>
 
-</p>
+<h4 data-i18n="resp">المسؤوليات</h4>
+
+<ul>
+<li data-i18n="job1_r1">تصميم أنظمة ذكاء اصطناعي قابلة للتوسع.</li>
+<li data-i18n="job1_r2">دمج نماذج التعلم الآلي داخل الأنظمة التشغيلية.</li>
+<li data-i18n="job1_r3">تحسين الأداء والاستجابة في البيئات الحقيقية.</li>
+</ul>
+
+<h4 data-i18n="req">المتطلبات</h4>
+
+<ul>
+<li data-i18n="job1_q1">خبرة في Python وMachine Learning.</li>
+<li data-i18n="job1_q2">فهم عميق لبنى الأنظمة الموزعة.</li>
+<li data-i18n="job1_q3">القدرة على بناء نماذج قابلة للإنتاج.</li>
+</ul>
 
 </div>
 
-<div class="values-grid">
+<div class="job-card genex-card tilt-card">
 
-<div class="value-card genex-card tilt-card">
+<h3 data-i18n="job2_title">مهندس بنية رقمية</h3>
 
-<h3 data-i18n="value1_title">الابتكار</h3>
-
-<p data-i18n="value1_desc">
-
-نبحث دائمًا عن طرق جديدة لبناء حلول تقنية
-متقدمة.
-
-</p>
-
+<div class="role-meta" data-i18n="job2_meta">
+مستوى الخبرة: متوسط إلى متقدم
 </div>
 
+<h4 data-i18n="resp">المسؤوليات</h4>
 
+<ul>
+<li data-i18n="job2_r1">تصميم بنى تقنية قابلة للتوسع.</li>
+<li data-i18n="job2_r2">ربط الأنظمة المختلفة ضمن منظومة موحدة.</li>
+<li data-i18n="job2_r3">تحسين أداء البنية الرقمية.</li>
+</ul>
 
-<div class="value-card genex-card tilt-card">
+<h4 data-i18n="req">المتطلبات</h4>
 
-<h3 data-i18n="value2_title">التعاون</h3>
-
-<p data-i18n="value2_desc">
-
-العمل الجماعي هو أساس بناء الأنظمة الكبيرة.
-
-</p>
-
-</div>
-
-
-
-<div class="value-card genex-card tilt-card">
-
-<h3 data-i18n="value3_title">التطوير المستمر</h3>
-
-<p data-i18n="value3_desc">
-
-نؤمن بأن التعلم المستمر هو الطريق للابتكار.
-
-</p>
+<ul>
+<li data-i18n="job2_q1">خبرة في Cloud Architecture.</li>
+<li data-i18n="job2_q2">معرفة في DevOps.</li>
+<li data-i18n="job2_q3">القدرة على تصميم أنظمة كبيرة.</li>
+</ul>
 
 </div>
 
@@ -270,71 +280,23 @@ font-size:34px;
 
 </section>
 
-
-
-<section class="section jobs-section">
+<section class="section">
 
 <div class="container">
 
-<div class="section-title">
+<div class="apply-box genex-panel">
 
-<h2 data-i18n="jobs_title">فرص العمل</h2>
+<h2 data-i18n="apply_title">
+هل ترغب بالانضمام؟
+</h2>
 
-<p data-i18n="jobs_desc">
-
-بعض الأدوار التي نبحث عنها حاليًا.
-
+<p data-i18n="apply_desc">
+إذا كنت ترى نفسك جزءًا من المستقبل الذي نبنيه في GENEX، أرسل لنا معلوماتك وسنتواصل معك.
 </p>
 
-</div>
-
-<div class="jobs-grid">
-
-<div class="job-item genex-card tilt-card">
-
-<div>
-
-<div class="job-title">AI Engineer</div>
-
-<div class="job-meta">Artificial Intelligence</div>
-
-</div>
-
-<a class="btn" href="./contact.html" data-i18n="apply_btn">قدم الآن</a>
-
-</div>
-
-
-
-<div class="job-item genex-card tilt-card">
-
-<div>
-
-<div class="job-title">Automation Developer</div>
-
-<div class="job-meta">Systems Automation</div>
-
-</div>
-
-<a class="btn" href="./contact.html" data-i18n="apply_btn">قدم الآن</a>
-
-</div>
-
-
-
-<div class="job-item genex-card tilt-card">
-
-<div>
-
-<div class="job-title">Product Designer</div>
-
-<div class="job-meta">Digital Experience</div>
-
-</div>
-
-<a class="btn" href="./contact.html" data-i18n="apply_btn">قدم الآن</a>
-
-</div>
+<a href="./contact.html" class="apply-btn" data-i18n="apply_btn">
+تقديم الآن
+</a>
 
 </div>
 
@@ -347,103 +309,14 @@ font-size:34px;
 <footer class="footer">
 
 <div class="container">
-
 GENEX © 2026
-
 </div>
 
 </footer>
 
 </div>
 
-<script>
-
-(function(){
-
-const translations={
-
-ar:{
-title:"GENEX | انضم إلينا",
-nav_home:"الرئيسية",
-nav_services:"الخدمات",
-nav_request:"اطلب الآن",
-nav_join:"انضم إلينا",
-nav_contact:"تواصل",
-join_title:"انضم إلى GENEX",
-join_desc:"نبحث عن أشخاص شغوفين بالتقنية لبناء الجيل القادم من أنظمة الذكاء الاصطناعي والأتمتة الرقمية.",
-values_title:"قيم العمل في GENEX",
-values_desc:"نركز على الإبداع التقني والعمل الجماعي والتطوير المستمر.",
-value1_title:"الابتكار",
-value1_desc:"نبحث دائمًا عن طرق جديدة لبناء حلول تقنية متقدمة.",
-value2_title:"التعاون",
-value2_desc:"العمل الجماعي هو أساس بناء الأنظمة الكبيرة.",
-value3_title:"التطوير المستمر",
-value3_desc:"نؤمن بأن التعلم المستمر هو الطريق للابتكار.",
-jobs_title:"فرص العمل",
-jobs_desc:"بعض الأدوار التي نبحث عنها حاليًا.",
-apply_btn:"قدم الآن"
-},
-
-en:{
-title:"GENEX | Join Us",
-nav_home:"Home",
-nav_services:"Services",
-nav_request:"Request Now",
-nav_join:"Join Us",
-nav_contact:"Contact",
-join_title:"Join GENEX",
-join_desc:"We are looking for passionate people to build the next generation of AI systems and digital automation.",
-values_title:"Working at GENEX",
-values_desc:"We focus on innovation, collaboration, and continuous growth.",
-value1_title:"Innovation",
-value1_desc:"We always seek new ways to build advanced technology solutions.",
-value2_title:"Collaboration",
-value2_desc:"Teamwork is the foundation of building powerful systems.",
-value3_title:"Continuous Growth",
-value3_desc:"We believe constant learning drives innovation.",
-jobs_title:"Open Positions",
-jobs_desc:"Some of the roles we are currently looking for.",
-apply_btn:"Apply Now"
-}
-
-};
-
-function applyLanguage(lang){
-
-document.documentElement.lang=lang;
-document.documentElement.dir=lang==="ar"?"rtl":"ltr";
-
-localStorage.setItem("genex_lang",lang);
-
-const dict=translations[lang];
-
-document.querySelectorAll("[data-i18n]").forEach(el=>{
-const key=el.getAttribute("data-i18n");
-if(dict[key]) el.textContent=dict[key];
-});
-
-document.querySelectorAll(".lang-switch button").forEach(btn=>{
-btn.classList.toggle("active",btn.dataset.lang===lang);
-});
-
-document.querySelectorAll("[data-nav-about]").forEach(link=>{
-link.textContent=lang==="ar"?"عن جينكس":"About GENEX";
-});
-
-}
-
-document.querySelectorAll(".lang-switch button").forEach(btn=>{
-btn.addEventListener("click",()=>applyLanguage(btn.dataset.lang));
-});
-
-applyLanguage(localStorage.getItem("genex_lang")||"ar");
-
-})();
-
-</script>
-
 <script src="./assets/genex-fx.js?v=906"></script>
 
 </body>
-
 </html>
