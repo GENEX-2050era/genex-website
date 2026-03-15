@@ -1,778 +1,322 @@
-
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>خدمات GENEX | الذكاء الاصطناعي والأتمتة والبنية الرقمية</title>
-  <meta name="description" content="استكشف خدمات GENEX في أنظمة الذكاء الاصطناعي، الأتمتة الذكية، البنية التشغيلية الرقمية، وتجارب المواقع الحديثة." />
-  <meta name="keywords" content="GENEX Services, AI Services, Automation, Digital Infrastructure, Smart Operations, Web Experience" />
-  <meta name="author" content="GENEX" />
-  <meta name="robots" content="index, follow" />
-  <link rel="stylesheet" href="./assets/genex-fx.css?v=602">
-  
-  <meta property="og:title" content="خدمات GENEX | الذكاء الاصطناعي والأتمتة والبنية الرقمية" />
-  <meta property="og:description" content="حلول متقدمة في الذكاء الاصطناعي، الأتمتة، والبنية التشغيلية الرقمية للشركات والمشاريع المستقبلية." />
-  <meta property="og:url" content="https://genex-era.com/services.html" />
-  <meta property="og:type" content="website" />
-  <meta property="og:image" content="https://genex-era.com/assets/logo.png" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  
-  <style>
-    *{box-sizing:border-box}
+<title>GENEX | الخدمات</title>
 
-    html,body{
-      margin:0;
-      padding:0;
-      min-height:100%;
-      color:#f5f7ff;
-      font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
-    }
+<link rel="stylesheet" href="./assets/styles.css">
+<link rel="stylesheet" href="./assets/genex-fx.css">
 
-    a{
-      color:inherit;
-      text-decoration:none;
-    }
+<style>
 
-    .container{
-      width:min(1220px,92vw);
-      margin:auto;
-    }
+.container{
+width:min(1200px,92vw);
+margin:auto;
+}
 
-    .site-header{
-      position:sticky;
-      top:0;
-      z-index:120;
-      backdrop-filter:blur(18px);
-      background:rgba(7,9,16,.62);
-      border-bottom:1px solid rgba(255,255,255,.08);
-    }
+.services-hero{
+padding:120px 0 60px;
+text-align:center;
+}
 
-    .site-header-inner{
-      min-height:84px;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:16px;
-    }
+.services-hero h1{
+font-size:52px;
+margin-bottom:14px;
+}
 
-    .brand{
-      display:flex;
-      align-items:center;
-      gap:12px;
-      font-weight:900;
-      letter-spacing:.18em;
-      white-space:nowrap;
-    }
+.services-hero p{
+max-width:760px;
+margin:auto;
+opacity:.8;
+line-height:1.8;
+}
 
-    .brand img{
-      width:44px;
-      height:44px;
-      object-fit:contain;
-      filter:drop-shadow(0 0 12px rgba(255,255,255,.18));
-    }
+.services-grid{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:20px;
+margin-top:60px;
+}
 
-    .desktop-nav{
-      display:flex;
-      align-items:center;
-      gap:10px;
-      flex-wrap:wrap;
-    }
+.service-card{
+padding:30px;
+border-radius:26px;
+background:rgba(255,255,255,.05);
+border:1px solid rgba(255,255,255,.08);
+backdrop-filter:blur(18px);
+transition:transform .3s ease, box-shadow .3s ease;
+}
 
-    .desktop-nav a{
-      padding:11px 14px;
-      border-radius:14px;
-      border:1px solid rgba(255,255,255,.08);
-      background:rgba(255,255,255,.03);
-      color:rgba(245,247,255,.90);
-      font-size:14px;
-      font-weight:700;
-      transition:transform .2s ease, background .2s ease, border-color .2s ease;
-      white-space:nowrap;
-    }
+.service-card:hover{
+transform:translateY(-8px);
+box-shadow:0 20px 40px rgba(0,0,0,.3);
+}
 
-    .desktop-nav a:hover,
-    .desktop-nav a.active{
-      transform:translateY(-2px);
-      background:rgba(255,255,255,.08);
-      border-color:rgba(255,255,255,.14);
-    }
+.service-icon{
+font-size:36px;
+margin-bottom:14px;
+}
 
-    .header-actions{
-      display:flex;
-      align-items:center;
-      gap:10px;
-    }
+.service-card h3{
+margin-bottom:10px;
+font-size:22px;
+}
 
-    .lang-switch{
-      display:flex;
-      gap:6px;
-      padding:4px;
-      border-radius:16px;
-      border:1px solid rgba(255,255,255,.12);
-      background:rgba(255,255,255,.05);
-      backdrop-filter:blur(12px);
-    }
+.service-card p{
+opacity:.8;
+line-height:1.8;
+font-size:15px;
+}
 
-    .lang-switch button{
-      border:none;
-      background:transparent;
-      color:#fff;
-      padding:8px 12px;
-      border-radius:12px;
-      font-size:12px;
-      font-weight:800;
-      cursor:pointer;
-    }
+.cta{
+margin-top:80px;
+padding:40px;
+text-align:center;
+border-radius:28px;
+background:rgba(255,255,255,.05);
+border:1px solid rgba(255,255,255,.08);
+}
 
-    .lang-switch button.active{
-      background:rgba(255,255,255,.14);
-    }
+.cta h2{
+margin-bottom:12px;
+font-size:34px;
+}
 
-    .mobile-toggle{
-      display:none;
-      width:46px;
-      height:46px;
-      border:none;
-      border-radius:14px;
-      background:rgba(255,255,255,.06);
-      color:#fff;
-      font-size:20px;
-      border:1px solid rgba(255,255,255,.1);
-      cursor:pointer;
-    }
+.cta p{
+max-width:640px;
+margin:auto;
+opacity:.8;
+line-height:1.9;
+}
 
-    .mobile-nav{
-      display:none;
-      padding:0 0 14px;
-    }
+.btn{
+display:inline-block;
+margin-top:20px;
+padding:14px 20px;
+border-radius:16px;
+background:#b41428;
+color:white;
+font-weight:700;
+}
 
-    .mobile-nav.open{
-      display:grid;
-      gap:10px;
-    }
+@media(max-width:900px){
 
-    .mobile-nav a{
-      padding:13px 14px;
-      border-radius:14px;
-      border:1px solid rgba(255,255,255,.08);
-      background:rgba(255,255,255,.04);
-      color:rgba(245,247,255,.92);
-      font-weight:700;
-    }
+.services-grid{
+grid-template-columns:1fr;
+}
 
-    .page-hero{
-      padding:42px 0 18px;
-    }
+.services-hero h1{
+font-size:36px;
+}
 
-    .page-hero-box{
-      min-height:420px;
-      display:grid;
-      grid-template-columns:1.12fr .88fr;
-      gap:24px;
-      align-items:center;
-      padding:38px 30px;
-      position:relative;
-      overflow:hidden;
-    }
+}
 
-    .page-hero-box::before{
-      content:"";
-      position:absolute;
-      left:50%;
-      top:50%;
-      width:620px;
-      height:620px;
-      transform:translate(-50%,-50%);
-      background:radial-gradient(circle, rgba(180,20,40,.08), transparent 66%);
-      pointer-events:none;
-    }
+</style>
 
-    .eyebrow{
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-      padding:10px 14px;
-      border:1px solid rgba(255,255,255,.10);
-      border-radius:999px;
-      background:rgba(255,255,255,.05);
-      color:rgba(245,247,255,.74);
-      font-size:13px;
-      font-weight:700;
-      margin-bottom:18px;
-      backdrop-filter:blur(12px);
-    }
-
-    .page-hero h1{
-      margin:0 0 18px;
-      font-size:clamp(38px, 6vw, 74px);
-      line-height:1.03;
-      letter-spacing:-.03em;
-    }
-
-    .page-hero p{
-      margin:0;
-      max-width:760px;
-      color:rgba(245,247,255,.78);
-      font-size:18px;
-      line-height:1.95;
-    }
-
-    .hero-side{
-      min-height:360px;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-    }
-
-    .hero-side-box{
-      width:min(100%, 380px);
-      min-height:320px;
-      padding:28px;
-      display:flex;
-      flex-direction:column;
-      justify-content:center;
-      align-items:center;
-      text-align:center;
-      position:relative;
-      overflow:hidden;
-    }
-
-    .hero-side-box::before{
-      content:"";
-      position:absolute;
-      inset:0;
-      background:
-        radial-gradient(circle at 50% 30%, rgba(255,255,255,.08), transparent 32%),
-        radial-gradient(circle at 50% 70%, rgba(180,20,40,.14), transparent 42%);
-    }
-
-    .hero-side-box img{
-      width:110px;
-      height:110px;
-      object-fit:contain;
-      margin-bottom:18px;
-      z-index:2;
-      position:relative;
-    }
-
-    .hero-side-box strong{
-      z-index:2;
-      position:relative;
-      display:block;
-      margin-bottom:10px;
-      font-size:34px;
-      letter-spacing:.24em;
-      margin-inline-start:.24em;
-    }
-
-    .hero-side-box span{
-      z-index:2;
-      position:relative;
-      color:rgba(245,247,255,.76);
-      line-height:1.9;
-      font-size:15px;
-    }
-
-    .section{
-      margin-top:22px;
-      padding:32px 24px;
-    }
-
-    .section-title{
-      display:flex;
-      align-items:end;
-      justify-content:space-between;
-      gap:16px;
-      margin-bottom:22px;
-    }
-
-    .section-title h2{
-      margin:0;
-      font-size:34px;
-      line-height:1.15;
-    }
-
-    .section-title p{
-      margin:0;
-      color:rgba(245,247,255,.74);
-      max-width:560px;
-      line-height:1.9;
-      font-size:15px;
-    }
-
-    .grid-3{
-      display:grid;
-      grid-template-columns:repeat(3,minmax(0,1fr));
-      gap:18px;
-    }
-
-    .service-card{
-      padding:24px 18px;
-    }
-
-    .service-card .icon{
-      width:56px;
-      height:56px;
-      display:grid;
-      place-items:center;
-      border-radius:18px;
-      background:linear-gradient(180deg, rgba(180,20,40,.14), rgba(255,255,255,.08));
-      border:1px solid rgba(255,255,255,.10);
-      margin-bottom:16px;
-      font-size:24px;
-    }
-
-    .service-card h3{
-      margin:0 0 12px;
-      font-size:22px;
-    }
-
-    .service-card p{
-      margin:0 0 14px;
-      color:rgba(245,247,255,.74);
-      line-height:1.9;
-      font-size:15px;
-    }
-
-    .service-card ul{
-      margin:0;
-      padding:0;
-      list-style:none;
-      display:grid;
-      gap:8px;
-      color:rgba(245,247,255,.82);
-      font-size:14px;
-    }
-
-    .service-card li::before{
-      content:"• ";
-      color:#fff;
-    }
-
-    .flow{
-      display:grid;
-      grid-template-columns:repeat(4,minmax(0,1fr));
-      gap:16px;
-    }
-
-    .flow-step{
-      padding:22px 16px;
-      text-align:center;
-    }
-
-    .flow-step strong{
-      display:block;
-      margin-bottom:10px;
-      font-size:28px;
-    }
-
-    .flow-step span{
-      color:rgba(245,247,255,.74);
-      line-height:1.8;
-      font-size:14px;
-    }
-
-    .cta{
-      text-align:center;
-      padding:38px 24px;
-      background:
-        radial-gradient(circle at 50% 0%, rgba(180,20,40,.12), transparent 45%),
-        linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.04));
-    }
-
-    .cta h2{
-      margin:0 0 12px;
-      font-size:36px;
-    }
-
-    .cta p{
-      margin:0 auto 24px;
-      max-width:760px;
-      color:rgba(245,247,255,.76);
-      line-height:1.9;
-      font-size:17px;
-    }
-
-    .hero-actions{
-      display:flex;
-      gap:12px;
-      flex-wrap:wrap;
-      justify-content:center;
-    }
-
-    .btn{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      min-width:170px;
-      padding:14px 18px;
-      border-radius:18px;
-      border:1px solid rgba(255,255,255,.12);
-      background:rgba(255,255,255,.08);
-      color:#fff;
-      font-weight:800;
-      transition:transform .2s ease, background .2s ease, border-color .2s ease;
-      backdrop-filter:blur(12px);
-    }
-
-    .btn:hover{
-      transform:translateY(-2px);
-      background:rgba(255,255,255,.12);
-      border-color:rgba(255,255,255,.18);
-    }
-
-    .btn.primary{
-      background:linear-gradient(180deg, rgba(180,20,40,.36), rgba(180,20,40,.20));
-      border-color:rgba(180,20,40,.42);
-    }
-
-    .footer{
-      padding:34px 0 28px;
-      text-align:center;
-      color:rgba(245,247,255,.70);
-      font-size:14px;
-    }
-
-    @media (max-width:1100px){
-      .page-hero-box,
-      .grid-3,
-      .flow{
-        grid-template-columns:1fr;
-      }
-    }
-
-    @media (max-width:980px){
-      .desktop-nav{
-        display:none;
-      }
-
-      .mobile-toggle{
-        display:inline-flex;
-        align-items:center;
-        justify-content:center;
-      }
-
-      .section{
-        padding:24px 16px;
-      }
-
-      .section-title{
-        display:block;
-      }
-
-      .section-title h2{
-        margin-bottom:10px;
-      }
-
-      .page-hero h1{
-        font-size:42px;
-      }
-    }
-  </style>
 </head>
-<script src="./assets/genex-fx.js?v=505"></script>
-<body data-page="inner" data-intro="false" data-music="true">
-  <div class="page-transition" id="pageTransition"></div>
 
-  <div id="backFxWrap" aria-hidden="true">
-    <canvas id="backFxCanvas"></canvas>
-    <div class="back-vignette"></div>
-  </div>
+<body data-page="services" data-music="true">
 
-  <div id="sceneWrap" aria-hidden="true">
-    <canvas id="webglCanvas"></canvas>
-  </div>
+<div class="page-transition" id="pageTransition"></div>
 
-  <div id="frontFxWrap" aria-hidden="true">
-    <canvas id="frontFxCanvas"></canvas>
-    <div class="front-fade"></div>
-  </div>
+<div id="backFxWrap"><canvas id="backFxCanvas"></canvas></div>
+<div id="sceneWrap"><canvas id="webglCanvas"></canvas></div>
+<div id="frontFxWrap"><canvas id="frontFxCanvas"></canvas></div>
 
-  <audio id="siteMusic" loop preload="auto">
-    <source src="./assets/audio/fantasy-ambient.mp3" type="audio/mpeg">
-  </audio>
+<audio id="siteMusic" loop>
+<source src="./assets/audio/fantasy-ambient.mp3" type="audio/mpeg">
+</audio>
 
-  <button id="musicToggle" aria-label="Toggle music">♪</button>
+<header class="site-header">
 
-  <div class="genex-page-shell">
-    <header class="site-header">
-      <div class="container site-header-inner">
-        <a class="brand" href="./index.html">
-          <img src="./assets/logo.png" alt="GENEX Logo">
-          <span>GENEX</span>
-        </a>
+<div class="container site-header-inner">
 
-        <nav class="desktop-nav">
-          <a href="./index.html" data-i18n="nav_home">الرئيسية</a>
-          <a href="./services.html" class="active" data-i18n="nav_services">الخدمات</a>
-          <a href="./request.html" data-i18n="nav_request">اطلب الآن</a>
-          <a href="./join.html" data-i18n="nav_join">انضم إلينا</a>
-          <a href="./contact.html" data-i18n="nav_contact">تواصل</a>
-          <a href="./about.html" data-nav-about>عن جينكس</a>
-        </nav>
+<a class="brand" href="./index.html">
+<img src="./assets/logo.png">
+<span>GENEX</span>
+</a>
 
-        <div class="header-actions">
-          <div class="lang-switch">
-            <button type="button" data-lang="en">EN</button>
-            <button type="button" data-lang="ar" class="active">AR</button>
-          </div>
-          <button class="mobile-toggle" id="mobileToggle" aria-label="Menu">☰</button>
-        </div>
-      </div>
+<nav class="desktop-nav">
 
-      <div class="container">
-        <nav class="mobile-nav" id="mobileNav">
-          <a href="./index.html" data-i18n="nav_home">الرئيسية</a>
-          <a href="./services.html" data-i18n="nav_services">الخدمات</a>
-          <a href="./request.html" data-i18n="nav_request">اطلب الآن</a>
-          <a href="./join.html" data-i18n="nav_join">انضم إلينا</a>
-          <a href="./contact.html" data-i18n="nav_contact">تواصل</a>
-          <a href="./about.html" data-nav-about>عن جينكس</a>
-        </nav>
-      </div>
-    </header>
+<a href="./index.html">الرئيسية</a>
+<a class="active" href="./services.html">الخدمات</a>
+<a href="./request.html">اطلب الآن</a>
+<a href="./join.html">انضم إلينا</a>
+<a href="./contact.html">تواصل</a>
+<a href="./about.html">عن جينكس</a>
 
-    <main class="genex-page-content">
-      <section class="page-hero">
-        <div class="container">
-          <div class="page-hero-box genex-panel tilt-card">
-            <div>
-              <div class="eyebrow" data-i18n="eyebrow">GENEX SERVICES • حلول تقنية للمستقبل</div>
-              <h1 data-i18n="hero_title">خدمات مبنية على الذكاء الاصطناعي والأتمتة والتجارب الرقمية المتقدمة</h1>
-              <p data-i18n="hero_desc">
-                في GENEX نطوّر حلولًا عملية ومؤثرة، من بناء أنظمة ذكاء اصطناعي مستقلة، إلى الأتمتة الذكية، وتجارب رقمية ومواقع حديثة تعكس مستوى الشركات المستقبلية.
-              </p>
-            </div>
+</nav>
 
-            <div class="hero-side">
-              <div class="hero-side-box genex-panel tilt-card">
-                <img src="./assets/logo.png" alt="GENEX Logo">
-                <strong>GENEX</strong>
-                <span data-i18n="hero_badge">AI Systems<br>Automation • Digital Experience</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+<div class="header-actions">
 
-      <section class="section">
-        <div class="container">
-          <div class="section-title">
-            <h2 data-i18n="services_title">خدماتنا الأساسية</h2>
-            <p data-i18n="services_desc">نقدّم حزمة خدمات مصممة لبناء بنية تشغيلية ذكية وتجربة رقمية قوية تناسب الطموحات الكبيرة.</p>
-          </div>
+<div class="lang-switch">
+<button data-lang="en">EN</button>
+<button data-lang="ar" class="active">AR</button>
+</div>
 
-          <div class="grid-3">
-            <div class="service-card genex-card tilt-card">
-              <div class="icon">🧠</div>
-              <h3 data-i18n="service_1_title">أنظمة ذكاء اصطناعي</h3>
-              <p data-i18n="service_1_desc">تصميم حلول ذكاء اصطناعي مخصصة تدعم التحليل، التنبؤ، والمساهمة في اتخاذ القرار والتنفيذ.</p>
-              <ul>
-                <li data-i18n="service_1_li_1">مساعدين ذكيين مخصصين</li>
-                <li data-i18n="service_1_li_2">تحليل بيانات وسياق</li>
-                <li data-i18n="service_1_li_3">نظم تشغيل مبنية على AI</li>
-              </ul>
-            </div>
+<button class="mobile-toggle" id="mobileToggle"></button>
 
-            <div class="service-card genex-card tilt-card">
-              <div class="icon">⚙️</div>
-              <h3 data-i18n="service_2_title">أتمتة ذكية</h3>
-              <p data-i18n="service_2_desc">تحويل الأعمال اليدوية والمهام المتكررة إلى عمليات أسرع وأكثر اتساقًا وقابلية للتوسع.</p>
-              <ul>
-                <li data-i18n="service_2_li_1">أتمتة تدفقات العمل</li>
-                <li data-i18n="service_2_li_2">ربط الأنظمة والخدمات</li>
-                <li data-i18n="service_2_li_3">تحسين الكفاءة التشغيلية</li>
-              </ul>
-            </div>
+</div>
 
-            <div class="service-card genex-card tilt-card">
-              <div class="icon">🌐</div>
-              <h3 data-i18n="service_3_title">بنية وتجارب رقمية</h3>
-              <p data-i18n="service_3_desc">بناء مواقع وتجارب رقمية تعكس الهوية الحديثة للشركات وتدعم حضورًا أكثر تأثيرًا ووضوحًا.</p>
-              <ul>
-                <li data-i18n="service_3_li_1">مواقع شركات حديثة</li>
-                <li data-i18n="service_3_li_2">واجهات مستقبلية وهوية رقمية</li>
-                <li data-i18n="service_3_li_3">تجارب تفاعلية متقدمة</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </section>
+</div>
 
-      <section class="section">
-        <div class="container">
-          <div class="section-title">
-            <h2 data-i18n="flow_title">كيف نعمل</h2>
-            <p data-i18n="flow_desc">نحوّل الفكرة من احتياج أولي إلى حل عملي واضح ومؤثر ضمن مراحل منظمة.</p>
-          </div>
+<div class="container">
+<nav class="mobile-nav" id="mobileNav">
 
-          <div class="flow">
-            <div class="flow-step genex-card tilt-card">
-              <strong>01</strong>
-              <span data-i18n="flow_1">فهم الهدف والاحتياج الحقيقي للمشروع</span>
-            </div>
-            <div class="flow-step genex-card tilt-card">
-              <strong>02</strong>
-              <span data-i18n="flow_2">تصميم الهيكل والحل المناسب</span>
-            </div>
-            <div class="flow-step genex-card tilt-card">
-              <strong>03</strong>
-              <span data-i18n="flow_3">التنفيذ والتطوير بشكل احترافي</span>
-            </div>
-            <div class="flow-step genex-card tilt-card">
-              <strong>04</strong>
-              <span data-i18n="flow_4">التحسين والإطلاق والاستمرارية</span>
-            </div>
-          </div>
-        </div>
-      </section>
+<a href="./index.html">الرئيسية</a>
+<a class="active" href="./services.html">الخدمات</a>
+<a href="./request.html">اطلب الآن</a>
+<a href="./join.html">انضم إلينا</a>
+<a href="./contact.html">تواصل</a>
+<a href="./about.html">عن جينكس</a>
 
-      <section class="section">
-        <div class="container">
-          <div class="cta genex-panel tilt-card">
-            <h2 data-i18n="cta_title">جاهز تبني شيئًا أقوى؟</h2>
-            <p data-i18n="cta_desc">إذا عندك فكرة، مشروع، أو شركة تحتاج إلى حضور تقني أقوى، ابدأ مع GENEX من الخطوة الصحيحة.</p>
-            <div class="hero-actions">
-              <a class="btn primary" href="./request.html" data-i18n="cta_btn_1">ابدأ الآن</a>
-              <a class="btn" href="./contact.html" data-i18n="cta_btn_2">تواصل معنا</a>
-            </div>
-          </div>
-        </div>
-      </section>
-    </main>
+</nav>
+</div>
 
-    <footer class="footer">
-      <div class="container">GENEX © 2026</div>
-    </footer>
-  </div>
+</header>
 
-  <script>
-    (function () {
-      const mobileToggle = document.getElementById('mobileToggle');
-      const mobileNav = document.getElementById('mobileNav');
+<main>
 
-      if (mobileToggle && mobileNav) {
-        mobileToggle.addEventListener('click', () => {
-          mobileNav.classList.toggle('open');
-        });
-      }
+<section class="services-hero">
 
-      const translations = {
-        ar: {
-          title: "خدمات GENEX | الذكاء الاصطناعي والأتمتة والبنية الرقمية",
-          nav_home: "الرئيسية",
-          nav_services: "الخدمات",
-          nav_request: "اطلب الآن",
-          nav_join: "انضم إلينا",
-          nav_contact: "تواصل",
-          eyebrow: "GENEX SERVICES • حلول تقنية للمستقبل",
-          hero_title: "خدمات مبنية على الذكاء الاصطناعي والأتمتة والتجارب الرقمية المتقدمة",
-          hero_desc: "في GENEX نطوّر حلولًا عملية ومؤثرة، من بناء أنظمة ذكاء اصطناعي مستقلة، إلى الأتمتة الذكية، وتجارب رقمية ومواقع حديثة تعكس مستوى الشركات المستقبلية.",
-          hero_badge: "AI Systems<br>Automation • Digital Experience",
-          services_title: "خدماتنا الأساسية",
-          services_desc: "نقدّم حزمة خدمات مصممة لبناء بنية تشغيلية ذكية وتجربة رقمية قوية تناسب الطموحات الكبيرة.",
-          service_1_title: "أنظمة ذكاء اصطناعي",
-          service_1_desc: "تصميم حلول ذكاء اصطناعي مخصصة تدعم التحليل، التنبؤ، والمساهمة في اتخاذ القرار والتنفيذ.",
-          service_1_li_1: "مساعدين ذكيين مخصصين",
-          service_1_li_2: "تحليل بيانات وسياق",
-          service_1_li_3: "نظم تشغيل مبنية على AI",
-          service_2_title: "أتمتة ذكية",
-          service_2_desc: "تحويل الأعمال اليدوية والمهام المتكررة إلى عمليات أسرع وأكثر اتساقًا وقابلية للتوسع.",
-          service_2_li_1: "أتمتة تدفقات العمل",
-          service_2_li_2: "ربط الأنظمة والخدمات",
-          service_2_li_3: "تحسين الكفاءة التشغيلية",
-          service_3_title: "بنية وتجارب رقمية",
-          service_3_desc: "بناء مواقع وتجارب رقمية تعكس الهوية الحديثة للشركات وتدعم حضورًا أكثر تأثيرًا ووضوحًا.",
-          service_3_li_1: "مواقع شركات حديثة",
-          service_3_li_2: "واجهات مستقبلية وهوية رقمية",
-          service_3_li_3: "تجارب تفاعلية متقدمة",
-          flow_title: "كيف نعمل",
-          flow_desc: "نحوّل الفكرة من احتياج أولي إلى حل عملي واضح ومؤثر ضمن مراحل منظمة.",
-          flow_1: "فهم الهدف والاحتياج الحقيقي للمشروع",
-          flow_2: "تصميم الهيكل والحل المناسب",
-          flow_3: "التنفيذ والتطوير بشكل احترافي",
-          flow_4: "التحسين والإطلاق والاستمرارية",
-          cta_title: "جاهز تبني شيئًا أقوى؟",
-          cta_desc: "إذا عندك فكرة، مشروع، أو شركة تحتاج إلى حضور تقني أقوى، ابدأ مع GENEX من الخطوة الصحيحة.",
-          cta_btn_1: "ابدأ الآن",
-          cta_btn_2: "تواصل معنا"
-        },
-        en: {
-          title: "GENEX Services | AI, Automation & Digital Infrastructure",
-          nav_home: "Home",
-          nav_services: "Services",
-          nav_request: "Request Now",
-          nav_join: "Join Us",
-          nav_contact: "Contact",
-          eyebrow: "GENEX SERVICES • Future-Ready Solutions",
-          hero_title: "Services built around AI, automation, and advanced digital experiences",
-          hero_desc: "At GENEX, we develop practical and high-impact solutions, from autonomous AI systems to intelligent automation and modern digital experiences that reflect the level of future companies.",
-          hero_badge: "AI Systems<br>Automation • Digital Experience",
-          services_title: "Core Services",
-          services_desc: "We provide a service stack designed to build intelligent operational infrastructure and a stronger digital presence.",
-          service_1_title: "AI Systems",
-          service_1_desc: "Custom AI solutions that support analysis, prediction, and contribution to decision-making and execution.",
-          service_1_li_1: "Custom AI assistants",
-          service_1_li_2: "Data and context analysis",
-          service_1_li_3: "AI-driven operational systems",
-          service_2_title: "Intelligent Automation",
-          service_2_desc: "Turning manual and repetitive tasks into faster, more consistent, and more scalable workflows.",
-          service_2_li_1: "Workflow automation",
-          service_2_li_2: "System and service integration",
-          service_2_li_3: "Operational efficiency improvement",
-          service_3_title: "Digital Infrastructure & Experience",
-          service_3_desc: "Building websites and digital experiences that reflect a modern identity and create a stronger market presence.",
-          service_3_li_1: "Modern company websites",
-          service_3_li_2: "Future interfaces and digital identity",
-          service_3_li_3: "Advanced interactive experiences",
-          flow_title: "How We Work",
-          flow_desc: "We transform the idea from an initial need into a clear and effective solution through structured phases.",
-          flow_1: "Understand the real goal and project need",
-          flow_2: "Design the right structure and solution",
-          flow_3: "Execute and build professionally",
-          flow_4: "Optimize, launch, and sustain",
-          cta_title: "Ready to build something stronger?",
-          cta_desc: "If you have an idea, a project, or a company that needs stronger technical presence, start with GENEX from the right point.",
-          cta_btn_1: "Start Now",
-          cta_btn_2: "Contact Us"
-        }
-      };
+<div class="container">
 
-      function applyLanguage(lang) {
-        document.documentElement.lang = lang;
-        document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
-        localStorage.setItem('genex_lang', lang);
+<h1>خدمات GENEX</h1>
 
-        const dict = translations[lang];
-        if (!dict) return;
+<p>
+نقدم في GENEX مجموعة من الحلول التقنية المتقدمة التي تجمع بين الذكاء الاصطناعي
+والأتمتة والبنية الرقمية الحديثة لبناء أنظمة قادرة على النمو والتوسع.
+</p>
 
-        document.title = dict.title;
+</div>
 
-        document.querySelectorAll('[data-i18n]').forEach((el) => {
-          const key = el.getAttribute('data-i18n');
-          if (dict[key]) {
-            if (key === 'hero_badge') el.innerHTML = dict[key];
-            else el.textContent = dict[key];
-          }
-        });
+</section>
 
-        document.querySelectorAll('.lang-switch button').forEach((btn) => {
-          btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
-        });
-      }
+<section>
 
-      document.querySelectorAll('.lang-switch button').forEach((btn) => {
-        btn.addEventListener('click', () => {
-          applyLanguage(btn.getAttribute('data-lang'));
-        });
-      });
+<div class="container">
 
-      applyLanguage(localStorage.getItem('genex_lang') || 'ar');
-    })();
-  </script>
+<div class="services-grid">
 
-  <script type="module" src="./assets/genex-fx.js?v=602"></script>
+<div class="service-card genex-card tilt-card reveal-on-scroll">
+
+<div class="service-icon">🧠</div>
+
+<h3>أنظمة ذكاء اصطناعي</h3>
+
+<p>
+تصميم وتطوير أنظمة ذكاء اصطناعي قادرة على تحليل البيانات
+واتخاذ القرارات وتحسين الأداء التشغيلي للشركات.
+</p>
+
+</div>
+
+<div class="service-card genex-card tilt-card reveal-on-scroll">
+
+<div class="service-icon">⚙️</div>
+
+<h3>الأتمتة الذكية</h3>
+
+<p>
+تحويل العمليات اليدوية والمتكررة إلى تدفقات عمل
+مؤتمتة تزيد الإنتاجية وتقلل الأخطاء البشرية.
+</p>
+
+</div>
+
+<div class="service-card genex-card tilt-card reveal-on-scroll">
+
+<div class="service-icon">📊</div>
+
+<h3>تحليل البيانات</h3>
+
+<p>
+بناء منصات تحليل بيانات متقدمة تساعد الشركات
+على فهم السوق واتخاذ قرارات استراتيجية.
+</p>
+
+</div>
+
+<div class="service-card genex-card tilt-card reveal-on-scroll">
+
+<div class="service-icon">🌐</div>
+
+<h3>المنصات الرقمية</h3>
+
+<p>
+تطوير منصات رقمية متكاملة تجمع بين الأداء العالي
+والتجربة الحديثة للمستخدم.
+</p>
+
+</div>
+
+<div class="service-card genex-card tilt-card reveal-on-scroll">
+
+<div class="service-icon">🚀</div>
+
+<h3>تحسين الأداء</h3>
+
+<p>
+إعادة تصميم الأنظمة الرقمية لرفع الكفاءة
+وتقليل التكاليف وزيادة سرعة التنفيذ.
+</p>
+
+</div>
+
+<div class="service-card genex-card tilt-card reveal-on-scroll">
+
+<div class="service-icon">🔐</div>
+
+<h3>البنية التقنية</h3>
+
+<p>
+تصميم بنية تقنية مرنة وآمنة تدعم نمو
+الأعمال وتوسعها مستقبلاً.
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<section>
+
+<div class="container">
+
+<div class="cta genex-panel">
+
+<h2>ابدأ مشروعك مع GENEX</h2>
+
+<p>
+إذا كنت تخطط لبناء نظام تقني متقدم أو منصة رقمية مستقبلية
+فإن فريق GENEX جاهز للعمل معك.
+</p>
+
+<a class="btn" href="./request.html">أرسل طلبك</a>
+
+</div>
+
+</div>
+
+</section>
+
+</main>
+
+<footer class="footer">
+
+<div class="container">
+GENEX © 2026
+</div>
+
+</footer>
+
+<script type="module" src="./assets/genex-fx.js"></script>
+
 </body>
 </html>
