@@ -125,24 +125,23 @@
     const intro = q("#genexIntro");
     if (!intro || !introEnabled) return;
 
-    const seen = sessionStorage.getItem("genex_intro_seen");
-    if (seen) {
-      intro.classList.add("hidden");
-      return;
-    }
+    const intro = document.querySelector("#genexIntro");
+  if (!intro || !introEnabled) return;
 
-    const closeIntro = () => {
-      intro.classList.add("hidden");
-      sessionStorage.setItem("genex_intro_seen", "1");
-    };
+
+      const closeIntro = () => {
+    intro.classList.add("hidden");
+  };
+
 
     if (document.readyState === "complete") {
       setTimeout(closeIntro, 4600);
     } else {
       window.addEventListener("load", () => {
-        setTimeout(closeIntro, 4600);
-      });
-    }
+    setTimeout(closeIntro, 3800);
+  });
+
+}
   }
 
   function initMusic() {
