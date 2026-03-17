@@ -8,7 +8,14 @@
 
   let w = innerWidth;
   let h = innerHeight;
-  let dpr = Math.min(window.devicePixelRatio || 1, 1.6);
+  let dpr = Math.min(window.devicePixelRatio || 1, 1.5);
+
+  const mouse = {
+    x: w * 0.5,
+    y: h * 0.5,
+    tx: w * 0.5,
+    ty: h * 0.5
+  };
 
   const logo = new Image();
   let logoReady = false;
@@ -19,7 +26,7 @@
   function resize() {
     w = innerWidth;
     h = innerHeight;
-    dpr = Math.min(window.devicePixelRatio || 1, 1.6);
+    dpr = Math.min(window.devicePixelRatio || 1, 1.5);
 
     back.width = Math.floor(w * dpr);
     back.height = Math.floor(h * dpr);
@@ -34,6 +41,19 @@
   }
 
   addEventListener("resize", resize);
+
+  addEventListener("mousemove", (e) => {
+    mouse.tx = e.clientX;
+    mouse.ty = e.clientY;
+  }, { passive: true });
+
+  addEventListener("touchmove", (e) => {
+    const t = e.touches && e.touches[0];
+    if (!t) return;
+    mouse.tx = t.clientX;
+    mouse.ty = t.clientY;
+  }, { passive: true });
+
   resize();
 
   function wrap(o, pad = 100) {
@@ -66,7 +86,6 @@
     { x: 0.76, y: 0.34, r: 1.1, a: 0.14, vx: 0.03, vy: 0.02 },
     { x: 0.86, y: 0.30, r: 1.6, a: 0.18, vx: 0.02, vy: 0.01 },
     { x: 0.94, y: 0.38, r: 0.8, a: 0.10, vx: 0.01, vy: 0.02 },
-
     { x: 0.08, y: 0.50, r: 1.1, a: 0.13, vx: 0.02, vy: 0.03 },
     { x: 0.16, y: 0.58, r: 1.5, a: 0.17, vx: 0.03, vy: 0.02 },
     { x: 0.24, y: 0.46, r: 0.9, a: 0.10, vx: 0.02, vy: 0.01 },
@@ -77,7 +96,6 @@
     { x: 0.68, y: 0.56, r: 0.8, a: 0.10, vx: 0.02, vy: 0.01 },
     { x: 0.78, y: 0.48, r: 1.3, a: 0.15, vx: 0.03, vy: 0.02 },
     { x: 0.88, y: 0.56, r: 1.7, a: 0.19, vx: 0.01, vy: 0.02 },
-
     { x: 0.06, y: 0.72, r: 1.0, a: 0.11, vx: 0.02, vy: 0.01 },
     { x: 0.14, y: 0.82, r: 1.4, a: 0.16, vx: 0.03, vy: 0.02 },
     { x: 0.22, y: 0.90, r: 0.8, a: 0.10, vx: 0.01, vy: 0.03 },
@@ -91,64 +109,64 @@
   ].map(s => ({ ...s, x: s.x * w, y: s.y * h }));
 
   const particles = [
-    { x: 0.10, y: 0.14, r: 1.4, a: 0.06, vx: 0.16, vy: 0.09, hue: "white" },
-    { x: 0.24, y: 0.20, r: 2.0, a: 0.07, vx: -0.12, vy: 0.10, hue: "red" },
-    { x: 0.38, y: 0.16, r: 1.6, a: 0.05, vx: 0.10, vy: -0.12, hue: "white" },
-    { x: 0.54, y: 0.22, r: 2.2, a: 0.07, vx: 0.14, vy: 0.08, hue: "white" },
-    { x: 0.70, y: 0.18, r: 1.5, a: 0.06, vx: -0.10, vy: 0.14, hue: "red" },
-    { x: 0.84, y: 0.24, r: 2.4, a: 0.08, vx: 0.12, vy: -0.10, hue: "white" },
-    { x: 0.14, y: 0.42, r: 2.0, a: 0.07, vx: 0.10, vy: 0.10, hue: "white" },
-    { x: 0.30, y: 0.36, r: 1.8, a: 0.06, vx: -0.14, vy: 0.08, hue: "red" },
-    { x: 0.46, y: 0.44, r: 2.3, a: 0.07, vx: 0.08, vy: -0.12, hue: "white" },
-    { x: 0.62, y: 0.38, r: 1.7, a: 0.05, vx: 0.14, vy: 0.10, hue: "white" },
-    { x: 0.78, y: 0.46, r: 2.1, a: 0.07, vx: -0.10, vy: 0.12, hue: "red" },
-    { x: 0.90, y: 0.40, r: 1.5, a: 0.05, vx: 0.12, vy: -0.08, hue: "white" },
-    { x: 0.12, y: 0.66, r: 2.2, a: 0.08, vx: 0.10, vy: 0.14, hue: "white" },
-    { x: 0.28, y: 0.74, r: 1.6, a: 0.05, vx: -0.12, vy: 0.08, hue: "red" },
-    { x: 0.42, y: 0.82, r: 2.5, a: 0.08, vx: 0.14, vy: -0.10, hue: "white" },
-    { x: 0.58, y: 0.70, r: 1.8, a: 0.06, vx: 0.10, vy: 0.12, hue: "white" },
-    { x: 0.74, y: 0.84, r: 2.1, a: 0.07, vx: -0.08, vy: 0.14, hue: "red" },
-    { x: 0.88, y: 0.76, r: 1.6, a: 0.05, vx: 0.12, vy: -0.10, hue: "white" }
+    { x: 0.10, y: 0.14, r: 1.4, a: 0.06, vx: 0.16, vy: 0.09, hue: "white", baseVX: 0.16, baseVY: 0.09 },
+    { x: 0.24, y: 0.20, r: 2.0, a: 0.07, vx: -0.12, vy: 0.10, hue: "red", baseVX: -0.12, baseVY: 0.10 },
+    { x: 0.38, y: 0.16, r: 1.6, a: 0.05, vx: 0.10, vy: -0.12, hue: "white", baseVX: 0.10, baseVY: -0.12 },
+    { x: 0.54, y: 0.22, r: 2.2, a: 0.07, vx: 0.14, vy: 0.08, hue: "white", baseVX: 0.14, baseVY: 0.08 },
+    { x: 0.70, y: 0.18, r: 1.5, a: 0.06, vx: -0.10, vy: 0.14, hue: "red", baseVX: -0.10, baseVY: 0.14 },
+    { x: 0.84, y: 0.24, r: 2.4, a: 0.08, vx: 0.12, vy: -0.10, hue: "white", baseVX: 0.12, baseVY: -0.10 },
+    { x: 0.14, y: 0.42, r: 2.0, a: 0.07, vx: 0.10, vy: 0.10, hue: "white", baseVX: 0.10, baseVY: 0.10 },
+    { x: 0.30, y: 0.36, r: 1.8, a: 0.06, vx: -0.14, vy: 0.08, hue: "red", baseVX: -0.14, baseVY: 0.08 },
+    { x: 0.46, y: 0.44, r: 2.3, a: 0.07, vx: 0.08, vy: -0.12, hue: "white", baseVX: 0.08, baseVY: -0.12 },
+    { x: 0.62, y: 0.38, r: 1.7, a: 0.05, vx: 0.14, vy: 0.10, hue: "white", baseVX: 0.14, baseVY: 0.10 },
+    { x: 0.78, y: 0.46, r: 2.1, a: 0.07, vx: -0.10, vy: 0.12, hue: "red", baseVX: -0.10, baseVY: 0.12 },
+    { x: 0.90, y: 0.40, r: 1.5, a: 0.05, vx: 0.12, vy: -0.08, hue: "white", baseVX: 0.12, baseVY: -0.08 },
+    { x: 0.12, y: 0.66, r: 2.2, a: 0.08, vx: 0.10, vy: 0.14, hue: "white", baseVX: 0.10, baseVY: 0.14 },
+    { x: 0.28, y: 0.74, r: 1.6, a: 0.05, vx: -0.12, vy: 0.08, hue: "red", baseVX: -0.12, baseVY: 0.08 },
+    { x: 0.42, y: 0.82, r: 2.5, a: 0.08, vx: 0.14, vy: -0.10, hue: "white", baseVX: 0.14, baseVY: -0.10 },
+    { x: 0.58, y: 0.70, r: 1.8, a: 0.06, vx: 0.10, vy: 0.12, hue: "white", baseVX: 0.10, baseVY: 0.12 },
+    { x: 0.74, y: 0.84, r: 2.1, a: 0.07, vx: -0.08, vy: 0.14, hue: "red", baseVX: -0.08, baseVY: 0.14 },
+    { x: 0.88, y: 0.76, r: 1.6, a: 0.05, vx: 0.12, vy: -0.10, hue: "white", baseVX: 0.12, baseVY: -0.10 }
   ].map(p => ({ ...p, x: p.x * w, y: p.y * h }));
 
   const logoParticles = [
-    { x: 0.08, y: 0.12, size: 24, vx: 0.42, vy: 0.26, rot: 0.4, rotSpeed: 0.010, a: 0.22, depth: 1.00 },
-    { x: 0.18, y: 0.26, size: 21, vx: -0.34, vy: 0.32, rot: 1.2, rotSpeed: -0.014, a: 0.20, depth: 0.90 },
-    { x: 0.30, y: 0.14, size: 26, vx: 0.28, vy: -0.30, rot: 2.1, rotSpeed: 0.018, a: 0.24, depth: 1.10 },
-    { x: 0.44, y: 0.20, size: 20, vx: 0.36, vy: 0.24, rot: 0.8, rotSpeed: 0.012, a: 0.18, depth: 0.80 },
-    { x: 0.56, y: 0.10, size: 25, vx: -0.30, vy: 0.34, rot: 2.4, rotSpeed: -0.015, a: 0.20, depth: 1.00 },
-    { x: 0.68, y: 0.24, size: 22, vx: 0.34, vy: -0.26, rot: 1.7, rotSpeed: 0.016, a: 0.22, depth: 0.92 },
-    { x: 0.82, y: 0.16, size: 21, vx: -0.40, vy: 0.22, rot: 0.2, rotSpeed: -0.012, a: 0.19, depth: 0.86 },
-    { x: 0.92, y: 0.28, size: 24, vx: 0.26, vy: -0.34, rot: 1.9, rotSpeed: 0.014, a: 0.23, depth: 1.04 },
+    { x: 0.08, y: 0.12, size: 24, vx: 0.42, vy: 0.26, rot: 0.4, rotSpeed: 0.010, a: 0.22, depth: 1.00, baseVX: 0.42, baseVY: 0.26 },
+    { x: 0.18, y: 0.26, size: 21, vx: -0.34, vy: 0.32, rot: 1.2, rotSpeed: -0.014, a: 0.20, depth: 0.90, baseVX: -0.34, baseVY: 0.32 },
+    { x: 0.30, y: 0.14, size: 26, vx: 0.28, vy: -0.30, rot: 2.1, rotSpeed: 0.018, a: 0.24, depth: 1.10, baseVX: 0.28, baseVY: -0.30 },
+    { x: 0.44, y: 0.20, size: 20, vx: 0.36, vy: 0.24, rot: 0.8, rotSpeed: 0.012, a: 0.18, depth: 0.80, baseVX: 0.36, baseVY: 0.24 },
+    { x: 0.56, y: 0.10, size: 25, vx: -0.30, vy: 0.34, rot: 2.4, rotSpeed: -0.015, a: 0.20, depth: 1.00, baseVX: -0.30, baseVY: 0.34 },
+    { x: 0.68, y: 0.24, size: 22, vx: 0.34, vy: -0.26, rot: 1.7, rotSpeed: 0.016, a: 0.22, depth: 0.92, baseVX: 0.34, baseVY: -0.26 },
+    { x: 0.82, y: 0.16, size: 21, vx: -0.40, vy: 0.22, rot: 0.2, rotSpeed: -0.012, a: 0.19, depth: 0.86, baseVX: -0.40, baseVY: 0.22 },
+    { x: 0.92, y: 0.28, size: 24, vx: 0.26, vy: -0.34, rot: 1.9, rotSpeed: 0.014, a: 0.23, depth: 1.04, baseVX: 0.26, baseVY: -0.34 },
 
-    { x: 0.10, y: 0.48, size: 23, vx: 0.38, vy: 0.20, rot: 0.6, rotSpeed: 0.012, a: 0.21, depth: 0.96 },
-    { x: 0.22, y: 0.40, size: 20, vx: -0.28, vy: 0.36, rot: 2.0, rotSpeed: -0.015, a: 0.18, depth: 0.82 },
-    { x: 0.34, y: 0.54, size: 25, vx: 0.32, vy: -0.22, rot: 1.0, rotSpeed: 0.017, a: 0.24, depth: 1.08 },
-    { x: 0.46, y: 0.46, size: 21, vx: 0.24, vy: 0.28, rot: 2.8, rotSpeed: 0.013, a: 0.20, depth: 0.90 },
-    { x: 0.60, y: 0.56, size: 26, vx: -0.36, vy: 0.22, rot: 1.4, rotSpeed: -0.016, a: 0.24, depth: 1.12 },
-    { x: 0.74, y: 0.42, size: 19, vx: 0.30, vy: -0.28, rot: 0.9, rotSpeed: 0.014, a: 0.17, depth: 0.78 },
-    { x: 0.86, y: 0.52, size: 24, vx: -0.26, vy: 0.32, rot: 2.5, rotSpeed: -0.012, a: 0.22, depth: 0.98 },
+    { x: 0.10, y: 0.48, size: 23, vx: 0.38, vy: 0.20, rot: 0.6, rotSpeed: 0.012, a: 0.21, depth: 0.96, baseVX: 0.38, baseVY: 0.20 },
+    { x: 0.22, y: 0.40, size: 20, vx: -0.28, vy: 0.36, rot: 2.0, rotSpeed: -0.015, a: 0.18, depth: 0.82, baseVX: -0.28, baseVY: 0.36 },
+    { x: 0.34, y: 0.54, size: 25, vx: 0.32, vy: -0.22, rot: 1.0, rotSpeed: 0.017, a: 0.24, depth: 1.08, baseVX: 0.32, baseVY: -0.22 },
+    { x: 0.46, y: 0.46, size: 21, vx: 0.24, vy: 0.28, rot: 2.8, rotSpeed: 0.013, a: 0.20, depth: 0.90, baseVX: 0.24, baseVY: 0.28 },
+    { x: 0.60, y: 0.56, size: 26, vx: -0.36, vy: 0.22, rot: 1.4, rotSpeed: -0.016, a: 0.24, depth: 1.12, baseVX: -0.36, baseVY: 0.22 },
+    { x: 0.74, y: 0.42, size: 19, vx: 0.30, vy: -0.28, rot: 0.9, rotSpeed: 0.014, a: 0.17, depth: 0.78, baseVX: 0.30, baseVY: -0.28 },
+    { x: 0.86, y: 0.52, size: 24, vx: -0.26, vy: 0.32, rot: 2.5, rotSpeed: -0.012, a: 0.22, depth: 0.98, baseVX: -0.26, baseVY: 0.32 },
 
-    { x: 0.12, y: 0.76, size: 21, vx: 0.36, vy: 0.24, rot: 0.8, rotSpeed: 0.012, a: 0.19, depth: 0.88 },
-    { x: 0.26, y: 0.88, size: 25, vx: -0.32, vy: 0.18, rot: 1.6, rotSpeed: -0.016, a: 0.23, depth: 1.06 },
-    { x: 0.40, y: 0.78, size: 20, vx: 0.28, vy: -0.30, rot: 2.4, rotSpeed: 0.014, a: 0.18, depth: 0.82 },
-    { x: 0.54, y: 0.92, size: 26, vx: 0.34, vy: 0.20, rot: 0.4, rotSpeed: 0.017, a: 0.24, depth: 1.12 },
-    { x: 0.68, y: 0.82, size: 21, vx: -0.24, vy: 0.28, rot: 1.8, rotSpeed: -0.013, a: 0.19, depth: 0.90 },
-    { x: 0.82, y: 0.90, size: 24, vx: 0.30, vy: -0.24, rot: 2.2, rotSpeed: 0.015, a: 0.22, depth: 1.00 }
+    { x: 0.12, y: 0.76, size: 21, vx: 0.36, vy: 0.24, rot: 0.8, rotSpeed: 0.012, a: 0.19, depth: 0.88, baseVX: 0.36, baseVY: 0.24 },
+    { x: 0.26, y: 0.88, size: 25, vx: -0.32, vy: 0.18, rot: 1.6, rotSpeed: -0.016, a: 0.23, depth: 1.06, baseVX: -0.32, baseVY: 0.18 },
+    { x: 0.40, y: 0.78, size: 20, vx: 0.28, vy: -0.30, rot: 2.4, rotSpeed: 0.014, a: 0.18, depth: 0.82, baseVX: 0.28, baseVY: -0.30 },
+    { x: 0.54, y: 0.92, size: 26, vx: 0.34, vy: 0.20, rot: 0.4, rotSpeed: 0.017, a: 0.24, depth: 1.12, baseVX: 0.34, baseVY: 0.20 },
+    { x: 0.68, y: 0.82, size: 21, vx: -0.24, vy: 0.28, rot: 1.8, rotSpeed: -0.013, a: 0.19, depth: 0.90, baseVX: -0.24, baseVY: 0.28 },
+    { x: 0.82, y: 0.90, size: 24, vx: 0.30, vy: -0.24, rot: 2.2, rotSpeed: 0.015, a: 0.22, depth: 1.00, baseVX: 0.30, baseVY: -0.24 }
   ].map(l => ({ ...l, x: l.x * w, y: l.y * h }));
 
   const planets = [
-    { x: 0.12, y: 0.16, r: 250, vx: 0.12, vy: 0.09, ax: 0.0007, ay: 0.0005, tone: "white" },
-    { x: 0.86, y: 0.14, r: 360, vx: -0.10, vy: 0.10, ax: -0.0005, ay: 0.0007, tone: "red" },
-    { x: 0.10, y: 0.84, r: 390, vx: 0.09, vy: -0.07, ax: 0.0006, ay: -0.0005, tone: "red" },
-    { x: 0.88, y: 0.72, r: 270, vx: -0.07, vy: -0.09, ax: -0.0004, ay: -0.0006, tone: "white" },
-    { x: 0.56, y: 1.04, r: 310, vx: 0.07, vy: -0.10, ax: 0.0005, ay: -0.0007, tone: "white" }
+    { x: 0.12, y: 0.16, r: 250, vx: 0.12, vy: 0.09, ax: 0.0007, ay: 0.0005, tone: "white", depth: 0.30 },
+    { x: 0.86, y: 0.14, r: 360, vx: -0.10, vy: 0.10, ax: -0.0005, ay: 0.0007, tone: "red", depth: 0.50 },
+    { x: 0.10, y: 0.84, r: 390, vx: 0.09, vy: -0.07, ax: 0.0006, ay: -0.0005, tone: "red", depth: 0.56 },
+    { x: 0.88, y: 0.72, r: 270, vx: -0.07, vy: -0.09, ax: -0.0004, ay: -0.0006, tone: "white", depth: 0.36 },
+    { x: 0.56, y: 1.04, r: 310, vx: 0.07, vy: -0.10, ax: 0.0005, ay: -0.0007, tone: "white", depth: 0.42 }
   ].map(p => ({ ...p, x: p.x * w, y: p.y * h }));
 
   const rings = [
-    { x: 0.56, y: 0.22, rx: 340, ry: 74, vx: 0.22, vy: 0.14, rot: 0.16, rotSpeed: 0.004 },
-    { x: 0.38, y: 0.64, rx: 480, ry: 110, vx: -0.18, vy: 0.16, rot: -0.12, rotSpeed: -0.0034 },
-    { x: 0.80, y: 0.54, rx: 390, ry: 88, vx: -0.16, vy: -0.14, rot: 0.22, rotSpeed: 0.0038 }
+    { x: 0.56, y: 0.22, rx: 340, ry: 74, vx: 0.18, vy: 0.10, rot: 0.16, rotSpeed: 0.0038, depth: 0.20 },
+    { x: 0.38, y: 0.64, rx: 480, ry: 110, vx: -0.15, vy: 0.12, rot: -0.12, rotSpeed: -0.0030, depth: 0.16 },
+    { x: 0.80, y: 0.54, rx: 390, ry: 88, vx: -0.13, vy: -0.11, rot: 0.22, rotSpeed: 0.0034, depth: 0.18 }
   ].map(r => ({ ...r, x: r.x * w, y: r.y * h }));
 
   function drawBackground() {
@@ -197,22 +215,28 @@
     ctx.save();
     ctx.globalCompositeOperation = "screen";
 
+    const mx = (mouse.tx - w * 0.5) / w;
+    const my = (mouse.ty - h * 0.5) / h;
+
     stars.forEach((s, i) => {
       s.x += s.vx;
       s.y += s.vy;
       wrap(s, 12);
 
+      const px = s.x + mx * 12;
+      const py = s.y + my * 12;
+
       ctx.beginPath();
-      ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+      ctx.arc(px, py, s.r, 0, Math.PI * 2);
       ctx.fillStyle = `rgba(255,255,255,${s.a})`;
       ctx.fill();
 
       if (i % 10 === 0) {
         ctx.beginPath();
-        ctx.moveTo(s.x - s.r * 1.8, s.y);
-        ctx.lineTo(s.x + s.r * 1.8, s.y);
-        ctx.moveTo(s.x, s.y - s.r * 1.8);
-        ctx.lineTo(s.x, s.y + s.r * 1.8);
+        ctx.moveTo(px - s.r * 1.8, py);
+        ctx.lineTo(px + s.r * 1.8, py);
+        ctx.moveTo(px, py - s.r * 1.8);
+        ctx.lineTo(px, py + s.r * 1.8);
         ctx.strokeStyle = `rgba(255,255,255,${s.a * 0.10})`;
         ctx.lineWidth = 0.5;
         ctx.stroke();
@@ -296,18 +320,30 @@
     ctx.save();
     ctx.globalCompositeOperation = "screen";
 
+    const mx = (mouse.tx - w * 0.5) / w;
+    const my = (mouse.ty - h * 0.5) / h;
+
     planets.forEach((p, i) => {
       p.vx += Math.sin(performance.now() * 0.0003 + i) * p.ax;
       p.vy += Math.cos(performance.now() * 0.00028 + i * 1.2) * p.ay;
 
-      p.vx = Math.max(-0.16, Math.min(0.16, p.vx));
-      p.vy = Math.max(-0.16, Math.min(0.16, p.vy));
+      const forceX = mx * 0.05 * p.depth;
+      const forceY = my * 0.05 * p.depth;
+
+      p.vx += forceX * 0.02;
+      p.vy += forceY * 0.02;
+
+      p.vx = Math.max(-0.17, Math.min(0.17, p.vx));
+      p.vy = Math.max(-0.17, Math.min(0.17, p.vy));
 
       p.x += p.vx;
       p.y += p.vy;
       wrap(p, p.r);
 
-      drawPlanetBody(p.x, p.y, p.r, p.tone);
+      const px = p.x + mx * 80 * p.depth;
+      const py = p.y + my * 80 * p.depth;
+
+      drawPlanetBody(px, py, p.r, p.tone);
     });
 
     ctx.restore();
@@ -317,14 +353,20 @@
     ctx.save();
     ctx.globalCompositeOperation = "screen";
 
+    const mx = (mouse.tx - w * 0.5) / w;
+    const my = (mouse.ty - h * 0.5) / h;
+
     rings.forEach((r) => {
       r.x += r.vx;
       r.y += r.vy;
       r.rot += r.rotSpeed;
       wrap(r, r.rx + 40);
 
+      const px = r.x + mx * 55 * r.depth;
+      const py = r.y + my * 55 * r.depth;
+
       ctx.save();
-      ctx.translate(r.x, r.y);
+      ctx.translate(px, py);
       ctx.rotate(r.rot);
 
       ctx.strokeStyle = "rgba(255,255,255,0.11)";
@@ -350,13 +392,30 @@
     fctx.save();
     fctx.globalCompositeOperation = "screen";
 
+    const mx = (mouse.tx - w * 0.5) / w;
+    const my = (mouse.ty - h * 0.5) / h;
+
     particles.forEach((p) => {
+      const dx = mouse.tx - p.x;
+      const dy = mouse.ty - p.y;
+      const dist = Math.sqrt(dx * dx + dy * dy) || 1;
+      const repel = dist < 180 ? (180 - dist) / 180 : 0;
+
+      p.vx += p.baseVX * 0.002 + (-dx / dist) * repel * 0.05;
+      p.vy += p.baseVY * 0.002 + (-dy / dist) * repel * 0.05;
+
+      p.vx *= 0.985;
+      p.vy *= 0.985;
+
       p.x += p.vx;
       p.y += p.vy;
       wrap(p, 20);
 
+      const px = p.x + mx * 20;
+      const py = p.y + my * 20;
+
       fctx.beginPath();
-      fctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+      fctx.arc(px, py, p.r, 0, Math.PI * 2);
       fctx.fillStyle = p.hue === "red"
         ? `rgba(90,10,18,${p.a})`
         : `rgba(255,255,255,${p.a})`;
@@ -365,16 +424,31 @@
 
     if (logoReady) {
       logoParticles.forEach((p) => {
-        p.x += p.vx * p.depth;
-        p.y += p.vy * p.depth;
+        const dx = mouse.tx - p.x;
+        const dy = mouse.ty - p.y;
+        const dist = Math.sqrt(dx * dx + dy * dy) || 1;
+        const attract = dist < 220 ? (220 - dist) / 220 : 0;
+
+        p.vx += p.baseVX * 0.0015 + (dx / dist) * attract * 0.01 * p.depth;
+        p.vy += p.baseVY * 0.0015 + (dy / dist) * attract * 0.01 * p.depth;
+
+        p.vx *= 0.987;
+        p.vy *= 0.987;
+
+        p.x += p.vx;
+        p.y += p.vy;
         p.rot += p.rotSpeed;
-        wrap(p, 60);
+        wrap(p, 70);
+
+        const drawSize = p.size * p.depth;
+        const px = p.x + mx * 34 * p.depth;
+        const py = p.y + my * 34 * p.depth;
 
         fctx.save();
-        fctx.globalAlpha = Math.min(0.32, p.a + 0.04);
-        fctx.translate(p.x, p.y);
+        fctx.globalAlpha = Math.min(0.34, p.a + 0.04);
+        fctx.translate(px, py);
         fctx.rotate(p.rot);
-        fctx.drawImage(logo, -(p.size * p.depth) / 2, -(p.size * p.depth) / 2, p.size * p.depth, p.size * p.depth);
+        fctx.drawImage(logo, -drawSize / 2, -drawSize / 2, drawSize, drawSize);
         fctx.restore();
       });
     }
@@ -384,6 +458,11 @@
 
   function animate() {
     requestAnimationFrame(animate);
+
+    mouse.x += (mouse.tx - mouse.x) * 0.08;
+    mouse.y += (mouse.ty - mouse.y) * 0.08;
+    mouse.tx = mouse.x;
+    mouse.ty = mouse.y;
 
     ctx.clearRect(0, 0, w, h);
     drawBackground();
