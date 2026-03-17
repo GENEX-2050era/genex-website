@@ -183,6 +183,16 @@
     subtle.addColorStop(1, "rgba(0,0,0,0)");
     ctx.fillStyle = subtle;
     ctx.fillRect(0, 0, w, h);
+
+    const lx = mouse.x;
+    const ly = mouse.y;
+    const light = ctx.createRadialGradient(lx, ly, 0, lx, ly, Math.max(w, h) * 0.55);
+    light.addColorStop(0, "rgba(255,255,255,0.05)");
+    light.addColorStop(1, "rgba(0,0,0,0)");
+    ctx.globalCompositeOperation = "soft-light";
+    ctx.fillStyle = light;
+    ctx.fillRect(0, 0, w, h);
+    ctx.globalCompositeOperation = "source-over";
   }
 
   function drawFog() {
@@ -215,8 +225,8 @@
     ctx.save();
     ctx.globalCompositeOperation = "screen";
 
-    const mx = (mouse.tx - w * 0.5) / w;
-    const my = (mouse.ty - h * 0.5) / h;
+    const mx = (mouse.x - w * 0.5) / w;
+    const my = (mouse.y - h * 0.5) / h;
 
     stars.forEach((s, i) => {
       s.x += s.vx;
@@ -320,18 +330,15 @@
     ctx.save();
     ctx.globalCompositeOperation = "screen";
 
-    const mx = (mouse.tx - w * 0.5) / w;
-    const my = (mouse.ty - h * 0.5) / h;
+    const mx = (mouse.x - w * 0.5) / w;
+    const my = (mouse.y - h * 0.5) / h;
 
     planets.forEach((p, i) => {
       p.vx += Math.sin(performance.now() * 0.0003 + i) * p.ax;
       p.vy += Math.cos(performance.now() * 0.00028 + i * 1.2) * p.ay;
 
-      const forceX = mx * 0.05 * p.depth;
-      const forceY = my * 0.05 * p.depth;
-
-      p.vx += forceX * 0.02;
-      p.vy += forceY * 0.02;
+      p.vx += mx * 0.0016 * (1 + p.depth);
+      p.vy += my * 0.0016 * (1 + p.depth);
 
       p.vx = Math.max(-0.17, Math.min(0.17, p.vx));
       p.vy = Math.max(-0.17, Math.min(0.17, p.vy));
@@ -342,8 +349,12 @@
 
       const px = p.x + mx * 80 * p.depth;
       const py = p.y + my * 80 * p.depth;
+      const depthBlur = (1 - Math.min(1, p.depth + 0.35)) * 5;
 
+      ctx.save();
+      ctx.filter = `blur(${depthBlur}px)`;
       drawPlanetBody(px, py, p.r, p.tone);
+      ctx.restore();
     });
 
     ctx.restore();
@@ -353,8 +364,8 @@
     ctx.save();
     ctx.globalCompositeOperation = "screen";
 
-    const mx = (mouse.tx - w * 0.5) / w;
-    const my = (mouse.ty - h * 0.5) / h;
+    const mx = (mouse.x - w * 0.5) / w;
+    const my = (mouse.y - h * 0.5) / h;
 
     rings.forEach((r) => {
       r.x += r.vx;
@@ -364,10 +375,12 @@
 
       const px = r.x + mx * 55 * r.depth;
       const py = r.y + my * 55 * r.depth;
+      const blur = (1 - (r.depth + 0.6)) * 2.5;
 
       ctx.save();
       ctx.translate(px, py);
       ctx.rotate(r.rot);
+      ctx.filter = `blur(${Math.max(0, blur)}px)`;
 
       ctx.strokeStyle = "rgba(255,255,255,0.11)";
       ctx.lineWidth = 3.4;
@@ -381,6 +394,7 @@
       ctx.ellipse(0, 0, r.rx * 0.84, r.ry * 0.72, 0, 0, Math.PI * 2);
       ctx.stroke();
 
+      ctx.filter = "none";
       ctx.restore();
     });
 
@@ -392,12 +406,12 @@
     fctx.save();
     fctx.globalCompositeOperation = "screen";
 
-    const mx = (mouse.tx - w * 0.5) / w;
-    const my = (mouse.ty - h * 0.5) / h;
+    const mx = (mouse.x - w * 0.5) / w;
+    const my = (mouse.y - h * 0.5) / h;
 
     particles.forEach((p) => {
-      const dx = mouse.tx - p.x;
-      const dy = mouse.ty - p.y;
+      const dx = mouse.x - p.x;
+      const dy = mouse.y - p.y;
       const dist = Math.sqrt(dx * dx + dy * dy) || 1;
       const repel = dist < 180 ? (180 - dist) / 180 : 0;
 
@@ -424,8 +438,8 @@
 
     if (logoReady) {
       logoParticles.forEach((p) => {
-        const dx = mouse.tx - p.x;
-        const dy = mouse.ty - p.y;
+        const dx = mouse.x - p.x;
+        const dy = mouse.y - p.y;
         const dist = Math.sqrt(dx * dx + dy * dy) || 1;
         const attract = dist < 220 ? (220 - dist) / 220 : 0;
 
@@ -438,17 +452,20 @@
         p.x += p.vx;
         p.y += p.vy;
         p.rot += p.rotSpeed;
-        wrap(p, 70);
+        wrap(p, 80);
 
         const drawSize = p.size * p.depth;
         const px = p.x + mx * 34 * p.depth;
         const py = p.y + my * 34 * p.depth;
+        const blur = (1 - Math.min(1.05, p.depth)) * 3;
 
         fctx.save();
         fctx.globalAlpha = Math.min(0.34, p.a + 0.04);
         fctx.translate(px, py);
         fctx.rotate(p.rot);
+        fctx.filter = `blur(${Math.max(0, blur)}px)`;
         fctx.drawImage(logo, -drawSize / 2, -drawSize / 2, drawSize, drawSize);
+        fctx.filter = "none";
         fctx.restore();
       });
     }
@@ -461,8 +478,6 @@
 
     mouse.x += (mouse.tx - mouse.x) * 0.08;
     mouse.y += (mouse.ty - mouse.y) * 0.08;
-    mouse.tx = mouse.x;
-    mouse.ty = mouse.y;
 
     ctx.clearRect(0, 0, w, h);
     drawBackground();
