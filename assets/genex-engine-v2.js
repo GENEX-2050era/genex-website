@@ -43,51 +43,72 @@
     scrollTarget = window.scrollY / maxScroll;
   }, { passive: true });
 
-  const stars = Array.from({ length: 260 }, () => ({
+  const starsFar = Array.from({ length: 180 }, () => ({
     x: Math.random(),
     y: Math.random(),
-    r: Math.random() * 1.8 + 0.3,
-    a: Math.random() * 0.28 + 0.06,
-    speed: Math.random() * 0.04 + 0.01,
-    depth: 0.10 + Math.random() * 0.16,
+    r: Math.random() * 1.0 + 0.2,
+    a: Math.random() * 0.16 + 0.04,
+    speed: Math.random() * 0.018 + 0.006,
+    depth: 0.05 + Math.random() * 0.08,
     drift: Math.random() * Math.PI * 2
   }));
 
-  const particles = Array.from({ length: 100 }, () => ({
+  const starsMid = Array.from({ length: 150 }, () => ({
     x: Math.random(),
     y: Math.random(),
-    r: Math.random() * 2.4 + 0.7,
-    a: Math.random() * 0.06 + 0.015,
-    speed: Math.random() * 0.14 + 0.03,
-    depth: 0.12 + Math.random() * 0.18,
+    r: Math.random() * 1.5 + 0.3,
+    a: Math.random() * 0.24 + 0.07,
+    speed: Math.random() * 0.028 + 0.010,
+    depth: 0.10 + Math.random() * 0.12,
+    drift: Math.random() * Math.PI * 2
+  }));
+
+  const starsNear = Array.from({ length: 95 }, () => ({
+    x: Math.random(),
+    y: Math.random(),
+    r: Math.random() * 2.2 + 0.5,
+    a: Math.random() * 0.30 + 0.10,
+    speed: Math.random() * 0.040 + 0.014,
+    depth: 0.18 + Math.random() * 0.16,
+    drift: Math.random() * Math.PI * 2
+  }));
+
+  const particles = Array.from({ length: 140 }, () => ({
+    x: Math.random(),
+    y: Math.random(),
+    r: Math.random() * 2.6 + 0.8,
+    a: Math.random() * 0.08 + 0.02,
+    speed: Math.random() * 0.10 + 0.04,
+    depth: 0.14 + Math.random() * 0.22,
     hue: Math.random() > 0.82 ? "red" : "white",
     drift: Math.random() * Math.PI * 2
   }));
 
   const planets = [
-    { x: -0.04, y: 0.12, r: 520, ring: 1.16, depth: 0.18, color: "white", drift: 0.018 },
-    { x: 0.87, y: 0.10, r: 950, ring: 1.20, depth: 0.34, color: "red", drift: 0.014 },
-    { x: 0.04, y: 0.88, r: 980, ring: 1.24, depth: 0.42, color: "red", drift: 0.012 },
-    { x: 1.04, y: 0.62, r: 560, ring: 1.16, depth: 0.22, color: "white", drift: 0.016 },
-    { x: 0.54, y: 1.16, r: 700, ring: 1.18, depth: 0.26, color: "white", drift: 0.015 }
-  ];
-
-  const cores = [
-    { x: 0.56, y: 0.24, r: 170, white: 0.060, red: 0.020, dx: 0.05, dy: 0.04 },
-    { x: 0.34, y: 0.62, r: 120, white: 0.030, red: 0.030, dx: -0.03, dy: 0.05 }
+    { x: -0.05, y: 0.10, r: 480, ring: 1.14, depth: 0.18, color: "white", drift: 0.012 },
+    { x: 0.90, y: 0.10, r: 880, ring: 1.18, depth: 0.34, color: "red", drift: 0.010 },
+    { x: 0.02, y: 0.90, r: 940, ring: 1.24, depth: 0.40, color: "red", drift: 0.009 },
+    { x: 1.03, y: 0.64, r: 540, ring: 1.15, depth: 0.22, color: "white", drift: 0.011 },
+    { x: 0.56, y: 1.14, r: 680, ring: 1.17, depth: 0.26, color: "white", drift: 0.010 }
   ];
 
   const nebulae = [
-    { x: 0.18, y: 0.18, r: 0.30, white: 0.020, red: 0.014, dx: 0.035, dy: 0.026 },
-    { x: 0.52, y: 0.46, r: 0.40, white: 0.016, red: 0.012, dx: 0.026, dy: -0.020 },
-    { x: 0.84, y: 0.78, r: 0.28, white: 0.014, red: 0.010, dx: -0.020, dy: 0.016 }
+    { x: 0.20, y: 0.18, r: 0.24, white: 0.010, red: 0.010, dx: 0.018, dy: 0.014 },
+    { x: 0.56, y: 0.46, r: 0.30, white: 0.010, red: 0.010, dx: 0.014, dy: -0.012 },
+    { x: 0.86, y: 0.78, r: 0.22, white: 0.008, red: 0.008, dx: -0.012, dy: 0.010 }
+  ];
+
+  const cores = [
+    { x: 0.22, y: 0.22, r: 110, white: 0.028, red: 0.012, dx: 0.12, dy: 0.08, travelX: 0.22, travelY: 0.16 },
+    { x: 0.72, y: 0.34, r: 90,  white: 0.020, red: 0.016, dx: -0.10, dy: 0.07, travelX: 0.20, travelY: 0.20 },
+    { x: 0.44, y: 0.72, r: 120, white: 0.022, red: 0.012, dx: 0.08, dy: -0.11, travelX: 0.18, travelY: 0.18 }
   ];
 
   function drawBase() {
     const g = backCtx.createLinearGradient(0, 0, 0, h);
     g.addColorStop(0, "#010209");
-    g.addColorStop(0.28, "#02040b");
-    g.addColorStop(0.62, "#02050d");
+    g.addColorStop(0.25, "#02040b");
+    g.addColorStop(0.60, "#02050d");
     g.addColorStop(1, "#010209");
     backCtx.fillStyle = g;
     backCtx.fillRect(0, 0, w, h);
@@ -96,17 +117,17 @@
   function drawNebula(t) {
     backCtx.save();
     backCtx.globalCompositeOperation = "screen";
-    backCtx.filter = "blur(120px)";
+    backCtx.filter = "blur(100px)";
 
     nebulae.forEach((n, i) => {
-      const cx = w * n.x + Math.sin(t * n.dx + i) * w * 0.03 + mouse.x * 18;
-      const cy = h * n.y + Math.cos(t * n.dy + i) * h * 0.03 + mouse.y * 14 + scrollCurrent * 34;
+      const cx = w * n.x + Math.sin(t * n.dx + i) * w * 0.025 + mouse.x * 10;
+      const cy = h * n.y + Math.cos(t * n.dy + i) * h * 0.025 + mouse.y * 8 + scrollCurrent * 26;
       const r = Math.min(w, h) * n.r;
 
       const grad = backCtx.createRadialGradient(cx, cy, r * 0.08, cx, cy, r);
       grad.addColorStop(0, `rgba(255,255,255,${n.white})`);
-      grad.addColorStop(0.30, `rgba(255,255,255,${n.white * 0.36})`);
-      grad.addColorStop(0.58, `rgba(110,10,20,${n.red})`);
+      grad.addColorStop(0.32, `rgba(255,255,255,${n.white * 0.35})`);
+      grad.addColorStop(0.60, `rgba(110,10,20,${n.red})`);
       grad.addColorStop(1, "rgba(0,0,0,0)");
 
       backCtx.fillStyle = grad;
@@ -121,16 +142,16 @@
   function drawCores(t) {
     backCtx.save();
     backCtx.globalCompositeOperation = "screen";
-    backCtx.filter = "blur(28px)";
+    backCtx.filter = "blur(18px)";
 
     cores.forEach((c, i) => {
-      const x = c.x * w + Math.sin(t * c.dx + i) * 18 + mouse.x * 10;
-      const y = c.y * h + Math.cos(t * c.dy + i) * 14 + mouse.y * 8 + scrollCurrent * 12;
+      const x = (c.x + Math.sin(t * c.dx + i) * c.travelX) * w + mouse.x * 8;
+      const y = (c.y + Math.cos(t * c.dy + i) * c.travelY) * h + mouse.y * 6 + scrollCurrent * 14;
 
       const grad = backCtx.createRadialGradient(x, y, 0, x, y, c.r);
       grad.addColorStop(0, `rgba(255,255,255,${c.white})`);
-      grad.addColorStop(0.28, `rgba(255,255,255,${c.white * 0.45})`);
-      grad.addColorStop(0.55, `rgba(120,14,24,${c.red})`);
+      grad.addColorStop(0.30, `rgba(255,255,255,${c.white * 0.45})`);
+      grad.addColorStop(0.58, `rgba(120,14,24,${c.red})`);
       grad.addColorStop(1, "rgba(0,0,0,0)");
 
       backCtx.fillStyle = grad;
@@ -142,26 +163,26 @@
     backCtx.restore();
   }
 
-  function drawStars(t) {
+  function drawStars(t, stars, crossEvery = 0) {
     backCtx.save();
     backCtx.globalCompositeOperation = "screen";
 
     stars.forEach((s, i) => {
-      const x = s.x * w + Math.sin(t * s.speed + s.drift) * 7 + mouse.x * 16 * s.depth;
-      const y = s.y * h + Math.cos(t * s.speed + s.drift) * 7 + mouse.y * 12 * s.depth + scrollCurrent * 20 * s.depth;
+      const x = s.x * w + Math.sin(t * s.speed + s.drift) * 8 + mouse.x * 18 * s.depth;
+      const y = s.y * h + Math.cos(t * s.speed + s.drift) * 8 + mouse.y * 14 * s.depth + scrollCurrent * 26 * s.depth;
 
       backCtx.beginPath();
       backCtx.arc(x, y, s.r, 0, Math.PI * 2);
       backCtx.fillStyle = `rgba(255,255,255,${s.a})`;
       backCtx.fill();
 
-      if (i % 15 === 0) {
+      if (crossEvery && i % crossEvery === 0) {
         backCtx.beginPath();
-        backCtx.moveTo(x - s.r * 2.2, y);
-        backCtx.lineTo(x + s.r * 2.2, y);
-        backCtx.moveTo(x, y - s.r * 2.2);
-        backCtx.lineTo(x, y + s.r * 2.2);
-        backCtx.strokeStyle = `rgba(255,255,255,${s.a * 0.14})`;
+        backCtx.moveTo(x - s.r * 2.0, y);
+        backCtx.lineTo(x + s.r * 2.0, y);
+        backCtx.moveTo(x, y - s.r * 2.0);
+        backCtx.lineTo(x, y + s.r * 2.0);
+        backCtx.strokeStyle = `rgba(255,255,255,${s.a * 0.18})`;
         backCtx.lineWidth = 0.5;
         backCtx.stroke();
       }
@@ -170,52 +191,94 @@
     backCtx.restore();
   }
 
+  function drawPlanetDetail(x, y, r, color) {
+    const body = backCtx.createRadialGradient(x - r * 0.18, y - r * 0.18, r * 0.08, x, y, r * 0.66);
+
+    if (color === "white") {
+      body.addColorStop(0, "rgba(255,255,255,0.18)");
+      body.addColorStop(0.25, "rgba(210,220,235,0.13)");
+      body.addColorStop(0.60, "rgba(150,165,180,0.08)");
+      body.addColorStop(1, "rgba(90,100,115,0.02)");
+    } else {
+      body.addColorStop(0, "rgba(160,34,46,0.20)");
+      body.addColorStop(0.28, "rgba(118,18,30,0.15)");
+      body.addColorStop(0.60, "rgba(80,10,18,0.09)");
+      body.addColorStop(1, "rgba(40,4,10,0.03)");
+    }
+
+    backCtx.fillStyle = body;
+    backCtx.beginPath();
+    backCtx.arc(x, y, r * 0.66, 0, Math.PI * 2);
+    backCtx.fill();
+
+    backCtx.save();
+    backCtx.globalAlpha = 0.14;
+    for (let i = 0; i < 4; i++) {
+      backCtx.beginPath();
+      backCtx.ellipse(
+        x + (i - 1.5) * r * 0.05,
+        y + (i - 1.5) * r * 0.02,
+        r * (0.42 - i * 0.04),
+        r * (0.10 + i * 0.01),
+        0.18,
+        0,
+        Math.PI * 2
+      );
+      backCtx.strokeStyle = color === "white" ? "rgba(255,255,255,0.18)" : "rgba(170,40,54,0.22)";
+      backCtx.lineWidth = 1;
+      backCtx.stroke();
+    }
+    backCtx.restore();
+  }
+
   function drawPlanet(p, t, i) {
-    const x = p.x * w + Math.sin(t * p.drift + i) * 12 + mouse.x * 18 * p.depth;
-    const y = p.y * h + Math.cos(t * p.drift + i) * 10 + mouse.y * 12 * p.depth + scrollCurrent * 28 * p.depth;
-    const r = p.r * (1 + Math.sin(t * 0.12 + i) * 0.004);
-    const rot = Math.sin(t * 0.04 + i) * 0.30;
+    const x = p.x * w + Math.sin(t * p.drift + i) * 14 + mouse.x * 18 * p.depth;
+    const y = p.y * h + Math.cos(t * p.drift + i) * 12 + mouse.y * 12 * p.depth + scrollCurrent * 28 * p.depth;
+    const r = p.r * (1 + Math.sin(t * 0.10 + i) * 0.004);
+    const rot = Math.sin(t * 0.04 + i) * 0.26;
 
     backCtx.save();
     backCtx.globalCompositeOperation = "screen";
 
-    const outer = backCtx.createRadialGradient(x, y, r * 0.08, x, y, r);
-    const inner = backCtx.createRadialGradient(x, y, r * 0.05, x, y, r * 0.56);
+    const halo = backCtx.createRadialGradient(x, y, r * 0.08, x, y, r);
+    const inner = backCtx.createRadialGradient(x, y, r * 0.05, x, y, r * 0.72);
 
     if (p.color === "white") {
-      outer.addColorStop(0, "rgba(255,255,255,0.05)");
-      outer.addColorStop(0.24, "rgba(255,255,255,0.028)");
-      outer.addColorStop(0.60, "rgba(255,255,255,0.010)");
-      outer.addColorStop(1, "rgba(255,255,255,0)");
+      halo.addColorStop(0, "rgba(255,255,255,0.028)");
+      halo.addColorStop(0.26, "rgba(255,255,255,0.016)");
+      halo.addColorStop(0.60, "rgba(255,255,255,0.005)");
+      halo.addColorStop(1, "rgba(255,255,255,0)");
 
-      inner.addColorStop(0, "rgba(255,255,255,0.13)");
-      inner.addColorStop(0.30, "rgba(255,255,255,0.036)");
+      inner.addColorStop(0, "rgba(255,255,255,0.045)");
+      inner.addColorStop(0.30, "rgba(255,255,255,0.014)");
       inner.addColorStop(1, "rgba(255,255,255,0)");
     } else {
-      outer.addColorStop(0, "rgba(90,8,20,0.085)");
-      outer.addColorStop(0.24, "rgba(90,8,20,0.05)");
-      outer.addColorStop(0.60, "rgba(90,8,20,0.018)");
-      outer.addColorStop(1, "rgba(90,8,20,0)");
+      halo.addColorStop(0, "rgba(90,8,20,0.040)");
+      halo.addColorStop(0.26, "rgba(90,8,20,0.020)");
+      halo.addColorStop(0.60, "rgba(90,8,20,0.006)");
+      halo.addColorStop(1, "rgba(90,8,20,0)");
 
-      inner.addColorStop(0, "rgba(132,12,28,0.20)");
-      inner.addColorStop(0.30, "rgba(96,8,18,0.060)");
+      inner.addColorStop(0, "rgba(132,12,28,0.060)");
+      inner.addColorStop(0.30, "rgba(96,8,18,0.018)");
       inner.addColorStop(1, "rgba(96,8,18,0)");
     }
 
-    backCtx.fillStyle = outer;
+    backCtx.fillStyle = halo;
     backCtx.beginPath();
     backCtx.arc(x, y, r, 0, Math.PI * 2);
     backCtx.fill();
 
     backCtx.fillStyle = inner;
     backCtx.beginPath();
-    backCtx.arc(x, y, r * 0.56, 0, Math.PI * 2);
+    backCtx.arc(x, y, r * 0.72, 0, Math.PI * 2);
     backCtx.fill();
 
+    drawPlanetDetail(x, y, r, p.color);
+
     backCtx.strokeStyle = p.color === "white"
-      ? "rgba(255,255,255,0.03)"
-      : "rgba(96,8,18,0.038)";
-    backCtx.lineWidth = 1;
+      ? "rgba(255,255,255,0.04)"
+      : "rgba(96,8,18,0.05)";
+    backCtx.lineWidth = 1.1;
 
     backCtx.beginPath();
     backCtx.ellipse(x, y, r * p.ring, r * 0.15, rot, 0, Math.PI * 2);
@@ -237,15 +300,15 @@
     frontCtx.save();
     frontCtx.globalCompositeOperation = "screen";
 
-    for (let i = 0; i < 10; i++) {
-      const px = (i / 10) * w + Math.sin(t * 0.09 + i) * 18 + mouse.x * 5;
-      const py = h * (0.12 + (i % 4) * 0.20) + Math.cos(t * 0.11 + i) * 8 + mouse.y * 4;
-      const len = 110 + (i % 3) * 34;
+    for (let i = 0; i < 12; i++) {
+      const px = (i / 12) * w + Math.sin(t * 0.08 + i) * 22 + mouse.x * 6;
+      const py = h * (0.10 + (i % 4) * 0.20) + Math.cos(t * 0.10 + i) * 10 + mouse.y * 4;
+      const len = 120 + (i % 3) * 36;
 
       const grad = frontCtx.createLinearGradient(px, py, px + len, py);
       grad.addColorStop(0, "rgba(255,255,255,0)");
-      grad.addColorStop(0.34, "rgba(255,255,255,0.012)");
-      grad.addColorStop(0.68, "rgba(90,8,18,0.012)");
+      grad.addColorStop(0.34, "rgba(255,255,255,0.014)");
+      grad.addColorStop(0.68, "rgba(90,8,18,0.014)");
       grad.addColorStop(1, "rgba(255,255,255,0)");
 
       frontCtx.strokeStyle = grad;
@@ -257,8 +320,8 @@
     }
 
     particles.forEach((p, i) => {
-      const x = p.x * w + Math.sin(t * p.speed + p.drift + i) * 11 + mouse.x * 5 * p.depth;
-      const y = p.y * h + Math.cos(t * p.speed + p.drift + i) * 10 + mouse.y * 4 * p.depth + scrollCurrent * 12 * p.depth;
+      const x = p.x * w + Math.sin(t * p.speed + p.drift + i) * 14 + mouse.x * 6 * p.depth;
+      const y = p.y * h + Math.cos(t * p.speed + p.drift + i) * 12 + mouse.y * 5 * p.depth + scrollCurrent * 14 * p.depth;
 
       frontCtx.beginPath();
       frontCtx.arc(x, y, p.r, 0, Math.PI * 2);
@@ -283,7 +346,9 @@
     drawBase();
     drawNebula(t);
     drawCores(t);
-    drawStars(t);
+    drawStars(t, starsFar, 0);
+    drawStars(t, starsMid, 0);
+    drawStars(t, starsNear, 12);
     drawPlanets(t);
     drawFrontLayer(t);
   }
