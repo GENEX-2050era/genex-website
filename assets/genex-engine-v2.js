@@ -43,7 +43,6 @@
     if (o.y > h + pad) o.y = -pad;
   }
 
-  /* خلفية ثابتة المزاج واللون */
   const stars = [
     { x: 0.06, y: 0.08, r: 1.0, a: 0.12, vx: 0.03, vy: 0.01 },
     { x: 0.14, y: 0.16, r: 1.4, a: 0.16, vx: 0.02, vy: 0.03 },
@@ -98,14 +97,12 @@
     { x: 0.54, y: 0.22, r: 2.2, a: 0.07, vx: 0.14, vy: 0.08, hue: "white" },
     { x: 0.70, y: 0.18, r: 1.5, a: 0.06, vx: -0.10, vy: 0.14, hue: "red" },
     { x: 0.84, y: 0.24, r: 2.4, a: 0.08, vx: 0.12, vy: -0.10, hue: "white" },
-
     { x: 0.14, y: 0.42, r: 2.0, a: 0.07, vx: 0.10, vy: 0.10, hue: "white" },
     { x: 0.30, y: 0.36, r: 1.8, a: 0.06, vx: -0.14, vy: 0.08, hue: "red" },
     { x: 0.46, y: 0.44, r: 2.3, a: 0.07, vx: 0.08, vy: -0.12, hue: "white" },
     { x: 0.62, y: 0.38, r: 1.7, a: 0.05, vx: 0.14, vy: 0.10, hue: "white" },
     { x: 0.78, y: 0.46, r: 2.1, a: 0.07, vx: -0.10, vy: 0.12, hue: "red" },
     { x: 0.90, y: 0.40, r: 1.5, a: 0.05, vx: 0.12, vy: -0.08, hue: "white" },
-
     { x: 0.12, y: 0.66, r: 2.2, a: 0.08, vx: 0.10, vy: 0.14, hue: "white" },
     { x: 0.28, y: 0.74, r: 1.6, a: 0.05, vx: -0.12, vy: 0.08, hue: "red" },
     { x: 0.42, y: 0.82, r: 2.5, a: 0.08, vx: 0.14, vy: -0.10, hue: "white" },
@@ -115,29 +112,29 @@
   ].map(p => ({ ...p, x: p.x * w, y: p.y * h }));
 
   const logoParticles = [
-    { x: 0.08, y: 0.12, size: 14, vx: 0.42, vy: 0.26, rot: 0.4, rotSpeed: 0.010, a: 0.16 },
-    { x: 0.18, y: 0.26, size: 12, vx: -0.34, vy: 0.32, rot: 1.2, rotSpeed: -0.014, a: 0.14 },
-    { x: 0.30, y: 0.14, size: 16, vx: 0.28, vy: -0.30, rot: 2.1, rotSpeed: 0.018, a: 0.18 },
-    { x: 0.44, y: 0.20, size: 11, vx: 0.36, vy: 0.24, rot: 0.8, rotSpeed: 0.012, a: 0.13 },
-    { x: 0.56, y: 0.10, size: 15, vx: -0.30, vy: 0.34, rot: 2.4, rotSpeed: -0.015, a: 0.15 },
-    { x: 0.68, y: 0.24, size: 13, vx: 0.34, vy: -0.26, rot: 1.7, rotSpeed: 0.016, a: 0.16 },
-    { x: 0.82, y: 0.16, size: 12, vx: -0.40, vy: 0.22, rot: 0.2, rotSpeed: -0.012, a: 0.14 },
-    { x: 0.92, y: 0.28, size: 14, vx: 0.26, vy: -0.34, rot: 1.9, rotSpeed: 0.014, a: 0.17 },
+    { x: 0.08, y: 0.12, size: 24, vx: 0.42, vy: 0.26, rot: 0.4, rotSpeed: 0.010, a: 0.22, depth: 1.00 },
+    { x: 0.18, y: 0.26, size: 21, vx: -0.34, vy: 0.32, rot: 1.2, rotSpeed: -0.014, a: 0.20, depth: 0.90 },
+    { x: 0.30, y: 0.14, size: 26, vx: 0.28, vy: -0.30, rot: 2.1, rotSpeed: 0.018, a: 0.24, depth: 1.10 },
+    { x: 0.44, y: 0.20, size: 20, vx: 0.36, vy: 0.24, rot: 0.8, rotSpeed: 0.012, a: 0.18, depth: 0.80 },
+    { x: 0.56, y: 0.10, size: 25, vx: -0.30, vy: 0.34, rot: 2.4, rotSpeed: -0.015, a: 0.20, depth: 1.00 },
+    { x: 0.68, y: 0.24, size: 22, vx: 0.34, vy: -0.26, rot: 1.7, rotSpeed: 0.016, a: 0.22, depth: 0.92 },
+    { x: 0.82, y: 0.16, size: 21, vx: -0.40, vy: 0.22, rot: 0.2, rotSpeed: -0.012, a: 0.19, depth: 0.86 },
+    { x: 0.92, y: 0.28, size: 24, vx: 0.26, vy: -0.34, rot: 1.9, rotSpeed: 0.014, a: 0.23, depth: 1.04 },
 
-    { x: 0.10, y: 0.48, size: 13, vx: 0.38, vy: 0.20, rot: 0.6, rotSpeed: 0.012, a: 0.16 },
-    { x: 0.22, y: 0.40, size: 11, vx: -0.28, vy: 0.36, rot: 2.0, rotSpeed: -0.015, a: 0.13 },
-    { x: 0.34, y: 0.54, size: 15, vx: 0.32, vy: -0.22, rot: 1.0, rotSpeed: 0.017, a: 0.18 },
-    { x: 0.46, y: 0.46, size: 12, vx: 0.24, vy: 0.28, rot: 2.8, rotSpeed: 0.013, a: 0.15 },
-    { x: 0.60, y: 0.56, size: 16, vx: -0.36, vy: 0.22, rot: 1.4, rotSpeed: -0.016, a: 0.17 },
-    { x: 0.74, y: 0.42, size: 10, vx: 0.30, vy: -0.28, rot: 0.9, rotSpeed: 0.014, a: 0.12 },
-    { x: 0.86, y: 0.52, size: 14, vx: -0.26, vy: 0.32, rot: 2.5, rotSpeed: -0.012, a: 0.16 },
+    { x: 0.10, y: 0.48, size: 23, vx: 0.38, vy: 0.20, rot: 0.6, rotSpeed: 0.012, a: 0.21, depth: 0.96 },
+    { x: 0.22, y: 0.40, size: 20, vx: -0.28, vy: 0.36, rot: 2.0, rotSpeed: -0.015, a: 0.18, depth: 0.82 },
+    { x: 0.34, y: 0.54, size: 25, vx: 0.32, vy: -0.22, rot: 1.0, rotSpeed: 0.017, a: 0.24, depth: 1.08 },
+    { x: 0.46, y: 0.46, size: 21, vx: 0.24, vy: 0.28, rot: 2.8, rotSpeed: 0.013, a: 0.20, depth: 0.90 },
+    { x: 0.60, y: 0.56, size: 26, vx: -0.36, vy: 0.22, rot: 1.4, rotSpeed: -0.016, a: 0.24, depth: 1.12 },
+    { x: 0.74, y: 0.42, size: 19, vx: 0.30, vy: -0.28, rot: 0.9, rotSpeed: 0.014, a: 0.17, depth: 0.78 },
+    { x: 0.86, y: 0.52, size: 24, vx: -0.26, vy: 0.32, rot: 2.5, rotSpeed: -0.012, a: 0.22, depth: 0.98 },
 
-    { x: 0.12, y: 0.76, size: 12, vx: 0.36, vy: 0.24, rot: 0.8, rotSpeed: 0.012, a: 0.14 },
-    { x: 0.26, y: 0.88, size: 15, vx: -0.32, vy: 0.18, rot: 1.6, rotSpeed: -0.016, a: 0.17 },
-    { x: 0.40, y: 0.78, size: 11, vx: 0.28, vy: -0.30, rot: 2.4, rotSpeed: 0.014, a: 0.13 },
-    { x: 0.54, y: 0.92, size: 16, vx: 0.34, vy: 0.20, rot: 0.4, rotSpeed: 0.017, a: 0.18 },
-    { x: 0.68, y: 0.82, size: 12, vx: -0.24, vy: 0.28, rot: 1.8, rotSpeed: -0.013, a: 0.14 },
-    { x: 0.82, y: 0.90, size: 14, vx: 0.30, vy: -0.24, rot: 2.2, rotSpeed: 0.015, a: 0.16 }
+    { x: 0.12, y: 0.76, size: 21, vx: 0.36, vy: 0.24, rot: 0.8, rotSpeed: 0.012, a: 0.19, depth: 0.88 },
+    { x: 0.26, y: 0.88, size: 25, vx: -0.32, vy: 0.18, rot: 1.6, rotSpeed: -0.016, a: 0.23, depth: 1.06 },
+    { x: 0.40, y: 0.78, size: 20, vx: 0.28, vy: -0.30, rot: 2.4, rotSpeed: 0.014, a: 0.18, depth: 0.82 },
+    { x: 0.54, y: 0.92, size: 26, vx: 0.34, vy: 0.20, rot: 0.4, rotSpeed: 0.017, a: 0.24, depth: 1.12 },
+    { x: 0.68, y: 0.82, size: 21, vx: -0.24, vy: 0.28, rot: 1.8, rotSpeed: -0.013, a: 0.19, depth: 0.90 },
+    { x: 0.82, y: 0.90, size: 24, vx: 0.30, vy: -0.24, rot: 2.2, rotSpeed: 0.015, a: 0.22, depth: 1.00 }
   ].map(l => ({ ...l, x: l.x * w, y: l.y * h }));
 
   const planets = [
@@ -368,16 +365,16 @@
 
     if (logoReady) {
       logoParticles.forEach((p) => {
-        p.x += p.vx;
-        p.y += p.vy;
+        p.x += p.vx * p.depth;
+        p.y += p.vy * p.depth;
         p.rot += p.rotSpeed;
         wrap(p, 60);
 
         fctx.save();
-        fctx.globalAlpha = p.a;
+        fctx.globalAlpha = Math.min(0.32, p.a + 0.04);
         fctx.translate(p.x, p.y);
         fctx.rotate(p.rot);
-        fctx.drawImage(logo, -p.size / 2, -p.size / 2, p.size, p.size);
+        fctx.drawImage(logo, -(p.size * p.depth) / 2, -(p.size * p.depth) / 2, p.size * p.depth, p.size * p.depth);
         fctx.restore();
       });
     }
