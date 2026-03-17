@@ -50,8 +50,8 @@
 </main>
 <footer class="footer"><div class="container">GENEX © 2026</div></footer>
 </div>
+  
 <script>
-
 (function () {
   const translations = {
     ar: {
@@ -162,11 +162,14 @@
   applyLanguage(localStorage.getItem("genex_lang") || "ar");
 })();
 </script>
+  
+  <script>
 window.applyGENEXLanguage = applyLanguage;
  
 document.querySelectorAll(".lang-switch button").forEach(btn=>btn.addEventListener("click",()=>applyLanguage(btn.dataset.lang)));
 applyLanguage(localStorage.getItem("genex_lang")||"ar");
 })();
+</script>
   
 <script>
 (function(){
