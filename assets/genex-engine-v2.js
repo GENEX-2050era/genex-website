@@ -86,8 +86,8 @@
 
   const planets = [
     { x: -0.05, y: 0.14, r: 460, ring: 1.14, depth: 0.18, color: "white", drift: 0.020 },
-    { x: 0.88, y: 0.10, r: 840, ring: 1.18, depth: 0.34, color: "red",   drift: 0.016 },
-    { x: 0.06, y: 0.88, r: 900, ring: 1.24, depth: 0.40, color: "red",   drift: 0.014 },
+    { x: 0.88, y: 0.10, r: 840, ring: 1.18, depth: 0.34, color: "red", drift: 0.016 },
+    { x: 0.06, y: 0.88, r: 900, ring: 1.24, depth: 0.40, color: "red", drift: 0.014 },
     { x: 1.02, y: 0.62, r: 500, ring: 1.15, depth: 0.22, color: "white", drift: 0.018 },
     { x: 0.54, y: 1.14, r: 620, ring: 1.16, depth: 0.26, color: "white", drift: 0.017 }
   ];
