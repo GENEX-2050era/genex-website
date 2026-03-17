@@ -237,13 +237,13 @@
       padding:20px;
     }
     .intro-logo-wrap{
-      position:relative;
-      width:360px;
-      height:360px;
-      display:grid;
-      place-items:center;
-      margin:0 auto 8px;
-    }
+  position:relative;
+  width:760px;
+  height:760px;
+  display:grid;
+  place-items:center;
+  margin:0 auto 0;
+}
     .intro-logo-wrap::before,
     .intro-logo-wrap::after{
       content:"";
@@ -275,39 +275,34 @@
       100%{transform:scale(1.18);opacity:0}
     }
     .intro-logo{
-      width:220px;
-      height:220px;
-      object-fit:contain;
-      position:relative;
-      z-index:3;
-      filter:drop-shadow(0 0 18px rgba(255,255,255,.10));
-      animation:introLogoFloat 2.8s ease-in-out infinite;
-    }
+  width:560px;
+  height:560px;
+  object-fit:contain;
+  position:relative;
+  z-index:3;
+  filter:drop-shadow(0 0 30px rgba(255,255,255,.12));
+  animation:introLogoFloat 2.8s ease-in-out infinite;
+}
     @keyframes introLogoFloat{
       0%,100%{transform:translateY(0)}
       50%{transform:translateY(-6px)}
     }
     .intro-wordmark{
-      font-size:38px;
-      font-weight:900;
-      letter-spacing:.22em;
-      line-height:1;
-      margin:0 0 8px;
-      opacity:0;
-      transform:translateY(10px);
-      animation:introTextRise .9s ease forwards;
-      animation-delay:.35s;
-    }
+  font-size:54px;
+  font-weight:900;
+  letter-spacing:.18em;
+  line-height:1;
+  margin:-34px 0 0;
+  text-align:center;
+  width:100%;
+  opacity:0;
+  transform:translateY(10px);
+  animation:introTextRise .9s ease forwards;
+  animation-delay:.35s;
+}
     .intro-sub{
-      color:rgba(245,247,255,.66);
-      font-size:12px;
-      letter-spacing:.12em;
-      line-height:1.3;
-      opacity:0;
-      transform:translateY(10px);
-      animation:introTextRise .9s ease forwards;
-      animation-delay:.58s;
-    }
+  display:none;
+}
     @keyframes introTextRise{
       to{opacity:1;transform:translateY(0)}
     }
@@ -327,10 +322,9 @@
       .hero-orb{min-height:320px;padding:28px}
       .hero-orb img{width:110px;height:110px}
       .hero-orb strong{font-size:30px}
-      .intro-logo-wrap{width:250px;height:250px}
-      .intro-logo{width:160px;height:160px}
-      .intro-wordmark{font-size:26px;letter-spacing:.18em}
-      .intro-sub{font-size:10px;letter-spacing:.08em}
+      .intro-logo-wrap{width:360px;height:360px;}
+      .intro-logo{width:260px;height:260px;}
+      .intro-wordmark{font-size:32px;letter-spacing:.14em;margin:-18px 0 0;}
     }
   </style>
 </head>
@@ -344,7 +338,6 @@
         <img class="intro-logo" src="./assets/logo.png" alt="GENEX Logo" />
       </div>
       <div class="intro-wordmark">GENEX</div>
-      <div class="intro-sub">SOVEREIGN INTELLIGENCE SYSTEMS</div>
     </div>
   </div>
 
