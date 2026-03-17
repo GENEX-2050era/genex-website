@@ -51,21 +51,7 @@
 <footer class="footer"><div class="container">GENEX © 2026</div></footer>
 </div>
 <script>
-(function(){
-const translations={
-ar:{nav_home:"الرئيسية",nav_services:"الخدمات",nav_request:"اطلب الآن",nav_join:"انضم إلينا",nav_contact:"تواصل",back_home:"العودة للرئيسية"},
-en:{nav_home:"Home",nav_services:"Services",nav_request:"Request Now",nav_join:"Join Us",nav_contact:"Contact",back_home:"Back to Home"}
-};
-function applyLanguage(lang){
- document.documentElement.lang=lang;
- document.documentElement.dir=lang==="ar"?"rtl":"ltr";
- localStorage.setItem("genex_lang",lang);
- const dict=translations[lang];
- document.querySelectorAll("[data-i18n]").forEach(el=>{const key=el.getAttribute("data-i18n"); if(dict[key]) el.textContent=dict[key];});
- document.querySelectorAll(".lang-switch button").forEach(btn=>btn.classList.toggle("active",btn.dataset.lang===lang));
- document.querySelectorAll("[data-nav-about]").forEach(link=>link.textContent=lang==="ar"?"عن جينكس":"About GENEX");
-}
- <script>
+
 (function () {
   const translations = {
     ar: {
