@@ -167,7 +167,8 @@ window.applyGENEXLanguage = applyLanguage;
 document.querySelectorAll(".lang-switch button").forEach(btn=>btn.addEventListener("click",()=>applyLanguage(btn.dataset.lang)));
 applyLanguage(localStorage.getItem("genex_lang")||"ar");
 })();
-
+  
+<script>
 (function(){
   const intro=document.getElementById("genexIntro");
   if(!intro) return;
@@ -178,5 +179,6 @@ applyLanguage(localStorage.getItem("genex_lang")||"ar");
   intro.addEventListener("click", closeIntro, {once:true});
 })();
 </script>
+  
 <script src="./assets/genex-fx.js?v=921"></script>
 </body></html>
