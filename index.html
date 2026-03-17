@@ -147,15 +147,23 @@
     }
 
     .hero-orb strong{
-      position:relative;
-      z-index:2;
-      display:block;
-      margin-bottom:10px;
-      font-size:34px;
-      letter-spacing:.22em;
-      margin-inline-start:.22em;
-    }
-
+  position:relative;
+  z-index:2;
+  display:block;
+  width:100%;
+  text-align:center;
+  margin:0 0 10px;
+  font-size:34px;
+  line-height:1;
+  letter-spacing:.12em;
+  padding-inline-start:.12em;
+}
+  html[lang="ar"] .hero-orb strong,
+  html[lang="en"] .hero-orb strong{
+  font-size:34px;
+  line-height:1;
+}
+      
     .hero-orb span{
       position:relative;
       z-index:2;
