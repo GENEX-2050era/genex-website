@@ -3,7 +3,6 @@
   const qa = (s) => Array.from(document.querySelectorAll(s));
 
   const body = document.body;
-  const introEnabled = body.dataset.intro === "true";
   const musicEnabled = body.dataset.music !== "false";
 
   function refreshAboutLabel() {
@@ -29,7 +28,6 @@
 
       refreshAboutLabel();
 
-      // هذا يستدعي دالة الترجمة الفعلية الموجودة داخل الصفحة نفسها
       if (typeof window.applyGENEXLanguage === "function") {
         window.applyGENEXLanguage(lang);
       }
@@ -60,7 +58,6 @@
       }
 
       const nav = q("#mobileNav");
-
       btn.addEventListener("click", () => {
         btn.classList.toggle("is-open");
         if (nav) nav.classList.toggle("open");
@@ -131,9 +128,6 @@
     });
   }
 
-  // الإنترو يتم التحكم به من index.html مباشرة
-  function initIntro() {}
-
   function initMusic() {
     if (!musicEnabled) return;
 
@@ -179,7 +173,6 @@
       const starter = async () => {
         await playMusic();
       };
-
       window.addEventListener("click", starter, { once: true });
       window.addEventListener("touchstart", starter, { once: true });
       window.addEventListener("keydown", starter, { once: true });
@@ -281,63 +274,63 @@
       scrollTarget = window.scrollY / maxScroll;
     }, { passive: true });
 
-    const stars = Array.from({ length: 220 }, () => ({
+    const stars = Array.from({ length: 260 }, () => ({
       x: Math.random(),
       y: Math.random(),
-      r: Math.random() * 1.55 + 0.25,
-      a: Math.random() * 0.34 + 0.08,
+      r: Math.random() * 1.8 + 0.25,
+      a: Math.random() * 0.34 + 0.06,
       speed: Math.random() * 0.08 + 0.02,
-      depth: 0.12 + Math.random() * 0.18,
+      depth: 0.12 + Math.random() * 0.20,
       drift: Math.random() * Math.PI * 2
     }));
 
-    const particles = Array.from({ length: 90 }, () => ({
+    const particles = Array.from({ length: 120 }, () => ({
       x: Math.random(),
       y: Math.random(),
-      r: Math.random() * 1.8 + 0.7,
+      r: Math.random() * 2.2 + 0.8,
       a: Math.random() * 0.07 + 0.02,
-      speed: Math.random() * 0.22 + 0.04,
-      depth: 0.10 + Math.random() * 0.18,
-      hue: Math.random() > 0.88 ? "red" : "white"
+      speed: Math.random() * 0.22 + 0.05,
+      depth: 0.10 + Math.random() * 0.20,
+      hue: Math.random() > 0.85 ? "red" : "white"
     }));
 
     const planets = [
-      { x: 0.02, y: 0.16, r: 320, ring: 1.10, depth: 0.20, color: "white", drift: 0.09 },
-      { x: 0.82, y: 0.16, r: 520, ring: 1.18, depth: 0.30, color: "red", drift: 0.07 },
-      { x: 0.10, y: 0.78, r: 600, ring: 1.22, depth: 0.36, color: "red", drift: 0.06 },
-      { x: 0.92, y: 0.60, r: 380, ring: 1.12, depth: 0.22, color: "white", drift: 0.08 },
-      { x: 0.56, y: 1.04, r: 460, ring: 1.14, depth: 0.26, color: "white", drift: 0.07 }
+      { x: 0.00, y: 0.14, r: 380, ring: 1.12, depth: 0.22, color: "white", drift: 0.09 },
+      { x: 0.84, y: 0.12, r: 620, ring: 1.18, depth: 0.32, color: "red", drift: 0.07 },
+      { x: 0.08, y: 0.82, r: 700, ring: 1.24, depth: 0.40, color: "red", drift: 0.06 },
+      { x: 0.95, y: 0.64, r: 420, ring: 1.14, depth: 0.24, color: "white", drift: 0.08 },
+      { x: 0.56, y: 1.08, r: 520, ring: 1.16, depth: 0.28, color: "white", drift: 0.07 }
     ];
 
     function drawBase() {
       const g = backCtx.createLinearGradient(0, 0, 0, h);
-      g.addColorStop(0, "#02040a");
-      g.addColorStop(0.50, "#03060d");
-      g.addColorStop(1, "#02040a");
+      g.addColorStop(0, "#01030a");
+      g.addColorStop(0.45, "#02050d");
+      g.addColorStop(1, "#01030a");
       backCtx.fillStyle = g;
       backCtx.fillRect(0, 0, w, h);
     }
 
     function drawFog(t) {
       const fogs = [
-        { x: 0.18, y: 0.20, r: 0.20, white: 0.018, red: 0.010, dx: 0.12, dy: 0.08 },
-        { x: 0.58, y: 0.52, r: 0.22, white: 0.016, red: 0.010, dx: 0.10, dy: -0.06 },
-        { x: 0.84, y: 0.76, r: 0.16, white: 0.014, red: 0.008, dx: -0.08, dy: 0.05 }
+        { x: 0.16, y: 0.18, r: 0.24, white: 0.020, red: 0.012, dx: 0.12, dy: 0.08 },
+        { x: 0.56, y: 0.50, r: 0.26, white: 0.018, red: 0.010, dx: 0.10, dy: -0.06 },
+        { x: 0.84, y: 0.78, r: 0.18, white: 0.014, red: 0.010, dx: -0.08, dy: 0.05 }
       ];
 
       backCtx.save();
       backCtx.globalCompositeOperation = "screen";
-      backCtx.filter = "blur(96px)";
+      backCtx.filter = "blur(100px)";
 
       fogs.forEach((f, i) => {
-        const cx = w * f.x + Math.sin(t * f.dx + i) * w * 0.012 + mouse.x * 5;
-        const cy = h * f.y + Math.cos(t * f.dy + i) * h * 0.012 + mouse.y * 4 + scrollCurrent * 12;
+        const cx = w * f.x + Math.sin(t * f.dx + i) * w * 0.016 + mouse.x * 10;
+        const cy = h * f.y + Math.cos(t * f.dy + i) * h * 0.014 + mouse.y * 8 + scrollCurrent * 18;
         const r = Math.min(w, h) * f.r;
 
         const grad = backCtx.createRadialGradient(cx, cy, r * 0.08, cx, cy, r);
         grad.addColorStop(0, `rgba(255,255,255,${f.white})`);
-        grad.addColorStop(0.34, `rgba(255,255,255,${f.white * 0.28})`);
-        grad.addColorStop(0.52, `rgba(110,10,20,${f.red})`);
+        grad.addColorStop(0.34, `rgba(255,255,255,${f.white * 0.35})`);
+        grad.addColorStop(0.56, `rgba(110,10,20,${f.red})`);
         grad.addColorStop(1, "rgba(0,0,0,0)");
 
         backCtx.fillStyle = grad;
@@ -354,22 +347,22 @@
       backCtx.globalCompositeOperation = "screen";
 
       stars.forEach((s, i) => {
-        const x = s.x * w + Math.sin(t * s.speed + s.drift) * 5 + mouse.x * 12 * s.depth;
-        const y = s.y * h + Math.cos(t * s.speed + s.drift) * 5 + mouse.y * 9 * s.depth + scrollCurrent * 18 * s.depth;
+        const x = s.x * w + Math.sin(t * s.speed + s.drift) * 7 + mouse.x * 16 * s.depth;
+        const y = s.y * h + Math.cos(t * s.speed + s.drift) * 7 + mouse.y * 12 * s.depth + scrollCurrent * 22 * s.depth;
 
         backCtx.beginPath();
         backCtx.arc(x, y, s.r, 0, Math.PI * 2);
         backCtx.fillStyle = `rgba(255,255,255,${s.a})`;
         backCtx.fill();
 
-        if (i % 18 === 0) {
+        if (i % 16 === 0) {
           backCtx.beginPath();
-          backCtx.moveTo(x - s.r * 1.6, y);
-          backCtx.lineTo(x + s.r * 1.6, y);
-          backCtx.moveTo(x, y - s.r * 1.6);
-          backCtx.lineTo(x, y + s.r * 1.6);
-          backCtx.strokeStyle = `rgba(255,255,255,${s.a * 0.10})`;
-          backCtx.lineWidth = 0.45;
+          backCtx.moveTo(x - s.r * 1.8, y);
+          backCtx.lineTo(x + s.r * 1.8, y);
+          backCtx.moveTo(x, y - s.r * 1.8);
+          backCtx.lineTo(x, y + s.r * 1.8);
+          backCtx.strokeStyle = `rgba(255,255,255,${s.a * 0.12})`;
+          backCtx.lineWidth = 0.5;
           backCtx.stroke();
         }
       });
@@ -378,8 +371,8 @@
     }
 
     function drawPlanet(p, t, i) {
-      const x = p.x * w + Math.sin(t * p.drift + i) * 8 + mouse.x * 10 * p.depth;
-      const y = p.y * h + Math.cos(t * p.drift + i) * 7 + mouse.y * 7 * p.depth + scrollCurrent * 18 * p.depth;
+      const x = p.x * w + Math.sin(t * p.drift + i) * 10 + mouse.x * 14 * p.depth;
+      const y = p.y * h + Math.cos(t * p.drift + i) * 8 + mouse.y * 10 * p.depth + scrollCurrent * 24 * p.depth;
       const r = p.r * (1 + Math.sin(t * 0.22 + i) * 0.004);
       const rot = Math.sin(t * 0.05 + i) * 0.28;
 
@@ -390,22 +383,22 @@
       const inner = backCtx.createRadialGradient(x, y, r * 0.06, x, y, r * 0.56);
 
       if (p.color === "white") {
-        outer.addColorStop(0, "rgba(255,255,255,0.040)");
-        outer.addColorStop(0.24, "rgba(255,255,255,0.022)");
-        outer.addColorStop(0.60, "rgba(255,255,255,0.006)");
+        outer.addColorStop(0, "rgba(255,255,255,0.050)");
+        outer.addColorStop(0.24, "rgba(255,255,255,0.026)");
+        outer.addColorStop(0.60, "rgba(255,255,255,0.008)");
         outer.addColorStop(1, "rgba(255,255,255,0)");
 
-        inner.addColorStop(0, "rgba(255,255,255,0.090)");
-        inner.addColorStop(0.32, "rgba(255,255,255,0.028)");
+        inner.addColorStop(0, "rgba(255,255,255,0.10)");
+        inner.addColorStop(0.32, "rgba(255,255,255,0.030)");
         inner.addColorStop(1, "rgba(255,255,255,0)");
       } else {
-        outer.addColorStop(0, "rgba(86,8,18,0.070)");
-        outer.addColorStop(0.24, "rgba(86,8,18,0.040)");
-        outer.addColorStop(0.60, "rgba(86,8,18,0.012)");
+        outer.addColorStop(0, "rgba(86,8,18,0.075)");
+        outer.addColorStop(0.24, "rgba(86,8,18,0.044)");
+        outer.addColorStop(0.60, "rgba(86,8,18,0.014)");
         outer.addColorStop(1, "rgba(86,8,18,0)");
 
-        inner.addColorStop(0, "rgba(122,12,24,0.15)");
-        inner.addColorStop(0.32, "rgba(96,8,18,0.045)");
+        inner.addColorStop(0, "rgba(122,12,24,0.16)");
+        inner.addColorStop(0.32, "rgba(96,8,18,0.048)");
         inner.addColorStop(1, "rgba(96,8,18,0)");
       }
 
@@ -420,9 +413,9 @@
       backCtx.fill();
 
       backCtx.strokeStyle = p.color === "white"
-        ? "rgba(255,255,255,0.024)"
-        : "rgba(96,8,18,0.030)";
-      backCtx.lineWidth = 0.9;
+        ? "rgba(255,255,255,0.03)"
+        : "rgba(96,8,18,0.036)";
+      backCtx.lineWidth = 1;
 
       backCtx.beginPath();
       backCtx.ellipse(x, y, r * p.ring, r * 0.15, rot, 0, Math.PI * 2);
@@ -444,28 +437,28 @@
       frontCtx.save();
       frontCtx.globalCompositeOperation = "screen";
 
-      for (let i = 0; i < 5; i++) {
-        const px = (i / 5) * w + Math.sin(t * 0.16 + i) * 10 + mouse.x * 2;
-        const py = h * (0.18 + (i % 3) * 0.24) + Math.cos(t * 0.18 + i) * 4 + mouse.y * 2;
-        const len = 56 + (i % 3) * 18;
+      for (let i = 0; i < 8; i++) {
+        const px = (i / 8) * w + Math.sin(t * 0.16 + i) * 16 + mouse.x * 4;
+        const py = h * (0.14 + (i % 4) * 0.22) + Math.cos(t * 0.18 + i) * 6 + mouse.y * 3;
+        const len = 80 + (i % 3) * 24;
 
         const grad = frontCtx.createLinearGradient(px, py, px + len, py);
         grad.addColorStop(0, "rgba(255,255,255,0)");
-        grad.addColorStop(0.34, "rgba(255,255,255,0.008)");
-        grad.addColorStop(0.68, "rgba(90,8,18,0.008)");
+        grad.addColorStop(0.34, "rgba(255,255,255,0.010)");
+        grad.addColorStop(0.68, "rgba(90,8,18,0.010)");
         grad.addColorStop(1, "rgba(255,255,255,0)");
 
         frontCtx.strokeStyle = grad;
-        frontCtx.lineWidth = 0.9;
+        frontCtx.lineWidth = 1;
         frontCtx.beginPath();
         frontCtx.moveTo(px, py);
-        frontCtx.quadraticCurveTo(px + len * 0.5, py - 4, px + len, py + 1);
+        frontCtx.quadraticCurveTo(px + len * 0.5, py - 5, px + len, py + 1);
         frontCtx.stroke();
       }
 
       particles.forEach((p, i) => {
-        const x = p.x * w + Math.sin(t * p.speed + i) * 7 + mouse.x * 3 * p.depth;
-        const y = p.y * h + Math.cos(t * p.speed + i) * 6 + mouse.y * 2 * p.depth + scrollCurrent * 8 * p.depth;
+        const x = p.x * w + Math.sin(t * p.speed + i) * 9 + mouse.x * 4 * p.depth;
+        const y = p.y * h + Math.cos(t * p.speed + i) * 8 + mouse.y * 3 * p.depth + scrollCurrent * 10 * p.depth;
 
         frontCtx.beginPath();
         frontCtx.arc(x, y, p.r, 0, Math.PI * 2);
@@ -482,9 +475,9 @@
       requestAnimationFrame(animate);
 
       const t = performance.now() * 0.001;
-      mouse.x += (mouseTarget.x - mouse.x) * 0.04;
-      mouse.y += (mouseTarget.y - mouse.y) * 0.04;
-      scrollCurrent += (scrollTarget - scrollCurrent) * 0.04;
+      mouse.x += (mouseTarget.x - mouse.x) * 0.05;
+      mouse.y += (mouseTarget.y - mouse.y) * 0.05;
+      scrollCurrent += (scrollTarget - scrollCurrent) * 0.05;
 
       backCtx.clearRect(0, 0, w, h);
       drawBase();
@@ -505,7 +498,6 @@
   initReveal();
   initTilt();
   initTransitions();
-  initIntro();
   initMusic();
   initChat();
   initVisuals();
