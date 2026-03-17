@@ -48,14 +48,16 @@
   }
 
   function initHamburger() {
-    qa(".mobile-toggle").forEach((btn) => {
-      if (!btn.querySelector(".line")) {
-        btn.innerHTML = `
-          <span class="line"></span>
-          <span class="line"></span>
-          <span class="line"></span>
-        `;
-      }
+  const btn = document.getElementById("mobileToggle");
+  const nav = document.getElementById("mobileNav");
+
+  if (!btn || !nav) return;
+
+  btn.addEventListener("click", function () {
+    btn.classList.toggle("is-open");
+    nav.classList.toggle("open");
+  });
+}
 
       const nav = q("#mobileNav");
       btn.addEventListener("click", () => {
