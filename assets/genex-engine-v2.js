@@ -20,65 +20,71 @@
   addEventListener("resize", resize);
   resize();
 
-  /* ===== كواكب (سباحة كاملة) ===== */
+  /* ===== كواكب (أصغر + حركة ناعمة) ===== */
   const planets = Array.from({ length: 5 }, () => ({
     x: Math.random() * w,
     y: Math.random() * h,
-    r: 500 + Math.random() * 400, // أكبر بكثير
-    vx: (Math.random() - 0.5) * 0.6,
-    vy: (Math.random() - 0.5) * 0.6,
+    r: 180 + Math.random() * 180, // أصغر وواضح
+    vx: (Math.random() - 0.5) * 0.15,
+    vy: (Math.random() - 0.5) * 0.15,
     tone: Math.random() > 0.5 ? "white" : "red"
   }));
 
-  /* ===== حلقات (تتحرك فعلياً عبر الصفحة) ===== */
-  const rings = Array.from({ length: 4 }, () => ({
+  /* ===== حلقات (حركة واضحة لكن ناعمة) ===== */
+  const rings = Array.from({ length: 3 }, () => ({
     x: Math.random() * w,
     y: Math.random() * h,
-    rx: 400 + Math.random() * 300,
-    ry: 80 + Math.random() * 60,
-    vx: (Math.random() - 0.5) * 1.2,
-    vy: (Math.random() - 0.5) * 1.2,
+    rx: 260 + Math.random() * 200,
+    ry: 60 + Math.random() * 40,
+    vx: (Math.random() - 0.5) * 0.35,
+    vy: (Math.random() - 0.5) * 0.35,
     rot: Math.random(),
-    rotSpeed: (Math.random() - 0.5) * 0.02
+    rotSpeed: (Math.random() - 0.5) * 0.01
   }));
 
-  /* ===== نجوم ===== */
-  const stars = Array.from({ length: 100 }, () => ({
+  /* ===== نجوم (تسبح) ===== */
+  const stars = Array.from({ length: 140 }, () => ({
     x: Math.random() * w,
     y: Math.random() * h,
-    r: Math.random() * 1.5,
-    a: Math.random() * 0.2
+    r: Math.random() * 1.6,
+    a: Math.random() * 0.35 + 0.05,
+    vx: (Math.random() - 0.5) * 0.2,
+    vy: (Math.random() - 0.5) * 0.2
   }));
 
-  /* ===== شعارات سابحة (سريعة وعشوائية) ===== */
-  const logos = Array.from({ length: 60 }, () => ({
+  /* ===== شعارات (أسرع لكن متوازنة) ===== */
+  const logos = Array.from({ length: 45 }, () => ({
     x: Math.random() * w,
     y: Math.random() * h,
-    size: 8 + Math.random() * 18,
-    vx: (Math.random() - 0.5) * 2.2, // سرعة أعلى
-    vy: (Math.random() - 0.5) * 2.2,
+    size: 10 + Math.random() * 14,
+    vx: (Math.random() - 0.5) * 0.9,
+    vy: (Math.random() - 0.5) * 0.9,
     rot: Math.random() * Math.PI,
-    rotSpeed: (Math.random() - 0.5) * 0.05,
-    a: Math.random() * 0.35 + 0.1
+    rotSpeed: (Math.random() - 0.5) * 0.03,
+    a: Math.random() * 0.3 + 0.1
   }));
 
-  function wrap(obj, pad = 200) {
-    if (obj.x < -pad) obj.x = w + pad;
-    if (obj.x > w + pad) obj.x = -pad;
-    if (obj.y < -pad) obj.y = h + pad;
-    if (obj.y > h + pad) obj.y = -pad;
+  function wrap(o, pad = 100) {
+    if (o.x < -pad) o.x = w + pad;
+    if (o.x > w + pad) o.x = -pad;
+    if (o.y < -pad) o.y = h + pad;
+    if (o.y > h + pad) o.y = -pad;
   }
 
   function drawBackground() {
     const g = ctx.createLinearGradient(0, 0, 0, h);
-    g.addColorStop(0, "#05070f");
-    g.addColorStop(1, "#04060c");
+    g.addColorStop(0, "#02030a");
+    g.addColorStop(1, "#03050c");
     ctx.fillStyle = g;
     ctx.fillRect(0, 0, w, h);
   }
 
   function drawStars() {
     stars.forEach(s => {
+      s.x += s.vx;
+      s.y += s.vy;
+      wrap(s, 10);
+
       ctx.beginPath();
       ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
       ctx.fillStyle = `rgba(255,255,255,${s.a})`;
@@ -102,10 +108,10 @@
       );
 
       if (p.tone === "white") {
-        grad.addColorStop(0, "rgba(230,235,255,0.25)");
-        grad.addColorStop(1, "rgba(30,40,60,0.1)");
+        grad.addColorStop(0, "rgba(220,230,255,0.25)");
+        grad.addColorStop(1, "rgba(40,50,70,0.1)");
       } else {
-        grad.addColorStop(0, "rgba(180,40,50,0.25)");
+        grad.addColorStop(0, "rgba(150,30,40,0.25)");
         grad.addColorStop(1, "rgba(40,10,15,0.1)");
       }
 
@@ -121,14 +127,14 @@
       r.x += r.vx;
       r.y += r.vy;
       r.rot += r.rotSpeed;
-      wrap(r, 300);
+      wrap(r, 200);
 
       ctx.save();
       ctx.translate(r.x, r.y);
       ctx.rotate(r.rot);
 
-      ctx.strokeStyle = "rgba(255,255,255,0.12)";
-      ctx.lineWidth = 4;
+      ctx.strokeStyle = "rgba(255,255,255,0.10)";
+      ctx.lineWidth = 2.5;
 
       ctx.beginPath();
       ctx.ellipse(0, 0, r.rx, r.ry, 0, 0, Math.PI * 2);
@@ -145,7 +151,7 @@
       l.x += l.vx;
       l.y += l.vy;
       l.rot += l.rotSpeed;
-      wrap(l, 80);
+      wrap(l, 60);
 
       fctx.save();
       fctx.globalAlpha = l.a;
