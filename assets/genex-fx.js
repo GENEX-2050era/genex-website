@@ -230,30 +230,7 @@
     });
   }
 
-  function initVisuals() {
-    const backCanvas = q("#backFxCanvas");
-    const frontCanvas = q("#frontFxCanvas");
-    if (!backCanvas || !frontCanvas) return;
-
-    const backCtx = backCanvas.getContext("2d");
-    const frontCtx = frontCanvas.getContext("2d");
-
-    let w = window.innerWidth;
-    let h = window.innerHeight;
-    const dpr = Math.min(window.devicePixelRatio || 1, 2);
-
-    const mouse = { x: 0, y: 0 };
-    const mouseTarget = { x: 0, y: 0 };
-    let scrollTarget = 0;
-    let scrollCurrent = 0;
-
-    function resizeCanvas(canvas, ctx) {
-      canvas.width = Math.floor(w * dpr);
-      canvas.height = Math.floor(h * dpr);
-      canvas.style.width = w + "px";
-      canvas.style.height = h + "px";
-      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    }
+  function initVisuals() {}
 
     function resize() {
       w = window.innerWidth;
