@@ -11,7 +11,10 @@
   let dpr = Math.min(window.devicePixelRatio || 1, 1.6);
 
   const logo = new Image();
+  let logoReady = false;
+  logo.onload = () => { logoReady = true; };
   logo.src = "./assets/logo.png";
+  if (logo.complete) logoReady = true;
 
   function resize() {
     w = innerWidth;
@@ -40,8 +43,7 @@
     if (o.y > h + pad) o.y = -pad;
   }
 
-  /* ===== ثابتة بدل العشوائية حتى يبقى اللون والمشهد متناسقين ===== */
-
+  /* خلفية ثابتة المزاج واللون */
   const stars = [
     { x: 0.06, y: 0.08, r: 1.0, a: 0.12, vx: 0.03, vy: 0.01 },
     { x: 0.14, y: 0.16, r: 1.4, a: 0.16, vx: 0.02, vy: 0.03 },
@@ -139,17 +141,17 @@
   ].map(l => ({ ...l, x: l.x * w, y: l.y * h }));
 
   const planets = [
-    { x: 0.12, y: 0.16, r: 250, vx: 0.14, vy: 0.10, tone: "white" },
-    { x: 0.86, y: 0.14, r: 360, vx: -0.12, vy: 0.12, tone: "red" },
-    { x: 0.10, y: 0.84, r: 390, vx: 0.10, vy: -0.08, tone: "red" },
-    { x: 0.88, y: 0.72, r: 270, vx: -0.08, vy: -0.10, tone: "white" },
-    { x: 0.56, y: 1.04, r: 310, vx: 0.08, vy: -0.12, tone: "white" }
+    { x: 0.12, y: 0.16, r: 250, vx: 0.12, vy: 0.09, ax: 0.0007, ay: 0.0005, tone: "white" },
+    { x: 0.86, y: 0.14, r: 360, vx: -0.10, vy: 0.10, ax: -0.0005, ay: 0.0007, tone: "red" },
+    { x: 0.10, y: 0.84, r: 390, vx: 0.09, vy: -0.07, ax: 0.0006, ay: -0.0005, tone: "red" },
+    { x: 0.88, y: 0.72, r: 270, vx: -0.07, vy: -0.09, ax: -0.0004, ay: -0.0006, tone: "white" },
+    { x: 0.56, y: 1.04, r: 310, vx: 0.07, vy: -0.10, ax: 0.0005, ay: -0.0007, tone: "white" }
   ].map(p => ({ ...p, x: p.x * w, y: p.y * h }));
 
   const rings = [
-    { x: 0.56, y: 0.22, rx: 340, ry: 74, vx: 0.44, vy: 0.26, rot: 0.16, rotSpeed: 0.010 },
-    { x: 0.38, y: 0.64, rx: 480, ry: 110, vx: -0.36, vy: 0.30, rot: -0.12, rotSpeed: -0.008 },
-    { x: 0.80, y: 0.54, rx: 390, ry: 88, vx: -0.32, vy: -0.28, rot: 0.22, rotSpeed: 0.009 }
+    { x: 0.56, y: 0.22, rx: 340, ry: 74, vx: 0.22, vy: 0.14, rot: 0.16, rotSpeed: 0.004 },
+    { x: 0.38, y: 0.64, rx: 480, ry: 110, vx: -0.18, vy: 0.16, rot: -0.12, rotSpeed: -0.0034 },
+    { x: 0.80, y: 0.54, rx: 390, ry: 88, vx: -0.16, vy: -0.14, rot: 0.22, rotSpeed: 0.0038 }
   ].map(r => ({ ...r, x: r.x * w, y: r.y * h }));
 
   function drawBackground() {
@@ -166,6 +168,32 @@
     subtle.addColorStop(1, "rgba(0,0,0,0)");
     ctx.fillStyle = subtle;
     ctx.fillRect(0, 0, w, h);
+  }
+
+  function drawFog() {
+    ctx.save();
+    ctx.globalCompositeOperation = "screen";
+    ctx.filter = "blur(72px)";
+
+    const fogs = [
+      { x: w * 0.20, y: h * 0.20, r: 160, a: 0.006, tone: "white" },
+      { x: w * 0.80, y: h * 0.28, r: 200, a: 0.006, tone: "red" },
+      { x: w * 0.54, y: h * 0.74, r: 240, a: 0.005, tone: "white" }
+    ];
+
+    fogs.forEach((f) => {
+      const grad = ctx.createRadialGradient(f.x, f.y, 0, f.x, f.y, f.r);
+      if (f.tone === "white") grad.addColorStop(0, `rgba(170,190,220,${f.a})`);
+      else grad.addColorStop(0, `rgba(90,10,18,${f.a * 1.2})`);
+      grad.addColorStop(1, "rgba(0,0,0,0)");
+
+      ctx.fillStyle = grad;
+      ctx.beginPath();
+      ctx.arc(f.x, f.y, f.r, 0, Math.PI * 2);
+      ctx.fill();
+    });
+
+    ctx.restore();
   }
 
   function drawStars() {
@@ -192,32 +220,6 @@
         ctx.lineWidth = 0.5;
         ctx.stroke();
       }
-    });
-
-    ctx.restore();
-  }
-
-  function drawFog() {
-    ctx.save();
-    ctx.globalCompositeOperation = "screen";
-    ctx.filter = "blur(72px)";
-
-    const fogs = [
-      { x: w * 0.20, y: h * 0.20, r: 160, a: 0.006, tone: "white" },
-      { x: w * 0.80, y: h * 0.28, r: 200, a: 0.006, tone: "red" },
-      { x: w * 0.54, y: h * 0.74, r: 240, a: 0.005, tone: "white" }
-    ];
-
-    fogs.forEach((f) => {
-      const grad = ctx.createRadialGradient(f.x, f.y, 0, f.x, f.y, f.r);
-      if (f.tone === "white") grad.addColorStop(0, `rgba(170,190,220,${f.a})`);
-      else grad.addColorStop(0, `rgba(90,10,18,${f.a * 1.2})`);
-      grad.addColorStop(1, "rgba(0,0,0,0)");
-
-      ctx.fillStyle = grad;
-      ctx.beginPath();
-      ctx.arc(f.x, f.y, f.r, 0, Math.PI * 2);
-      ctx.fill();
     });
 
     ctx.restore();
@@ -297,7 +299,13 @@
     ctx.save();
     ctx.globalCompositeOperation = "screen";
 
-    planets.forEach((p) => {
+    planets.forEach((p, i) => {
+      p.vx += Math.sin(performance.now() * 0.0003 + i) * p.ax;
+      p.vy += Math.cos(performance.now() * 0.00028 + i * 1.2) * p.ay;
+
+      p.vx = Math.max(-0.16, Math.min(0.16, p.vx));
+      p.vy = Math.max(-0.16, Math.min(0.16, p.vy));
+
       p.x += p.vx;
       p.y += p.vy;
       wrap(p, p.r);
