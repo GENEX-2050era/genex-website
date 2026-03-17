@@ -8,8 +8,6 @@
 
   let w = window.innerWidth;
   let h = window.innerHeight;
-
-  /* تقليل الدقة الفعلية لتخفيف اللاق */
   let dpr = Math.min(window.devicePixelRatio || 1, 1.1);
 
   const mouse = {
@@ -17,6 +15,11 @@
     y: h * 0.5,
     tx: w * 0.5,
     ty: h * 0.5
+  };
+
+  const scrollState = {
+    y: window.scrollY || 0,
+    ty: window.scrollY || 0
   };
 
   const logo = new Image();
@@ -58,6 +61,10 @@
     mouse.ty = t.clientY;
   }, { passive: true });
 
+  window.addEventListener("scroll", () => {
+    scrollState.ty = window.scrollY || 0;
+  }, { passive: true });
+
   resize();
 
   function wrap(o, pad = 100) {
@@ -67,7 +74,6 @@
     if (o.y > h + pad) o.y = -pad;
   }
 
-  /* نجوم */
   const stars = Array.from({ length: 34 }, (_, i) => ({
     x: (0.08 + (i * 0.073) % 0.9) * w,
     y: (0.10 + (i * 0.117) % 0.85) * h,
@@ -77,7 +83,6 @@
     vy: (i % 3 === 0 ? 0.012 : -0.010)
   }));
 
-  /* جزيئات */
   const particles = Array.from({ length: 14 }, (_, i) => ({
     x: ((0.12 + i * 0.061) % 0.95) * w,
     y: ((0.18 + i * 0.089) % 0.92) * h,
@@ -90,7 +95,6 @@
     baseVY: (i % 3 === 0 ? 0.05 : -0.04)
   }));
 
-  /* شعارات 3D */
   const logoParticles = [
     { x: 0.12, y: 0.14, size: 18, depth: 1.10, vx: 0.12, vy: 0.08, rot: 0.3, rotSpeed: 0.006, a: 0.22, baseVX: 0.12, baseVY: 0.08 },
     { x: 0.26, y: 0.26, size: 13, depth: 0.72, vx: -0.08, vy: 0.10, rot: 1.1, rotSpeed: -0.005, a: 0.16, baseVX: -0.08, baseVY: 0.10 },
@@ -111,16 +115,14 @@
     { x: 0.76, y: 0.80, size: 20, depth: 1.14, vx: 0.09, vy: 0.05, rot: 0.4, rotSpeed: 0.007, a: 0.23, baseVX: 0.09, baseVY: 0.05 }
   ].map(l => ({ ...l, x: l.x * w, y: l.y * h }));
 
-  /* كواكب */
   const planets = [
-    { x: 0.12, y: 0.16, r: 170, vx: 0.045, vy: 0.035, ax: 0.00025, ay: 0.0002, tone: "white", depth: 0.34 },
-    { x: 0.86, y: 0.14, r: 240, vx: -0.04, vy: 0.04, ax: -0.00022, ay: 0.00025, tone: "red", depth: 0.52 },
-    { x: 0.10, y: 0.84, r: 255, vx: 0.04, vy: -0.03, ax: 0.00025, ay: -0.00018, tone: "red", depth: 0.56 },
-    { x: 0.88, y: 0.72, r: 185, vx: -0.03, vy: -0.04, ax: -0.00018, ay: -0.00022, tone: "white", depth: 0.38 },
-    { x: 0.56, y: 1.02, r: 210, vx: 0.03, vy: -0.04, ax: 0.0002, ay: -0.00025, tone: "white", depth: 0.44 }
+    { x: 0.12, y: 0.16, r: 170, vx: 0.045, vy: 0.035, ax: 0.00025, ay: 0.0002, tone: "white", depth: 0.34, scale: 1 },
+    { x: 0.86, y: 0.14, r: 240, vx: -0.04, vy: 0.04, ax: -0.00022, ay: 0.00025, tone: "red", depth: 0.52, scale: 1 },
+    { x: 0.10, y: 0.84, r: 255, vx: 0.04, vy: -0.03, ax: 0.00025, ay: -0.00018, tone: "red", depth: 0.56, scale: 1 },
+    { x: 0.88, y: 0.72, r: 185, vx: -0.03, vy: -0.04, ax: -0.00018, ay: -0.00022, tone: "white", depth: 0.38, scale: 1 },
+    { x: 0.56, y: 1.02, r: 210, vx: 0.03, vy: -0.04, ax: 0.0002, ay: -0.00025, tone: "white", depth: 0.44, scale: 1 }
   ].map(p => ({ ...p, x: p.x * w, y: p.y * h }));
 
-  /* حلقات */
   const rings = [
     { x: 0.56, y: 0.22, rx: 250, ry: 56, vx: 0.07, vy: 0.04, rot: 0.16, rotSpeed: 0.0018, depth: 0.22 },
     { x: 0.38, y: 0.64, rx: 340, ry: 76, vx: -0.06, vy: 0.05, rot: -0.12, rotSpeed: -0.0014, depth: 0.18 },
@@ -142,9 +144,7 @@
     ctx.fillStyle = subtle;
     ctx.fillRect(0, 0, w, h);
 
-    const lx = mouse.x;
-    const ly = mouse.y;
-    const light = ctx.createRadialGradient(lx, ly, 0, lx, ly, Math.max(w, h) * 0.45);
+    const light = ctx.createRadialGradient(mouse.x, mouse.y, 0, mouse.x, mouse.y, Math.max(w, h) * 0.45);
     light.addColorStop(0, "rgba(255,255,255,0.035)");
     light.addColorStop(1, "rgba(0,0,0,0)");
     ctx.globalCompositeOperation = "soft-light";
@@ -184,6 +184,7 @@
 
     const mx = (mouse.x - w * 0.5) / w;
     const my = (mouse.y - h * 0.5) / h;
+    const sy = Math.min(1, scrollState.y / Math.max(1, h * 1.2));
 
     stars.forEach((s, i) => {
       s.x += s.vx;
@@ -191,7 +192,7 @@
       wrap(s, 12);
 
       const px = s.x + mx * 8;
-      const py = s.y + my * 8;
+      const py = s.y + my * 8 - sy * 6;
 
       ctx.beginPath();
       ctx.arc(px, py, s.r, 0, Math.PI * 2);
@@ -289,6 +290,7 @@
 
     const mx = (mouse.x - w * 0.5) / w;
     const my = (mouse.y - h * 0.5) / h;
+    const sy = Math.min(1, scrollState.y / Math.max(1, h * 1.2));
 
     planets.forEach((p, i) => {
       p.vx += Math.sin(performance.now() * 0.00025 + i) * p.ax;
@@ -304,10 +306,14 @@
       p.y += p.vy;
       wrap(p, p.r);
 
-      const px = p.x + mx * 42 * p.depth;
-      const py = p.y + my * 42 * p.depth;
+      const focusBoost = 1 + ((Math.abs(mx) + Math.abs(my)) * 0.04 * p.depth);
+      p.scale += (focusBoost - p.scale) * 0.04;
 
-      drawPlanetBody(px, py, p.r, p.tone);
+      const px = p.x + mx * 42 * p.depth;
+      const py = p.y + my * 42 * p.depth - sy * 14 * p.depth;
+      const pr = p.r * p.scale;
+
+      drawPlanetBody(px, py, pr, p.tone);
     });
 
     ctx.restore();
@@ -319,6 +325,7 @@
 
     const mx = (mouse.x - w * 0.5) / w;
     const my = (mouse.y - h * 0.5) / h;
+    const sy = Math.min(1, scrollState.y / Math.max(1, h * 1.2));
 
     rings.forEach((r) => {
       r.x += r.vx;
@@ -327,7 +334,7 @@
       wrap(r, r.rx + 40);
 
       const px = r.x + mx * 24 * r.depth;
-      const py = r.y + my * 24 * r.depth;
+      const py = r.y + my * 24 * r.depth - sy * 10 * r.depth;
 
       ctx.save();
       ctx.translate(px, py);
@@ -358,6 +365,7 @@
 
     const mx = (mouse.x - w * 0.5) / w;
     const my = (mouse.y - h * 0.5) / h;
+    const sy = Math.min(1, scrollState.y / Math.max(1, h * 1.2));
 
     particles.forEach((p) => {
       const dx = mouse.x - p.x;
@@ -376,7 +384,7 @@
       wrap(p, 20);
 
       const px = p.x + mx * 10;
-      const py = p.y + my * 10;
+      const py = p.y + my * 10 - sy * 8;
 
       fctx.beginPath();
       fctx.arc(px, py, p.r, 0, Math.PI * 2);
@@ -404,9 +412,10 @@
         p.rot += p.rotSpeed;
         wrap(p, 70);
 
-        const drawSize = p.size * p.depth;
-        const px = p.x + mx * 18 * p.depth;
-        const py = p.y + my * 18 * p.depth;
+        const depthParallax = 18 * p.depth;
+        const drawSize = p.size * p.depth * (1 + Math.abs(mx) * 0.03 + Math.abs(my) * 0.03);
+        const px = p.x + mx * depthParallax;
+        const py = p.y + my * depthParallax - sy * 12 * p.depth;
 
         fctx.save();
         fctx.globalAlpha = Math.min(0.32, p.a + 0.03);
@@ -425,6 +434,7 @@
 
     mouse.x += (mouse.tx - mouse.x) * 0.06;
     mouse.y += (mouse.ty - mouse.y) * 0.06;
+    scrollState.y += (scrollState.ty - scrollState.y) * 0.08;
 
     ctx.clearRect(0, 0, w, h);
     drawBackground();
