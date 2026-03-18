@@ -9,8 +9,8 @@
     content="G E N E X تبني أنظمة ذكاء اصطناعي سيادية، وأتمتة متقدمة، وبنية تشغيلية رقمية تتجاوز النماذج التقليدية."
   />
 
-  <link rel="stylesheet" href="./assets/styles.css?v=9403" />
-  <link rel="stylesheet" href="./assets/genex-fx.css?v=9403" />
+  <link rel="stylesheet" href="./assets/styles.css?v=9501" />
+  <link rel="stylesheet" href="./assets/genex-fx.css?v=9501" />
 
   <style>
     :root{
@@ -95,11 +95,16 @@
       right:0;
       left:0;
       height:72px;
-      z-index:1000;
+      z-index:5000;
       background:rgba(0,0,0,.28);
       border-bottom:1px solid rgba(255,255,255,.05);
       backdrop-filter:blur(12px);
       -webkit-backdrop-filter:blur(12px);
+    }
+
+    .site-header,
+    .site-header *{
+      pointer-events:auto;
     }
 
     .site-header-inner{
@@ -193,6 +198,7 @@
       -webkit-tap-highlight-color:transparent;
       position:relative;
       box-shadow:0 8px 24px rgba(0,0,0,.18);
+      z-index:5002;
     }
 
     .mobile-toggle .line{
@@ -202,22 +208,14 @@
       background:#fff;
       border-radius:999px;
       display:block;
-      transition:transform .25s ease, opacity .25s ease, top .25s ease;
       left:50%;
       transform:translateX(-50%);
+      transition:top .25s ease, transform .25s ease, opacity .25s ease;
     }
 
-    .mobile-toggle .line-1{
-      top:18px;
-    }
-
-    .mobile-toggle .line-2{
-      top:25px;
-    }
-
-    .mobile-toggle .line-3{
-      top:32px;
-    }
+    .mobile-toggle .line-1{ top:18px; }
+    .mobile-toggle .line-2{ top:25px; }
+    .mobile-toggle .line-3{ top:32px; }
 
     .mobile-toggle.active .line-1{
       top:25px;
@@ -238,7 +236,7 @@
       top:84px;
       right:16px;
       left:16px;
-      z-index:1200;
+      z-index:5001;
       display:none;
       flex-direction:column;
       gap:10px;
@@ -742,8 +740,6 @@
       to{opacity:1;transform:translateY(0)}
     }
 
-    /* ===== Responsive ===== */
-
     @media (max-width:1100px){
       .hero-grid,
       .grid-3,
@@ -797,22 +793,11 @@
         border-radius:16px;
       }
 
-      .mobile-toggle .line-1{
-        top:16px;
-      }
+      .mobile-toggle .line-1{ top:16px; }
+      .mobile-toggle .line-2{ top:23px; }
+      .mobile-toggle .line-3{ top:30px; }
 
-      .mobile-toggle .line-2{
-        top:23px;
-      }
-
-      .mobile-toggle .line-3{
-        top:30px;
-      }
-
-      .mobile-toggle.active .line-1{
-        top:23px;
-      }
-
+      .mobile-toggle.active .line-1,
       .mobile-toggle.active .line-3{
         top:23px;
       }
@@ -886,124 +871,15 @@
         margin:-12px 0 0;
       }
     }
-    /* ===== GENEX FINAL MENU OVERRIDE ===== */
-.site-header,
-.site-header *{
-  pointer-events:auto;
-}
 
-.site-header{
-  z-index:5000 !important;
-}
-
-.site-header-inner{
-  direction:rtl !important;
-}
-
-.header-brand{
-  display:flex !important;
-  align-items:center !important;
-  gap:12px !important;
-}
-
-.header-actions{
-  display:flex !important;
-  align-items:center !important;
-  gap:12px !important;
-}
-
-.mobile-toggle{
-  width:52px !important;
-  height:52px !important;
-  min-width:52px !important;
-  min-height:52px !important;
-  display:flex !important;
-  align-items:center !important;
-  justify-content:center !important;
-  position:relative !important;
-  z-index:5002 !important;
-  pointer-events:auto !important;
-}
-
-.mobile-toggle .line{
-  position:absolute !important;
-  left:50% !important;
-  width:20px !important;
-  height:2px !important;
-  border-radius:999px !important;
-  background:#fff !important;
-  transform:translateX(-50%) !important;
-  transition:top .25s ease, transform .25s ease, opacity .25s ease !important;
-}
-
-.mobile-toggle .line-1{ top:18px !important; }
-.mobile-toggle .line-2{ top:25px !important; }
-.mobile-toggle .line-3{ top:32px !important; }
-
-.mobile-toggle.active .line-1{
-  top:25px !important;
-  transform:translateX(-50%) rotate(45deg) !important;
-}
-.mobile-toggle.active .line-2{
-  opacity:0 !important;
-}
-.mobile-toggle.active .line-3{
-  top:25px !important;
-  transform:translateX(-50%) rotate(-45deg) !important;
-}
-
-.mobile-nav{
-  position:fixed !important;
-  top:84px !important;
-  right:16px !important;
-  left:16px !important;
-  z-index:5001 !important;
-  display:none !important;
-  flex-direction:column !important;
-  gap:10px !important;
-  opacity:0 !important;
-  visibility:hidden !important;
-  pointer-events:none !important;
-  transform:translateY(-10px) !important;
-}
-
-.mobile-nav.open{
-  display:flex !important;
-  opacity:1 !important;
-  visibility:visible !important;
-  pointer-events:auto !important;
-  transform:translateY(0) !important;
-}
-
-#backFxWrap,
-#sceneWrap,
-#frontFxWrap,
-#backFxCanvas,
-#frontFxCanvas{
-  pointer-events:none !important;
-}
-
-@media (max-width:980px){
-  .mobile-toggle{
-    width:48px !important;
-    height:48px !important;
-    min-width:48px !important;
-    min-height:48px !important;
-  }
-
-  .mobile-toggle .line-1{ top:16px !important; }
-  .mobile-toggle .line-2{ top:23px !important; }
-  .mobile-toggle .line-3{ top:30px !important; }
-
-  .mobile-toggle.active .line-1,
-  .mobile-toggle.active .line-3{
-    top:23px !important;
-  }
-
-  .mobile-nav{
-    top:80px !important;
-  }
-}
+    /* منع الخلفية من خطف الضغط */
+    #backFxWrap,
+    #sceneWrap,
+    #frontFxWrap,
+    #backFxCanvas,
+    #frontFxCanvas{
+      pointer-events:none !important;
+    }
   </style>
 </head>
 <body data-page="index" data-intro="true" data-music="true">
@@ -1050,7 +926,7 @@
             <button type="button" data-lang="ar" class="active">AR</button>
           </div>
 
-          <button class="mobile-toggle" id="mobileToggle" aria-label="Menu" type="button">
+          <button class="mobile-toggle" id="mobileToggle" aria-label="Menu" aria-expanded="false" type="button">
             <span class="line line-1"></span>
             <span class="line line-2"></span>
             <span class="line line-3"></span>
@@ -1286,48 +1162,48 @@
     })();
   </script>
 
+  <script src="./assets/genex-fx.js?v=9501"></script>
+  <script src="./assets/genex-engine-v2.js?v=9501"></script>
+
   <script>
-window.addEventListener("load", function () {
-  const toggle = document.getElementById("mobileToggle");
-  const nav = document.getElementById("mobileNav");
+    window.addEventListener("load", function () {
+      const toggle = document.getElementById("mobileToggle");
+      const nav = document.getElementById("mobileNav");
+      if (!toggle || !nav) return;
 
-  if (!toggle || !nav) return;
+      const closeMenu = () => {
+        nav.classList.remove("open");
+        toggle.classList.remove("active");
+        toggle.setAttribute("aria-expanded", "false");
+      };
 
-  const closeMenu = () => {
-    nav.classList.remove("open");
-    toggle.classList.remove("active");
-    toggle.setAttribute("aria-expanded", "false");
-  };
+      const openMenu = () => {
+        nav.classList.add("open");
+        toggle.classList.add("active");
+        toggle.setAttribute("aria-expanded", "true");
+      };
 
-  const openMenu = () => {
-    nav.classList.add("open");
-    toggle.classList.add("active");
-    toggle.setAttribute("aria-expanded", "true");
-  };
+      toggle.onclick = function (e) {
+        e.preventDefault();
+        e.stopPropagation();
 
-  toggle.setAttribute("aria-expanded", "false");
+        if (nav.classList.contains("open")) closeMenu();
+        else openMenu();
+      };
 
-  toggle.onclick = function (e) {
-    e.preventDefault();
-    e.stopPropagation();
+      nav.querySelectorAll("a").forEach((link) => {
+        link.onclick = function () {
+          closeMenu();
+        };
+      });
 
-    if (nav.classList.contains("open")) closeMenu();
-    else openMenu();
-  };
-
-  nav.querySelectorAll("a").forEach((link) => {
-    link.onclick = function () {
-      closeMenu();
-    };
-  });
-
-  document.addEventListener("click", function (e) {
-    if (!nav.contains(e.target) && !toggle.contains(e.target)) {
-      closeMenu();
-    }
-  }, true);
-});
-</script>
+      document.addEventListener("click", function (e) {
+        if (!nav.contains(e.target) && !toggle.contains(e.target)) {
+          closeMenu();
+        }
+      }, true);
+    });
+  </script>
 
   <script>
     (function () {
@@ -1352,8 +1228,5 @@ window.addEventListener("load", function () {
       intro.addEventListener("click", closeIntro, { once: true });
     })();
   </script>
-
-  <script src="./assets/genex-fx.js?v=9403"></script>
-  <script src="./assets/genex-engine-v2.js?v=9403"></script>
 </body>
 </html>
