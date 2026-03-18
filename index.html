@@ -475,6 +475,112 @@ html[lang="en"] .hero-orb img{
         font-size:16px !important;
       }
     }
+    /* الهيكل العام */
+.site-header{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:72px;
+  z-index:1000;
+
+  backdrop-filter:blur(12px);
+  background:rgba(0,0,0,0.25);
+  border-bottom:1px solid rgba(255,255,255,0.05);
+}
+
+/* توزيع العناصر */
+.site-header-inner{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  height:100%;
+  padding:0 14px;
+}
+
+/* اليسار */
+.header-left{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+.menu-btn{
+  background:rgba(255,255,255,0.08);
+  border:none;
+  color:#fff;
+  font-size:18px;
+  width:42px;
+  height:42px;
+  border-radius:12px;
+}
+
+/* اللغة */
+.lang-switch{
+  display:flex;
+  background:rgba(255,255,255,0.06);
+  border-radius:12px;
+  padding:3px;
+}
+
+.lang{
+  border:none;
+  background:transparent;
+  color:#aaa;
+  padding:6px 10px;
+  border-radius:10px;
+  font-size:13px;
+}
+
+.lang.active{
+  background:rgba(255,255,255,0.15);
+  color:#fff;
+}
+
+/* الوسط (G E N E X) */
+.header-center{
+  position:absolute;
+  left:50%;
+  transform:translateX(-50%);
+}
+
+.brand-text{
+  color:#fff;
+  font-size:18px;
+  letter-spacing:6px;
+  font-weight:500;
+}
+
+/* اليمين (الشعار) */
+.header-right{
+  display:flex;
+  align-items:center;
+  height:100%;
+}
+
+.header-right img{
+  height:70%;
+  max-height:56px;
+  width:auto;
+  object-fit:contain;
+}
+
+/* موبايل */
+@media (max-width:768px){
+
+  .site-header{
+    height:64px;
+  }
+
+  .brand-text{
+    font-size:16px;
+    letter-spacing:5px;
+  }
+
+  .header-right img{
+    max-height:48px;
+  }
+}
   </style>
 </head>
 <body data-page="index" data-intro="true" data-music="true">
@@ -509,12 +615,30 @@ html[lang="en"] .hero-orb img{
 
   <div class="genex-page-shell">
     <header class="site-header">
-      <div class="container site-header-inner">
-        <a class="brand" href="./index.html">
-          <img src="./assets/logo.png" alt="GENEX Logo" />
-          <span>G E N E X</span>
-        </a>
+  <div class="site-header-inner">
 
+    <!-- يسار: القائمة + اللغة -->
+    <div class="header-left">
+      <button class="menu-btn">☰</button>
+
+      <div class="lang-switch">
+        <button class="lang active">AR</button>
+        <button class="lang">EN</button>
+      </div>
+    </div>
+
+    <!-- وسط: الهوية -->
+    <div class="header-center">
+      <span class="brand-text">G E N E X</span>
+    </div>
+
+    <!-- يمين: الشعار -->
+    <div class="header-right">
+      <img src="./assets/logo.png" alt="GENEX Logo">
+    </div>
+
+  </div>
+</header>
         <nav class="desktop-nav">
           <a href="./index.html" class="active" data-i18n="nav_home">الرئيسية</a>
           <a href="./services.html" data-i18n="nav_services">الخدمات</a>
