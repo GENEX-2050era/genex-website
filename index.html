@@ -824,6 +824,121 @@
     margin:-12px 0 0;
   }
 }
+   /* ===== FINAL HEADER PATCH ===== */
+
+.site-header{
+  position:fixed;
+  top:0;
+  right:0;
+  left:0;
+  height:72px;
+  z-index:1000;
+  background:rgba(0,0,0,.28);
+  border-bottom:1px solid rgba(255,255,255,.05);
+  backdrop-filter:blur(12px);
+  -webkit-backdrop-filter:blur(12px);
+}
+
+.site-header-inner{
+  height:100%;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:14px;
+  direction:ltr;
+}
+
+.header-brand{
+  display:flex !important;
+  flex-direction:row !important;
+  align-items:center !important;
+  justify-content:flex-end;
+  gap:12px;
+  flex-shrink:0;
+  text-decoration:none;
+  color:inherit;
+  white-space:nowrap;
+}
+
+.header-logo{
+  width:auto !important;
+  height:58px !important;
+  object-fit:contain;
+  display:block;
+  flex-shrink:0;
+}
+
+.brand-text{
+  display:block !important;
+  color:#fff;
+  font-size:18px;
+  font-weight:600;
+  letter-spacing:7px;
+  line-height:1;
+  white-space:nowrap;
+}
+
+.header-actions{
+  display:flex !important;
+  align-items:center !important;
+  gap:12px;
+  flex-shrink:0;
+}
+
+.lang-switch{
+  display:flex;
+  align-items:center;
+  gap:0;
+  padding:4px;
+  border-radius:18px;
+  background:rgba(255,255,255,.04);
+  border:1px solid rgba(255,255,255,.06);
+  box-shadow:0 8px 24px rgba(0,0,0,.18);
+}
+
+.lang-switch button{
+  border:none;
+  background:transparent;
+  color:#fff;
+  min-width:54px;
+  height:44px;
+  padding:0 14px;
+  border-radius:14px;
+  font-size:15px;
+  font-weight:700;
+  cursor:pointer;
+  -webkit-tap-highlight-color:transparent;
+}
+
+.lang-switch button.active{
+  background:rgba(255,255,255,.08);
+}
+
+.mobile-toggle{
+  width:44px !important;
+  height:44px !important;
+  min-width:44px;
+  min-height:44px;
+  border:none;
+  border-radius:14px;
+  background:rgba(255,255,255,.04);
+  border:1px solid rgba(255,255,255,.06);
+  display:flex !important;
+  flex-direction:column !important;
+  align-items:center !important;
+  justify-content:center !important;
+  gap:5px !important;
+  cursor:pointer;
+  -webkit-tap-highlight-color:transparent;
+  padding:0;
+  position:relative;
+}
+
+.mobile-toggle .line{
+  width:20px !important;
+  height:2px !important;
+  background:#fff !important;
+  border-radius:999px; 
   </style>
 </head>
 <body data-page="index" data-intro="true" data-music="true">
