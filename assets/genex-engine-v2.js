@@ -22,6 +22,15 @@
     ty: window.scrollY || 0
   };
 
+  const scene = {
+    x: w * 0.5,
+    y: h * 0.35,
+    tx: w * 0.5,
+    ty: h * 0.35,
+    intensity: 0,
+    tint: 0.4
+  };
+
   const logo = new Image();
   let logoReady = false;
   logo.onload = () => { logoReady = true; };
@@ -78,9 +87,44 @@
     return Math.max(min, Math.min(max, v));
   }
 
-  function pageProgress() {
-    const maxScroll = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
-    return clamp(scrollState.y / maxScroll, 0, 1);
+  function getActiveSectionInfo() {
+    const candidates = [
+      { el: document.querySelector(".hero"), tint: 0.25, power: 1.0 },
+      { el: document.querySelector(".stats"), tint: 0.45, power: 0.9 },
+      { el: document.querySelector(".grid-3"), tint: 0.72, power: 1.05 },
+      { el: document.querySelector(".cta"), tint: 0.95, power: 1.15 }
+    ].filter(item => item.el);
+
+    let best = null;
+    let bestScore = -Infinity;
+
+    for (const item of candidates) {
+      const rect = item.el.getBoundingClientRect();
+      const cx = rect.left + rect.width / 2;
+      const cy = rect.top + rect.height / 2;
+      const dx = Math.abs(cx - w / 2) / w;
+      const dy = Math.abs(cy - h / 2) / h;
+      const visible = Math.max(0, Math.min(rect.bottom, h) - Math.max(rect.top, 0));
+      const visRatio = clamp(visible / Math.max(1, Math.min(h, rect.height)), 0, 1);
+      const score = visRatio * 1.8 - dx * 0.6 - dy * 1.1;
+
+      if (score > bestScore) {
+        bestScore = score;
+        best = {
+          x: cx,
+          y: cy,
+          tint: item.tint,
+          intensity: clamp(visRatio * item.power, 0, 1)
+        };
+      }
+    }
+
+    return best || {
+      x: w * 0.5,
+      y: h * 0.35,
+      tint: 0.4,
+      intensity: 0.35
+    };
   }
 
   const stars = Array.from({ length: 34 }, (_, i) => ({
@@ -140,9 +184,7 @@
   ].map(r => ({ ...r, x: r.x * w, y: r.y * h }));
 
   function drawBackground(time) {
-    const progress = pageProgress();
     const pulse = 0.5 + Math.sin(time * 0.00035) * 0.5;
-    const redBoost = 0.034 + progress * 0.018;
 
     const g = ctx.createLinearGradient(0, 0, 0, h);
     g.addColorStop(0, "#02030a");
@@ -151,15 +193,26 @@
     ctx.fillStyle = g;
     ctx.fillRect(0, 0, w, h);
 
-    const subtle = ctx.createRadialGradient(w * 0.5, h * 0.45, 0, w * 0.5, h * 0.45, Math.max(w, h) * 0.8);
-    subtle.addColorStop(0, `rgba(110,12,20,${redBoost + pulse * 0.01})`);
-    subtle.addColorStop(0.6, `rgba(60,8,16,${0.014 + progress * 0.008})`);
-    subtle.addColorStop(1, "rgba(0,0,0,0)");
-    ctx.fillStyle = subtle;
+    const baseGlow = ctx.createRadialGradient(
+      scene.x,
+      scene.y,
+      0,
+      scene.x,
+      scene.y,
+      Math.max(w, h) * (0.28 + scene.intensity * 0.14)
+    );
+
+    const redAlpha = 0.028 + scene.intensity * 0.035 + pulse * 0.01;
+    const whiteAlpha = 0.018 + scene.intensity * 0.02;
+
+    baseGlow.addColorStop(0, `rgba(120,16,26,${redAlpha})`);
+    baseGlow.addColorStop(0.35, `rgba(80,10,18,${whiteAlpha})`);
+    baseGlow.addColorStop(1, "rgba(0,0,0,0)");
+    ctx.fillStyle = baseGlow;
     ctx.fillRect(0, 0, w, h);
 
-    const light = ctx.createRadialGradient(mouse.x, mouse.y, 0, mouse.x, mouse.y, Math.max(w, h) * 0.45);
-    light.addColorStop(0, `rgba(255,255,255,${0.024 + pulse * 0.012})`);
+    const light = ctx.createRadialGradient(mouse.x, mouse.y, 0, mouse.x, mouse.y, Math.max(w, h) * 0.42);
+    light.addColorStop(0, `rgba(255,255,255,${0.02 + scene.intensity * 0.018})`);
     light.addColorStop(1, "rgba(0,0,0,0)");
     ctx.globalCompositeOperation = "soft-light";
     ctx.fillStyle = light;
@@ -168,14 +221,13 @@
   }
 
   function drawFog(time) {
-    const progress = pageProgress();
     const breath = 1 + Math.sin(time * 0.00028) * 0.04;
-    const depthBoost = 1 + progress * 0.12;
+    const localBoost = 1 + scene.intensity * 0.18;
 
     const fogs = [
-      { x: w * 0.20, y: h * 0.20, r: 150 * breath * depthBoost, a: 0.016, tone: "white" },
-      { x: w * 0.80, y: h * 0.28, r: 180 * breath * depthBoost, a: 0.015, tone: "red" },
-      { x: w * 0.54, y: h * 0.74, r: 220 * breath * depthBoost, a: 0.013, tone: "white" }
+      { x: scene.x * 0.72 + w * 0.14, y: scene.y * 0.70 + h * 0.10, r: 150 * breath * localBoost, a: 0.015, tone: "white" },
+      { x: scene.x * 0.82 + w * 0.10, y: scene.y * 0.40 + h * 0.18, r: 180 * breath * localBoost, a: 0.014, tone: "red" },
+      { x: scene.x * 0.55 + w * 0.22, y: scene.y * 0.96 + h * 0.10, r: 220 * breath * localBoost, a: 0.012, tone: "white" }
     ];
 
     ctx.save();
@@ -202,8 +254,6 @@
 
     const mx = (mouse.x - w * 0.5) / w;
     const my = (mouse.y - h * 0.5) / h;
-    const sy = Math.min(1, scrollState.y / Math.max(1, h * 1.2));
-    const progress = pageProgress();
 
     stars.forEach((s, i) => {
       s.x += s.vx;
@@ -212,12 +262,15 @@
       wrap(s, 12);
 
       const twinkle = 0.82 + Math.sin(s.tw + time * 0.0012) * 0.18;
-      const px = s.x + mx * (8 + progress * 4);
-      const py = s.y + my * (8 + progress * 4) - sy * 6;
+      const sx = (scene.x - w * 0.5) / w;
+      const sy = (scene.y - h * 0.5) / h;
+
+      const px = s.x + mx * 8 + sx * 10 * scene.intensity;
+      const py = s.y + my * 8 + sy * 10 * scene.intensity;
 
       ctx.beginPath();
       ctx.arc(px, py, s.r * twinkle, 0, Math.PI * 2);
-      ctx.fillStyle = `rgba(255,255,255,${s.a * twinkle})`;
+      ctx.fillStyle = `rgba(255,255,255,${(s.a + scene.intensity * 0.02) * twinkle})`;
       ctx.fill();
 
       if (i % 12 === 0) {
@@ -311,8 +364,8 @@
 
     const mx = (mouse.x - w * 0.5) / w;
     const my = (mouse.y - h * 0.5) / h;
-    const sy = Math.min(1, scrollState.y / Math.max(1, h * 1.2));
-    const progress = pageProgress();
+    const sx = (scene.x - w * 0.5) / w;
+    const sy = (scene.y - h * 0.5) / h;
 
     planets.forEach((p, i) => {
       p.vx += Math.sin(time * 0.00025 + i) * p.ax;
@@ -328,14 +381,14 @@
       p.y += p.vy;
       wrap(p, p.r);
 
-      const focusBoost = 1 + ((Math.abs(mx) + Math.abs(my)) * (0.04 + progress * 0.02) * p.depth);
+      const localFocus = 1 + scene.intensity * 0.08;
       const breathe = 1 + Math.sin(time * 0.00045 + p.pulse) * 0.012;
-      p.scale += ((focusBoost * breathe) - p.scale) * 0.04;
+      p.scale += ((localFocus * breathe) - p.scale) * 0.04;
 
-      const px = p.x + mx * (42 + progress * 16) * p.depth;
-      const py = p.y + my * (42 + progress * 16) * p.depth - sy * 14 * p.depth;
-      const pr = p.r * p.scale * (1 + progress * 0.035);
-      const glowBoost = (Math.sin(time * 0.0005 + i) * 0.5 + 0.5) * (0.005 + progress * 0.004);
+      const px = p.x + mx * 42 * p.depth + sx * 44 * p.depth * scene.intensity;
+      const py = p.y + my * 42 * p.depth + sy * 44 * p.depth * scene.intensity;
+      const pr = p.r * p.scale * (1 + scene.intensity * 0.035);
+      const glowBoost = (Math.sin(time * 0.0005 + i) * 0.5 + 0.5) * (0.005 + scene.intensity * 0.01);
 
       drawPlanetBody(px, py, pr, p.tone, glowBoost);
     });
@@ -349,31 +402,31 @@
 
     const mx = (mouse.x - w * 0.5) / w;
     const my = (mouse.y - h * 0.5) / h;
-    const sy = Math.min(1, scrollState.y / Math.max(1, h * 1.2));
-    const progress = pageProgress();
-    const pulse = 1 + Math.sin(time * 0.0004) * 0.01;
+    const sx = (scene.x - w * 0.5) / w;
+    const sy = (scene.y - h * 0.5) / h;
+    const pulse = 1 + Math.sin(time * 0.0004) * (0.01 + scene.intensity * 0.02);
 
     rings.forEach((r, idx) => {
       r.x += r.vx;
       r.y += r.vy;
-      r.rot += r.rotSpeed * (1 + progress * 0.25);
+      r.rot += r.rotSpeed * (1 + scene.intensity * 0.8);
       wrap(r, r.rx + 40);
 
-      const px = r.x + mx * (24 + progress * 10) * r.depth;
-      const py = r.y + my * (24 + progress * 10) * r.depth - sy * 10 * r.depth;
+      const px = r.x + mx * 24 * r.depth + sx * 34 * r.depth * scene.intensity;
+      const py = r.y + my * 24 * r.depth + sy * 34 * r.depth * scene.intensity;
 
       ctx.save();
       ctx.translate(px, py);
       ctx.rotate(r.rot);
 
-      ctx.strokeStyle = `rgba(255,255,255,${0.085 + progress * 0.02 + Math.sin(time * 0.0005 + idx) * 0.01})`;
-      ctx.lineWidth = 2.4;
+      ctx.strokeStyle = `rgba(255,255,255,${0.085 + scene.intensity * 0.06 + Math.sin(time * 0.0005 + idx) * 0.01})`;
+      ctx.lineWidth = 2.4 + scene.intensity * 0.7;
       ctx.beginPath();
       ctx.ellipse(0, 0, r.rx * pulse, r.ry * pulse, 0, 0, Math.PI * 2);
       ctx.stroke();
 
-      ctx.strokeStyle = `rgba(96,12,20,${0.065 + progress * 0.025})`;
-      ctx.lineWidth = 1.5;
+      ctx.strokeStyle = `rgba(96,12,20,${0.065 + scene.intensity * 0.04})`;
+      ctx.lineWidth = 1.5 + scene.intensity * 0.4;
       ctx.beginPath();
       ctx.ellipse(0, 0, r.rx * 0.84 * pulse, r.ry * 0.72 * pulse, 0, 0, Math.PI * 2);
       ctx.stroke();
@@ -391,8 +444,8 @@
 
     const mx = (mouse.x - w * 0.5) / w;
     const my = (mouse.y - h * 0.5) / h;
-    const sy = Math.min(1, scrollState.y / Math.max(1, h * 1.2));
-    const progress = pageProgress();
+    const sx = (scene.x - w * 0.5) / w;
+    const sy = (scene.y - h * 0.5) / h;
 
     particles.forEach((p, idx) => {
       const dx = mouse.x - p.x;
@@ -411,14 +464,14 @@
       wrap(p, 20);
 
       const pulse = 0.92 + (Math.sin(time * 0.001 + idx) * 0.08);
-      const px = p.x + mx * (10 + progress * 5);
-      const py = p.y + my * (10 + progress * 5) - sy * 8;
+      const px = p.x + mx * 10 + sx * 16 * scene.intensity;
+      const py = p.y + my * 10 + sy * 16 * scene.intensity;
 
       fctx.beginPath();
-      fctx.arc(px, py, p.r * pulse, 0, Math.PI * 2);
+      fctx.arc(px, py, p.r * pulse * (1 + scene.intensity * 0.08), 0, Math.PI * 2);
       fctx.fillStyle = p.hue === "red"
-        ? `rgba(90,10,18,${p.a + progress * 0.008})`
-        : `rgba(255,255,255,${p.a + progress * 0.01})`;
+        ? `rgba(90,10,18,${p.a + scene.intensity * 0.02})`
+        : `rgba(255,255,255,${p.a + scene.intensity * 0.024})`;
       fctx.fill();
     });
 
@@ -440,14 +493,14 @@
         p.rot += p.rotSpeed;
         wrap(p, 70);
 
-        const depthParallax = (18 + progress * 8) * p.depth;
-        const cinematicPulse = 1 + Math.sin(time * 0.0009 + idx) * 0.025;
-        const drawSize = p.size * p.depth * cinematicPulse * (1 + Math.abs(mx) * 0.03 + Math.abs(my) * 0.03 + progress * 0.025);
-        const px = p.x + mx * depthParallax;
-        const py = p.y + my * depthParallax - sy * 12 * p.depth;
+        const depthParallax = (18 + scene.intensity * 14) * p.depth;
+        const cinematicPulse = 1 + Math.sin(time * 0.0009 + idx) * (0.025 + scene.intensity * 0.02);
+        const drawSize = p.size * p.depth * cinematicPulse * (1 + scene.intensity * 0.08);
+        const px = p.x + mx * depthParallax + sx * 20 * p.depth * scene.intensity;
+        const py = p.y + my * depthParallax + sy * 20 * p.depth * scene.intensity;
 
         fctx.save();
-        fctx.globalAlpha = Math.min(0.34, p.a + 0.03 + progress * 0.03);
+        fctx.globalAlpha = Math.min(0.36, p.a + 0.03 + scene.intensity * 0.08);
         fctx.translate(px, py);
         fctx.rotate(p.rot);
         fctx.drawImage(logo, -drawSize / 2, -drawSize / 2, drawSize, drawSize);
@@ -464,6 +517,14 @@
     mouse.x += (mouse.tx - mouse.x) * 0.06;
     mouse.y += (mouse.ty - mouse.y) * 0.06;
     scrollState.y += (scrollState.ty - scrollState.y) * 0.08;
+
+    const active = getActiveSectionInfo();
+    scene.tx = active.x;
+    scene.ty = active.y;
+    scene.intensity += (active.intensity - scene.intensity) * 0.06;
+    scene.tint += (active.tint - scene.tint) * 0.06;
+    scene.x += (scene.tx - scene.x) * 0.05;
+    scene.y += (scene.ty - scene.y) * 0.05;
 
     ctx.clearRect(0, 0, w, h);
     drawBackground(time);
