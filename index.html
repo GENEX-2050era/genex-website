@@ -10,20 +10,22 @@
 
 <style>
 
+/* ===== BASE ===== */
 body{
   margin:0;
   background:#02030a;
   color:#fff;
   font-family:system-ui;
   padding-top:72px;
+  overflow-x:hidden;
 }
 
 /* ===== HEADER ===== */
 .site-header{
   position:fixed;
   top:0;
-  left:0;
   right:0;
+  left:0;
   height:72px;
   backdrop-filter:blur(12px);
   background:rgba(0,0,0,0.35);
@@ -31,18 +33,17 @@ body{
 }
 
 .site-header-inner{
+  height:100%;
   display:flex;
   align-items:center;
   justify-content:space-between;
-  height:100%;
   padding:0 16px;
 }
 
-/* ترتيب عربي */
 .header-brand{
   display:flex;
   align-items:center;
-  gap:10px;
+  gap:12px;
 }
 
 .header-logo{
@@ -54,17 +55,26 @@ body{
   font-weight:600;
 }
 
+/* ===== ACTIONS ===== */
 .header-actions{
   display:flex;
   align-items:center;
   gap:10px;
 }
 
+.lang-switch{
+  display:flex;
+  background:rgba(255,255,255,.05);
+  border-radius:16px;
+  padding:4px;
+}
+
 .lang-switch button{
-  background:transparent;
   border:none;
+  background:transparent;
   color:#fff;
-  padding:8px 12px;
+  padding:8px 14px;
+  border-radius:12px;
 }
 
 .mobile-toggle{
@@ -77,6 +87,7 @@ body{
   justify-content:center;
   align-items:center;
   gap:4px;
+  border:none;
 }
 
 .mobile-toggle span{
@@ -85,18 +96,17 @@ body{
   background:#fff;
 }
 
-/* ===== HERO ===== */
-
-/* 👇 هنا المسافة الجديدة المهمة */
+/* ===== HERO (المهم هنا 👇) ===== */
 .hero{
-  padding:90px 16px 40px;
+  padding:72px 16px 40px;
 }
 
 .hero-box{
   background:rgba(255,255,255,0.05);
   border-radius:30px;
-  padding:30px;
+  padding:32px;
   backdrop-filter:blur(10px);
+  text-align:right;
 }
 
 .hero h1{
@@ -109,23 +119,22 @@ body{
   line-height:1.8;
 }
 
-.buttons{
+.hero-actions{
   margin-top:20px;
   display:flex;
   gap:10px;
 }
 
 .btn{
-  padding:14px 20px;
+  padding:14px 22px;
   border-radius:20px;
-  border:1px solid rgba(255,255,255,0.1);
+  border:1px solid rgba(255,255,255,.1);
 }
 
 /* ===== CARD ===== */
-
 .card{
   margin:40px 16px;
-  padding:30px;
+  padding:32px;
   border-radius:30px;
   background:rgba(255,255,255,0.04);
   text-align:center;
@@ -134,37 +143,54 @@ body{
 .card img{
   width:120px;
   margin-bottom:10px;
-
-  /* تمركز بصري مضبوط */
-  transform:translateX(14px);
+  transform:translateX(6px); /* تمركز دقيق */
 }
 
 .card h2{
   letter-spacing:10px;
 }
 
-/* ===== MOBILE MENU ===== */
-
+/* ===== MOBILE NAV ===== */
 .mobile-nav{
   position:fixed;
   top:90px;
   right:16px;
   left:16px;
-  background:#111;
+  background:rgba(10,12,20,.95);
   border-radius:20px;
-  padding:10px;
-  display:none;
+  padding:12px;
+  display:flex;
   flex-direction:column;
   gap:10px;
+  opacity:0;
+  visibility:hidden;
+  transform:translateY(-10px);
+  transition:.25s;
+  z-index:999;
 }
 
 .mobile-nav.open{
-  display:flex;
+  opacity:1;
+  visibility:visible;
+  transform:translateY(0);
 }
 
 .mobile-nav a{
-  padding:12px;
+  padding:14px;
   text-align:center;
+  border-radius:14px;
+  background:rgba(255,255,255,.05);
+}
+
+/* ===== MOBILE ===== */
+@media(max-width:768px){
+  .hero{
+    padding:48px 16px 40px;
+  }
+
+  .card img{
+    transform:translateX(4px);
+  }
 }
 
 </style>
@@ -187,7 +213,7 @@ body{
         <button>EN</button>
       </div>
 
-      <button class="mobile-toggle" id="menuBtn">
+      <button class="mobile-toggle" id="mobileToggle">
         <span></span>
         <span></span>
         <span></span>
@@ -198,11 +224,15 @@ body{
 </header>
 
 <!-- MENU -->
-<nav class="mobile-nav" id="menu">
-  <a href="#">الرئيسية</a>
-  <a href="#">الخدمات</a>
-  <a href="#">عن GENEX</a>
+<nav class="mobile-nav" id="mobileNav">
+  <a href="./index.html">الرئيسية</a>
+  <a href="./services.html">الخدمات</a>
+  <a href="./request.html">ابدأ مشروعك</a>
+  <a href="./about.html">عن G E N E X</a>
 </nav>
+
+<!-- BACKGROUND (Engine) -->
+<div id="backFxWrap"><canvas id="backFxCanvas"></canvas></div>
 
 <!-- HERO -->
 <section class="hero">
@@ -210,7 +240,7 @@ body{
     <h1>مرحباً بك في G E N E X</h1>
     <p>حيث لا نتخيل المستقبل فقط بل نبنيه.</p>
 
-    <div class="buttons">
+    <div class="hero-actions">
       <div class="btn">ابدأ مشروعك</div>
       <div class="btn">استكشف الخدمات</div>
     </div>
@@ -226,13 +256,19 @@ body{
 
 <script>
 
-/* ===== MENU FIX ===== */
-const btn = document.getElementById("menuBtn");
-const menu = document.getElementById("menu");
+/* MENU FIX */
+const toggle = document.getElementById("mobileToggle");
+const nav = document.getElementById("mobileNav");
 
-btn.onclick = () => {
-  menu.classList.toggle("open");
+toggle.onclick = () => {
+  nav.classList.toggle("open");
 };
+
+document.addEventListener("click",(e)=>{
+  if(!nav.contains(e.target) && !toggle.contains(e.target)){
+    nav.classList.remove("open");
+  }
+});
 
 </script>
 
