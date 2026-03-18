@@ -232,35 +232,39 @@
     }
 
     .mobile-nav{
-      position:fixed;
-      top:84px;
-      right:16px;
-      left:16px;
-      z-index:5001;
-      display:none;
-      flex-direction:column;
-      gap:10px;
-      padding:14px;
-      border-radius:22px;
-      background:rgba(8,10,18,.96);
-      border:1px solid rgba(255,255,255,.08);
-      box-shadow:0 18px 44px rgba(0,0,0,.30);
-      backdrop-filter:blur(14px);
-      -webkit-backdrop-filter:blur(14px);
-      opacity:0;
-      visibility:hidden;
-      pointer-events:none;
-      transform:translateY(-10px);
-      transition:opacity .25s ease, transform .25s ease, visibility .25s ease;
-    }
+  position:fixed;
+  top:84px;
+  right:16px;
+  left:16px;
 
-    .mobile-nav.open{
-      display:flex;
-      opacity:1;
-      visibility:visible;
-      pointer-events:auto;
-      transform:translateY(0);
-    }
+  z-index:999999 !important; /* أهم سطر */
+
+  display:none;
+  flex-direction:column;
+  gap:10px;
+  padding:14px;
+  border-radius:22px;
+
+  background:rgba(8,10,18,.98);
+  border:1px solid rgba(255,255,255,.08);
+
+  box-shadow:0 18px 44px rgba(0,0,0,.30);
+
+  opacity:0;
+  visibility:hidden;
+  pointer-events:none;
+  transform:translateY(-10px);
+
+  transition:all .25s ease;
+}
+
+.mobile-nav.open{
+  display:flex !important;
+  opacity:1 !important;
+  visibility:visible !important;
+  pointer-events:auto !important;
+  transform:translateY(0);
+}
 
     .mobile-nav a{
       display:flex;
