@@ -143,9 +143,18 @@
   display:block;
   margin:0 auto 18px;
   position:relative;
-  left:-2px;
   z-index:2;
+  transform:translateX(0);
+  transform-origin:center;
   filter:drop-shadow(0 0 12px rgba(255,255,255,.05));
+}
+
+html[lang="ar"] .hero-orb img{
+  transform:translateX(12px);
+}
+
+html[lang="en"] .hero-orb img{
+  transform:translateX(0);
 }
     .hero-orb strong{
   position:relative;
