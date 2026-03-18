@@ -41,6 +41,16 @@
     tPower: 0
   };
 
+  let menuOpen = false;
+
+  window.addEventListener("genex-menu-toggle", (e) => {
+    menuOpen = !!(e && e.detail && e.detail.open);
+    if (menuOpen) {
+      hoverState.active = false;
+      hoverState.tPower = 0;
+    }
+  });
+
   const logo = new Image();
   let logoReady = false;
   logo.onload = () => { logoReady = true; };
@@ -118,6 +128,7 @@
     const targets = document.querySelectorAll(".hero-copy, .hero-orb, .stat, .feature, .cta");
     targets.forEach((el) => {
       el.addEventListener("mouseenter", () => {
+        if (menuOpen) return;
         const rect = el.getBoundingClientRect();
         hoverState.active = true;
         hoverState.tx = rect.left + rect.width / 2;
@@ -126,6 +137,7 @@
       }, { passive: true });
 
       el.addEventListener("mousemove", (e) => {
+        if (menuOpen) return;
         hoverState.active = true;
         hoverState.tx = e.clientX;
         hoverState.ty = e.clientY;
@@ -142,11 +154,13 @@
   window.addEventListener("resize", resize, { passive: true });
 
   window.addEventListener("mousemove", (e) => {
+    if (menuOpen) return;
     mouse.tx = e.clientX;
     mouse.ty = e.clientY;
   }, { passive: true });
 
   window.addEventListener("touchmove", (e) => {
+    if (menuOpen) return;
     const t = e.touches && e.touches[0];
     if (!t) return;
     mouse.tx = t.clientX;
@@ -551,8 +565,11 @@
   function animate(time) {
     requestAnimationFrame(animate);
 
-    mouse.x += (mouse.tx - mouse.x) * 0.06;
-    mouse.y += (mouse.ty - mouse.y) * 0.06;
+    if (!menuOpen) {
+      mouse.x += (mouse.tx - mouse.x) * 0.06;
+      mouse.y += (mouse.ty - mouse.y) * 0.06;
+    }
+
     scrollState.y += (scrollState.ty - scrollState.y) * 0.08;
 
     const active = getActiveSectionInfo();
