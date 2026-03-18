@@ -111,12 +111,9 @@
     }
 
     .header-brand{
-      display:flex;
-      align-items:center;
-      gap:12px;
-      flex-shrink:0;
-    }
-
+  text-decoration:none;
+  color:inherit;
+}
     .header-logo{
       width:auto;
       height:58px;
@@ -185,6 +182,7 @@
   gap:5px;
   cursor:pointer;
   -webkit-tap-highlight-color:transparent;
+  position:relative;
 }
 
 .mobile-toggle .line{
@@ -192,40 +190,22 @@
   height:2px;
   background:#fff;
   border-radius:999px;
-  transition:.3s;
+  display:block;
+  transition:transform .25s ease, opacity .25s ease;
+  transform-origin:center;
 }
 
-/* شكل X */
 .mobile-toggle.active .line:nth-child(1){
   transform:translateY(7px) rotate(45deg);
 }
+
 .mobile-toggle.active .line:nth-child(2){
   opacity:0;
 }
+
 .mobile-toggle.active .line:nth-child(3){
   transform:translateY(-7px) rotate(-45deg);
 }
-    .mobile-nav{
-      position:fixed;
-      top:84px;
-      right:16px;
-      left:16px;
-      z-index:999;
-      display:flex;
-      flex-direction:column;
-      gap:10px;
-      padding:14px;
-      border-radius:22px;
-      background:rgba(8,10,18,.94);
-      border:1px solid rgba(255,255,255,.08);
-      box-shadow:0 18px 44px rgba(0,0,0,.30);
-      backdrop-filter:blur(14px);
-      -webkit-backdrop-filter:blur(14px);
-      opacity:0;
-      visibility:hidden;
-      transform:translateY(-10px);
-      transition:opacity .25s ease, transform .25s ease, visibility .25s ease;
-    }
 
     .mobile-nav.open{
       opacity:1;
@@ -233,18 +213,35 @@
       transform:translateY(0);
     }
 
-    .mobile-nav a{
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      min-height:52px;
-      border-radius:16px;
-      background:rgba(255,255,255,.04);
-      border:1px solid rgba(255,255,255,.06);
-      color:#fff;
-      font-size:16px;
-      font-weight:700;
-    }
+    .mobile-nav{
+  position:fixed;
+  top:84px;
+  right:16px;
+  left:16px;
+  z-index:999;
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+  padding:14px;
+  border-radius:22px;
+  background:rgba(8,10,18,.94);
+  border:1px solid rgba(255,255,255,.08);
+  box-shadow:0 18px 44px rgba(0,0,0,.30);
+  backdrop-filter:blur(14px);
+  -webkit-backdrop-filter:blur(14px);
+  opacity:0;
+  visibility:hidden;
+  pointer-events:none;
+  transform:translateY(-10px);
+  transition:opacity .25s ease, transform .25s ease, visibility .25s ease;
+}
+
+.mobile-nav.open{
+  opacity:1;
+  visibility:visible;
+  pointer-events:auto;
+  transform:translateY(0);
+}
 
     /* ===== Hero ===== */
 
@@ -579,24 +576,26 @@
     }
 
     .intro-core{
-      position:relative;
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-      justify-content:center;
-      text-align:center;
-      width:min(96vw,1200px);
-      padding:20px;
-    }
+  position:relative;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  width:min(96vw,1200px);
+  min-height:100vh;
+  padding:20px;
+}
 
     .intro-logo-wrap{
-      position:relative;
-      width:760px;
-      height:760px;
-      display:grid;
-      place-items:center;
-      margin:0 auto 0;
-    }
+  position:relative;
+  width:760px;
+  height:760px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  margin:0 auto;
+}
 
     .intro-logo-wrap::before,
     .intro-logo-wrap::after{
@@ -653,16 +652,18 @@
     }
 
     .intro-logo{
-      width:560px;
-      height:560px;
-      object-fit:contain;
-      position:relative;
-      z-index:3;
-      filter:
-        drop-shadow(0 0 24px rgba(255,255,255,.10))
-        drop-shadow(0 24px 34px rgba(0,0,0,.28));
-      animation:introLogoFloat 2.8s ease-in-out infinite;
-    }
+  width:560px;
+  height:560px;
+  object-fit:contain;
+  position:relative;
+  z-index:3;
+  display:block;
+  margin:0 auto;
+  filter:
+    drop-shadow(0 0 24px rgba(255,255,255,.10))
+    drop-shadow(0 24px 34px rgba(0,0,0,.28));
+  animation:introLogoFloat 2.8s ease-in-out infinite;
+}
 
     @keyframes introLogoFloat{
       0%,100%{transform:translateY(0) rotate(0deg) scale(1)}
@@ -670,29 +671,30 @@
     }
 
     .intro-wordmark{
-      font-size:54px;
-      font-weight:900;
-      letter-spacing:.18em;
-      line-height:1;
-      margin:-34px 0 0;
-      text-align:center;
-      width:100%;
-      position:relative;
-      z-index:4;
-      color:rgba(255,255,255,.96);
-      background:linear-gradient(90deg, rgba(255,255,255,.66), rgba(255,255,255,1), rgba(255,255,255,.66));
-      background-size:220% auto;
-      -webkit-background-clip:text;
-      background-clip:text;
-      -webkit-text-fill-color:transparent;
-      text-shadow:0 0 14px rgba(255,255,255,.06);
-      opacity:0;
-      transform:translateY(10px);
-      animation:
-        introTextRise .9s ease forwards,
-        introWordShine 2.8s linear infinite;
-      animation-delay:.35s, 1.1s;
-    }
+  font-size:54px;
+  font-weight:900;
+  letter-spacing:.18em;
+  line-height:1;
+  margin:-26px 0 0;
+  padding-inline-start:.18em;
+  text-align:center;
+  width:100%;
+  position:relative;
+  z-index:4;
+  color:rgba(255,255,255,.96);
+  background:linear-gradient(90deg, rgba(255,255,255,.66), rgba(255,255,255,1), rgba(255,255,255,.66));
+  background-size:220% auto;
+  -webkit-background-clip:text;
+  background-clip:text;
+  -webkit-text-fill-color:transparent;
+  text-shadow:0 0 14px rgba(255,255,255,.06);
+  opacity:0;
+  transform:translateY(10px);
+  animation:
+    introTextRise .9s ease forwards,
+    introWordShine 2.8s linear infinite;
+  animation-delay:.35s, 1.1s;
+}
 
     @keyframes introWordShine{
       0%{background-position:0% center}
@@ -803,26 +805,25 @@
       }
 
       .intro-logo-wrap{
-        width:360px;
-        height:360px;
-      }
-
+    width:360px;
+    height:360px;
+  }
       .intro-glow{
-        width:240px;
-        height:240px;
-      }
-
+    width:240px;
+    height:240px;
+  }
       .intro-logo{
-        width:260px;
-        height:260px;
-      }
+    width:260px;
+    height:260px;
+  }
 
-      .intro-wordmark{
-        font-size:32px;
-        letter-spacing:.14em;
-        margin:-18px 0 0;
-      }
-    }
+        .intro-wordmark{
+    font-size:32px;
+    letter-spacing:.14em;
+    padding-inline-start:.14em;
+    margin:-12px 0 0;
+  }
+}
   </style>
 </head>
 <body data-page="index" data-intro="true" data-music="true">
@@ -858,10 +859,10 @@
   <div class="genex-page-shell">
     <header class="site-header">
       <div class="container site-header-inner">
-        <div class="header-brand">
-          <img src="./assets/logo.png" alt="G E N E X Logo" class="header-logo" />
-          <span class="brand-text">G E N E X</span>
-        </div>
+        <a href="./index.html" class="header-brand">
+  <img src="./assets/logo.png" alt="G E N E X Logo" class="header-logo" />
+  <span class="brand-text">G E N E X</span>
+</a>
 
         <div class="header-actions">
           <div class="lang-switch">
@@ -1106,27 +1107,36 @@
   </script>
 
   <script>
-(function(){
+(function () {
   const toggle = document.getElementById("mobileToggle");
   const nav = document.getElementById("mobileNav");
+  if (!toggle || !nav) return;
 
-  if(!toggle || !nav) return;
-
-  toggle.addEventListener("click", function(e){
+  toggle.addEventListener("click", function (e) {
+    e.preventDefault();
     e.stopPropagation();
-
     nav.classList.toggle("open");
     toggle.classList.toggle("active");
   });
 
-  document.addEventListener("click", function(e){
-    if(!nav.contains(e.target) && !toggle.contains(e.target)){
+  document.addEventListener("click", function (e) {
+    const clickedInsideNav = nav.contains(e.target);
+    const clickedToggle = toggle.contains(e.target);
+
+    if (!clickedInsideNav && !clickedToggle) {
       nav.classList.remove("open");
       toggle.classList.remove("active");
     }
   });
+
+  nav.querySelectorAll("a").forEach((link) => {
+    link.addEventListener("click", function () {
+      nav.classList.remove("open");
+      toggle.classList.remove("active");
+    });
+  });
 })();
-  </script>
+</script>
 
   <script>
     (function () {
