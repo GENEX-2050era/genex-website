@@ -1015,6 +1015,67 @@ html[lang="en"] .hero-orb-wordmark{
   position:relative;
   overflow:hidden;
     }
+    /* ===== CINEMATIC FOCUS V2 ===== */
+
+.hero-copy,
+.hero-orb,
+.stat,
+.feature,
+.cta{
+  position:relative;
+  overflow:hidden;
+  isolation:isolate;
+}
+
+.hero-copy::after,
+.hero-orb::after,
+.stat::after,
+.feature::after,
+.cta::after{
+  content:"";
+  position:absolute;
+  inset:-1px;
+  border-radius:inherit;
+  pointer-events:none;
+  opacity:0;
+  transition:opacity .35s ease, transform .35s ease;
+  background:
+    radial-gradient(circle at 50% 50%, rgba(255,255,255,.08), transparent 34%),
+    radial-gradient(circle at 50% 50%, rgba(120,16,28,.10), transparent 52%);
+  transform:scale(.96);
+  z-index:0;
+}
+
+.hero-copy:hover::after,
+.hero-orb:hover::after,
+.stat:hover::after,
+.feature:hover::after,
+.cta:hover::after{
+  opacity:1;
+  transform:scale(1);
+}
+
+.hero-copy > *,
+.hero-orb > *,
+.stat > *,
+.feature > *,
+.cta > *{
+  position:relative;
+  z-index:1;
+}
+    /* ===== STRONGER HOVER RESPONSE ===== */
+
+.hero-copy:hover,
+.hero-orb:hover,
+.stat:hover,
+.feature:hover,
+.cta:hover{
+  transform:translateY(-6px) scale(1.01);
+  border-color:rgba(255,255,255,.14) !important;
+  box-shadow:
+    0 26px 60px rgba(0,0,0,.30),
+    0 0 0 1px rgba(255,255,255,.03) inset;
+                              }
   </style>
 </head>
 <body data-page="index" data-intro="true" data-music="true">
