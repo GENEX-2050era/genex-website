@@ -9,8 +9,8 @@
     content="G E N E X تبني أنظمة ذكاء اصطناعي سيادية، وأتمتة متقدمة، وبنية تشغيلية رقمية تتجاوز النماذج التقليدية."
   />
 
-  <link rel="stylesheet" href="./assets/styles.css?v=9601" />
-  <link rel="stylesheet" href="./assets/genex-fx.css?v=9601" />
+  <link rel="stylesheet" href="./assets/styles.css?v=9702" />
+  <link rel="stylesheet" href="./assets/genex-fx.css?v=9702" />
 
   <style>
     :root{
@@ -32,9 +32,7 @@
       --radius-lg:22px;
     }
 
-    *{
-      box-sizing:border-box;
-    }
+    *{ box-sizing:border-box; }
 
     html,body{
       margin:0;
@@ -95,7 +93,7 @@
       right:0;
       left:0;
       height:72px;
-      z-index:5000;
+      z-index:99999;
       background:rgba(0,0,0,.28);
       border-bottom:1px solid rgba(255,255,255,.05);
       backdrop-filter:blur(12px);
@@ -182,14 +180,19 @@
       background:rgba(255,255,255,.08);
     }
 
-    /* ===== Menu without JS ===== */
+    /* ===== Menu via details / summary ===== */
 
-    .menu-toggle-box{
-      position:absolute;
-      opacity:0;
-      pointer-events:none;
-      width:0;
-      height:0;
+    .mobile-menu{
+      position:relative;
+      z-index:100001;
+    }
+
+    .mobile-menu > summary{
+      list-style:none;
+    }
+
+    .mobile-menu > summary::-webkit-details-marker{
+      display:none;
     }
 
     .mobile-toggle{
@@ -209,7 +212,6 @@
       -webkit-tap-highlight-color:transparent;
       position:relative;
       box-shadow:0 8px 24px rgba(0,0,0,.18);
-      z-index:5002;
     }
 
     .mobile-toggle .line{
@@ -228,42 +230,47 @@
     .mobile-toggle .line-2{ top:25px; }
     .mobile-toggle .line-3{ top:32px; }
 
-    .menu-toggle-box:checked + .mobile-toggle .line-1{
+    .mobile-menu[open] .line-1{
       top:25px;
       transform:translateX(-50%) rotate(45deg);
     }
 
-    .menu-toggle-box:checked + .mobile-toggle .line-2{
+    .mobile-menu[open] .line-2{
       opacity:0;
     }
 
-    .menu-toggle-box:checked + .mobile-toggle .line-3{
+    .mobile-menu[open] .line-3{
       top:25px;
       transform:translateX(-50%) rotate(-45deg);
     }
 
     .mobile-nav{
-      position:fixed;
-      top:84px;
-      right:16px;
-      left:16px;
-      z-index:5001;
+      position:absolute;
+      top:64px;
+      right:0;
+      width:min(320px, calc(100vw - 32px));
       display:flex;
       flex-direction:column;
       gap:10px;
       padding:14px;
       border-radius:22px;
-      background:rgba(8,10,18,.96);
+      background:rgba(8,10,18,.98);
       border:1px solid rgba(255,255,255,.08);
       box-shadow:0 18px 44px rgba(0,0,0,.30);
       backdrop-filter:blur(14px);
       -webkit-backdrop-filter:blur(14px);
-
       opacity:0;
       visibility:hidden;
       pointer-events:none;
       transform:translateY(-10px);
       transition:opacity .25s ease, transform .25s ease, visibility .25s ease;
+    }
+
+    .mobile-menu[open] .mobile-nav{
+      opacity:1;
+      visibility:visible;
+      pointer-events:auto;
+      transform:translateY(0);
     }
 
     .mobile-nav a{
@@ -277,13 +284,6 @@
       color:#fff;
       font-size:16px;
       font-weight:700;
-    }
-
-    .site-header:has(.menu-toggle-box:checked) + .mobile-nav{
-      opacity:1;
-      visibility:visible;
-      pointer-events:auto;
-      transform:translateY(0);
     }
 
     /* ===== Hero ===== */
@@ -751,7 +751,7 @@
       to{opacity:1;transform:translateY(0)}
     }
 
-    /* منع الخلفيات من خطف الضغط */
+    /* منع الخلفية من خطف اللمس */
     #backFxWrap,
     #sceneWrap,
     #frontFxWrap,
@@ -820,13 +820,14 @@
       .mobile-toggle .line-2{ top:23px; }
       .mobile-toggle .line-3{ top:30px; }
 
-      .menu-toggle-box:checked + .mobile-toggle .line-1,
-      .menu-toggle-box:checked + .mobile-toggle .line-3{
+      .mobile-menu[open] .line-1,
+      .mobile-menu[open] .line-3{
         top:23px;
       }
 
       .mobile-nav{
-        top:80px;
+        top:58px;
+        width:min(300px, calc(100vw - 32px));
       }
 
       .hero{
@@ -940,23 +941,24 @@
             <button type="button" data-lang="ar" class="active">AR</button>
           </div>
 
-          <input type="checkbox" id="menuToggleBox" class="menu-toggle-box" />
-          <label class="mobile-toggle" for="menuToggleBox" aria-label="Menu">
-            <span class="line line-1"></span>
-            <span class="line line-2"></span>
-            <span class="line line-3"></span>
-          </label>
+          <details class="mobile-menu">
+            <summary class="mobile-toggle" aria-label="Menu">
+              <span class="line line-1"></span>
+              <span class="line line-2"></span>
+              <span class="line line-3"></span>
+            </summary>
+
+            <nav class="mobile-nav">
+              <a href="./index.html" data-i18n="nav_home">الرئيسية</a>
+              <a href="./services.html" data-i18n="nav_services">الخدمات</a>
+              <a href="./request.html" data-i18n="nav_request">ابدأ مشروعك</a>
+              <a href="./about.html" data-i18n="nav_about">عن G E N E X</a>
+              <a href="./contact.html" data-i18n="nav_contact">تواصل</a>
+            </nav>
+          </details>
         </div>
       </div>
     </header>
-
-    <nav class="mobile-nav">
-      <a href="./index.html" data-i18n="nav_home">الرئيسية</a>
-      <a href="./services.html" data-i18n="nav_services">الخدمات</a>
-      <a href="./request.html" data-i18n="nav_request">ابدأ مشروعك</a>
-      <a href="./about.html" data-i18n="nav_about">عن G E N E X</a>
-      <a href="./contact.html" data-i18n="nav_contact">تواصل</a>
-    </nav>
 
     <main class="genex-page-content">
       <section class="hero">
@@ -1201,7 +1203,7 @@
     })();
   </script>
 
-  <script src="./assets/genex-fx.js?v=9601"></script>
-  <script src="./assets/genex-engine-v2.js?v=9601"></script>
+  <script src="./assets/genex-fx.js?v=9702"></script>
+  <script src="./assets/genex-engine-v2.js?v=9702"></script>
 </body>
 </html>
