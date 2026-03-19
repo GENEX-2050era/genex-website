@@ -434,8 +434,8 @@
       const breathe = 1 + Math.sin(time * 0.00045 + p.pulse) * 0.012;
       p.scale += ((focusBoost * breathe) - p.scale) * 0.05;
 
-      const px = p.x + mx * 42 * p.depth + anchorX * 70 * p.depth * localPower;
-      const py = p.y + my * 42 * p.depth + anchorY * 70 * p.depth * localPower;
+      const px = p.x + mx * 54 * p.depth + anchorX * 82 * p.depth * localPower;
+      const py = p.y + my * 54 * p.depth + anchorY * 82 * p.depth * localPower;
       const pr = p.r * p.scale * (1 + localPower * 0.04);
       const glowBoost = (Math.sin(time * 0.0005 + i) * 0.5 + 0.5) * (0.005 + localPower * 0.014);
 
@@ -544,7 +544,7 @@
         p.rot += p.rotSpeed;
         wrap(p, 70);
 
-        const depthParallax = (18 + power * 18) * p.depth;
+        const depthParallax = (24 + power * 20) * p.depth;
         const cinematicPulse = 1 + Math.sin(time * 0.0009 + idx) * (0.025 + power * 0.028);
         const drawSize = p.size * p.depth * cinematicPulse * (1 + power * 0.10);
         const px = p.x + mx * depthParallax + anchorX * 30 * p.depth * power;
@@ -566,8 +566,8 @@
     requestAnimationFrame(animate);
 
     if (!menuOpen) {
-      mouse.x += (mouse.tx - mouse.x) * 0.06;
-      mouse.y += (mouse.ty - mouse.y) * 0.06;
+      mouse.x += (mouse.tx - mouse.x) * 0.045;
+      mouse.y += (mouse.ty - mouse.y) * 0.045;
     }
 
     scrollState.y += (scrollState.ty - scrollState.y) * 0.08;
