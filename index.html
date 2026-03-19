@@ -964,6 +964,57 @@ html[lang="ar"] .hero-orb-wordmark{
 html[lang="en"] .hero-orb-wordmark{
   left: 0px !important;   /* عدل الرقم هنا للإنجليزي */
 }
+    /* ===== INTERACTIVE CARD DEPTH V1 ===== */
+
+.hero-copy,
+.hero-orb,
+.stat,
+.feature,
+.cta{
+  transition:
+    transform .35s ease,
+    box-shadow .35s ease,
+    border-color .35s ease,
+    background .35s ease;
+  will-change: transform;
+}
+
+.hero-copy:hover,
+.hero-orb:hover,
+.stat:hover,
+.feature:hover,
+.cta:hover{
+  transform: translateY(-4px);
+  box-shadow:
+    0 22px 54px rgba(0,0,0,.28),
+    0 1px 0 rgba(255,255,255,.04) inset;
+  border-color: rgba(255,255,255,.11);
+}
+
+.hero-orb:hover{
+  transform: translateY(-4px) scale(1.01);
+}
+    /* ===== HERO FOCUS GLOW ===== */
+
+.hero-copy::after,
+.hero-orb::before{
+  transition: opacity .35s ease;
+}
+
+.hero-copy:hover::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  border-radius:inherit;
+  pointer-events:none;
+  background: radial-gradient(circle at 50% 0%, rgba(255,255,255,.05), transparent 55%);
+  opacity:1;
+}
+
+.hero-copy{
+  position:relative;
+  overflow:hidden;
+    }
   </style>
 </head>
 <body data-page="index" data-intro="true" data-music="true">
