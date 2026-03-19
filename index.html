@@ -461,7 +461,7 @@
       letter-spacing:.16em;
       padding-inline-start:.16em;
       white-space:nowrap;
-      left: 12px;
+      left: 0px;
     }
 
     .hero-orb span{
@@ -915,6 +915,23 @@
   flex:1;
   min-width:0;
   height:60px;
+}
+    /* ===== HERO BUTTON TEXT ON ONE LINE ===== */
+
+.hero-actions .btn{
+  white-space: nowrap !important;
+  text-wrap: nowrap !important;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-width: 190px !important;
+  padding: 0 20px !important;
+}
+
+@media (max-width:980px){
+  .hero-actions .btn{
+    min-width: 170px !important;
+    font-size: 15px !important;
+  }
 }
   </style>
 </head>
