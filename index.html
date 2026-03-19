@@ -461,7 +461,6 @@
       letter-spacing:.16em;
       padding-inline-start:.16em;
       white-space:nowrap;
-      left: 5px
     }
 
     .hero-orb span{
@@ -933,6 +932,31 @@
     font-size: 15px !important;
   }
 }
+    /* ===== HERO ORB WORDMARK LANGUAGE OFFSET ===== */
+
+.hero-orb-wordmark{
+  position: relative !important;
+  z-index: 2;
+  display: block;
+  width: 100%;
+  text-align: center;
+  margin: 0 0 10px;
+  font-size: 34px;
+  line-height: 1;
+  letter-spacing: .16em;
+  padding-inline-start: .16em;
+  white-space: nowrap !important;
+}
+
+/* العربية فقط */
+html[lang="ar"] .hero-orb-wordmark{
+  left: 5px !important;   /* عدل الرقم هنا للعربي */
+}
+
+/* الإنجليزية فقط */
+html[lang="en"] .hero-orb-wordmark{
+  left: 0px !important;   /* عدل الرقم هنا للإنجليزي */
+}
   </style>
 </head>
 <body data-page="index" data-intro="true" data-music="true">
@@ -1023,7 +1047,7 @@
               <div class="hero-orb-logo-wrap">
                 <img src="./assets/logo.png" alt="G E N E X Logo" />
               </div>
-              <strong>G E N E X</strong>
+              <strong class="hero-orb-wordmark">G E N E X</strong>
               <span data-i18n="hero_badge" data-i18n-html>Sovereign AI Systems<br>Autonomous Infrastructure • Strategic Automation</span>
             </div>
           </div>
