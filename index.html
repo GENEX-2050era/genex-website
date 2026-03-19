@@ -933,6 +933,59 @@
     font-size: 15px !important;
   }
 }
+    /* ===== GENEX WORDMARK SYSTEM ===== */
+
+.genex-word{
+  display:inline-block !important;
+  white-space:nowrap !important;
+  text-wrap:nowrap !important;
+  letter-spacing:.16em !important;
+}
+
+.hero-orb-lockup{
+  position:relative;
+  z-index:2;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  width:100%;
+  margin:0 auto 10px;
+  text-align:center;
+}
+
+.hero-orb-logo-wrap{
+  position:relative !important;
+  left:0 !important;
+  margin:0 auto 12px !important;
+}
+
+.hero-orb-wordmark{
+  position:relative !important;
+  z-index:2 !important;
+  display:block !important;
+  width:auto !important;
+  margin:0 auto !important;
+  text-align:center !important;
+  font-size:34px !important;
+  line-height:1 !important;
+  white-space:nowrap !important;
+  transform:none !important;
+}
+
+.hero-orb > span{
+  margin-top:4px;
+}
+
+@media (max-width:980px){
+  .hero-orb-wordmark{
+    font-size:30px !important;
+  }
+
+  .hero-orb-logo-wrap{
+    margin:0 auto 10px !important;
+  }
+}
   </style>
 </head>
 <body data-page="index" data-intro="true" data-music="true">
@@ -1020,12 +1073,15 @@
 
           <div class="hero-visual">
             <div class="hero-orb genex-panel">
-              <div class="hero-orb-logo-wrap">
-                <img src="./assets/logo.png" alt="G E N E X Logo" />
-              </div>
-              <strong>G E N E X</strong>
-              <span data-i18n="hero_badge" data-i18n-html>Sovereign AI Systems<br>Autonomous Infrastructure • Strategic Automation</span>
-            </div>
+  <div class="hero-orb-lockup">
+    <div class="hero-orb-logo-wrap">
+      <img src="./assets/logo.png" alt="G E N E X Logo" />
+    </div>
+    <strong class="hero-orb-wordmark"><span class="genex-word">G E N E X</span></strong>
+  </div>
+
+  <span data-i18n="hero_badge" data-i18n-html>Sovereign AI Systems<br>Autonomous Infrastructure • Strategic Automation</span>
+</div>
           </div>
         </div>
       </section>
