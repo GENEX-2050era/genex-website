@@ -895,6 +895,30 @@
         margin:-12px 0 0;
       }
     }
+    /* ===== CRITICAL FIX: FORCE HEADER INTERACTION ===== */
+
+#backFxWrap,
+#sceneWrap,
+#frontFxWrap,
+#backFxCanvas,
+#frontFxCanvas,
+canvas {
+  pointer-events: none !important;
+}
+
+/* تأكيد أن الهيدر فوق الجميع */
+.site-header {
+  z-index: 999999 !important;
+}
+
+/* تأكيد أن زر القائمة يستقبل الضغط */
+.mobile-toggle,
+.gx-menu-toggle,
+.mobile-menu,
+.gx-menu-shell {
+  pointer-events: auto !important;
+  z-index: 1000000 !important;
+}
   </style>
 </head>
 <body data-page="index" data-intro="true" data-music="true">
