@@ -632,10 +632,6 @@
   width:min(96vw,1200px);
   min-height:100vh;
   padding:20px;
-
-  /* التحكم بالموقع */
-  transform: translateY(-6%);
-      left: 2px
     }
 
     .intro-logo-wrap{
@@ -646,7 +642,6 @@
       align-items:center;
       justify-content:center;
       margin:0 auto;
-      transform: translateY(-1%);
     }
 
     .intro-logo-wrap::before,
@@ -746,8 +741,6 @@
         introTextRise .9s ease forwards,
         introWordShine 2.8s linear infinite;
       animation-delay:.35s, 1.1s;
-      transform: translateY(-10px);
-      left: -4px
     }
 
     @keyframes introWordShine{
@@ -964,6 +957,49 @@ html[lang="ar"] .hero-orb-wordmark{
 html[lang="en"] .hero-orb-wordmark{
   left: 0px !important;   /* عدل الرقم هنا للإنجليزي */
 }
+    /* ===== INTRO LANGUAGE SPLIT ===== */
+
+/* العربية */
+html[lang="ar"] .intro-core{
+  transform: translateY(-6%); /* عدل بحرية */
+  left: 2px
+}
+
+html[lang="ar"] .intro-logo-wrap{
+  transform: translateY(-1%);
+}
+
+html[lang="ar"] .intro-logo{
+  width: 560px;
+  height: 560px;
+}
+
+html[lang="ar"] .intro-wordmark{
+  font-size: 54px;
+  letter-spacing: .18em;
+  transform: translateY(-10%);
+  left: -4px
+}
+
+
+/* الإنجليزية */
+html[lang="en"] .intro-core{
+  transform: translateY(0%); /* عدل هنا بشكل مستقل */
+}
+
+html[lang="en"] .intro-logo-wrap{
+  transform: translateY(0%);
+}
+
+html[lang="en"] .intro-logo{
+  width: 560px;
+  height: 560px;
+}
+
+html[lang="en"] .intro-wordmark{
+  font-size: 54px;
+  letter-spacing: .18em;
+    }
   </style>
 </head>
 <body data-page="index" data-intro="true" data-music="true">
