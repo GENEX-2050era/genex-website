@@ -947,59 +947,91 @@
   padding-inline-start: .16em;
   white-space: nowrap !important;
 }
-
-/* العربية فقط */
-html[lang="ar"] .hero-orb-wordmark{
-  left: 5px !important;   /* عدل الرقم هنا للعربي */
-}
-
-/* الإنجليزية فقط */
-html[lang="en"] .hero-orb-wordmark{
-  left: 0px !important;   /* عدل الرقم هنا للإنجليزي */
-}
-    /* ===== INTRO LANGUAGE SPLIT ===== */
+   /* ===== INTRO RESET FINAL ===== */
 
 /* العربية */
 html[lang="ar"] .intro-core{
-  transform: translateY(-6%); /* عدل بحرية */
-  left: 2px
+  transform: translateY(-6%) !important;
 }
 
 html[lang="ar"] .intro-logo-wrap{
-  transform: translateY(-1%);
+  width: 760px !important;
+  height: 760px !important;
+  transform: translateY(-2%) !important;
+}
+
+html[lang="ar"] .intro-glow{
+  width: 420px !important;
+  height: 420px !important;
 }
 
 html[lang="ar"] .intro-logo{
-  width: 560px;
-  height: 560px;
+  width: 560px !important;
+  height: 560px !important;
 }
 
 html[lang="ar"] .intro-wordmark{
-  font-size: 54px;
-  letter-spacing: .18em;
-  transform: translateY(-6%);
-  left: -4px
+  font-size: 54px !important;
+  letter-spacing: .18em !important;
+  padding-inline-start: .18em !important;
+  margin: -26px 0 0 !important;
 }
-
 
 /* الإنجليزية */
 html[lang="en"] .intro-core{
-  transform: translateY(0%); /* عدل هنا بشكل مستقل */
+  transform: translateY(-6%) !important;
 }
 
 html[lang="en"] .intro-logo-wrap{
-  transform: translateY(0%);
+  width: 760px !important;
+  height: 760px !important;
+  transform: translateY(-2%) !important;
+}
+
+html[lang="en"] .intro-glow{
+  width: 420px !important;
+  height: 420px !important;
 }
 
 html[lang="en"] .intro-logo{
-  width: 560px;
-  height: 560px;
+  width: 560px !important;
+  height: 560px !important;
 }
 
 html[lang="en"] .intro-wordmark{
-  font-size: 54px;
-  letter-spacing: .18em;
-    }
+  font-size: 54px !important;
+  letter-spacing: .18em !important;
+  padding-inline-start: .18em !important;
+  margin: -26px 0 0 !important;
+}
+
+@media (max-width:980px){
+  html[lang="ar"] .intro-logo-wrap,
+  html[lang="en"] .intro-logo-wrap{
+    width: 360px !important;
+    height: 360px !important;
+  }
+
+  html[lang="ar"] .intro-glow,
+  html[lang="en"] .intro-glow{
+    width: 240px !important;
+    height: 240px !important;
+  }
+
+  html[lang="ar"] .intro-logo,
+  html[lang="en"] .intro-logo{
+    width: 260px !important;
+    height: 260px !important;
+  }
+
+  html[lang="ar"] .intro-wordmark,
+  html[lang="en"] .intro-wordmark{
+    font-size: 32px !important;
+    letter-spacing: .14em !important;
+    padding-inline-start: .14em !important;
+    margin: -12px 0 0 !important;
+  }
+} 
   </style>
 </head>
 <body data-page="index" data-intro="true" data-music="true">
