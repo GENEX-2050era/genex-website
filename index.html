@@ -134,7 +134,47 @@ body{
   margin-top:6px;
   opacity:.7;
 }
+/* ===== FIX GENEX BREAK ===== */
 
+.hero,
+.hero-grid,
+.hero-copy,
+.hero-visual{
+  direction: rtl;
+}
+
+/* نخلي الكرت الثاني LTR */
+.hero-orb{
+  direction: ltr !important;
+}
+
+/* كلمة G E N E X */
+.hero-orb-wordmark{
+  direction: ltr !important;
+  unicode-bidi: isolate;
+  white-space: nowrap !important;
+  display: inline-block;
+}
+
+/* العنوان الرئيسي */
+.hero h1{
+  white-space: normal !important;
+}
+
+/* منع انكسار GENEX داخل العنوان */
+.hero h1 span,
+.hero h1{
+  word-break: keep-all;
+}
+  /* ===== GENEX INLINE FIX ===== */
+
+.genex-inline{
+  direction:ltr !important;
+  unicode-bidi:isolate;
+  white-space:nowrap;
+  display:inline-block;
+  letter-spacing:.16em;
+}
 </style>
 </head>
 
@@ -155,7 +195,9 @@ body{
   <div class="hero-grid">
 
     <div>
-      <h1>مرحباً بك في G E N E X</h1>
+      <h1 data-i18n="hero_title">
+  مرحباً بك في <span class="genex-inline">G E N E X</span>
+</h1>
 
       <div class="hero-actions">
         <a class="btn">ابدأ مشروعك</a>
