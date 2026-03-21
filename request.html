@@ -589,6 +589,15 @@
         min-width:170px !important;
         font-size:15px !important;
       }
+      
+      .genex-word{
+  display:inline-block;
+  white-space:nowrap !important;
+  word-break:keep-all !important;
+  overflow-wrap:normal !important;
+  letter-spacing:.18em;
+  padding-inline-start:.18em;
+      }
     }
   </style>
 </head>
@@ -650,8 +659,12 @@
       <section class="hero">
         <div class="container">
           <div class="hero-copy genex-panel">
-            <div class="eyebrow" data-i18n="eyebrow">G E N E X • السيادة التقنية تبدأ هنا</div>
-            <h1 data-i18n="request_title">ابدأ مشروعك مع G E N E X</h1>
+            <div class="eyebrow" data-i18n="eyebrow_html" data-i18n-html>
+  <span class="genex-word">G E N E X</span> • السيادة التقنية تبدأ هنا
+</div>
+            <h1 data-i18n="request_title_html" data-i18n-html>
+  ابدأ مشروعك مع <span class="genex-word">G E N E X</span>
+</h1>
             <p class="hero-subtitle" data-i18n="request_subtitle">
               شاركنا الفكرة، التحدي، أو البيئة التي تريد رفعها. كل مشروع يبدأ بفهم واضح ثم يتحول إلى تصميم دقيق وتنفيذ موجّه.
             </p>
@@ -756,8 +769,8 @@
           nav_about: "عن G E N E X",
           nav_contact: "تواصل",
           nav_join: "انضم",
-          eyebrow: "G E N E X • السيادة التقنية تبدأ هنا",
-          request_title: "ابدأ مشروعك مع G E N E X",
+          eyebrow_html: '<span class="genex-word">G E N E X</span> • السيادة التقنية تبدأ هنا',
+          request_title_html: 'ابدأ مشروعك مع <span class="genex-word">G E N E X</span>',
           request_subtitle: "شاركنا الفكرة، التحدي، أو البيئة التي تريد رفعها. كل مشروع يبدأ بفهم واضح ثم يتحول إلى تصميم دقيق وتنفيذ موجّه.",
           request_intro_title: "ما الذي نحتاج معرفته؟",
           request_intro_desc: "كلما كانت الصورة أوضح، كان التصميم أعمق والحل أكثر دقة. املأ النموذج بما يكفي لنفهم اتجاهك الحقيقي.",
@@ -794,8 +807,8 @@
           nav_about: "About G E N E X",
           nav_contact: "Contact",
           nav_join: "Join",
-          eyebrow: "G E N E X • Technical Sovereignty Starts Here",
-          request_title: "Start Your Project with G E N E X",
+          eyebrow_html: '<span class="genex-word">G E N E X</span> • Technical Sovereignty Starts Here',
+          request_title_html: 'Start Your Project with <span class="genex-word">G E N E X</span>',
           request_subtitle: "Share the idea, challenge, or environment you want to elevate. Every project begins with clarity, then moves into precise design and focused execution.",
           request_intro_title: "What Do We Need to Know?",
           request_intro_desc: "The clearer the picture, the deeper the design and the more precise the solution. Fill in the form with enough context to help us understand your direction.",
@@ -836,11 +849,16 @@
         localStorage.setItem("genex_lang", lang);
 
         document.querySelectorAll("[data-i18n]").forEach((el) => {
-          const key = el.getAttribute("data-i18n");
-          if (!dict[key]) return;
-          if (el.tagName === "INPUT" || el.tagName === "TEXTAREA") return;
-          el.textContent = dict[key];
-        });
+  const key = el.getAttribute("data-i18n");
+  if (!dict[key]) return;
+  if (el.tagName === "INPUT" || el.tagName === "TEXTAREA") return;
+
+  if (el.hasAttribute("data-i18n-html")) {
+    el.innerHTML = dict[key];
+  } else {
+    el.textContent = dict[key];
+  }
+});
 
         document.querySelectorAll("[data-i18n-placeholder]").forEach((el) => {
           const key = el.getAttribute("data-i18n-placeholder");
