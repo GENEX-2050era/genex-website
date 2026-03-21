@@ -40,7 +40,7 @@
     }
 
     <body data-page="index" data-intro="true" data-music="true">
-
+    
     a{
       color:inherit;
       text-decoration:none;
@@ -1317,7 +1317,36 @@ html[lang="en"] .intro-wordmark{
     }
   </script>
 
-  <script src="./assets/genex-intro.js"></script>
+  <script>
+(function () {
+  function forceHideIntro() {
+    var intro = document.getElementById("genexIntro");
+    if (!intro) return;
+
+    intro.style.transition = "opacity .7s ease";
+    intro.style.opacity = "0";
+    intro.style.pointerEvents = "none";
+
+    setTimeout(function () {
+      intro.style.display = "none";
+      intro.style.visibility = "hidden";
+    }, 700);
+  }
+
+  window.addEventListener("load", function () {
+    setTimeout(forceHideIntro, 2200);
+  });
+
+  document.addEventListener("DOMContentLoaded", function () {
+    var intro = document.getElementById("genexIntro");
+    if (!intro) return;
+    intro.addEventListener("click", forceHideIntro, { once: true });
+  });
+
+  setTimeout(forceHideIntro, 3200);
+})();
+</script>
+  
   <script src="./assets/genex-fx.js?v=9901"></script>
   <script src="./assets/genex-engine-v2.js?v=9901"></script>
 </body>
