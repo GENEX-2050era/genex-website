@@ -1,4 +1,4 @@
-(function () {
+window.addEventListener("DOMContentLoaded", function () {
   const intro = document.getElementById("genexIntro");
   if (!intro) return;
 
@@ -6,7 +6,7 @@
   const introEnabled = document.body.getAttribute("data-intro");
 
   if (page !== "index" || introEnabled !== "true") {
-    intro.style.display = "none";
+    intro.remove();
     return;
   }
 
@@ -15,6 +15,7 @@
   function closeIntro() {
     if (closed) return;
     closed = true;
+
     intro.classList.add("hidden");
 
     setTimeout(function () {
@@ -22,13 +23,6 @@
     }, 900);
   }
 
-  if (document.readyState === "complete") {
-    setTimeout(closeIntro, 2200);
-  } else {
-    window.addEventListener("load", function () {
-      setTimeout(closeIntro, 2200);
-    });
-  }
-
+  setTimeout(closeIntro, 2200);
   intro.addEventListener("click", closeIntro, { once: true });
-})();
+});
