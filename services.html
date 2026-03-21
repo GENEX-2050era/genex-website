@@ -1118,29 +1118,7 @@
     }
   </script>
 
-  <script>
-    (function () {
-      const intro = document.getElementById("genexIntro");
-      if (!intro) return;
-
-      let closed = false;
-
-      const closeIntro = () => {
-        if (closed) return;
-        closed = true;
-        intro.classList.add("hidden");
-        setTimeout(() => {
-          intro.style.display = "none";
-        }, 900);
-      };
-
-      window.addEventListener("load", () => {
-        setTimeout(closeIntro, 2200);
-      });
-
-      intro.addEventListener("click", closeIntro, { once: true });
-    })();
-  </script>
+  <script src="./assets/genex-intro.js"></script>
 
   <script src="./assets/genex-fx.js?v=9901"></script>
   <script src="./assets/genex-engine-v2.js?v=9901"></script>
