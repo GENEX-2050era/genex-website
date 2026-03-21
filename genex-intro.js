@@ -32,3 +32,4 @@ window.addEventListener("DOMContentLoaded", function () {
   // إغلاق عند الضغط
   intro.addEventListener("click", closeIntro);
 });
+alert("intro running");
