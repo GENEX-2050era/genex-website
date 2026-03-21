@@ -2,28 +2,33 @@
   const intro = document.getElementById("genexIntro");
   if (!intro) return;
 
-  const isIntroEnabled = document.body.getAttribute("data-intro") === "true";
-  const isHomePage = document.body.getAttribute("data-page") === "index";
+  const page = document.body.getAttribute("data-page");
+  const introEnabled = document.body.getAttribute("data-intro");
 
-  if (!isIntroEnabled || !isHomePage) {
+  if (page !== "index" || introEnabled !== "true") {
     intro.style.display = "none";
     return;
   }
 
   let closed = false;
 
-  const closeIntro = () => {
+  function closeIntro() {
     if (closed) return;
     closed = true;
     intro.classList.add("hidden");
-    setTimeout(() => {
+
+    setTimeout(function () {
       intro.style.display = "none";
     }, 900);
-  };
+  }
 
-  window.addEventListener("load", () => {
+  if (document.readyState === "complete") {
     setTimeout(closeIntro, 2200);
-  });
+  } else {
+    window.addEventListener("load", function () {
+      setTimeout(closeIntro, 2200);
+    });
+  }
 
   intro.addEventListener("click", closeIntro, { once: true });
 })();
