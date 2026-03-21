@@ -5,8 +5,9 @@ window.addEventListener("DOMContentLoaded", function () {
   const page = document.body.getAttribute("data-page");
   const introEnabled = document.body.getAttribute("data-intro");
 
+  // فقط الرئيسية
   if (page !== "index" || introEnabled !== "true") {
-    intro.remove();
+    intro.style.display = "none";
     return;
   }
 
@@ -16,13 +17,18 @@ window.addEventListener("DOMContentLoaded", function () {
     if (closed) return;
     closed = true;
 
-    intro.classList.add("hidden");
+    // إخفاء مباشر بدون الاعتماد على CSS
+    intro.style.transition = "opacity .6s ease";
+    intro.style.opacity = "0";
 
     setTimeout(function () {
       intro.style.display = "none";
-    }, 900);
+    }, 600);
   }
 
+  // إغلاق تلقائي
   setTimeout(closeIntro, 2200);
-  intro.addEventListener("click", closeIntro, { once: true });
+
+  // إغلاق عند الضغط
+  intro.addEventListener("click", closeIntro);
 });
