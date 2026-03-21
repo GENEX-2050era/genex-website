@@ -39,7 +39,10 @@
       overflow-x:hidden;
     }
 
-    <body data-page="about" data-intro="false" data-music="true">
+    body{
+      font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+      padding-top:72px;
+    }
 
     a{
       color:inherit;
@@ -291,7 +294,7 @@
       display:flex;
       align-items:flex-start;
       position:relative;
-      padding:78px 0 24px !important;
+      padding:78px 0 28px !important;
     }
 
     .hero-copy{
@@ -327,11 +330,13 @@
 
     .hero-subtitle{
       margin:0 auto;
-      max-width:760px;
+      max-width:780px;
       color:rgba(245,247,255,.68);
       font-size:16px;
       line-height:1.9;
     }
+
+    /* ===== Sections ===== */
 
     .section{
       position:relative;
@@ -369,7 +374,8 @@
       gap:18px;
     }
 
-    .card{
+    .card,
+    .pillar{
       padding:24px 18px;
       border-radius:26px;
       background:linear-gradient(180deg, var(--panel-soft-1), var(--panel-soft-2));
@@ -377,26 +383,31 @@
       box-shadow:var(--shadow);
     }
 
-    .card h3{
+    .card h3,
+    .pillar h3{
       margin:0 0 10px;
       font-size:21px;
     }
 
-    .card p{
+    .card p,
+    .pillar p{
       margin:0;
       color:rgba(245,247,255,.72);
       line-height:1.85;
       font-size:15px;
     }
 
-    .pillars .card{
-      text-align:center;
-    }
-
-    .pillars strong{
-      display:block;
-      font-size:30px;
-      margin-bottom:8px;
+    .pillar .num{
+      width:44px;
+      height:44px;
+      display:grid;
+      place-items:center;
+      border-radius:14px;
+      margin-bottom:14px;
+      background:linear-gradient(180deg, rgba(90,8,18,.08), rgba(255,255,255,.03));
+      border:1px solid rgba(255,255,255,.06);
+      font-weight:800;
+      font-size:16px;
     }
 
     .cta{
@@ -464,199 +475,6 @@
       position:relative;
       z-index:2;
     }
-
-    /* ===== Intro ===== */
-
-    .genex-intro{
-      position:fixed;
-      inset:0;
-      z-index:9999;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      background:
-        radial-gradient(circle at 50% 50%, rgba(130,16,28,.10), transparent 32%),
-        radial-gradient(circle at 50% 50%, rgba(255,255,255,.025), transparent 46%),
-        rgba(4,6,13,.985);
-      backdrop-filter:blur(18px);
-      -webkit-backdrop-filter:blur(18px);
-      opacity:1;
-      visibility:visible;
-      transition:opacity .9s ease, transform .9s ease, visibility .9s ease;
-      overflow:hidden;
-    }
-
-    .genex-intro.hidden{
-      opacity:0;
-      visibility:hidden;
-      pointer-events:none;
-      transform:scale(1.02);
-    }
-
-    .intro-core{
-      position:relative;
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-      justify-content:center;
-      text-align:center;
-      width:min(96vw,1200px);
-      min-height:100vh;
-      padding:20px;
-    }
-
-    .intro-logo-wrap{
-      position:relative;
-      width:760px;
-      height:760px;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      margin:0 auto;
-    }
-
-    .intro-logo-wrap::before,
-    .intro-logo-wrap::after{
-      content:"";
-      position:absolute;
-      border-radius:50%;
-      inset:0;
-    }
-
-    .intro-logo-wrap::before{
-      inset:-10%;
-      background:
-        radial-gradient(circle, rgba(255,255,255,.10) 0%, rgba(130,16,28,.10) 26%, rgba(130,16,28,0) 74%);
-      filter:blur(28px);
-      animation:introWaveOuter 3.4s ease-in-out infinite;
-    }
-
-    .intro-logo-wrap::after{
-      inset:10%;
-      border:1px solid rgba(255,255,255,.08);
-      box-shadow:
-        0 0 40px rgba(255,255,255,.04),
-        0 0 110px rgba(130,16,28,.06);
-      animation:introWaveInner 2.8s ease-out infinite;
-    }
-
-    .intro-glow{
-      position:absolute;
-      width:420px;
-      height:420px;
-      border-radius:50%;
-      background:
-        radial-gradient(circle, rgba(255,255,255,.10) 0%, rgba(255,255,255,.04) 24%, rgba(140,18,30,.08) 42%, rgba(140,18,30,0) 74%);
-      filter:blur(30px);
-      z-index:1;
-      animation:introGlowPulse 2.8s ease-in-out infinite;
-    }
-
-    @keyframes introGlowPulse{
-      0%,100%{transform:scale(1);opacity:.74}
-      50%{transform:scale(1.08);opacity:1}
-    }
-
-    @keyframes introWaveOuter{
-      0%{transform:scale(.82);opacity:.22}
-      50%{transform:scale(1.08);opacity:.58}
-      100%{transform:scale(1.34);opacity:0}
-    }
-
-    @keyframes introWaveInner{
-      0%{transform:scale(.88);opacity:.28}
-      45%{transform:scale(1.04);opacity:.70}
-      100%{transform:scale(1.22);opacity:0}
-    }
-
-    .intro-logo{
-      width:560px;
-      height:560px;
-      object-fit:contain;
-      position:relative;
-      z-index:3;
-      display:block;
-      margin:0 auto;
-      filter:
-        drop-shadow(0 0 24px rgba(255,255,255,.10))
-        drop-shadow(0 24px 34px rgba(0,0,0,.28));
-      animation:introLogoFloat 2.8s ease-in-out infinite;
-    }
-
-    @keyframes introLogoFloat{
-      0%,100%{transform:translateY(0) rotate(0deg) scale(1)}
-      50%{transform:translateY(-8px) rotate(.25deg) scale(1.015)}
-    }
-
-    .intro-wordmark{
-      font-size:54px;
-      font-weight:900;
-      letter-spacing:.18em;
-      line-height:1;
-      margin:-26px 0 0;
-      padding-inline-start:.18em;
-      text-align:center;
-      width:100%;
-      position:relative;
-      z-index:4;
-      color:rgba(255,255,255,.96);
-      background:linear-gradient(90deg, rgba(255,255,255,.66), rgba(255,255,255,1), rgba(255,255,255,.66));
-      background-size:220% auto;
-      -webkit-background-clip:text;
-      background-clip:text;
-      -webkit-text-fill-color:transparent;
-      text-shadow:0 0 14px rgba(255,255,255,.06);
-      opacity:0;
-      transform:translateY(10px);
-      animation:
-        introTextRise .9s ease forwards,
-        introWordShine 2.8s linear infinite;
-      animation-delay:.35s, 1.1s;
-      white-space:nowrap !important;
-    }
-
-    @keyframes introWordShine{
-      0%{background-position:0% center}
-      100%{background-position:220% center}
-    }
-
-    @keyframes introTextRise{
-      to{opacity:1;transform:translateY(0)}
-    }
-
-    /* ===== INTRO LANGUAGE SPLIT ===== */
-
-    html[lang="ar"] .intro-core{
-      transform:translateY(-10%) !important;
-      left:4px !important;
-    }
-
-    html[lang="ar"] .intro-logo-wrap{
-      transform:translateY(-1%) !important;
-      left:2px !important;
-    }
-
-    html[lang="ar"] .intro-wordmark{
-      transform:translateY(-10px) !important;
-      left:0px !important;
-    }
-
-    html[lang="en"] .intro-core{
-      transform:translateY(-10%) !important;
-      left:-4px !important;
-    }
-
-    html[lang="en"] .intro-logo-wrap{
-      transform:translateY(-1%) !important;
-      left:-2px !important;
-    }
-
-    html[lang="en"] .intro-wordmark{
-      transform:translateY(-10px) !important;
-      left:2px !important;
-    }
-
-    /* ===== Critical interaction fix ===== */
 
     #backFxWrap,
     #sceneWrap,
@@ -748,44 +566,12 @@
         min-width:170px !important;
         font-size:15px !important;
       }
-
-      .intro-logo-wrap{
-        width:360px;
-        height:360px;
-      }
-
-      .intro-glow{
-        width:240px;
-        height:240px;
-      }
-
-      .intro-logo{
-        width:260px;
-        height:260px;
-      }
-
-      .intro-wordmark{
-        font-size:32px;
-        letter-spacing:.14em;
-        padding-inline-start:.14em;
-        margin:-12px 0 0;
-      }
     }
   </style>
 </head>
-<body data-page="about" data-intro="false" data-music="true">
+<body data-page="about" data-music="true">
 
   <div class="page-transition" id="pageTransition"></div>
-
-  <div class="genex-intro" id="genexIntro">
-    <div class="intro-core">
-      <div class="intro-logo-wrap">
-        <div class="intro-glow"></div>
-        <img class="intro-logo" src="./assets/logo.png" alt="G E N E X Logo" />
-      </div>
-      <div class="intro-wordmark">G E N E X</div>
-    </div>
-  </div>
 
   <div id="backFxWrap" aria-hidden="true">
     <canvas id="backFxCanvas"></canvas>
@@ -811,6 +597,7 @@
     <a href="./request.html" data-i18n="nav_request" onclick="closeGXMenu()">ابدأ مشروعك</a>
     <a href="./contact.html" data-i18n="nav_contact" onclick="closeGXMenu()">تواصل</a>
     <a href="./about.html" data-i18n="nav_about" onclick="closeGXMenu()">عن G E N E X</a>
+    <a href="./join.html" data-i18n="nav_join" onclick="closeGXMenu()">انضم</a>
   </nav>
 
   <div class="genex-page-shell">
@@ -858,19 +645,19 @@
 
           <div class="grid-2">
             <div class="card genex-card">
-              <h3 data-i18n="about_card_1_title">رؤية</h3>
+              <h3 data-i18n="about_card_1_title">الرؤية</h3>
               <p data-i18n="about_card_1_desc">نؤمن أن المستقبل لا يُدار بكثرة الأدوات، بل ببناء طبقات ذكية موحدة تمنح المؤسسات القدرة على التشغيل، الفهم، واتخاذ القرار بثبات.</p>
             </div>
 
             <div class="card genex-card">
-              <h3 data-i18n="about_card_2_title">منهج</h3>
+              <h3 data-i18n="about_card_2_title">المنهج</h3>
               <p data-i18n="about_card_2_desc">نبدأ من البيئة الفعلية، نقرأ الهيكل والتدفقات والاختناقات، ثم نبني حلاً يتشكل حول الواقع التشغيلي بدل أن يفرض عليه قالبًا عامًا.</p>
             </div>
           </div>
         </div>
       </section>
 
-      <section class="section pillars">
+      <section class="section">
         <div class="container">
           <div class="section-title">
             <h2 data-i18n="about_pillars_title">مرتكزات G E N E X</h2>
@@ -878,34 +665,40 @@
           </div>
 
           <div class="grid-3">
-            <div class="card genex-card">
-              <strong>01</strong>
-              <p data-i18n="pillar_1">السيادة التقنية قبل الاعتماد الكامل على الأطراف الخارجية.</p>
+            <div class="pillar genex-card">
+              <div class="num">01</div>
+              <h3 data-i18n="pillar_1_title">السيادة التقنية</h3>
+              <p data-i18n="pillar_1_desc">نبني ما يمنحك استقلالًا أعلى وسيطرة أعمق بدل الاعتماد الكامل على طبقات خارجية لا تملكها.</p>
             </div>
 
-            <div class="card genex-card">
-              <strong>02</strong>
-              <p data-i18n="pillar_2">الهدوء التشغيلي بدل الفوضى الناتجة عن تكدّس الأدوات.</p>
+            <div class="pillar genex-card">
+              <div class="num">02</div>
+              <h3 data-i18n="pillar_2_title">الهدوء التشغيلي</h3>
+              <p data-i18n="pillar_2_desc">نقلل التعقيد والفوضى الناتجة عن تكدّس الأدوات، ونعيد ترتيب التشغيل على أساس أوضح وأكثر استقرارًا.</p>
             </div>
 
-            <div class="card genex-card">
-              <strong>03</strong>
-              <p data-i18n="pillar_3">الوضوح والقرار المبني على طبقات فهم وتحليل حقيقية.</p>
+            <div class="pillar genex-card">
+              <div class="num">03</div>
+              <h3 data-i18n="pillar_3_title">القرار المبني على الفهم</h3>
+              <p data-i18n="pillar_3_desc">لا قيمة لسرعة التنفيذ دون طبقة فهم حقيقية. لذلك نبني أنظمة تساعدك على رؤية السياق قبل الحركة.</p>
             </div>
 
-            <div class="card genex-card">
-              <strong>04</strong>
-              <p data-i18n="pillar_4">الأتمتة ليست اختصارًا فقط، بل إعادة هندسة للتنفيذ.</p>
+            <div class="pillar genex-card">
+              <div class="num">04</div>
+              <h3 data-i18n="pillar_4_title">الأتمتة كإعادة هندسة</h3>
+              <p data-i18n="pillar_4_desc">الأتمتة ليست اختصار وقت فقط، بل إعادة تشكيل للتدفق بحيث يصبح أكثر دقة وهدوءًا وقابلية للتوسع.</p>
             </div>
 
-            <div class="card genex-card">
-              <strong>05</strong>
-              <p data-i18n="pillar_5">كل حل يجب أن يكون قابلاً للتوسع، لا مجرد استجابة لحاجة مؤقتة.</p>
+            <div class="pillar genex-card">
+              <div class="num">05</div>
+              <h3 data-i18n="pillar_5_title">حلول قابلة للنمو</h3>
+              <p data-i18n="pillar_5_desc">كل ما نبنيه يجب أن يستطيع النمو معك، لا أن يتعطل عند أول توسع أو يتحول إلى عبء جديد.</p>
             </div>
 
-            <div class="card genex-card">
-              <strong>06</strong>
-              <p data-i18n="pillar_6">التصميم الحقيقي يبدأ من الواقع، لا من القوالب.</p>
+            <div class="pillar genex-card">
+              <div class="num">06</div>
+              <h3 data-i18n="pillar_6_title">التصميم من الواقع</h3>
+              <p data-i18n="pillar_6_desc">لا نفرض قوالب جاهزة على البيئات المختلفة، بل ننطلق من واقعك الفعلي لنصمم شيئًا مناسبًا له بدقة.</p>
             </div>
           </div>
         </div>
@@ -935,68 +728,76 @@
     (function () {
       const translations = {
         ar: {
-          title: "G E N E X | About",
-          description: "تعرف على G E N E X ورؤيتها في بناء الأنظمة السيادية، الأتمتة الاستراتيجية، والبنية الرقمية الذكية.",
           nav_home: "الرئيسية",
           nav_services: "الخدمات",
           nav_request: "ابدأ مشروعك",
           nav_about: "عن G E N E X",
           nav_contact: "تواصل",
+          nav_join: "انضم",
           eyebrow: "G E N E X • السيادة التقنية تبدأ هنا",
           about_title: "عن G E N E X",
           about_subtitle: "G E N E X ليست شركة خدمات تقليدية، بل بنية تفكير وتنفيذ تُصمم أنظمة رقمية أكثر ذكاءً، أكثر هدوءًا، وأكثر سيادة على المدى الطويل.",
           about_story_title: "من نحن",
           about_story_desc: "نحن نبني لمن يريد أن يتجاوز منطق الأدوات الجاهزة إلى منطق المنظومات المترابطة التي تفهم، تتكيّف، وتمنح المؤسسة سيطرة فعلية.",
-          about_card_1_title: "رؤية",
+          about_card_1_title: "الرؤية",
           about_card_1_desc: "نؤمن أن المستقبل لا يُدار بكثرة الأدوات، بل ببناء طبقات ذكية موحدة تمنح المؤسسات القدرة على التشغيل، الفهم، واتخاذ القرار بثبات.",
-          about_card_2_title: "منهج",
+          about_card_2_title: "المنهج",
           about_card_2_desc: "نبدأ من البيئة الفعلية، نقرأ الهيكل والتدفقات والاختناقات، ثم نبني حلاً يتشكل حول الواقع التشغيلي بدل أن يفرض عليه قالبًا عامًا.",
           about_pillars_title: "مرتكزات G E N E X",
           about_pillars_desc: "هذه ليست شعارات، بل المبادئ التي نقيس بها كل قرار، كل تصميم، وكل طبقة نبنيها.",
-          pillar_1: "السيادة التقنية قبل الاعتماد الكامل على الأطراف الخارجية.",
-          pillar_2: "الهدوء التشغيلي بدل الفوضى الناتجة عن تكدّس الأدوات.",
-          pillar_3: "الوضوح والقرار المبني على طبقات فهم وتحليل حقيقية.",
-          pillar_4: "الأتمتة ليست اختصارًا فقط، بل إعادة هندسة للتنفيذ.",
-          pillar_5: "كل حل يجب أن يكون قابلاً للتوسع، لا مجرد استجابة لحاجة مؤقتة.",
-          pillar_6: "التصميم الحقيقي يبدأ من الواقع، لا من القوالب.",
+          pillar_1_title: "السيادة التقنية",
+          pillar_1_desc: "نبني ما يمنحك استقلالًا أعلى وسيطرة أعمق بدل الاعتماد الكامل على طبقات خارجية لا تملكها.",
+          pillar_2_title: "الهدوء التشغيلي",
+          pillar_2_desc: "نقلل التعقيد والفوضى الناتجة عن تكدّس الأدوات، ونعيد ترتيب التشغيل على أساس أوضح وأكثر استقرارًا.",
+          pillar_3_title: "القرار المبني على الفهم",
+          pillar_3_desc: "لا قيمة لسرعة التنفيذ دون طبقة فهم حقيقية. لذلك نبني أنظمة تساعدك على رؤية السياق قبل الحركة.",
+          pillar_4_title: "الأتمتة كإعادة هندسة",
+          pillar_4_desc: "الأتمتة ليست اختصار وقت فقط، بل إعادة تشكيل للتدفق بحيث يصبح أكثر دقة وهدوءًا وقابلية للتوسع.",
+          pillar_5_title: "حلول قابلة للنمو",
+          pillar_5_desc: "كل ما نبنيه يجب أن يستطيع النمو معك، لا أن يتعطل عند أول توسع أو يتحول إلى عبء جديد.",
+          pillar_6_title: "التصميم من الواقع",
+          pillar_6_desc: "لا نفرض قوالب جاهزة على البيئات المختلفة، بل ننطلق من واقعك الفعلي لنصمم شيئًا مناسبًا له بدقة.",
           about_cta_title: "إذا كنت تبني شيئًا أكبر من الأدوات",
           about_cta_desc: "فأنت في المسار الصحيح مع G E N E X. نحن هنا لبناء طبقات تشغيل وفهم وقدرة تجعل التقنية جزءًا من السيادة لا مجرد وسيلة تشغيل مؤقتة.",
           about_cta_btn_1: "ابدأ مشروعك",
           about_cta_btn_2: "تواصل معنا"
         },
         en: {
-          title: "G E N E X | About",
-          description: "Learn about G E N E X and its vision for sovereign systems, strategic automation, and intelligent digital infrastructure.",
           nav_home: "Home",
           nav_services: "Services",
           nav_request: "Start Project",
           nav_about: "About G E N E X",
           nav_contact: "Contact",
+          nav_join: "Join",
           eyebrow: "G E N E X • Technical Sovereignty Starts Here",
           about_title: "About G E N E X",
-          about_subtitle: "G E N E X is not a conventional service firm. It is a structure of thinking and execution designed to build smarter, calmer, and more sovereign digital systems over the long term.",
+          about_subtitle: "G E N E X is not a conventional service company. It is a structure of thinking and execution that designs smarter, calmer, and more sovereign digital systems over the long term.",
           about_story_title: "Who We Are",
-          about_story_desc: "We build for those who want to move beyond ready-made tools into the logic of interconnected systems that understand, adapt, and provide real operational control.",
+          about_story_desc: "We build for those who want to move beyond ready-made tools into the logic of interconnected systems that understand, adapt, and provide real control.",
           about_card_1_title: "Vision",
-          about_card_1_desc: "We believe the future is not managed by tool accumulation, but by building unified intelligent layers that give organizations stability in operation, understanding, and decision-making.",
+          about_card_1_desc: "We believe the future is not managed through tool accumulation, but through unified intelligent layers that give organizations stability in operation, understanding, and decision-making.",
           about_card_2_title: "Method",
-          about_card_2_desc: "We begin from the real environment, study structure, flows, and bottlenecks, then build a solution shaped around operational reality rather than forcing a generic template onto it.",
+          about_card_2_desc: "We begin from the real environment, study structure, flows, and bottlenecks, then build a solution shaped around operational reality instead of forcing a general template onto it.",
           about_pillars_title: "G E N E X Pillars",
-          about_pillars_desc: "These are not slogans. They are the principles by which we measure every decision, every design, and every layer we build.",
-          pillar_1: "Technical sovereignty before full dependence on external parties.",
-          pillar_2: "Operational calm instead of the chaos created by stacked tools.",
-          pillar_3: "Clarity and decision-making built on real layers of understanding and analysis.",
-          pillar_4: "Automation is not only acceleration, but redesigning execution itself.",
-          pillar_5: "Every solution must be scalable, not merely a response to a temporary need.",
-          pillar_6: "Real design begins with reality, not with templates.",
+          about_pillars_desc: "These are not slogans. They are the principles by which we measure every decision, design, and layer we build.",
+          pillar_1_title: "Technical Sovereignty",
+          pillar_1_desc: "We build what gives you greater independence and deeper control instead of full dependence on external layers you do not own.",
+          pillar_2_title: "Operational Calm",
+          pillar_2_desc: "We reduce the complexity and chaos created by stacked tools and reorganize operations on a clearer, more stable foundation.",
+          pillar_3_title: "Decision Through Understanding",
+          pillar_3_desc: "Speed of execution is not enough without real understanding. We build systems that help you see context before movement.",
+          pillar_4_title: "Automation as Re-engineering",
+          pillar_4_desc: "Automation is not only time-saving. It is a redesign of flow so it becomes more precise, calm, and scalable.",
+          pillar_5_title: "Scalable Solutions",
+          pillar_5_desc: "Everything we build must grow with you, not collapse at the first expansion or become a new burden.",
+          pillar_6_title: "Design from Reality",
+          pillar_6_desc: "We do not impose ready-made templates on different environments. We begin from your actual reality and design something precise for it.",
           about_cta_title: "If You Are Building Something Bigger Than Tools",
-          about_cta_desc: "Then you are on the right path with G E N E X. We are here to build operating layers, understanding, and capability that make technology part of sovereignty, not a temporary operational aid.",
+          about_cta_desc: "Then you are on the right path with G E N E X. We are here to build layers of operation, understanding, and capability that make technology part of sovereignty, not just a temporary aid.",
           about_cta_btn_1: "Start Your Project",
           about_cta_btn_2: "Contact Us"
         }
       };
-
-      const metaDescription = document.querySelector('meta[name="description"]');
 
       function applyLanguage(lang) {
         const dict = translations[lang];
@@ -1006,16 +807,10 @@
         document.documentElement.dir = lang === "ar" ? "rtl" : "ltr";
         localStorage.setItem("genex_lang", lang);
 
-        if (dict.title) document.title = dict.title;
-        if (metaDescription && dict.description) {
-          metaDescription.setAttribute("content", dict.description);
-        }
-
         document.querySelectorAll("[data-i18n]").forEach((el) => {
           const key = el.getAttribute("data-i18n");
           if (!dict[key]) return;
-          if (el.hasAttribute("data-i18n-html")) el.innerHTML = dict[key];
-          else el.textContent = dict[key];
+          el.textContent = dict[key];
         });
 
         document.querySelectorAll(".lang-switch button").forEach((btn) => {
@@ -1066,9 +861,6 @@
       else openGXMenu();
     }
   </script>
-
-  
-  <script src="./assets/genex-intro.js"></script>
 
   <script src="./assets/genex-fx.js?v=9901"></script>
   <script src="./assets/genex-engine-v2.js?v=9901"></script>
