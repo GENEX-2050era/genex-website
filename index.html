@@ -1128,6 +1128,38 @@ html[lang="en"] .intro-wordmark{
     font-size:15px;
   }
 }
+    /* ===== BRAND VIDEO SECTION ===== */
+
+.brand-video-section{
+  padding:10px 0 36px;
+}
+
+.brand-video-box{
+  padding:22px;
+  border-radius:30px;
+  background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+  border:1px solid rgba(255,255,255,.08);
+  box-shadow:0 18px 44px rgba(0,0,0,.24);
+}
+
+.brand-video-frame{
+  border-radius:24px;
+  overflow:hidden;
+  background:#000;
+}
+
+.brand-video-frame video{
+  width:100%;
+  display:block;
+  border-radius:24px;
+  background:#000;
+}
+
+@media (max-width:980px){
+  .brand-video-box{
+    padding:16px;
+  }
+}
   </style>
 </head>
 <body data-page="index" data-intro="true" data-music="true">
@@ -1205,9 +1237,9 @@ html[lang="en"] .intro-wordmark{
       </div>
 
       <div class="video-content">
-        <h2>رسالة ترحيبية من G E N E X</h2>
+        </h2>G E N E X</h2>
         <p class="video-desc">
-          شاهد الرسالة التعريفية السريعة، ثم انتقل مباشرة لاستكشاف الخدمات أو بدء مشروعك.
+          شاهد الرسالة التعريفية
         </p>
       </div>
     </div>
@@ -1324,6 +1356,24 @@ html[lang="en"] .intro-wordmark{
           </div>
         </div>
       </section>
+  <section class="section brand-video-section">
+  <div class="container">
+    <div class="brand-video-box genex-panel">
+      <div class="section-title">
+        <h2>رسالة الهوية والشعار</h2>
+        <p>
+          فيديو تعريفي يظهر فيه المتحدث وهو يذكر هوية G E N E X ورسالتها بصورة مباشرة وواضحة.
+        </p>
+      </div>
+
+      <div class="brand-video-frame">
+        <video controls playsinline preload="metadata" poster="./assets/logo.png">
+          <source src="./assets/welcome.mp4" type="video/mp4" />
+        </video>
+      </div>
+    </div>
+  </div>
+  </section>
     </main>
 
     <footer class="footer">
