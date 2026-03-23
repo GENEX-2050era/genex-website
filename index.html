@@ -4,37 +4,43 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<title>G E N E X | Sovereign Intelligence Systems</title>
+<title>G E N E X</title>
 
 <link rel="stylesheet" href="./assets/styles.css" />
 <link rel="stylesheet" href="./assets/genex-fx.css" />
 
 <style>
 
-/* ===== GENEX NEW IDENTITY ===== */
+/* ===== GENEX IDENTITY ===== */
 
 :root{
-  --bg:#03040b;
-  --text:#ffffff;
+  --bg:#07121a;
 
-  /* الهوية الجديدة */
-  --primary:#5b0a14;
-  --primary-soft:#8b0f1d;
-  --accent:#d6b36a;
-  --accent-soft:#f2d89a;
+  --teal-1:#1f9a94;
+  --teal-2:#6fd3c8;
+
+  --red-1:#8a0f1a;
+  --red-2:#ff2e3a;
+
+  --gold-1:#c6a85a;
+  --gold-2:#f0d48a;
 
   --glass:rgba(255,255,255,.05);
   --stroke:rgba(255,255,255,.08);
-  --radius:28px;
 }
 
 /* ===== BASE ===== */
 
 body{
   margin:0;
-  background:var(--bg);
-  color:var(--text);
+  color:#fff;
   font-family:system-ui;
+
+  background:
+    radial-gradient(circle at 20% 20%, rgba(111,211,200,.08), transparent 40%),
+    radial-gradient(circle at 80% 80%, rgba(255,46,58,.08), transparent 40%),
+    var(--bg);
+
   padding-top:72px;
 }
 
@@ -76,7 +82,7 @@ body{
   display:flex;
   align-items:center;
   justify-content:center;
-  background:radial-gradient(circle,var(--primary),#000);
+  background:radial-gradient(circle,var(--red-1),#000);
   transition:.8s;
 }
 
@@ -90,19 +96,24 @@ body{
   letter-spacing:.2em;
 }
 
-/* ===== HERO VIDEO ===== */
+/* ===== VIDEO HERO ===== */
 
 .video-hero{
   padding:40px 0;
 }
 
-.video-box{
+.video-hero-box{
   display:grid;
-  grid-template-columns:1fr 1fr;
+  grid-template-columns:1.2fr .8fr;
   gap:24px;
   padding:24px;
-  border-radius:var(--radius);
-  background:linear-gradient(180deg,var(--glass),transparent);
+  border-radius:28px;
+
+  background:
+    radial-gradient(circle at 30% 30%, rgba(111,211,200,.08), transparent 40%),
+    radial-gradient(circle at 70% 70%, rgba(255,46,58,.08), transparent 40%),
+    var(--glass);
+
   border:1px solid var(--stroke);
 }
 
@@ -112,15 +123,16 @@ body{
 }
 
 .video-content h1{
-  font-size:42px;
+  font-size:40px;
 }
 
 .genex-word{
-  letter-spacing:.2em;
-  color:var(--accent);
+  white-space:nowrap;
+  letter-spacing:.25em;
+  color:var(--gold-1);
 }
 
-/* ===== HERO CARD ===== */
+/* ===== HERO ===== */
 
 .hero{
   padding:30px 0;
@@ -134,14 +146,14 @@ body{
 
 .hero-copy{
   padding:28px;
-  border-radius:var(--radius);
-  background:linear-gradient(180deg,var(--glass),transparent);
+  border-radius:28px;
+  background:var(--glass);
 }
 
 .hero-orb{
   padding:30px;
-  border-radius:var(--radius);
-  background:radial-gradient(circle,var(--primary-soft),transparent);
+  border-radius:28px;
+  background:radial-gradient(circle,var(--teal-1),transparent);
   text-align:center;
 }
 
@@ -154,141 +166,169 @@ body{
 }
 
 .btn.primary{
-  background:linear-gradient(180deg,var(--primary),var(--primary-soft));
-}
-
-/* ===== SECTION ===== */
-
-.section{
-  padding:40px 0;
-}
-
-.stat{
-  padding:20px;
-  border-radius:20px;
-  background:var(--glass);
-}
-
-/* ===== BRAND VIDEO ===== */
-
-.brand-video{
-  padding:40px 0;
-}
-
-.brand-box{
-  padding:20px;
-  border-radius:var(--radius);
-  background:var(--glass);
-}
-
-.brand-box video{
-  width:100%;
-  border-radius:20px;
+  background:linear-gradient(180deg,var(--red-1),var(--red-2));
 }
 
 </style>
 </head>
+  
+<body data-page="index" data-intro="true" data-music="true">
 
-<body>
-
-<!-- INTRO -->
-<div class="genex-intro" id="genexIntro">
-  <div class="intro-wordmark">G E N E X</div>
-</div>
-
-<header class="site-header">
-  <div class="container site-header-inner">
-    <div class="brand-text">G E N E X</div>
+  <!-- INTRO -->
+  <div class="genex-intro" id="genexIntro">
+    <div class="intro-wordmark">G E N E X</div>
   </div>
-</header>
 
-<main>
+  <!-- FX -->
+  <div id="backFxWrap" aria-hidden="true">
+    <canvas id="backFxCanvas"></canvas>
+    <div class="back-vignette"></div>
+  </div>
 
-<!-- HERO VIDEO -->
-<section class="video-hero">
-  <div class="container">
-    <div class="video-box">
+  <div id="sceneWrap" aria-hidden="true"></div>
 
-      <div class="video-wrapper">
-        <video controls playsinline>
-          <source src="./assets/welcome.mp4" type="video/mp4">
-        </video>
+  <div id="frontFxWrap" aria-hidden="true">
+    <canvas id="frontFxCanvas"></canvas>
+    <div class="front-fade"></div>
+  </div>
+
+  <audio id="siteMusic" loop preload="auto">
+    <source src="./assets/audio/fantasy-ambient.mp3" type="audio/mpeg" />
+  </audio>
+
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="container site-header-inner">
+      <div class="brand-text">G E N E X</div>
+    </div>
+  </header>
+
+  <main class="genex-page-content">
+
+    <!-- VIDEO HERO -->
+    <section class="video-hero">
+      <div class="container">
+        <div class="video-hero-box">
+
+          <div class="video-content">
+            <h1>
+              مرحباً بك في <span class="genex-word">G E N E X</span>
+            </h1>
+
+            <p>
+              حيث تبدأ أنظمة الذكاء السيادي والبنية التشغيلية المستقبلية.
+            </p>
+
+            <a class="btn primary" href="./request.html">ابدأ مشروعك</a>
+          </div>
+
+          <div class="video-wrapper">
+            <video controls playsinline preload="metadata" poster="./assets/logo.png" id="heroWelcomeVideo">
+              <source src="./assets/welcome.mp4" type="video/mp4" />
+            </video>
+          </div>
+
+        </div>
       </div>
+    </section>
 
-      <div class="video-content">
-        <h1>
-          مرحباً بك في <span class="genex-word">G E N E X</span>
-        </h1>
-        <p>
-          حيث تبدأ أنظمة الذكاء السيادي والبنية التشغيلية المستقبلية.
-        </p>
+    <!-- HERO CARDS -->
+    <section class="hero">
+      <div class="container hero-grid">
 
-        <a class="btn primary" href="./request.html">ابدأ مشروعك</a>
+        <div class="hero-copy">
+          <h2>G E N E X</h2>
+          <p>Sovereign AI Systems</p>
+        </div>
+
+        <div class="hero-orb">
+          <h2>أنظمة سيادية</h2>
+          <p>نحو مستقبل مستقل بالكامل.</p>
+        </div>
+
       </div>
+    </section>
 
-    </div>
-  </div>
-</section>
+    <!-- STATS -->
+    <section class="section">
+      <div class="container">
+        <div class="stat">AI Systems</div>
+      </div>
+    </section>
 
-<!-- HERO -->
-<section class="hero">
-  <div class="container hero-grid">
+    <!-- BRAND VIDEO -->
+    <section class="brand-video">
+      <div class="container">
+        <div class="brand-box">
+          <video controls>
+            <source src="./assets/welcome.mp4" type="video/mp4">
+          </video>
+        </div>
+      </div>
+    </section>
+    </main>
 
-    <div class="hero-copy">
-      <h2>أنظمة سيادية</h2>
-      <p>نحو مستقبل مستقل بالكامل.</p>
-    </div>
+  <!-- FOOTER -->
+  <footer style="text-align:center;padding:30px 0;color:#aaa;">
+    G E N E X © 2026
+  </footer>
 
-    <div class="hero-orb">
-      <h2>G E N E X</h2>
-      <p>Sovereign AI Systems</p>
-    </div>
+  <!-- MENU SCRIPT (احتياطي) -->
+  <script>
+    function toggleGXMenu(){}
+  </script>
 
-  </div>
-</section>
+  <!-- INTRO SCRIPT (الإعداد الصحيح اللي طلبته) -->
+  <script>
+    (function () {
+      function hideIntro() {
+        var intro = document.getElementById("genexIntro");
+        if (!intro) return;
 
-<!-- STATS -->
-<section class="section">
-  <div class="container">
-    <div class="stat">AI Systems</div>
-  </div>
-</section>
+        intro.classList.add("hidden");
 
-<!-- BRAND VIDEO -->
-<section class="brand-video">
-  <div class="container">
-    <div class="brand-box">
-      <video controls>
-        <source src="./assets/welcome.mp4" type="video/mp4">
-      </video>
-    </div>
-  </div>
-</section>
+        setTimeout(function () {
+          intro.style.display = "none";
+        }, 800);
+      }
 
-</main>
+      // يختفي بعد التحميل
+      window.addEventListener("load", function () {
+        setTimeout(hideIntro, 2200);
+      });
 
-<footer style="text-align:center;padding:30px">
-G E N E X © 2026
-</footer>
+      // يختفي عند الضغط
+      document.addEventListener("DOMContentLoaded", function () {
+        var intro = document.getElementById("genexIntro");
+        if (intro) {
+          intro.addEventListener("click", hideIntro, { once: true });
+        }
+      });
 
-<!-- INTRO SCRIPT (مضبوط) -->
-<script>
-(function(){
-  const intro = document.getElementById("genexIntro");
+      // fallback احتياطي
+      setTimeout(hideIntro, 3500);
+    })();
+  </script>
 
-  function hideIntro(){
-    if(!intro) return;
-    intro.classList.add("hidden");
-    setTimeout(()=> intro.remove(),800);
-  }
+  <!-- VIDEO FIX (تشغيل صوت الفيديو) -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const v = document.getElementById("heroWelcomeVideo");
+      if (!v) return;
 
-  window.addEventListener("load",()=>{
-    setTimeout(hideIntro,2000);
-  });
+      v.muted = false;
+      v.volume = 1;
 
-  intro.addEventListener("click",hideIntro);
-})();
-</script>
+      v.addEventListener("click", () => {
+        v.muted = false;
+        v.play();
+      });
+    });
+  </script>
+
+  <!-- FX -->
+  <script src="./assets/genex-fx.js"></script>
+  <script src="./assets/genex-engine-v2.js"></script>
 
 </body>
 </html>
