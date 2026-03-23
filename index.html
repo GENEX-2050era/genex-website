@@ -1005,53 +1005,107 @@ html[lang="en"] .intro-wordmark{
   left:2px !important;
 }
     
-/* ===== VIDEO HERO PRO ===== */
+/* ===== HERO VIDEO SAFE VERSION ===== */
 
 .video-hero-box{
   display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:24px;
-  padding:20px;
+  grid-template-columns:1fr;
+  gap:18px;
+  padding:18px;
   border-radius:30px;
-  background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+  background:
+    radial-gradient(circle at 20% 20%, rgba(120,16,28,.10), transparent 30%),
+    radial-gradient(circle at 80% 80%, rgba(255,255,255,.04), transparent 26%),
+    linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
   border:1px solid rgba(255,255,255,.08);
-  box-shadow:0 18px 44px rgba(0,0,0,.25);
+  box-shadow:
+    0 18px 44px rgba(0,0,0,.24),
+    0 1px 0 rgba(255,255,255,.03) inset;
+  overflow:hidden;
 }
 
-/* الفيديو */
 .video-wrapper{
   position:relative;
-  border-radius:22px;
+  border-radius:24px;
   overflow:hidden;
+  background:#000;
+  box-shadow:
+    0 18px 34px rgba(0,0,0,.28),
+    0 0 0 1px rgba(255,255,255,.05) inset;
 }
 
 .video-wrapper video{
   width:100%;
-  height:100%;
-  object-fit:cover;
-  border-radius:22px;
+  display:block;
+  border-radius:24px;
   background:#000;
 }
 
-/* النص */
 .video-content{
   display:flex;
   flex-direction:column;
   justify-content:center;
+  text-align:center;
 }
 
 .video-content h1{
-  font-size:38px;
-  margin-bottom:12px;
+  margin:0 0 14px;
+  font-size:clamp(30px,7vw,48px);
+  line-height:1.2;
+  letter-spacing:0;
 }
 
 .video-desc{
-  color:rgba(245,247,255,.7);
-  font-size:16px;
-  line-height:1.8;
-  margin-bottom:20px;
+  margin:0 0 22px;
+  color:rgba(245,247,255,.76);
+  font-size:18px;
+  line-height:1.9;
 }
 
+.genex-word{
+  display:inline-block;
+  white-space:nowrap !important;
+  word-break:keep-all !important;
+  overflow-wrap:normal !important;
+  letter-spacing:.18em;
+  padding-inline-start:.18em;
+  font:inherit;
+}
+
+@media (min-width:981px){
+  .video-hero-box{
+    grid-template-columns:1.08fr .92fr;
+    gap:22px;
+    padding:22px;
+  }
+
+  .video-content{
+    text-align:center;
+  }
+
+  .video-content h1{
+    font-size:clamp(36px,4.6vw,58px);
+  }
+}
+
+@media (max-width:980px){
+  .video-hero-box{
+    grid-template-columns:1fr;
+    padding:16px;
+    gap:16px;
+  }
+
+  .video-content h1{
+    font-size:clamp(28px,6vw,36px);
+    line-height:1.25;
+  }
+
+  .video-desc{
+    font-size:16px;
+    line-height:1.8;
+    margin-bottom:18px;
+  }
+}
 /* موبايل */
 @media (max-width:980px){
   .video-hero-box{
@@ -1267,21 +1321,22 @@ html[lang="en"] .intro-wordmark{
       
       <section class="hero">
   <div class="container">
-
     <div class="video-hero-box genex-panel">
 
       <div class="video-wrapper">
-        <video controls playsinline preload="metadata" poster="./assets/logo.png">
+        <video controls playsinline preload="metadata" poster="./assets/logo.png" id="heroWelcomeVideo">
           <source src="./assets/welcome.mp4" type="video/mp4" />
         </video>
       </div>
 
       <div class="video-content">
-        <h1>مرحباً بك في <span class="genex-word">G E N E X</span></h1>
+        <h1>
+          مرحباً بك في <span class="genex-word">G E N E X</span>
+        </h1>
 
         <p class="video-desc">
-  هنا تبدأ الرحلة نحو أنظمة ذكية مستقلة، وبنية تشغيلية أكثر هدوءًا، وقدرة أعلى على التحكم، التوسع، واتخاذ القرار.
-</p>
+          هنا تبدأ الرحلة نحو أنظمة ذكية مستقلة، وبنية تشغيلية أكثر هدوءًا، وقدرة أعلى على التحكم، التوسع، واتخاذ القرار.
+        </p>
 
         <div class="hero-actions">
           <a class="btn primary" href="./request.html">ابدأ مشروعك</a>
@@ -1290,7 +1345,6 @@ html[lang="en"] .intro-wordmark{
       </div>
 
     </div>
-
   </div>
 </section>
 
