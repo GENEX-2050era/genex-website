@@ -1056,11 +1056,32 @@ html[lang="en"] .intro-wordmark{
 @media (max-width:980px){
   .video-hero-box{
     grid-template-columns:1fr;
+    padding:16px;
+    gap:16px;
   }
 
   .video-content h1{
     font-size:28px;
   }
+
+  .video-desc{
+    font-size:16px;
+    line-height:1.8;
+    margin-bottom:18px;
+  }
+}
+    .video-wrapper{
+  outline:1px solid rgba(255,255,255,.05);
+}
+
+.video-wrapper::after{
+  content:"";
+  position:absolute;
+  inset:auto 0 0 0;
+  height:30%;
+  background:linear-gradient(180deg, transparent, rgba(0,0,0,.18));
+  pointer-events:none;
+  z-index:2;
 }
     /* ===== WELCOME VIDEO SECTION ===== */
 
@@ -1068,22 +1089,45 @@ html[lang="en"] .intro-wordmark{
   padding:28px 0 10px;
 }
 
+/* ===== VIDEO HERO CINEMATIC ===== */
+
 .video-hero-box{
   display:grid;
-  grid-template-columns:1.2fr .8fr;
-  gap:20px;
+  grid-template-columns:1.08fr .92fr;
+  gap:22px;
   align-items:center;
-  padding:20px;
+  padding:22px;
   border-radius:30px;
-  background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+  background:
+    radial-gradient(circle at 20% 20%, rgba(120,16,28,.10), transparent 30%),
+    radial-gradient(circle at 80% 80%, rgba(255,255,255,.04), transparent 26%),
+    linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
   border:1px solid rgba(255,255,255,.08);
-  box-shadow:0 18px 44px rgba(0,0,0,.24);
+  box-shadow:
+    0 18px 44px rgba(0,0,0,.24),
+    0 1px 0 rgba(255,255,255,.03) inset;
+  overflow:hidden;
 }
 
 .video-wrapper{
+  position:relative;
   border-radius:24px;
   overflow:hidden;
   background:#000;
+  box-shadow:
+    0 18px 34px rgba(0,0,0,.28),
+    0 0 0 1px rgba(255,255,255,.05) inset;
+}
+
+.video-wrapper::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.04), transparent 24%),
+    radial-gradient(circle at 50% 0%, rgba(120,16,28,.10), transparent 40%);
+  pointer-events:none;
+  z-index:2;
 }
 
 .video-wrapper video{
@@ -1094,39 +1138,24 @@ html[lang="en"] .intro-wordmark{
 }
 
 .video-content{
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
   text-align:center;
 }
 
-.video-content h2{
-  margin:0 0 12px;
-  font-size:clamp(26px,4vw,40px);
-  line-height:1.2;
+.video-content h1{
+  margin:0 0 14px;
+  font-size:clamp(32px,4.6vw,58px);
+  line-height:1.12;
+  letter-spacing:-.03em;
 }
 
 .video-desc{
-  margin:0;
-  color:rgba(245,247,255,.74);
-  line-height:1.9;
-  font-size:16px;
-}
-
-@media (max-width:980px){
-  .hero-video-section{
-    padding:20px 0 8px;
-  }
-
-  .video-hero-box{
-    grid-template-columns:1fr;
-    padding:16px;
-  }
-
-  .video-content h2{
-    font-size:28px;
-  }
-
-  .video-desc{
-    font-size:15px;
-  }
+  margin:0 0 22px;
+  color:rgba(245,247,255,.76);
+  font-size:18px;
+  line-height:1.95;
 }
     /* ===== BRAND VIDEO SECTION ===== */
 
@@ -1160,6 +1189,14 @@ html[lang="en"] .intro-wordmark{
     padding:16px;
   }
 }
+    .genex-word{
+  display:inline-block;
+  white-space:nowrap !important;
+  word-break:keep-all !important;
+  overflow-wrap:normal !important;
+  letter-spacing:.18em;
+  padding-inline-start:.18em;
+    }
   </style>
 </head>
 <body data-page="index" data-intro="true" data-music="true">
@@ -1240,11 +1277,11 @@ html[lang="en"] .intro-wordmark{
       </div>
 
       <div class="video-content">
-        <h1>مرحباً بك في G E N E X</h1>
+        <h1>مرحباً بك في <span class="genex-word">G E N E X</span></h1>
 
         <p class="video-desc">
-          هنا تبدأ الرحلة نحو أنظمة ذكية مستقلة تقود أعمالك نحو مستوى جديد من التحكم والتوسع.
-        </p>
+  هنا تبدأ الرحلة نحو أنظمة ذكية مستقلة، وبنية تشغيلية أكثر هدوءًا، وقدرة أعلى على التحكم، التوسع، واتخاذ القرار.
+</p>
 
         <div class="hero-actions">
           <a class="btn primary" href="./request.html">ابدأ مشروعك</a>
